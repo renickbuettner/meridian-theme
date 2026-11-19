@@ -1,0 +1,82 @@
+{% set variant = data.variant|default('hero') %}
+{% if variant not in ['hero', 'hero-split', 'panel', 'minimal', 'bookmark'] %}{% set variant = 'hero' %}{% endif %}
+{% set palette = ['primary', 'secondary', 'light', 'dark', 'outline-primary', 'outline-light'] %}
+{% set btnStyle = data.button_style|default('primary') in palette ? data.button_style|default('primary') : 'primary' %}
+{# Bootstrap 5 button names onto Meridian's recipe; rc-cta-btn--* are the on-image and on-band variants #}
+{% set btnMap = {'primary': '', 'secondary': ' mr-btn--ghost', 'light': ' rc-cta-btn--light', 'dark': ' rc-cta-btn--dark', 'outline-primary': ' mr-btn--ghost', 'outline-light': ' rc-cta-btn--outline-light'} %}
+{% set btnCls = 'mr-btn' ~ btnMap[btnStyle] %}
+{% set url = data.button_url|rc_url %}
+{% set url2 = data.second_url|rc_url %}
+{% set hasImage = data.image|default('') != '' %}
+{% set imgDims = hasImage ? rc_image_size(data.image) : null %}
+{% set imgDimAttr = imgDims ? ' width="' ~ imgDims[0] ~ '" height="' ~ imgDims[1] ~ '"' : '' %}
+{% set imgLoading = priority|default(false) ? ' fetchpriority="high"' : ' loading="lazy" fetchpriority="low"' %}
+{% set autoSizes = priority|default(false) ? '' : 'auto, ' %}
+
+<div {{ attributes|raw }} data-rc-cta="{{ variant }}">
+{% if variant == 'hero' %}
+    <div class="rc-cta-hero{{ hasImage ? ' rc-cta-hero--bg' : '' }}">
+        {# An <img> instead of a CSS background so it gets a srcset and loads lazily #}
+        {% if hasImage %}{{ rc_partial('_mr-picture', {path: data.image, src: data.image|media, sizes: autoSizes ~ '(min-width: 992px) calc(100vw - 15rem), 100vw', alt: '', cls: 'rc-cta-hero-bg', extra: imgLoading ~ imgDimAttr}) }}{% endif %}
+        <div class="rc-cta-hero-inner">
+            {% if data.title %}<h2 class="rc-cta-title">{{ data.title }}</h2>{% endif %}
+            {% if data.text %}<p class="rc-cta-text">{{ data.text|nl2br }}</p>{% endif %}
+            {% if data.footnote %}<p class="rc-cta-footnote">{{ data.footnote }}</p>{% endif %}
+            {% if (data.button_label and url) or (data.second_label and url2) %}
+            <div class="rc-cta-actions">
+                {% if data.button_label and url %}<a class="{{ btnCls }} mr-btn--lg" href="{{ url }}">{{ data.button_label }}</a>{% endif %}
+                {% if data.second_label and url2 %}<a class="mr-btn mr-btn--lg {{ hasImage ? 'rc-cta-btn--outline-light' : 'mr-btn--ghost' }}" href="{{ url2 }}">{{ data.second_label }}</a>{% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% elseif variant == 'hero-split' %}
+    <div class="rc-cta-split{{ hasImage ? ' rc-cta-split--media' : '' }}">
+        <div class="rc-cta-copy">
+            {% if data.title %}<h2 class="rc-cta-title">{{ data.title }}</h2>{% endif %}
+            {% if data.text %}<p class="rc-cta-text">{{ data.text|nl2br }}</p>{% endif %}
+            {% if data.footnote %}<p class="rc-cta-footnote">{{ data.footnote }}</p>{% endif %}
+            {% if (data.button_label and url) or (data.second_label and url2) %}
+            <div class="rc-cta-actions">
+                {% if data.button_label and url %}<a class="{{ btnCls }}" href="{{ url }}">{{ data.button_label }}</a>{% endif %}
+                {% if data.second_label and url2 %}<a class="mr-btn mr-btn--ghost" href="{{ url2 }}">{{ data.second_label }}</a>{% endif %}
+            </div>
+            {% endif %}
+        </div>
+        {% if hasImage %}
+        <div class="rc-cta-media rc-media">
+            {{ rc_partial('_mr-picture', {path: data.image, src: data.image|media, sizes: autoSizes ~ '(min-width: 992px) 36rem, 100vw', alt: data.title|default(''), cls: 'rc-cta-side-img', extra: imgLoading ~ imgDimAttr}) }}
+        </div>
+        {% endif %}
+    </div>
+{% elseif variant == 'panel' %}
+    <div class="rc-cta-panel">
+        <div class="rc-cta-copy">
+            {% if data.title %}<h2 class="rc-cta-title">{{ data.title }}</h2>{% endif %}
+            {% if data.text %}<p class="rc-cta-text">{{ data.text|nl2br }}</p>{% endif %}
+        </div>
+        {% if data.button_label and url %}
+        <a class="mr-btn rc-cta-btn--light" href="{{ url }}">{{ data.button_label }}</a>
+        {% endif %}
+    </div>
+{% elseif variant == 'minimal' %}
+    <div class="rc-cta-minimal">
+        <span class="rc-cta-text">{% if data.title %}<strong>{{ data.title }}</strong>{% endif %}{% if data.text %} {{ data.text }}{% endif %}</span>
+        {% if data.button_label and url %}<a class="rc-cta-link" href="{{ url }}">{{ data.button_label }} <span aria-hidden="true">&rsaquo;</span></a>{% endif %}
+    </div>
+{% else %}
+    <div class="rc-cta-bookmark{{ hasImage ? ' rc-cta-bookmark--media' : '' }}">
+        {% if hasImage %}
+        <div class="rc-cta-media rc-media">
+            {{ rc_partial('_mr-picture', {path: data.image, widths: [320, 560, 840], opts: {ratio: 0.7143}, src: data.image|rc_resize(560, 400, {mode: 'crop'}), sizes: autoSizes ~ '(min-width: 40rem) 14rem, 100vw', alt: '', cls: 'rc-cta-thumb', extra: ' width="560" height="400" loading="lazy" fetchpriority="low"'}) }}
+        </div>
+        {% endif %}
+        <div class="rc-cta-copy">
+            {% if data.title %}<p class="rc-cta-title">{{ data.title }}</p>{% endif %}
+            {% if data.text %}<p class="rc-cta-text">{{ data.text|nl2br }}</p>{% endif %}
+            {% if data.footnote %}<p class="rc-cta-footnote">{{ data.footnote }}</p>{% endif %}
+            {% if data.button_label and url %}<a class="{{ btnCls }}" href="{{ url }}" rel="noopener">{{ data.button_label }} <span aria-hidden="true">&rsaquo;</span></a>{% endif %}
+        </div>
+    </div>
+{% endif %}
+</div>

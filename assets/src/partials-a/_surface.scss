@@ -1,0 +1,28 @@
+// The card recipe for plugin block surfaces. Colour and muted are reset because the surface may sit in a dark, primary or inverted band.
+@mixin surface($radius: var(--mr-radius-md)) {
+    background: var(--mr-surface);
+    border: var(--mr-border);
+    border-radius: $radius;
+    box-shadow: var(--mr-shadow-1);
+    color: var(--mr-ink);
+    --mr-muted: color-mix(in oklab, var(--mr-ink) 68%, var(--mr-surface));
+    @include plugin-links;
+}
+
+// The plugin sheet colours links and text on its "light surfaces" from Bootstrap 5 variables with blue fallbacks, with more
+// specificity than any rule of ours. Pointing the variables at Meridian's tokens is the only way to win.
+@mixin plugin-links {
+    --bs-body-color: var(--mr-ink);
+    --bs-link-color: var(--mr-accent);
+    .mr-btn { --bs-link-color: var(--mr-on-accent); }
+    .mr-btn--ghost,
+    .mr-btn--link { --bs-link-color: var(--mr-accent); }
+}
+
+// Whole-card link: the title link stretches over the card; the card also gets the focus ring.
+@mixin stretched($card, $link) {
+    #{$card} { position: relative; }
+    #{$link}::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+    #{$link}:focus-visible { outline: 3px solid var(--mr-focus); outline-offset: 2px; }
+    #{$card}:has(#{$link}:focus-visible) { outline: 3px solid var(--mr-focus); outline-offset: 2px; }
+}

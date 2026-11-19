@@ -1,0 +1,105 @@
+uuid: meridianpost0005a1b8c2d9e3f0000005
+handle: Meridian\Post
+type: stream
+name: Post
+drafts: true
+multisite: all
+
+# Pagefinder: resolves against pages/journal-post.htm ([section]), :slug from the record.
+pagefinder:
+    replacements:
+        slug: slug
+
+primaryNavigation:
+    label: meridian.blog.nav.journal
+    icon: icon-pencil
+    order: 600
+
+navigation:
+    label: meridian.blog.nav.posts
+    icon: icon-file-text
+    order: 100
+
+fields:
+    content:
+        label: meridian.page.field.content
+        type: contenteditor
+        tab: meridian.page.tab.content
+        span: adaptive
+        column: false
+        # The post page renders title, cover and byline itself; AI drafts skip heroes and full-bleed sections.
+        draftContext: article
+
+    title:
+        label: meridian.page.field.title
+        type: text
+        tab: meridian.page.tab.details
+        required: true
+        span: left
+
+    excerpt:
+        label: meridian.blog.field.excerpt
+        type: textarea
+        size: small
+        tab: meridian.page.tab.details
+        span: full
+        comment: meridian.blog.field.excerpt_comment
+        column: false
+
+    cover:
+        label: meridian.blog.field.cover
+        type: mediafinder
+        mode: image
+        maxItems: 1
+        tab: meridian.page.tab.details
+        span: left
+        column: false
+
+    cover_alt:
+        label: meridian.blog.field.cover_alt
+        type: text
+        tab: meridian.page.tab.details
+        span: right
+        comment: meridian.blog.field.cover_alt_comment
+        column: false
+
+    category:
+        label: meridian.blog.field.category
+        type: entries
+        source: meridiancategory0002a1b8c2d9e3f0000002
+        maxItems: 1
+        tab: meridian.blog.tab.taxonomy
+        span: left
+
+    author:
+        label: meridian.blog.field.author
+        type: entries
+        source: meridianauthor0004a1b8c2d9e3f0000004
+        maxItems: 1
+        tab: meridian.blog.tab.taxonomy
+        span: right
+        column: false
+
+    tags:
+        label: meridian.blog.field.tags
+        type: entries
+        source: meridiantag0003a1b8c2d9e3f0000003
+        displayMode: taglist
+        tab: meridian.blog.tab.taxonomy
+        span: full
+        column: false
+
+    meta_title:
+        label: meridian.page.field.meta_title
+        type: text
+        tab: meridian.page.tab.seo
+        span: left
+        column: false
+
+    meta_description:
+        label: meridian.page.field.meta_description
+        type: textarea
+        size: small
+        tab: meridian.page.tab.seo
+        span: full
+        column: false

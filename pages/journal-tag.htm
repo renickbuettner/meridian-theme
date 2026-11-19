@@ -1,0 +1,28 @@
+url = "/journal/tag/:slug"
+layout = "default"
+title = "Journal tag"
+is_hidden = 0
+==
+function onStart()
+{
+    require_once meridian_path('partials/journal/lib.php');
+    $tag = \Tailor\Models\EntryRecord::inSection('Meridian\\Tag')->where('slug', $this->param('slug'))->first();
+    if (!$tag) {
+        return meridian_journal_not_found($this);
+    }
+
+    $index = meridian_journal_index_entry();
+    $tagId = $tag->id;
+    $count = meridian_journal_posts()->whereHas('tags', fn ($q) => $q->where('id', $tagId))->count();
+    $lead = meridian_journal_t($count === 1 ? 'meridian.front.journal.count_one' : 'meridian.front.journal.count_other', ['count' => $count]);
+
+    return meridian_journal_listing(
+        $this,
+        meridian_journal_posts()->whereHas('tags', fn ($q) => $q->where('id', $tagId)),
+        ['eyebrow' => meridian_journal_t('meridian.front.journal.tag_eyebrow'), 'title' => (string) $tag->title, 'lead' => $lead],
+        [['label' => $index ? (string) $index->title : meridian_journal_t('meridian.front.journal.eyebrow'), 'url' => meridian_journal_url('journal')], ['label' => (string) $tag->title, 'url' => null]],
+        ['seoDescription' => $lead]
+    );
+}
+==
+{% partial 'journal/listing' %}

@@ -1,0 +1,19 @@
+{% set logos = (data.logos|default([]))|filter(l => l.image|default('')) %}
+{% set band = data.band|default('none') in ['band', 'accent'] ? data.band : 'none' %}
+{% if logos|length %}
+<section {{ attributes|replace({'class="': 'class="mr-section mr-logos' ~ (band != 'none' ? ' mr-section--' ~ band : '') ~ ' '})|raw }}>
+    <div class="mr-container">
+        {% if data.title %}<h2 class="mr-logos__title">{{ data.title }}</h2>{% endif %}
+        <ul class="mr-logos__list" role="list">
+            {% for logo in logos %}
+                {% set dims = rc_image_size(logo.image) %}
+                {% set url = logo.name|default('') ? logo.url|default('')|rc_url : '' %}
+                {% set img %}<img class="mr-logos__img" src="{{ logo.image|media }}" alt="{{ logo.name|default('') }}" width="{{ dims ? dims[0] : 160 }}" height="{{ dims ? dims[1] : 48 }}" loading="lazy" decoding="async">{% endset %}
+                <li>{% if url %}<a href="{{ url }}">{{ img }}</a>{% else %}{{ img }}{% endif %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% elseif preview %}
+<div class="rc-pv-placeholder">{{ rc_t('meridian.block.logo-cloud.ui_empty', {}, locale) }}</div>
+{% endif %}

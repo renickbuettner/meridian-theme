@@ -1,0 +1,1 @@
+html[data-scheme=teal],html:not([data-scheme]){--mr-bg: light-dark(#eef1ef, #0e1614);--mr-ink: light-dark(#14211f, #e6eeeb);--mr-accent: light-dark(#0d6b62, #4cc3b3);--mr-signal: light-dark(#b9760f, #e4a53f);--mr-on-accent: light-dark(#ffffff, #0e1614)}

@@ -1,0 +1,10 @@
+{# Starts with the marker accordion.htm splits on; keep `<details data-rc-acc ` first. #}
+{% set hl = data.heading_level|default('h2') %}
+{% set hl = hl in ['h2', 'h3', 'h4', 'h5', 'h6'] ? hl : 'h2' %}
+<details data-rc-acc name="__RC_ACC__" {{ attributes|replace({'class="': 'class="mr-acc-item '})|raw }}>
+    <summary class="mr-acc-summary">
+        <{{ hl }} class="mr-acc-title">{{- rc_icon(data.title_icon|default(''), 18, 'rc-acc-icon') }}{{ data.title|default('') -}}</{{ hl }}>
+        <span class="mr-acc-toggle" aria-hidden="true">{{ rc_icon('plus', 18) }}</span>
+    </summary>
+    <div class="mr-acc-body">{{ children|default('')|raw }}</div>
+</details>

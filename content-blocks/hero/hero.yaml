@@ -1,0 +1,77 @@
+handle: hero
+name: meridian.block.hero.name
+icon: icon-flag
+group: Meridian
+version: 1
+settings: true
+fullBleed: true
+fields:
+  layout:
+    label: meridian.block.hero.layout
+    type: dropdown
+    options:
+      editorial: meridian.block.hero.layout_editorial
+      split: meridian.block.hero.layout_split
+      centered: meridian.block.hero.layout_centered
+    default: editorial
+  eyebrow:
+    label: meridian.block.hero.eyebrow
+    type: text
+  title:
+    label: meridian.block.hero.title
+    type: text
+  title_accent:
+    label: meridian.block.hero.title_accent
+    type: text
+    commentAbove: meridian.block.hero.title_accent_comment
+  lead:
+    label: meridian.block.hero.lead
+    type: textarea
+    size: small
+  primary_label:
+    label: meridian.block.hero.primary_label
+    type: text
+  primary_url:
+    label: meridian.block.hero.primary_url
+    type: pagefinder
+    singleMode: true
+    allowCustomUrl: true
+    translatable: false
+  secondary_label:
+    label: meridian.block.hero.secondary_label
+    type: text
+  secondary_url:
+    label: meridian.block.hero.secondary_url
+    type: pagefinder
+    singleMode: true
+    allowCustomUrl: true
+    translatable: false
+  note:
+    label: meridian.block.hero.note
+    type: text
+    commentAbove: meridian.block.hero.note_comment
+  highlights:
+    label: meridian.block.hero.highlights
+    type: repeater
+    titleFrom: label
+    maxItems: 4
+    fields:
+      label:
+        label: meridian.block.hero.highlight_label
+        type: text
+  image:
+    label: meridian.block.hero.image
+    type: mediafinder
+    mode: image
+    maxItems: 1
+    commentAbove: meridian.block.hero.image_comment
+  image_dark:
+    label: meridian.block.hero.image_dark
+    type: mediafinder
+    mode: image
+    maxItems: 1
+    commentAbove: meridian.block.hero.image_dark_comment
+  image_alt:
+    label: meridian.block.hero.image_alt
+    type: text
+    commentAbove: meridian.block.hero.image_alt_comment

@@ -1,0 +1,84 @@
+@use "../mr";
+
+// Background presets (settings.background), colour tone and background images. The plugin sheet reads Bootstrap 5 tokens that Bootstrap 6 dropped.
+
+html .rc-bg-light { background: var(--mr-surface); }
+
+// color-scheme dark flips every light-dark() token inside, so the band is a complete dark palette in a light page.
+html .rc-bg-dark {
+    color-scheme: dark;
+    background: var(--mr-bg);
+    color: var(--mr-ink);
+}
+@media (prefers-color-scheme: dark) {
+    html:not([data-bs-theme]) .rc-bg-dark { background: var(--mr-surface); }
+}
+html[data-bs-theme="dark"] .rc-bg-dark { background: var(--mr-surface); }
+
+// The plugin sheet forces links in a dark band to inherit the text colour, which would turn button labels light on light.
+html .rc-bg-dark .mr-btn { color: var(--mr-on-accent); }
+html .rc-bg-dark .mr-btn--ghost,
+html .rc-bg-dark .mr-btn--link { color: var(--mr-accent); }
+
+html .rc-bg-primary {
+    background: var(--mr-accent);
+    color: var(--mr-on-accent);
+    --mr-focus: var(--mr-on-accent);
+    --mr-muted: color-mix(in oklab, var(--mr-on-accent) 85%, var(--mr-accent));
+    --mr-line: color-mix(in oklab, var(--mr-on-accent) 30%, var(--mr-accent));
+}
+html .rc-bg-primary a:not(.mr-btn) { color: inherit; }
+html .rc-bg-primary .mr-btn {
+    background: var(--mr-on-accent);
+    border-color: var(--mr-on-accent);
+    color: var(--mr-accent);
+}
+html .rc-bg-primary .mr-btn:hover {
+    background: color-mix(in oklab, var(--mr-on-accent) 88%, var(--mr-accent));
+    color: var(--mr-accent);
+}
+html .rc-bg-primary .mr-btn--ghost {
+    background: transparent;
+    color: var(--mr-on-accent);
+}
+html .rc-bg-primary .mr-btn--ghost:hover {
+    background: color-mix(in oklab, var(--mr-on-accent) 16%, transparent);
+    color: var(--mr-on-accent);
+}
+
+html .rc-tone-inverted {
+    color: white;
+    --mr-focus: white;
+    --mr-muted: rgb(255 255 255 / 0.85);
+}
+html .rc-tone-inverted a:not(.mr-btn) { color: inherit; }
+html .rc-tone-inverted .mr-btn:not(.mr-btn--ghost):not(.mr-btn--link) {
+    background: white;
+    border-color: white;
+    color: black;
+    --bs-link-color: black;
+}
+html .rc-tone-inverted .mr-btn:not(.mr-btn--ghost):not(.mr-btn--link):hover { background: color-mix(in oklab, white 85%, black); color: black; }
+html .rc-tone-inverted .mr-btn--ghost { border-color: white; color: white; }
+html .rc-tone-inverted .mr-btn--ghost:hover { background: rgb(255 255 255 / 0.18); color: white; }
+
+// Accent decorations would vanish on an accent or scrimmed background; they follow the text colour there.
+html :is(.rc-bg-primary, .rc-tone-inverted) {
+    :is(.rc-quote blockquote, .rc-richtext blockquote) { border-color: currentcolor; }
+    .rc-quote-mark { color: currentcolor; }
+}
+
+// A background image under inverted text gets a scrim, so the text keeps AA contrast on any picture.
+html .rc-section--bg {
+    position: relative;
+    isolation: isolate;
+    background-size: cover;
+    background-position: center;
+}
+html .rc-section--bg.rc-tone-inverted::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: color-mix(in oklab, black 62%, transparent);
+}

@@ -1,0 +1,47 @@
+{% set variant = data.variant in ['card', 'list'] ? data.variant : 'grid' %}
+{% set columns = (data.columns|default('3')) ~ '' %}
+{% set columns = columns in ['2', '3', '4'] ? columns : '3' %}
+{% set items = data.items is iterable ? data.items : [] %}
+{% set showPrice = data.show_price is defined ? data.show_price : true %}
+{% set showDesc = data.show_description|default(false) %}
+{% set title = (data.title|default(''))|trim %}
+{% set titleUrl = data.title_url|default('') %}
+{% set shop = data.shop in ['mall', 'meloncart'] ? data.shop : 'mall' %}
+<div {{ attributes|raw }}>
+    <div class="rc-shop mr-shop mr-shop--{{ variant }} rc-shop--{{ variant }} rc-{{ shop }} rc-{{ shop }}--{{ variant }}">
+        {% if title %}
+            <h2 class="rc-shop-title rc-{{ shop }}-title">{% if titleUrl %}<a href="{{ titleUrl|rc_url }}">{{ title }}</a>{% else %}{{ title }}{% endif %}</h2>
+        {% endif %}
+        {% if items is empty %}
+            {% if preview %}<div class="rc-pv-placeholder">{{ rc_t('block.front.shop_empty', {}, locale) }}</div>{% endif %}
+        {% elseif variant == 'list' %}
+            <ul class="rc-shop-list rc-{{ shop }}-list mr-shop-list" role="list">
+                {% for item in items %}
+                    <li class="rc-shop-item rc-{{ shop }}-item mr-shop-row">
+                        {% if item.image %}<img class="rc-shop-thumb rc-{{ shop }}-thumb" src="{{ item.image }}" alt="" width="64" height="48" loading="lazy" decoding="async">{% endif %}
+                        <div class="mr-shop-text">
+                            {% if item.url %}<a href="{{ item.url|rc_url }}" class="rc-shop-name rc-{{ shop }}-name">{{ item.name }}</a>{% else %}<span class="rc-shop-name rc-{{ shop }}-name">{{ item.name }}</span>{% endif %}
+                            {% if showDesc and item.description %}<div class="rc-shop-desc rc-{{ shop }}-desc">{{ item.description }}</div>{% endif %}
+                        </div>
+                        {% if showPrice and item.price %}{{ rc_partial('_shop-price', {tag: 'span', cls: 'mr-shop-price', item: item, shop: shop}) }}{% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="mr-shop-items mr-shop-items--{{ variant == 'card' ? 'card' : columns }}{{ variant == 'grid' ? ' rc-shop-grid rc-' ~ shop ~ '-grid' }}">
+                {% for item in items %}
+                    <article class="rc-shop-item rc-{{ shop }}-item mr-card mr-shop-card{{ variant == 'card' ? ' rc-shop-item--card rc-' ~ shop ~ '-item--card' }}{{ item.image ? ' has-image' }}">
+                        {% if item.image %}
+                            <div class="mr-shop-media"><img src="{{ item.image }}" alt="" loading="lazy" decoding="async"></div>
+                        {% endif %}
+                        <div class="mr-shop-text">
+                            <h3 class="mr-shop-name">{% if item.url %}<a href="{{ item.url|rc_url }}">{{ item.name }}</a>{% else %}{{ item.name }}{% endif %}</h3>
+                            {% if showDesc and item.description %}<p class="rc-shop-desc rc-{{ shop }}-desc">{{ item.description }}</p>{% endif %}
+                            {% if showPrice and item.price %}{{ rc_partial('_shop-price', {tag: 'p', cls: 'mr-shop-price', item: item, shop: shop}) }}{% endif %}
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>

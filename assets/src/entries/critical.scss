@@ -1,0 +1,10 @@
+// Inlined in <head> on every page (and loaded as a file in the editor preview). Keep it small: tokens, base, recipes, shell, chrome.
+@use "../tokens/tokens";
+@use "../base/base";
+@use "../base/bridge";
+@use "../base/recipes";
+@use "../base/plugin";
+@use "../shell/shell";
+@use "../shell/chrome";
+
+@include tokens.emit;

@@ -1,0 +1,4448 @@
+[
+  {
+    "id": 130,
+    "title": "Preise",
+    "slug": "pricing",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "pricing",
+    "meta_title": null,
+    "meta_description": "Einfache Preise pro Platz: kostenlos starten, mit dem Team wachsen und alle Pläne im Vergleich sehen.",
+    "schema_type": "WebPage",
+    "site_root_id": 30,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_30_de05",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "lg",
+            "spacing_bottom": "sm"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_30_de03",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Einfache Preise, ruhige Entscheidungen",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_30_de04",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Kostenlos starten, mit dem Team wachsen und für Plätze zahlen statt für Überraschungen. Jeder Plan enthält das komplette Dashboard.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_30_de06",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "sm",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_30_de01",
+              "type": "pricing-plans",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "currency": "EUR",
+                "unit": "pro Platz",
+                "yearly_note": "Jährliche Zahlung spart etwa 17 Prozent.",
+                "footnote": "Preise zzgl. MwSt. Jederzeit kündbar.",
+                "plans": [
+                  {
+                    "name": "Starter",
+                    "description": "Für eine Website und neugierige Köpfe.",
+                    "price_monthly": "0",
+                    "price_yearly": "0",
+                    "features": "1 Website\n10.000 Seitenaufrufe im Monat\n30 Tage Verlauf\nCommunity-Support",
+                    "cta_label": "Kostenlos starten",
+                    "cta_url": "october://cms-page@link/page?path=contact",
+                    "featured": false
+                  },
+                  {
+                    "name": "Team",
+                    "badge": "Am beliebtesten",
+                    "description": "Für Teams mit einer gemeinsamen Datenbasis.",
+                    "price_monthly": "12",
+                    "price_yearly": "10",
+                    "features": "Unbegrenzte Websites\n1 Million Seitenaufrufe im Monat\n24 Monate Verlauf\nGeteilte Dashboards und Warnungen\nE-Mail-Support innerhalb eines Werktags",
+                    "cta_label": "14 Tage testen",
+                    "cta_url": "october://cms-page@link/page?path=contact",
+                    "featured": true
+                  },
+                  {
+                    "name": "Enterprise",
+                    "description": "Für Organisationen mit Sicherheits- und Prüfanforderungen.",
+                    "price_label": "Auf Anfrage",
+                    "features": "Alles aus Team\nSingle Sign-on und Audit-Log\nDatenhaltung nach Wahl\nPersönlicher Ansprechpartner\nVerfügbarkeitszusage von 99,9 %",
+                    "cta_label": "Vertrieb kontaktieren",
+                    "cta_url": "october://cms-page@link/page?path=contact",
+                    "featured": false
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_30_de07",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_30_de02",
+              "type": "compare-table",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "title": "Pläne im Vergleich",
+                "columns": "Starter\nTeam\nEnterprise",
+                "featured_column": 2,
+                "rows": [
+                  {
+                    "group": true,
+                    "label": "Nutzung"
+                  },
+                  {
+                    "group": false,
+                    "label": "Websites",
+                    "values": "1|Unbegrenzt|Unbegrenzt"
+                  },
+                  {
+                    "group": false,
+                    "label": "Seitenaufrufe pro Monat",
+                    "values": "10.000|1 Million|Unbegrenzt"
+                  },
+                  {
+                    "group": false,
+                    "label": "Verlauf",
+                    "values": "30 Tage|24 Monate|Unbegrenzt"
+                  },
+                  {
+                    "group": true,
+                    "label": "Zusammenarbeit"
+                  },
+                  {
+                    "group": false,
+                    "label": "Geteilte Dashboards",
+                    "values": "no|yes|yes"
+                  },
+                  {
+                    "group": false,
+                    "label": "Warnungen und Wochenberichte",
+                    "values": "no|yes|yes"
+                  },
+                  {
+                    "group": false,
+                    "label": "Single Sign-on",
+                    "values": "no|no|yes"
+                  },
+                  {
+                    "group": true,
+                    "label": "Support"
+                  },
+                  {
+                    "group": false,
+                    "label": "Support-Kanal",
+                    "values": "Community|E-Mail|Persönlicher Ansprechpartner"
+                  },
+                  {
+                    "group": false,
+                    "label": "Verfügbarkeitszusage",
+                    "values": "no|no|99,9 %"
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_30_de09",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_30_de08",
+              "type": "faq-accordion",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "title": "Fragen zu den Preisen",
+                "behavior": "multiple",
+                "first_open": "no",
+                "search": "no",
+                "markup": "yes",
+                "items": [
+                  {
+                    "question": "Kann ich den Plan später wechseln?",
+                    "answer": "Ja. Upgrades gelten sofort und werden anteilig berechnet; Downgrades greifen am Ende des Abrechnungszeitraums."
+                  },
+                  {
+                    "question": "Was zählt als Seitenaufruf?",
+                    "answer": "Jeder Seitenaufruf, der Ihre Website erreicht, einschließlich jedes Seitenwechsels in einer Single-Page-App. Bots und eigene Besuche werden herausgefiltert."
+                  },
+                  {
+                    "question": "Gibt es Rabatte für gemeinnützige Organisationen?",
+                    "answer": "Gemeinnützige Organisationen und Open-Source-Projekte erhalten den Team-Plan zum halben Preis. Schreiben Sie uns mit einem Link zu Ihrer Organisation."
+                  },
+                  {
+                    "question": "Welche Zahlungsarten akzeptieren Sie?",
+                    "answer": "Kreditkarte und SEPA-Lastschrift für alle Pläne, Rechnung mit Überweisung für Enterprise."
+                  },
+                  {
+                    "question": "Was passiert, wenn ich meine Seitenaufrufe überschreite?",
+                    "answer": "Wir erfassen weiter und senden Ihnen einen Hinweis. Sie können innerhalb von 30 Tagen upgraden; in der Zwischenzeit wird nichts abgeschaltet."
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_30_de10",
+          "type": "cta-band",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "tone": "soft",
+            "title": "Unsicher, welcher Plan passt?",
+            "text": "Erzählen Sie uns von Ihrer Website, wir empfehlen binnen eines Tages einen Plan.",
+            "primary_label": "Kontakt aufnehmen",
+            "primary_url": "october://cms-page@link/page?path=contact"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 140,
+    "title": "Fallstudien",
+    "slug": "case-studies",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "projects",
+    "meta_title": null,
+    "meta_description": "Zwei Projektgeschichten aus dem Studio: Ziele, Entscheidungen und gemessene Ergebnisse.",
+    "schema_type": "CollectionPage",
+    "site_root_id": 40,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_40_de09",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "lg",
+            "spacing_bottom": "sm"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_40_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Fallstudien",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_40_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Zwei Projekte, ehrlich erzählt: was wir vorhatten, was wir verändert haben und was danach passierte.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_40_des2",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_40_deh2",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Alle Fallstudien",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_40_deg1",
+              "type": "card-grid",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "equal_height": "yes",
+                "centering": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": [
+                {
+                  "id": "b_mrpo_40_dec1n",
+                  "type": "column",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "width": "6"
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": [
+                    {
+                      "id": "b_mrpo_40_dec1k",
+                      "type": "card",
+                      "enabled": true,
+                      "settings": {},
+                      "data": {
+                        "variant": "top",
+                        "title": "Harbor Line: eine Buchungsseite, die lädt, bevor die Fähre ablegt",
+                        "image": "illustrations/harbor-line-hero.jpg",
+                        "alt": "Illustration eines Leuchtturms und Segelboote auf türkisem Meer",
+                        "url": "october://cms-page@link/page?path=case-studies/harbor-line",
+                        "aspect": "16x9",
+                        "fit": "cover",
+                        "focus": "left"
+                      },
+                      "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                      },
+                      "children": [
+                        {
+                          "id": "b_mrpo_40_dec1m",
+                          "type": "richtext",
+                          "enabled": true,
+                          "settings": {},
+                          "data": {
+                            "html": "<p>Ein regionaler Fährbetreiber wechselte von einer langsamen, ticketzentrierten Seite zu einem ruhigen, schnellen Fahrplan.</p>",
+                            "variant": ""
+                          },
+                          "visibility": {
+                            "from": null,
+                            "until": null,
+                            "sites": null
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "b_mrpo_40_dec2n",
+                  "type": "column",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "width": "6"
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": [
+                    {
+                      "id": "b_mrpo_40_dec2k",
+                      "type": "card",
+                      "enabled": true,
+                      "settings": {},
+                      "data": {
+                        "variant": "top",
+                        "title": "Tidewater Bank: ruhigere Formulare, weniger Supportanrufe",
+                        "image": "meridian/landing/tidewater-bank.jpg",
+                        "alt": "Abstrakte Illustration für Tidewater Bank",
+                        "url": "october://cms-page@link/page?path=case-studies/tidewater-bank",
+                        "aspect": "16x9",
+                        "fit": "cover"
+                      },
+                      "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                      },
+                      "children": [
+                        {
+                          "id": "b_mrpo_40_dec2m",
+                          "type": "richtext",
+                          "enabled": true,
+                          "settings": {},
+                          "data": {
+                            "html": "<p>Eine Genossenschaftsbank baute ihre Antragsformulare um einfache Sprache und Tastaturbedienung neu auf.</p>",
+                            "variant": ""
+                          },
+                          "visibility": {
+                            "from": null,
+                            "until": null,
+                            "sites": null
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 141,
+    "title": "Harbor Line",
+    "slug": "harbor-line",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "projects",
+    "meta_title": null,
+    "meta_description": "Wie Harbor Line einen schweren Ticketshop durch einen schnellen Fahrplan ersetzte: 82 Prozent leichter, 31 Prozent mehr Buchungen.",
+    "schema_type": "WebPage",
+    "parent_id": 140,
+    "site_root_id": 41,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_41_de04",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "lg",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_41_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Harbor Line: eine Buchungsseite, die lädt, bevor die Fähre ablegt",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_41_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Wie ein regionaler Fährbetreiber einen schweren Ticketshop durch einen Fahrplan ersetzte, der auch am Hafen mit schwachem Netz funktioniert.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_41_de03",
+              "type": "fact-list",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "variant": "strip",
+                "items": [
+                  {
+                    "label": "Kunde",
+                    "value": "Harbor Line"
+                  },
+                  {
+                    "label": "Branche",
+                    "value": "Personenverkehr"
+                  },
+                  {
+                    "label": "Zeitraum",
+                    "value": "14 Wochen"
+                  },
+                  {
+                    "label": "Leistungen",
+                    "value": "Recherche, Design, Umsetzung"
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_41_de06",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "sm",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_41_de05",
+              "type": "image",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "image": "illustrations/harbor-line-hero.jpg",
+                "alt": "Illustration eines gestreiften Leuchtturms und Segelboote auf türkisem Meer unter tiefstehender Sonne",
+                "aspect": "21x9",
+                "fit": "cover"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_41_de12",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "sm"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_41_de07",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Die Herausforderung",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_41_de08",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Die meisten Besucher kommen mit dem Handy, stehen am Kai und haben einen Balken Empfang. Die alte Seite lud 4,8 MB, bevor sie eine einzige Abfahrt zeigte, und der Buchungsablauf verlor Menschen im zweiten Schritt.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_41_de09",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Was wir getan haben",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_41_de10",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Wir begannen mit dem Fahrplan, weil Menschen deshalb die Seite öffnen, und machten ihn zum ersten Bildschirm.</p><ul><li>Ein serverseitig erzeugter Fahrplan, der ohne Skript lesbar ist.</li><li>Ein Buchungsschritt pro Bildschirm, Fehler in einfachen Worten erklärt.</li><li>Bilder passend zum Gerät, geladen erst beim Hineinscrollen.</li></ul>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_41_de11",
+              "type": "quote",
+              "enabled": true,
+              "settings": {
+                "spacing_top": "sm",
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "variant": "bordered",
+                "text": "Wir bekommen keine Anrufe mehr, die mit „die Seite hängt“ beginnen. Allein das hat das Projekt bezahlt.",
+                "author": "Mara Lindqvist",
+                "role": "Leiterin Digital, Harbor Line"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_41_de15",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "sm"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_41_de13",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Die Ergebnisse",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_41_de14",
+              "type": "fact-list",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "variant": "figures",
+                "items": [
+                  {
+                    "label": "Seitengewicht",
+                    "value": "−82 %",
+                    "note": "Von 4,8 MB auf 0,9 MB"
+                  },
+                  {
+                    "label": "LCP",
+                    "value": "1,4 s",
+                    "note": "Im gedrosselten 4G-Netz"
+                  },
+                  {
+                    "label": "Buchungen",
+                    "value": "+31 %",
+                    "note": "Im ersten Quartal"
+                  },
+                  {
+                    "label": "Supportanrufe",
+                    "value": "−44 %",
+                    "note": "Zur Website"
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_41_de18",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "sm"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_41_de16",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Was wir wieder tun würden",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_41_de17",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Von der einen wichtigen Aufgabe ausgehen, auf dem langsamsten realistischen Gerät messen und Fehlermeldungen vor dem Code schreiben. Nichts davon ist clever, aber alles summiert sich.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_41_de19",
+          "type": "cta-band",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "tone": "accent",
+            "title": "Haben Sie ein ähnliches Problem?",
+            "text": "Erzählen Sie uns, wo Ihre Besucher hängen bleiben, und wir sagen Ihnen, was wir zuerst messen würden.",
+            "primary_label": "Gespräch beginnen",
+            "primary_url": "october://cms-page@link/page?path=contact",
+            "secondary_label": "Preise ansehen",
+            "secondary_url": "october://cms-page@link/page?path=pricing"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 142,
+    "title": "Tidewater Bank",
+    "slug": "tidewater-bank",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "projects",
+    "meta_title": null,
+    "meta_description": "Wie Tidewater Bank seinen Kreditantrag um einfache Sprache und Tastaturbedienung neu aufbaute.",
+    "schema_type": "WebPage",
+    "parent_id": 140,
+    "site_root_id": 42,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_42_de04",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "lg",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_42_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Tidewater Bank: ruhigere Formulare, weniger Supportanrufe",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_42_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Eine Genossenschaftsbank baute ihren Kreditantrag um einfache Sprache, klare Fehlermeldungen und vollständige Tastaturbedienung neu auf.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_42_de03",
+              "type": "fact-list",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "variant": "strip",
+                "items": [
+                  {
+                    "label": "Kunde",
+                    "value": "Tidewater Bank"
+                  },
+                  {
+                    "label": "Branche",
+                    "value": "Finanzdienstleistung"
+                  },
+                  {
+                    "label": "Zeitraum",
+                    "value": "10 Wochen"
+                  },
+                  {
+                    "label": "Leistungen",
+                    "value": "Barrierefreiheits-Audit, Formulare, Inhalte"
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_42_de06",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "sm",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_42_de05",
+              "type": "image",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "image": "meridian/landing/tidewater-bank.jpg",
+                "alt": "Abstrakte Illustration in ruhigen blauen Formen, die an einen Bankschalter erinnern",
+                "aspect": "16x9",
+                "fit": "cover"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_42_de11",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "sm"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_42_de07",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Wo Menschen hängen blieben",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_42_de08",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Sitzungsaufzeichnungen zeigten immer dasselbe Muster: Menschen erreichten die Frage nach dem Einkommen, zögerten und riefen an. Die Beschriftung lautete „Äquivalenzeinkommen des Haushalts“.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_42_de09",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Was sich änderte",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_42_de10",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Jede Frage sagt jetzt, was wir brauchen und warum, Fehler stehen am Feld und erklären die Korrektur, und der ganze Ablauf funktioniert ohne Maus.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_42_de14",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "sm"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_42_de12",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Die Ergebnisse",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_42_de13",
+              "type": "fact-list",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "variant": "figures",
+                "items": [
+                  {
+                    "label": "Abschlussquote",
+                    "value": "+22 %",
+                    "note": "Im Online-Antrag"
+                  },
+                  {
+                    "label": "Supportanrufe",
+                    "value": "−37 %",
+                    "note": "Zum Antrag"
+                  },
+                  {
+                    "label": "Kritische Barrierefreiheitsmängel",
+                    "value": "0",
+                    "note": "Im Abschluss-Audit"
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_42_de15",
+          "type": "cta-band",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "tone": "soft",
+            "title": "Mehr Ruhe auch für Ihre Formulare?",
+            "text": "Wir beginnen mit einem Audit und einer kurzen Liste, was zuerst zu beheben ist.",
+            "primary_label": "Gespräch beginnen",
+            "primary_url": "october://cms-page@link/page?path=contact",
+            "secondary_label": "Alle Fallstudien",
+            "secondary_url": "october://cms-page@link/page?path=case-studies"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 150,
+    "title": "Veranstaltungen",
+    "slug": "events",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "events",
+    "meta_title": null,
+    "meta_description": "Kommende Webinare und Workshops zu Performance, Barrierefreiheit und ruhigem Publizieren.",
+    "schema_type": "CollectionPage",
+    "site_root_id": 50,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_50_de09",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "lg",
+            "spacing_bottom": "sm"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_50_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Veranstaltungen",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_50_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Live-Sessions und praktische Tage für Menschen, die fürs Web bauen. Aufzeichnungen folgen innerhalb einer Woche.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_50_des2",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_50_deh2",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Kommende Veranstaltungen",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_50_deg1",
+              "type": "card-grid",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "equal_height": "yes",
+                "centering": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": [
+                {
+                  "id": "b_mrpo_50_dec1n",
+                  "type": "column",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "width": "6"
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": [
+                    {
+                      "id": "b_mrpo_50_dec1k",
+                      "type": "card",
+                      "enabled": true,
+                      "settings": {},
+                      "data": {
+                        "variant": "top",
+                        "title": "Webinar: schnellere Seiten ausliefern",
+                        "image": "meridian/landing/saas-hero.jpg",
+                        "alt": "Abstrakte Dashboard-Illustration",
+                        "url": "october://cms-page@link/page?path=events/launch-webinar",
+                        "aspect": "16x9",
+                        "fit": "cover"
+                      },
+                      "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                      },
+                      "children": [
+                        {
+                          "id": "b_mrpo_50_dec1m",
+                          "type": "richtext",
+                          "enabled": true,
+                          "settings": {},
+                          "data": {
+                            "html": "<p class=\"mr-meta\">3. Dezember 2026, 18:00 Uhr MEZ, online und kostenlos.</p>",
+                            "variant": ""
+                          },
+                          "visibility": {
+                            "from": null,
+                            "until": null,
+                            "sites": null
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "b_mrpo_50_dec2n",
+                  "type": "column",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "width": "6"
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": [
+                    {
+                      "id": "b_mrpo_50_dec2k",
+                      "type": "card",
+                      "enabled": true,
+                      "settings": {},
+                      "data": {
+                        "variant": "top",
+                        "title": "Workshop: barrierefrei von Anfang an",
+                        "image": "meridian/landing/agency-hero.jpg",
+                        "alt": "Abstrakte Studio-Illustration",
+                        "url": "october://cms-page@link/page?path=events/accessibility-workshop",
+                        "aspect": "16x9",
+                        "fit": "cover"
+                      },
+                      "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                      },
+                      "children": [
+                        {
+                          "id": "b_mrpo_50_dec2m",
+                          "type": "richtext",
+                          "enabled": true,
+                          "settings": {},
+                          "data": {
+                            "html": "<p class=\"mr-meta\">18. Februar 2027, 9:30 Uhr, Hamburg, 149 Euro.</p>",
+                            "variant": ""
+                          },
+                          "visibility": {
+                            "from": null,
+                            "until": null,
+                            "sites": null
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 151,
+    "title": "Schnellere Seiten: Webinar",
+    "slug": "launch-webinar",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "events",
+    "meta_title": null,
+    "meta_description": "Ein kostenloses 60-minütiges Live-Webinar zu Messung und Verbesserung der Core Web Vitals am 3. Dezember 2026.",
+    "schema_type": "WebPage",
+    "parent_id": 150,
+    "site_root_id": 51,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_51_de04",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "lg",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_51_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Schnellere Seiten ausliefern: ein Live-Webinar",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_51_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Sechzig Minuten, eine echte Website, drei Verbesserungen. Bringen Sie Ihre eigenen Zahlen und Fragen mit.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_51_de03",
+              "type": "event-details",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "name": "Schnellere Seiten ausliefern: ein Live-Webinar",
+                "description": "Eine 60-minütige Live-Session dazu, die drei wichtigen Metriken zu messen und zu verbessern.",
+                "status": "scheduled",
+                "start": "2026-12-03 17:00:00",
+                "end": "2026-12-03 18:00:00",
+                "timezone": "Europe/Berlin",
+                "mode": "online",
+                "performer": "Jonas Weber",
+                "price": "",
+                "currency": "EUR",
+                "countdown": "yes"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_51_de07",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_51_de05",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Was Sie lernen",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_51_de06",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<ul><li>Einen Feldbericht lesen und echte Probleme vom Rauschen unterscheiden.</li><li>Das größte Bild einer Seite verbessern, ohne Qualität zu verlieren.</li><li>Layoutverschiebungen stoppen, bevor sie in Produktion gehen.</li></ul>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_51_de09",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_51_de08",
+              "type": "agenda",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "title": "Programm",
+                "items": [
+                  {
+                    "time": "18:00",
+                    "title": "Begrüßung und die drei Metriken",
+                    "speaker": "Jonas Weber",
+                    "text": "Was LCP, CLS und INP messen und warum sie von Ihrem Bauchgefühl abweichen."
+                  },
+                  {
+                    "time": "18:15",
+                    "title": "Live-Audit einer echten Seite",
+                    "speaker": "Jonas Weber",
+                    "text": "Wir öffnen eine unvorbereitete Seite und finden heraus, was zuerst zu beheben ist."
+                  },
+                  {
+                    "time": "18:40",
+                    "title": "Verbesserungen, die bleiben",
+                    "speaker": "Mit Aino Koskinen",
+                    "text": "Budgets, Prüfungen in der CI und wie eine schnelle Seite schnell bleibt."
+                  },
+                  {
+                    "time": "18:50",
+                    "title": "Fragen",
+                    "text": "Fragen Sie alles; wir antworten in der Reihenfolge Ihrer Stimmen."
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_51_de18",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_51_de10",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg",
+                "anchor": "signup"
+              },
+              "data": {
+                "text": "Platz sichern",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_51_de11",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Tragen Sie Ihre Daten ein, wir senden Ihnen die Einzelheiten per E-Mail. Ihre Adresse verwenden wir nur für diese Veranstaltung.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_51_de17",
+              "type": "form",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "form_name": "Webinar signup",
+                "submit_label": "Anmelden",
+                "success_message": "Vielen Dank. Sie sind angemeldet, eine Bestätigung ist unterwegs."
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": [
+                {
+                  "id": "b_mrpo_51_de12",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "text",
+                    "label": "Vor- und Nachname",
+                    "name": "name",
+                    "required": true,
+                    "is_privacy": false,
+                    "half_width": false
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                },
+                {
+                  "id": "b_mrpo_51_de13",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "email",
+                    "label": "E-Mail-Adresse",
+                    "name": "email",
+                    "required": true,
+                    "is_privacy": false,
+                    "half_width": false
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                },
+                {
+                  "id": "b_mrpo_51_de14",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "text",
+                    "label": "Unternehmen (optional)",
+                    "name": "company",
+                    "required": false,
+                    "is_privacy": false,
+                    "half_width": false
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                },
+                {
+                  "id": "b_mrpo_51_de15",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "select",
+                    "label": "Was führt Sie her?",
+                    "name": "interest",
+                    "required": false,
+                    "is_privacy": false,
+                    "half_width": false,
+                    "options": "performance|Performance\naccessibility|Barrierefreiheit\npublishing|Publishing"
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                },
+                {
+                  "id": "b_mrpo_51_de16",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "checkbox",
+                    "label": "Ich stimme der Datenschutzerklärung zu.",
+                    "name": "privacy",
+                    "required": true,
+                    "is_privacy": true,
+                    "half_width": false
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 152,
+    "title": "Barrierefrei von Anfang an: Workshop",
+    "slug": "accessibility-workshop",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "events",
+    "meta_title": null,
+    "meta_description": "Ein praktischer Barrierefreiheits-Workshop in Hamburg am 18. Februar 2027: Tastatur, Screenreader und Ihre eigenen Seiten.",
+    "schema_type": "WebPage",
+    "parent_id": 150,
+    "site_root_id": 52,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_52_de04",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "lg",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_52_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Barrierefrei von Anfang an: ein praktischer Workshop",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_52_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Ein Tag, zwölf Plätze, echte Assistenztechnologie. Sie gehen mit einer Checkliste und Verbesserungen für Ihre eigene Website nach Hause.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_52_de03",
+              "type": "event-details",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "name": "Barrierefrei von Anfang an: ein praktischer Workshop",
+                "description": "Ein Ganztagesworkshop zum Bau tastaturfreundlicher, screenreader-tauglicher Seiten.",
+                "status": "scheduled",
+                "start": "2027-02-18 08:30:00",
+                "end": "2027-02-18 15:30:00",
+                "timezone": "Europe/Berlin",
+                "mode": "offline",
+                "venue": "Studio Nordlicht",
+                "address": "Speicherstadt 12, 20457 Hamburg",
+                "performer": "Aino Koskinen",
+                "price": "149",
+                "currency": "EUR",
+                "countdown": "yes"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_52_de06",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_52_de05",
+              "type": "agenda",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "title": "Zeitplan",
+                "items": [
+                  {
+                    "time": "09:30",
+                    "title": "Ankunft und Kaffee"
+                  },
+                  {
+                    "time": "10:00 – 12:00",
+                    "title": "Tastatur und Fokus",
+                    "text": "Maus abstecken und beheben, was nicht mehr geht."
+                  },
+                  {
+                    "time": "13:00 – 15:00",
+                    "title": "Screenreader in der Praxis",
+                    "text": "Landmarken, Namen, Zustände und Live-Regionen mit echten Werkzeugen."
+                  },
+                  {
+                    "time": "15:15 – 16:30",
+                    "title": "Ihre Website, Ihre Verbesserungen",
+                    "text": "Bringen Sie eine Seite mit; wir bewerten sie gemeinsam."
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_52_de15",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_52_de07",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg",
+                "anchor": "signup"
+              },
+              "data": {
+                "text": "Platz sichern",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_52_de08",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Tragen Sie Ihre Daten ein, wir senden Ihnen die Einzelheiten per E-Mail. Ihre Adresse verwenden wir nur für diese Veranstaltung.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_52_de14",
+              "type": "form",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "form_name": "Workshop signup",
+                "submit_label": "Anmelden",
+                "success_message": "Vielen Dank. Sie sind angemeldet, eine Bestätigung ist unterwegs."
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": [
+                {
+                  "id": "b_mrpo_52_de09",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "text",
+                    "label": "Vor- und Nachname",
+                    "name": "name",
+                    "required": true,
+                    "is_privacy": false,
+                    "half_width": false
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                },
+                {
+                  "id": "b_mrpo_52_de10",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "email",
+                    "label": "E-Mail-Adresse",
+                    "name": "email",
+                    "required": true,
+                    "is_privacy": false,
+                    "half_width": false
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                },
+                {
+                  "id": "b_mrpo_52_de11",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "text",
+                    "label": "Unternehmen (optional)",
+                    "name": "company",
+                    "required": false,
+                    "is_privacy": false,
+                    "half_width": false
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                },
+                {
+                  "id": "b_mrpo_52_de12",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "select",
+                    "label": "Was führt Sie her?",
+                    "name": "interest",
+                    "required": false,
+                    "is_privacy": false,
+                    "half_width": false,
+                    "options": "performance|Performance\naccessibility|Barrierefreiheit\npublishing|Publishing"
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                },
+                {
+                  "id": "b_mrpo_52_de13",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "checkbox",
+                    "label": "Ich stimme der Datenschutzerklärung zu.",
+                    "name": "privacy",
+                    "required": true,
+                    "is_privacy": true,
+                    "half_width": false
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 160,
+    "title": "Dokumentation",
+    "slug": "docs",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "docs",
+    "meta_title": null,
+    "meta_description": "Dokumentation für Tidepool: Schnellstart, Installation, Konfiguration, Anleitungen und Änderungsprotokoll.",
+    "schema_type": "CollectionPage",
+    "site_root_id": 60,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_60_de06",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_60_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Tidepool-Dokumentation",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_60_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Alles, was Sie brauchen, um Ihre Zahlen zu erfassen, zu lesen und zu teilen. Beginnen Sie mit dem Schnellstart; die Anleitungen gehen tiefer.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_60_de03",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Wo Sie beginnen",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_60_de04",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<ul><li><a href=\"october://cms-page@link/page?path=docs/getting-started\">Erste Schritte</a>: Ihre erste Zahl in fünf Minuten</li><li><a href=\"october://cms-page@link/page?path=docs/installation\">Installation</a>: Script-Tag, npm und serverseitig</li><li><a href=\"october://cms-page@link/page?path=docs/configuration\">Konfiguration</a>: alle Optionen in einer Tabelle</li><li><a href=\"october://cms-page@link/page?path=docs/guides\">Anleitungen</a>: eigene Ereignisse und Datenexport</li><li><a href=\"october://cms-page@link/page?path=docs/changelog\">Änderungsprotokoll</a>: was sich wann geändert hat</li></ul>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_60_de05",
+              "type": "button",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "label": "Schnellstart öffnen",
+                "url": "october://cms-page@link/page?path=docs/getting-started",
+                "style": "primary",
+                "target": "_self"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 161,
+    "title": "Erste Schritte",
+    "slug": "getting-started",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "docs",
+    "meta_title": null,
+    "meta_description": "Website anlegen, eine Codezeile einfügen und in fünf Minuten den ersten Seitenaufruf sehen.",
+    "schema_type": "WebPage",
+    "parent_id": 160,
+    "site_root_id": 61,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_61_de12",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_61_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Erste Schritte",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_61_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Fügen Sie Ihrer Website eine Zeile hinzu und sehen Sie Ihren ersten Seitenaufruf in unter fünf Minuten.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_61_de03",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Eine Website anlegen",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_61_de04",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Melden Sie sich an, wählen Sie <strong>Website hinzufügen</strong> und geben Sie Ihre Domain ein. Tidepool zeigt ein Snippet, das nur zu dieser Website gehört.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_61_de05",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Das Snippet einfügen",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_61_de06",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Fügen Sie das Snippet in den <code>&lt;head&gt;</code> jeder Seite ein. Es lädt asynchron und wiegt weniger als 2 KB.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_61_de07",
+              "type": "code",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "code": "<script defer src=\"https://cdn.tidepool.example/t.js\"\n        data-site=\"YOUR-SITE-ID\"></script>",
+                "language": "html",
+                "mode": "display",
+                "caption": "Das Tidepool-Snippet"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_61_de08",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Prüfen, ob es funktioniert",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_61_de09",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Öffnen Sie Ihre Website in einem neuen Tab. Nach wenigen Sekunden zeigt die <strong>Live</strong>-Ansicht einen Besucher: Sie.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_61_de10",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Wenn nichts erscheint",
+                "level": 3
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_61_de11",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Deaktivieren Sie Inhaltsblocker für Ihre Website, prüfen Sie die Website-ID und suchen Sie in der Browser-Konsole nach einer blockierten Anfrage.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 162,
+    "title": "Installation",
+    "slug": "installation",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "docs",
+    "meta_title": null,
+    "meta_description": "Tidepool per Script-Tag, npm-Paket oder serverseitigen Ereignissen einbinden.",
+    "schema_type": "WebPage",
+    "parent_id": 160,
+    "site_root_id": 62,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_62_de13",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_62_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Installation",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_62_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Drei Wege, Tidepool einzubinden. Wählen Sie den, der zum Aufbau Ihrer Website passt.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_62_de03",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Script-Tag",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_62_de04",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Am besten für statische Websites und die meisten Redaktionssysteme. Das Snippet steht unter <a href=\"october://cms-page@link/page?path=docs/getting-started\">Erste Schritte</a>.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_62_de05",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "npm-Paket",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_62_de06",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Für Anwendungen mit Build-Schritt. Installieren Sie das Paket und rufen Sie <code>init</code> einmal auf.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_62_de07",
+              "type": "code",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "code": "npm install @tidepool/browser\n\nimport { init } from '@tidepool/browser';\ninit({ site: 'YOUR-SITE-ID' });",
+                "language": "js",
+                "mode": "display"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_62_de08",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Serverseitige Ereignisse",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_62_de09",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Senden Sie Ereignisse von Ihrem Backend mit einer HTTP-Anfrage. Cookies sind nicht beteiligt.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_62_de10",
+              "type": "code",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "code": "curl -X POST https://api.tidepool.example/v1/events \\\n  -H \"Authorization: Bearer $TIDEPOOL_KEY\" \\\n  -d '{\"site\":\"YOUR-SITE-ID\",\"name\":\"signup\"}'",
+                "language": "plain",
+                "mode": "display"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_62_de11",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Verbindung prüfen",
+                "level": 3
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_62_de12",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Ereignisse erscheinen innerhalb von Sekunden unter <strong>Live</strong>. Eine 401-Antwort bedeutet, dass der Schlüssel falsch oder abgelaufen ist.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 163,
+    "title": "Konfiguration",
+    "slug": "configuration",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "docs",
+    "meta_title": null,
+    "meta_description": "Alle Tidepool-Optionen mit Standardwert, Datenschutz-Voreinstellungen und Muster zum Ausschließen von Seiten.",
+    "schema_type": "WebPage",
+    "parent_id": 160,
+    "site_root_id": 63,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_63_de10",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_63_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Konfiguration",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_63_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Alle Optionen, die Tidepool kennt, mit Standardwert.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_63_de03",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Optionen",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_63_de04",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<table><thead><tr><th>Option</th><th>Standard</th><th>Wirkung</th></tr></thead><tbody><tr><td><code>site</code></td><td>keiner</td><td>Ihre Website-ID. Pflicht.</td></tr><tr><td><code>hash</code></td><td><code>false</code></td><td>Hash-Wechsel als Seitenaufrufe zählen.</td></tr><tr><td><code>respectDnt</code></td><td><code>true</code></td><td>Besucher mit Do Not Track überspringen.</td></tr><tr><td><code>exclude</code></td><td><code>[]</code></td><td>Pfadmuster, die nie gezählt werden.</td></tr></tbody></table>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_63_de05",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Datenschutz-Voreinstellungen",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_63_de06",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Tidepool setzt keine Cookies und speichert keine personenbezogenen Daten. IP-Adressen dienen nur zur Ermittlung eines Landes und werden danach verworfen.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_63_de07",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Seiten ausschließen",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_63_de08",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Muster verwenden <code>*</code> als Platzhalter. Interne Werkzeuge und Vorschauen sind gute Kandidaten.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_63_de09",
+              "type": "code",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "code": "init({\n  site: 'YOUR-SITE-ID',\n  exclude: ['/admin/*', '/preview/*']\n});",
+                "language": "js",
+                "mode": "display"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 164,
+    "title": "Anleitungen",
+    "slug": "guides",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "docs",
+    "meta_title": null,
+    "meta_description": "Aufgabenbezogene Anleitungen für Tidepool: eigene Ereignisse und Datenexport.",
+    "schema_type": "CollectionPage",
+    "parent_id": 160,
+    "site_root_id": 64,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_64_de05",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_64_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Anleitungen",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_64_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Aufgabenbezogene Anleitungen für den Fall, dass die Grundlagen stehen.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_64_de03",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Verfügbare Anleitungen",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_64_de04",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<ul><li><a href=\"october://cms-page@link/page?path=docs/guides/custom-events\">Eigene Ereignisse</a>: verfolgen, was für Ihr Produkt zählt</li><li><a href=\"october://cms-page@link/page?path=docs/guides/data-export\">Datenexport</a>: Ihre Zahlen woanders nutzen</li></ul>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 165,
+    "title": "Eigene Ereignisse",
+    "slug": "custom-events",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "docs",
+    "meta_title": null,
+    "meta_description": "Eigene Ereignisse mit Tidepool erfassen: senden, benennen und in Berichten lesen.",
+    "schema_type": "WebPage",
+    "parent_id": 164,
+    "site_root_id": 65,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_65_de12",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_65_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Eigene Ereignisse",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_65_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Seitenaufrufe zeigen, was gelesen wurde. Ereignisse zeigen, was getan wurde.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_65_de03",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Ein Ereignis senden",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_65_de04",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Rufen Sie <code>track</code> mit einem Namen und optionalen Eigenschaften auf.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_65_de05",
+              "type": "code",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "code": "tidepool.track('signup', { plan: 'team' });",
+                "language": "js",
+                "mode": "display"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_65_de06",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Ereignisse benennen",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_65_de07",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Verwenden Sie kurze Namen in der Vergangenheit wie <code>signup</code> oder <code>invoice_paid</code>. Ein kleines, stabiles Vokabular hält Berichte lesbar.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_65_de08",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Eigenschaften",
+                "level": 3
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_65_de09",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Eigenschaften sind flache Schlüssel-Wert-Paare. Vermeiden Sie personenbezogene Daten; Tidepool braucht sie nicht.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_65_de10",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Ereignisse in Berichten sehen",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_65_de11",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Öffnen Sie <strong>Ereignisse</strong> in der Seitenleiste, wählen Sie einen Namen und teilen Sie ihn nach einer beliebigen Eigenschaft auf.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 166,
+    "title": "Datenexport",
+    "slug": "data-export",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "docs",
+    "meta_title": null,
+    "meta_description": "Tidepool-Daten als CSV oder JSON aus dem Dashboard oder über die API exportieren.",
+    "schema_type": "WebPage",
+    "parent_id": 164,
+    "site_root_id": 66,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_66_de10",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_66_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Datenexport",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_66_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Ihre Zahlen gehören Ihnen. Exportieren Sie sie jederzeit in einem Format, das andere Werkzeuge verstehen.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_66_de03",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Export aus dem Dashboard",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_66_de04",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Öffnen Sie einen Bericht, wählen Sie <strong>Exportieren</strong> und dann CSV oder JSON. Der Export umfasst den angezeigten Zeitraum.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_66_de05",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Export über die API",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_66_de06",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Für wiederkehrende Exporte fordern Sie die Rohereignisse mit einem schreibgeschützten Schlüssel an.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_66_de07",
+              "type": "code",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "code": "curl \"https://api.tidepool.example/v1/export?from=2026-01-01\" \\\n  -H \"Authorization: Bearer $TIDEPOOL_READ_KEY\"",
+                "language": "plain",
+                "mode": "display"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_66_de08",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Ratenbegrenzung",
+                "level": 3
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_66_de09",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Exporte sind auf zehn Anfragen pro Minute und Schlüssel begrenzt. Größere Zeiträume werden seitenweise geliefert.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 167,
+    "title": "Änderungsprotokoll",
+    "slug": "changelog",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "docs",
+    "meta_title": null,
+    "meta_description": "Versionshinweise zu Tidepool, neueste zuerst.",
+    "schema_type": "WebPage",
+    "parent_id": 160,
+    "site_root_id": 67,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_67_de11",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_67_de09",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Änderungsprotokoll",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_67_de10",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Was sich in Tidepool geändert hat, neueste zuerst.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_67_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Version 2.4.0",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_67_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-change\"><span class=\"mr-change__type mr-change__type--added\">Neu</span><time datetime=\"2026-10-12\">12. Oktober 2026</time></p><p>Geteilte Dashboards lassen sich jetzt in andere Websites einbetten. Wochenberichte gibt es jetzt auch als reinen Text.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_67_de03",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Version 2.3.2",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_67_de04",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-change\"><span class=\"mr-change__type mr-change__type--fixed\">Behoben</span><time datetime=\"2026-09-21\">21. September 2026</time></p><p>Rundungsfehler bei der Besucherzahl für Websites mit mehr als einer Million Seitenaufrufen behoben.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_67_de05",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Version 2.3.0",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_67_de06",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-change\"><span class=\"mr-change__type mr-change__type--added\">Neu</span><time datetime=\"2026-09-02\">2. September 2026</time></p><p>Eigene Ereignisse akzeptieren bis zu zehn Eigenschaften. Der Ereignisbericht lässt sich nach jeder Eigenschaft aufteilen.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_67_de07",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Version 2.2.0",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_67_de08",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-change\"><span class=\"mr-change__type mr-change__type--changed\">Geändert</span><time datetime=\"2026-07-14\">14. Juli 2026</time></p><p>Das Tracking-Skript ist jetzt 1,6 KB groß statt 2,3 KB und blockiert das Rendern nicht mehr.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 180,
+    "title": "Kontakt",
+    "slug": "contact",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "contact",
+    "meta_title": null,
+    "meta_description": "Nehmen Sie Kontakt mit dem Studio auf: Kontaktformular, Adressen, Öffnungszeiten und eine Karte beider Standorte.",
+    "schema_type": "ContactPage",
+    "site_root_id": 80,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_80_de03",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "lg",
+            "spacing_bottom": "sm"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_80_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Kontakt",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_80_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Fragen, Ideen oder ein Projekt im Kopf? Schreiben Sie uns; ein Mensch antwortet innerhalb eines Werktags.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_80_de11",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "sm",
+            "spacing_bottom": "sm"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_80_de10",
+              "type": "form",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "form_name": "Contact",
+                "submit_label": "Nachricht senden",
+                "success_message": "Vielen Dank. Ihre Nachricht ist unterwegs, wir antworten innerhalb eines Werktags."
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": [
+                {
+                  "id": "b_mrpo_80_de04",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "text",
+                    "label": "Vor- und Nachname",
+                    "name": "name",
+                    "required": true,
+                    "is_privacy": false,
+                    "half_width": true
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                },
+                {
+                  "id": "b_mrpo_80_de05",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "email",
+                    "label": "E-Mail-Adresse",
+                    "name": "email",
+                    "required": true,
+                    "is_privacy": false,
+                    "half_width": true
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                },
+                {
+                  "id": "b_mrpo_80_de06",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "tel",
+                    "label": "Telefon (optional)",
+                    "name": "phone",
+                    "required": false,
+                    "is_privacy": false,
+                    "half_width": true
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                },
+                {
+                  "id": "b_mrpo_80_de07",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "select",
+                    "label": "Thema",
+                    "name": "topic",
+                    "required": true,
+                    "is_privacy": false,
+                    "half_width": true,
+                    "options": "project|Projektanfrage\nsupport|Support\npress|Presse\nother|Etwas anderes"
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                },
+                {
+                  "id": "b_mrpo_80_de08",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "textarea",
+                    "label": "Nachricht",
+                    "name": "message",
+                    "required": true,
+                    "is_privacy": false,
+                    "half_width": false
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                },
+                {
+                  "id": "b_mrpo_80_de09",
+                  "type": "form-field",
+                  "enabled": true,
+                  "settings": {},
+                  "data": {
+                    "field_type": "checkbox",
+                    "label": "Ich stimme der Datenschutzerklärung zu.",
+                    "name": "privacy",
+                    "required": true,
+                    "is_privacy": true,
+                    "half_width": false
+                  },
+                  "visibility": {
+                    "from": null,
+                    "until": null,
+                    "sites": null
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "b_mrpo_80_de19",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "sm",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_80_de14",
+              "type": "project-map",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "pins": [
+                  {
+                    "title": "Hamburg",
+                    "category": "Studio",
+                    "location": "Hamburg, DE",
+                    "lat": "53.5436",
+                    "lon": "9.9894",
+                    "status": "none",
+                    "summary": "Design und Entwicklung."
+                  },
+                  {
+                    "title": "Lisbon",
+                    "category": "Studio",
+                    "location": "Lisboa, PT",
+                    "lat": "38.7112",
+                    "lon": "-9.1393",
+                    "status": "none",
+                    "summary": "Recherche und Inhalte."
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_80_de12",
+              "type": "locations",
+              "enabled": true,
+              "settings": {
+                "spacing_top": "lg"
+              },
+              "data": {
+                "title": "So finden Sie uns",
+                "lead": "Zwei Studios, ein Team. Besuchen Sie uns nach Vereinbarung.",
+                "items": [
+                  {
+                    "name": "Hamburg",
+                    "address": "Speicherstadt 12\n20457 Hamburg\nDeutschland",
+                    "phone": "+49 40 5550 1234",
+                    "email": "hamburg@meridian.example",
+                    "hours": "Mo–Do|9:00–17:00\nFr|9:00–13:00",
+                    "map_url": "https://www.openstreetmap.org/?mlat=53.5436&mlon=9.9894#map=16/53.5436/9.9894"
+                  },
+                  {
+                    "name": "Lisbon",
+                    "address": "Rua da Prata 88\n1100-420 Lisboa\nPortugal",
+                    "phone": "+351 21 555 0199",
+                    "email": "lisbon@meridian.example",
+                    "hours": "Mo–Fr|10:00–18:00",
+                    "map_url": "https://www.openstreetmap.org/?mlat=38.7112&mlon=-9.1393#map=16/38.7112/-9.1393"
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 190,
+    "title": "Impressum",
+    "slug": "imprint",
+    "is_enabled": 1,
+    "hide_from_nav": 1,
+    "show_in_footer": 1,
+    "nav_icon": "about",
+    "meta_title": null,
+    "meta_description": "Anbieterkennzeichnung und Kontaktdaten des Seitenbetreibers.",
+    "schema_type": "WebPage",
+    "site_root_id": 90,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_90_de11",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "narrow",
+            "spacing_top": "lg",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_90_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Impressum",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_90_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Diese Seite enthält Beispieltext für die Demo-Inhalte. Ersetzen Sie ihn durch Ihren eigenen Rechtstext, bevor Sie live gehen.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_90_de03",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Anbieter",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_90_de04",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Meridian Studio GmbH<br>Speicherstadt 12<br>20457 Hamburg<br>Deutschland</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_90_de05",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Kontakt",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_90_de06",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>E-Mail: <a href=\"mailto:hello@meridian.example\">hello@meridian.example</a><br>Telefon: +49 40 5550 1234</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_90_de07",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Registereintrag",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_90_de08",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Handelsregister: Hamburg, HRB 000000<br>USt-IdNr.: DE000000000</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_90_de09",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Verantwortlich für den Inhalt",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_90_de10",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Jonas Weber, Anschrift wie oben.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 191,
+    "title": "Datenschutzerklärung",
+    "slug": "privacy",
+    "is_enabled": 1,
+    "hide_from_nav": 1,
+    "show_in_footer": 1,
+    "nav_icon": "about",
+    "meta_title": null,
+    "meta_description": "Wie diese Website mit personenbezogenen Daten, Cookies und Ihren Rechten umgeht.",
+    "schema_type": "WebPage",
+    "site_root_id": 91,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrpo_91_de11",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "narrow",
+            "spacing_top": "lg",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrpo_91_de01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Datenschutzerklärung",
+                "level": 1
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_91_de02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Diese Seite enthält Beispieltext für die Demo-Inhalte. Ersetzen Sie ihn durch Ihren eigenen Rechtstext, bevor Sie live gehen.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_91_de03",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Wer verantwortlich ist",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_91_de04",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Verantwortlich für die Datenverarbeitung auf dieser Website ist der im <a href=\"october://cms-page@link/page?path=imprint\">Impressum</a> genannte Anbieter.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_91_de05",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Was wir erheben",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_91_de06",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Server-Protokolle erfassen die abgerufene Seite, einen Zeitstempel und eine gekürzte Adresse zur Sicherheit. Wir verwenden keine Werbe-Tracker.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_91_de07",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Kontaktformulare",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_91_de08",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Daten, die Sie in ein Formular eingeben, dienen nur der Beantwortung Ihrer Anfrage und werden nach sechs Monaten gelöscht, sofern kein Vertrag folgt.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_91_de09",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs",
+                "spacing_top": "lg"
+              },
+              "data": {
+                "text": "Ihre Rechte",
+                "level": 2
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrpo_91_de10",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Sie können jederzeit Auskunft, Berichtigung oder Löschung Ihrer Daten verlangen. Schreiben Sie an die Adresse im Impressum.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

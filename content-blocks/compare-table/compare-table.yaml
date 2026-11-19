@@ -1,0 +1,38 @@
+handle: compare-table
+name: meridian.block.compare-table.name
+icon: icon-table
+group: Meridian
+version: 1
+settings: true
+fields:
+  title:
+    label: meridian.block.compare-table.title
+    type: text
+    commentAbove: meridian.block.compare-table.title_comment
+  columns:
+    label: meridian.block.compare-table.columns
+    type: textarea
+    size: small
+    commentAbove: meridian.block.compare-table.columns_comment
+  featured_column:
+    label: meridian.block.compare-table.featured_column
+    type: number
+    translatable: false
+    commentAbove: meridian.block.compare-table.featured_column_comment
+  rows:
+    label: meridian.block.compare-table.rows
+    type: repeater
+    titleFrom: label
+    commentAbove: meridian.block.compare-table.rows_comment
+    fields:
+      group:
+        label: meridian.block.compare-table.row_group
+        type: switch
+        default: false
+      label:
+        label: meridian.block.compare-table.row_label
+        type: text
+      values:
+        label: meridian.block.compare-table.row_values
+        type: text
+        commentAbove: meridian.block.compare-table.row_values_comment

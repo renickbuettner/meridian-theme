@@ -1,0 +1,68 @@
+@use "../mr";
+@use "../blocks/tint";
+
+.mr-tabs__head { margin-block-end: var(--mr-space-6); max-inline-size: var(--mr-w-prose); }
+.mr-tabs__title { margin: 0; font-size: var(--mr-text-h2); }
+.mr-tabs__head .mr-lead { margin-block: var(--mr-space-3) 0; }
+
+// Padding and the matching negative margin give the focus ring room while the chips still start on the gutter.
+// On phones the chips wrap instead of scrolling, so no tab is ever clipped.
+.mr-tabs__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--mr-space-2);
+    margin-block-end: calc(var(--mr-space-6) - var(--mr-space-1));
+    margin-inline: calc(-1 * var(--mr-space-1));
+    padding: var(--mr-space-1);
+}
+.mr-tabs__tab { gap: var(--mr-space-2); white-space: nowrap; }
+.mr-tabs__tab[aria-selected="true"] {
+    background: var(--mr-accent);
+    border-color: var(--mr-accent);
+    color: var(--mr-on-accent);
+}
+.mr-tabs__icon { flex: none; inline-size: var(--mr-space-4); block-size: var(--mr-space-4); }
+
+.mr-tabs__panels { display: grid; gap: var(--mr-space-8); }
+.mr-tabs__panel { display: grid; gap: var(--mr-space-5); align-items: start; scroll-margin-block-start: var(--mr-space-6); }
+.mr-tabs__panel[hidden] { display: none; }
+.mr-tabs__body > * { margin-block: 0; }
+.mr-tabs__body > * + * { margin-block-start: var(--mr-space-4); }
+.mr-tabs__heading { font-size: var(--mr-text-h3); }
+.mr-tabs__media { margin: 0; overflow: hidden; border: var(--mr-border); border-radius: var(--mr-radius-md); background: var(--mr-surface-2); box-shadow: var(--mr-shadow-1); }
+.mr-tabs__media picture,
+.mr-tabs__media img { display: block; inline-size: 100%; block-size: auto; }
+
+// The tab already names the panel, so its heading stays for screen readers only once the tabs are active.
+.mr-tabs[data-island-ready] .mr-tabs__heading {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+@include mr.up(md) {
+    .mr-tabs__panel { --mr-tabs-media: minmax(0, 1fr); grid-template-columns: minmax(0, 1fr) var(--mr-tabs-media); gap: var(--mr-space-8); align-items: start; }
+    .mr-tabs__panel--flip { grid-template-columns: var(--mr-tabs-media) minmax(0, 1fr); }
+    .mr-tabs__panel:not(:has(.mr-tabs__media)) { grid-template-columns: minmax(0, var(--mr-w-prose)); }
+    .mr-tabs__panel--flip .mr-tabs__media { order: -1; }
+}
+
+@include mr.short-viewport {
+    .mr-tabs__panel { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--mr-space-5); align-items: start; max-inline-size: none; }
+    .mr-tabs__panel:not(:has(.mr-tabs__media)) { grid-template-columns: minmax(0, var(--mr-w-prose)); }
+}
+
+@include tint.tint(".mr-tabs--tint .mr-tabs__media", ".mr-tabs--tint .mr-tabs__media img");
+
+// The shared tint inverts to pure black in dark mode; a partial invert keeps the artwork on the surface tone.
+@media (prefers-color-scheme: dark) {
+    html:not([data-bs-theme]) .mr-tabs--tint .mr-tabs__media img { filter: invert(0.88) brightness(0.9); }
+}
+html[data-bs-theme="dark"] .mr-tabs--tint .mr-tabs__media img { filter: invert(0.88) brightness(0.9); }
+
+// The hidden heading is out of flow, so the first paragraph must not keep the sibling gap meant for it.
+.mr-tabs[data-island-ready] .mr-tabs__heading + * { margin-block-start: 0; }

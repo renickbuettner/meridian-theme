@@ -1,0 +1,119 @@
+@use "../mr";
+
+.mr-hs { container: mr-hs / inline-size; --mr-hs-card: 20rem; }
+.mr-hs__head { margin-block-end: var(--mr-space-5); max-inline-size: var(--mr-w-prose); }
+.mr-hs__title { margin: 0 0 var(--mr-space-3); font-size: var(--mr-text-h2); line-height: var(--mr-leading-tight); }
+.mr-hs__head .mr-lead { margin: 0; }
+.mr-hs__figure { margin: 0; }
+.mr-hs__stage { position: relative; display: grid; gap: var(--mr-space-3); }
+.mr-hs__frame {
+    position: relative;
+    direction: ltr;
+    aspect-ratio: var(--mr-hs-ratio);
+    border-radius: var(--mr-radius-lg);
+    border: var(--mr-border);
+    background: var(--mr-surface-2);
+    overflow: hidden;
+}
+.mr-hs__frame picture, .mr-hs__img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+.mr-hs__frame .mr-hs__art--dark { display: none; }
+@media (prefers-color-scheme: dark) {
+    html:not([data-bs-theme]) .mr-hs__frame:not(:has(.mr-hs__art)) .mr-hs__img { filter: brightness(0.62) contrast(0.95); }
+    html:not([data-bs-theme]) .mr-hs__art--light { display: none; }
+    html:not([data-bs-theme]) .mr-hs__art--dark { display: block; }
+}
+html[data-bs-theme="dark"] .mr-hs__frame:not(:has(.mr-hs__art)) .mr-hs__img { filter: brightness(0.62) contrast(0.95); }
+html[data-bs-theme="dark"] .mr-hs__art--light { display: none; }
+html[data-bs-theme="dark"] .mr-hs__art--dark { display: block; }
+// The artwork keeps a neutral teal palette: a colour-blend overlay moves its hue to the active scheme's accent (light and dark variant alike).
+.mr-hs__frame picture { position: relative; isolation: isolate; }
+.mr-hs__frame picture::after { content: ""; position: absolute; inset: 0; background: var(--mr-accent); mix-blend-mode: color; opacity: 0.6; pointer-events: none; }
+.mr-hs__pins { position: absolute; inset: 0; }
+
+.mr-hs__pin {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    inline-size: var(--mr-target);
+    block-size: var(--mr-target);
+    padding: 0;
+    translate: -50% -50%;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+.mr-hs__pin--static { pointer-events: none; }
+.mr-hs__dot {
+    display: grid;
+    place-items: center;
+    inline-size: var(--mr-hs-dot, var(--mr-space-5));
+    block-size: var(--mr-hs-dot, var(--mr-space-5));
+    border-radius: var(--mr-radius-pill);
+    background: var(--mr-accent);
+    color: var(--mr-on-accent);
+    border: 2px solid var(--mr-bg);
+    box-shadow: var(--mr-shadow-2);
+    font: 700 var(--mr-text-xs) / 1 var(--mr-font-sans);
+    font-variant-numeric: tabular-nums;
+    transition: background-color var(--mr-dur) var(--mr-ease), scale var(--mr-dur) var(--mr-ease);
+}
+.mr-hs__pin:hover .mr-hs__dot { scale: 1.12; }
+.mr-hs__pin[aria-expanded="true"] .mr-hs__dot { background: var(--mr-ink); color: var(--mr-bg); scale: 1.12; }
+.mr-hs__pin { border-radius: var(--mr-radius-pill); }
+.mr-hs__pin:focus-visible { outline: 3px solid var(--mr-focus); outline-offset: 0; }
+button.mr-hs__pin .mr-hs__dot::before { content: attr(data-n); }
+@media (prefers-reduced-motion: no-preference) {
+    .mr-hs__pin:not([aria-expanded="true"]) .mr-hs__dot::after {
+        content: "";
+        position: absolute;
+        inset: calc(var(--mr-space-1) * -1);
+        border-radius: inherit;
+        border: 2px solid var(--mr-accent);
+        opacity: 0;
+        animation: mr-hs-ping 2.4s var(--mr-ease) infinite;
+    }
+    .mr-hs__dot { position: relative; }
+}
+@keyframes mr-hs-ping { 0% { opacity: 0.7; scale: 0.8; } 70%, 100% { opacity: 0; scale: 1.5; } }
+
+.mr-hs__card { position: relative; padding: var(--mr-space-5); border-radius: var(--mr-radius-md); border: var(--mr-border); background: var(--mr-surface); box-shadow: var(--mr-shadow-1); }
+.mr-hs__card[hidden] { display: none; }
+.mr-hs__card-body { display: grid; gap: var(--mr-space-2); }
+.mr-hs__card .mr-hs__name { margin: 0; padding-inline-end: calc(var(--mr-target) - var(--mr-space-3)); }
+.mr-hs__card .mr-hs__text { margin: 0; }
+.mr-hs__card .mr-hs__more { margin: var(--mr-space-2) 0 0; }
+.mr-hs__close {
+    position: absolute;
+    inset-block-start: var(--mr-space-2);
+    inset-inline-end: var(--mr-space-2);
+    display: grid;
+    place-items: center;
+    inline-size: var(--mr-target);
+    block-size: var(--mr-target);
+    padding: 0;
+    border: 0;
+    border-radius: var(--mr-radius-pill);
+    background: transparent;
+    color: var(--mr-ink);
+    cursor: pointer;
+}
+.mr-hs__close:hover { background: var(--mr-accent-soft); }
+.mr-hs__close svg { inline-size: var(--mr-space-4); block-size: var(--mr-space-4); }
+.mr-hs__caption { margin-block-start: var(--mr-space-3); font-size: var(--mr-text-sm); color: var(--mr-muted); }
+
+// Wide: the card floats over the image next to its pin (placed by the island); narrow: it sits below the image.
+@container mr-hs (min-width: 44rem) {
+    .mr-hs__stage { --mr-hs-dot: var(--mr-space-6); }
+    .mr-hs__card { position: absolute; z-index: 2; inline-size: min(var(--mr-hs-card), calc(100% - var(--mr-space-4))); }
+    .mr-hs__card.mr-hs__card--below { position: relative; z-index: auto; inline-size: auto; }
+}
+
+// The list is the no-JS and error fallback; with JS on, its space is never reserved.
+html.js .mr-hs:not([data-island-error]) .mr-hs__list { display: none; }
+.mr-hs__list { margin: var(--mr-space-6) 0 0; padding: 0; list-style: none; display: grid; gap: var(--mr-space-4); counter-reset: mr-hs; }
+@include mr.up(md) { .mr-hs__list { grid-template-columns: repeat(2, 1fr); } }
+.mr-hs__item { counter-increment: mr-hs; display: grid; gap: var(--mr-space-2); align-content: start; padding: var(--mr-space-4); border: var(--mr-border); border-radius: var(--mr-radius-md); background: var(--mr-surface); }
+.mr-hs__name { margin: 0; font: 500 var(--mr-text-h4) / 1.25 var(--mr-font-serif); }
+.mr-hs__list .mr-hs__name::before { content: counter(mr-hs) ". "; color: var(--mr-accent); font-family: var(--mr-font-sans); font-weight: 700; font-size: var(--mr-text-sm); }
+.mr-hs__text { margin: 0; color: var(--mr-muted); }
+.mr-hs__more { margin: 0; }

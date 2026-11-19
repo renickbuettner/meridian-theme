@@ -1,0 +1,21 @@
+{# Complete and filled without JS; the island only drives --mr-tl-fill per item. Item headings are h3, the optional block title h2. #}
+<section {{ attributes|replace({'class="': 'class="mr-tl '})|raw }} data-island="scroll-timeline">
+    {% if data.title|default('') or data.intro|default('') %}
+    <header class="mr-tl__head">
+        {% if data.title|default('') %}<h2 class="mr-tl__title">{{ data.title }}</h2>{% endif %}
+        {% if data.intro|default('') %}<p class="mr-lead">{{ data.intro|nl2br }}</p>{% endif %}
+    </header>
+    {% endif %}
+    <ol class="mr-tl__list" role="list">
+        {% for item in data.items|default([]) %}
+        <li class="mr-tl__item">
+            <span class="mr-tl__dot" aria-hidden="true"></span>
+            {% if item.meta|default('') %}<p class="mr-meta mr-tl__meta">{{ item.meta }}</p>{% endif %}
+            <div class="mr-tl__body">
+            {% if item.title|default('') %}<h3 class="mr-tl__name">{{ item.title }}</h3>{% endif %}
+            {% if item.text|default('') %}<p class="mr-tl__text">{{ item.text|nl2br }}</p>{% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    </ol>
+</section>

@@ -1,0 +1,68 @@
+handle: feature-tabs
+name: meridian.block.feature-tabs.name
+icon: icon-columns
+group: Meridian
+version: 1
+settings: true
+fields:
+  eyebrow:
+    label: meridian.block.feature-tabs.eyebrow
+    type: text
+  title:
+    label: meridian.block.feature-tabs.title
+    type: text
+    commentAbove: meridian.block.feature-tabs.title_comment
+  lead:
+    label: meridian.block.feature-tabs.lead
+    type: textarea
+    size: small
+  layout:
+    label: meridian.block.feature-tabs.layout
+    type: dropdown
+    options:
+      image_end: meridian.block.feature-tabs.layout_image_end
+      image_start: meridian.block.feature-tabs.layout_image_start
+    default: image_end
+  tint:
+    label: meridian.block.feature-tabs.tint
+    type: switch
+    default: false
+    commentAbove: meridian.block.feature-tabs.tint_comment
+  items:
+    label: meridian.block.feature-tabs.items
+    type: repeater
+    commentAbove: meridian.block.feature-tabs.items_comment
+    fields:
+      label:
+        label: meridian.block.feature-tabs.label
+        type: text
+      key:
+        label: meridian.block.feature-tabs.key
+        type: text
+        commentAbove: meridian.block.feature-tabs.key_comment
+      icon:
+        label: meridian.block.feature-tabs.icon
+        type: iconpicker
+      text:
+        label: meridian.block.feature-tabs.text
+        type: textarea
+        size: small
+        commentAbove: meridian.block.feature-tabs.text_comment
+      image:
+        label: meridian.block.feature-tabs.image
+        type: mediafinder
+        mode: image
+        maxItems: 1
+      image_alt:
+        label: meridian.block.feature-tabs.image_alt
+        type: text
+        commentAbove: meridian.block.feature-tabs.image_alt_comment
+      link_label:
+        label: meridian.block.feature-tabs.link_label
+        type: text
+      link_url:
+        label: meridian.block.feature-tabs.link_url
+        type: pagefinder
+        singleMode: true
+        allowCustomUrl: true
+        translatable: false

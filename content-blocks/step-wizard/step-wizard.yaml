@@ -1,0 +1,102 @@
+handle: step-wizard
+name: meridian.block.step-wizard.name
+icon: icon-list-ol
+group: Meridian
+version: 1
+settings: true
+fields:
+  eyebrow:
+    label: meridian.block.step-wizard.eyebrow
+    type: text
+  title:
+    label: meridian.block.step-wizard.title
+    type: text
+  intro:
+    label: meridian.block.step-wizard.intro
+    type: textarea
+    size: small
+  form_name:
+    label: meridian.block.step-wizard.form_name
+    type: text
+    translatable: false
+    default: Quiz
+    commentAbove: meridian.block.step-wizard.form_name_comment
+  questions:
+    label: meridian.block.step-wizard.questions
+    type: repeater
+    commentAbove: meridian.block.step-wizard.questions_comment
+    fields:
+      question:
+        label: meridian.block.step-wizard.question
+        type: text
+      hint:
+        label: meridian.block.step-wizard.hint
+        type: text
+      kind:
+        label: meridian.block.step-wizard.kind
+        type: dropdown
+        translatable: false
+        default: single
+        options:
+          single: meridian.block.step-wizard.kind_single
+          multiple: meridian.block.step-wizard.kind_multiple
+          text: meridian.block.step-wizard.kind_text
+      required:
+        label: meridian.block.step-wizard.required
+        type: switch
+        translatable: false
+        default: true
+      options:
+        label: meridian.block.step-wizard.options
+        type: textarea
+        size: small
+        commentAbove: meridian.block.step-wizard.options_comment
+  results:
+    label: meridian.block.step-wizard.results
+    type: repeater
+    commentAbove: meridian.block.step-wizard.results_comment
+    fields:
+      key:
+        label: meridian.block.step-wizard.result_key
+        type: text
+        translatable: false
+        commentAbove: meridian.block.step-wizard.result_key_comment
+      title:
+        label: meridian.block.step-wizard.result_title
+        type: text
+      text:
+        label: meridian.block.step-wizard.result_text
+        type: textarea
+        size: small
+      cta_label:
+        label: meridian.block.step-wizard.result_cta_label
+        type: text
+      cta_url:
+        label: meridian.block.step-wizard.result_cta_url
+        type: pagefinder
+        singleMode: true
+        allowCustomUrl: true
+        translatable: false
+  lead_title:
+    label: meridian.block.step-wizard.lead_title
+    type: text
+  lead_intro:
+    label: meridian.block.step-wizard.lead_intro
+    type: textarea
+    size: small
+  ask_message:
+    label: meridian.block.step-wizard.ask_message
+    type: switch
+    translatable: false
+    default: false
+  privacy_label:
+    label: meridian.block.step-wizard.privacy_label
+    type: text
+    commentAbove: meridian.block.step-wizard.privacy_label_comment
+  submit_label:
+    label: meridian.block.step-wizard.submit_label
+    type: text
+  success_message:
+    label: meridian.block.step-wizard.success_message
+    type: textarea
+    size: small

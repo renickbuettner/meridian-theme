@@ -1,0 +1,1 @@
+export default function e(e,{signal:t}){const r=e.querySelector(".rc-code-pre");if(!r)return;const o=()=>r.toggleAttribute("data-overflow",r.scrollWidth>r.clientWidth+1);o();const n=new ResizeObserver(o);return n.observe(r),document.fonts?.ready.then(()=>!t.aborted&&o()),()=>n.disconnect()}

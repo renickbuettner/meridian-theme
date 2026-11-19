@@ -1,0 +1,34 @@
+@use "sass:map";
+// Three schemes x light and dark. Each value is #rrggbb on purpose: scripts/lib/contrast.mjs and MeridianThemeTest parse them.
+// bg page, ink text, accent links/buttons/focus, signal secondary highlight (graphics only, text uses --mr-signal-text), on-accent text on filled accent.
+$palettes: (
+    teal: (
+        light: (bg: #eef1ef, ink: #14211f, accent: #0d6b62, signal: #b9760f, on-accent: #ffffff),
+        dark: (bg: #0e1614, ink: #e6eeeb, accent: #4cc3b3, signal: #e4a53f, on-accent: #0e1614),
+    ),
+    ember: (
+        light: (bg: #f7f1ea, ink: #2b1d17, accent: #b23a1e, signal: #2f6f73, on-accent: #ffffff),
+        dark: (bg: #1b1210, ink: #f1e6de, accent: #f08a5d, signal: #6cc1c6, on-accent: #1b1210),
+    ),
+    ultramarine: (
+        light: (bg: #f2f4fb, ink: #12163a, accent: #3338d6, signal: #0e9f7a, on-accent: #ffffff),
+        dark: (bg: #0c1022, ink: #e4e7ff, accent: #8d93ff, signal: #4fd6ae, on-accent: #0c1022),
+    ),
+);
+
+@mixin scheme($name) {
+    $light: map.get(map.get($palettes, $name), light);
+    $dark: map.get(map.get($palettes, $name), dark);
+    @each $key in (bg, ink, accent, signal, on-accent) {
+        --mr-#{$key}: light-dark(#{map.get($light, $key)}, #{map.get($dark, $key)});
+    }
+}
+
+// teal doubles as the fallback when no data-scheme attribute is present (editor preview, broken settings).
+@mixin scheme-rule($name) {
+    @if $name == teal {
+        html[data-scheme="teal"], html:not([data-scheme]) { @include scheme($name); }
+    } @else {
+        html[data-scheme="#{$name}"] { @include scheme($name); }
+    }
+}

@@ -1,0 +1,22 @@
+{% set tone = data.tone|default('accent') == 'soft' ? 'soft' : 'accent' %}
+{% set url1 = data.primary_url|rc_url %}
+{% set url2 = data.secondary_url|rc_url %}
+{# "bootstrap" would pose as window.bootstrap (ReservedIds in the plugin) #}
+{% set anchor = data.anchor|default('') matches '/^(?!bootstrap$)[a-z][a-z0-9-]*$/' ? data.anchor : '' %}
+<section{% if anchor %} id="{{ anchor }}"{% endif %} {{ attributes|replace({'class="': 'class="mr-section mr-cta-band mr-cta-band--' ~ tone ~ ' '})|raw }}>
+    <div class="mr-container">
+        <div class="mr-cta-band__panel">
+            <div class="mr-cta-band__text">
+                {% if data.title %}<h2>{{ data.title }}</h2>{% endif %}
+                {% if data.text %}<p class="mr-cta-band__lead">{{ data.text|nl2br }}</p>{% endif %}
+                {% if data.note %}<p class="mr-cta-band__note">{{ data.note }}</p>{% endif %}
+            </div>
+            {% if (data.primary_label and url1) or (data.secondary_label and url2) %}
+            <div class="mr-cluster mr-cta-band__actions">
+                {% if data.primary_label and url1 %}<a class="mr-btn mr-btn--lg mr-cta-band__primary" href="{{ url1 }}">{{ data.primary_label }}{{ rc_icon('arrow-right', 18)|raw }}</a>{% endif %}
+                {% if data.secondary_label and url2 %}<a class="mr-btn mr-btn--ghost mr-btn--lg mr-cta-band__secondary" href="{{ url2 }}">{{ data.secondary_label }}</a>{% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

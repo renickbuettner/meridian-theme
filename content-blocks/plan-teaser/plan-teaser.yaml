@@ -1,0 +1,76 @@
+handle: plan-teaser
+name: meridian.block.plan-teaser.name
+icon: icon-tag
+group: Meridian
+version: 1
+settings: true
+fullBleed: true
+fields:
+  eyebrow:
+    label: meridian.block.plan-teaser.eyebrow
+    type: text
+  title:
+    label: meridian.block.plan-teaser.title
+    type: text
+  lead:
+    label: meridian.block.plan-teaser.lead
+    type: textarea
+    size: small
+
+  band:
+    label: meridian.block.plan-teaser.band
+    type: dropdown
+    options:
+      none: meridian.block.plan-teaser.band_none
+      band: meridian.block.plan-teaser.band_band
+      accent: meridian.block.plan-teaser.band_accent
+    default: none
+  link_label:
+    label: meridian.block.plan-teaser.link_label
+    type: text
+  link_url:
+    label: meridian.block.plan-teaser.link_url
+    type: pagefinder
+    singleMode: true
+    allowCustomUrl: true
+    translatable: false
+  plans:
+    label: meridian.block.plan-teaser.plans
+    type: repeater
+    titleFrom: name
+    maxItems: 4
+    fields:
+      name:
+        label: meridian.block.plan-teaser.plan_name
+        type: text
+      price:
+        label: meridian.block.plan-teaser.plan_price
+        type: text
+      period:
+        label: meridian.block.plan-teaser.plan_period
+        type: text
+      text:
+        label: meridian.block.plan-teaser.plan_text
+        type: textarea
+        size: small
+      features:
+        label: meridian.block.plan-teaser.plan_features
+        type: textarea
+        size: small
+        commentAbove: meridian.block.plan-teaser.plan_features_comment
+      featured:
+        label: meridian.block.plan-teaser.plan_featured
+        type: checkbox
+      cta_label:
+        label: meridian.block.plan-teaser.plan_cta_label
+        type: text
+      cta_url:
+        label: meridian.block.plan-teaser.plan_cta_url
+        type: pagefinder
+        singleMode: true
+        allowCustomUrl: true
+        translatable: false
+  anchor:
+    label: meridian.block.plan-teaser.anchor
+    type: text
+    commentAbove: meridian.block.plan-teaser.anchor_comment

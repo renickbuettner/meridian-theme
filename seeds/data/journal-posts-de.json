@@ -1,0 +1,2061 @@
+[
+  {
+    "id": 101,
+    "site_root_id": 1,
+    "title": "Feldnotizen zu einem schnelleren LCP",
+    "slug": "field-notes-on-a-faster-lcp",
+    "is_enabled": 1,
+    "published_at": "2026-10-14 08:30:00",
+    "excerpt": "Beim Largest Contentful Paint geht es meist um ein Bild und eine Anfrage. Notizen aus der Optimierung von elf echten Seiten unter zwei Sekunden.",
+    "cover": "meridian/journal/field-notes-lcp.jpg",
+    "cover_alt": "",
+    "category": 101,
+    "author": 101,
+    "tags": [
+      101,
+      102
+    ],
+    "meta_title": null,
+    "meta_description": "Beim Largest Contentful Paint geht es meist um ein Bild und eine Anfrage. Notizen aus der Optimierung von elf echten Seiten unter zwei Sekunden.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jd1_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Jede langsame Seite, die wir uns dieses Jahr angesehen haben, hatte dieselbe Form: ein großes Element, spät entdeckt, höflich hinter allem anderen geladen. Largest Contentful Paint klingt abstrakt, ist in der Praxis aber die Geschichte eines einzelnen Bildes oder einer einzelnen Überschrift und des Wegs, auf dem der Browser sie findet.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd1_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Zuerst das Element finden",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd1_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Bevor Sie etwas ändern, öffnen Sie das Performance-Panel und sehen Sie nach, welchen Knoten der Browser tatsächlich gewählt hat. Bei unseren Seiten war es in neun von elf Fällen ein Hero-Foto und in zwei Fällen ein Textblock. Die Lösung für diese beiden Gruppen ist völlig verschieden, deshalb kostet Raten Wochen.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd1_4",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Wenn es ein Bild ist",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd1_5",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Geben Sie dem Browser in der ersten HTML-Antwort alles, was er braucht: die echte URL, die passende Größe, kein Lazy Loading und eine hohe Abrufpriorität. Ein <code>srcset</code>, mit dem ein Handy 480 Pixel statt 1600 Pixel lädt, bringt meist mehr als jede Server-Feinabstimmung.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd1_6",
+          "type": "code",
+          "enabled": true,
+          "data": {
+            "code": "<img src=\"/media/hero-960.avif\"\n     srcset=\"/media/hero-480.avif 480w, /media/hero-960.avif 960w, /media/hero-1600.avif 1600w\"\n     sizes=\"(min-width: 992px) 60vw, 100vw\"\n     width=\"1600\" height=\"1000\" fetchpriority=\"high\" alt=\"\">",
+            "mode": "display",
+            "language": "html",
+            "caption": "Das Hero-Bild: feste Größe, ehrliche Kandidaten, hohe Priorität."
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd1_7",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Wenn es Text ist",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd1_8",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Ein Text-LCP wartet fast immer auf eine Webschrift. Laden Sie die eine Datei vor, die die Überschrift zeichnet, nutzen Sie <code>font-display: swap</code> und halten Sie die Ersatzschrift metrisch nah an der echten, damit beim Wechsel nichts springt.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd1_9",
+          "type": "quote",
+          "enabled": true,
+          "data": {
+            "variant": "bordered",
+            "text": "Eine schnelle Seite ist keine clevere Seite. Es ist eine Seite, die den Browser nie raten ließ.",
+            "author": "Lena Marsh",
+            "role": "Redakteurin für Performance"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd1_10",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Messen wie ein Besucher",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd1_11",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Labormesswerte sind ein Anfang, Felddaten sind die Wahrheit. Schauen Sie auf das 75. Perzentil echter Handys in echten Netzen und nennen Sie einen Fix erst fertig, wenn sich diese Zahl bewegt. Wir haben jede Seite zwei Wochen nach dem Release erneut geprüft; zwei der elf waren unbemerkt wieder schlechter geworden.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd1_12",
+          "type": "info-banner",
+          "enabled": true,
+          "data": {
+            "level": "success",
+            "title": "Die Kurzfassung",
+            "text": "Finden Sie das LCP-Element, liefern Sie es in der ersten Antwort aus, geben Sie ihm Größe und Priorität und prüfen Sie es dann mit Felddaten.",
+            "animated": "no"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 102,
+    "site_root_id": 2,
+    "title": "Bilder, die das Layout nie verschieben",
+    "slug": "images-that-never-shift-the-layout",
+    "is_enabled": 1,
+    "published_at": "2026-10-02 09:00:00",
+    "excerpt": "Reservieren Sie den Platz, und die Seite bleibt ruhig. Eine praktische Checkliste für responsive Bilder, Seitenverhältnisse und spät ladende Medien.",
+    "cover": "meridian/journal/images-without-layout-shift.jpg",
+    "cover_alt": "",
+    "category": 101,
+    "author": 102,
+    "tags": [
+      102,
+      104
+    ],
+    "meta_title": null,
+    "meta_description": "Reservieren Sie den Platz, und die Seite bleibt ruhig. Eine praktische Checkliste für responsive Bilder, Seitenverhältnisse und spät ladende Medien.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jd2_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Layoutsprünge sind die ärgerlichste Art von Langsamkeit: Sie beginnen zu lesen, ein Bild trifft ein, und der Satz springt Ihnen davon. Das Gegenmittel ist alt und fast peinlich einfach. Sagen Sie dem Browser, wie groß das Bild wird, bevor er auch nur einen Pixel hat.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd2_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Breite und Höhe, immer",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd2_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Moderne Browser machen aus den Attributen <code>width</code> und <code>height</code> ein Seitenverhältnis, bevor die Datei eintrifft. Kombiniert mit <code>max-width: 100%</code> und <code>height: auto</code> ist der Platz bei jeder Bildschirmgröße reserviert.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd2_4",
+          "type": "code",
+          "enabled": true,
+          "data": {
+            "code": "img {\n  max-width: 100%;\n  height: auto;\n}\n\n.cover {\n  aspect-ratio: 16 / 10;\n  object-fit: cover;\n}",
+            "mode": "display",
+            "language": "css",
+            "caption": "Natürliches Verhältnis aus den Attributen, festes Verhältnis für beschnittene Titelbilder."
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd2_5",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Zuschnitte gehören auf den Server",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd2_6",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Ein CSS-Zuschnitt lädt trotzdem das ganze Foto herunter. Lassen Sie den Server eine Datei mit dem richtigen Verhältnis und einigen Breiten liefern und beschreiben Sie mit <code>sizes</code>, wie breit das Bild im Layout wirklich ist. In einem dreispaltigen Raster ist das ein Drittel des Fensters, nicht das ganze.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd2_7",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Späte Medien und Einbettungen",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd2_8",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Iframes, Video-Poster und Anzeigen sind dasselbe Problem in anderem Mantel. Packen Sie jedes in einen Kasten mit festem Seitenverhältnis und lassen Sie den Inhalt darin einblenden. Bleibt ein Platz womöglich leer, klappen Sie ihn mit einer Transition statt mit einem Sprung zu.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd2_9",
+          "type": "info-banner",
+          "enabled": true,
+          "data": {
+            "level": "warning",
+            "title": "Vor dem Release prüfen",
+            "text": "Drosseln Sie das Netz, laden Sie hart neu und beobachten Sie die Seite. Bewegt sich nach dem ersten Rendern etwas, haben Sie Ihr nächstes Ticket gefunden.",
+            "animated": "no"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 103,
+    "site_root_id": 3,
+    "title": "Ein leises Plädoyer für weniger Schriften",
+    "slug": "a-quiet-case-for-fewer-fonts",
+    "is_enabled": 1,
+    "published_at": "2026-09-22 10:15:00",
+    "excerpt": "Eine Serife für die Stimme, eine Grotesk für die Arbeit, je eine variable Datei. Warum ein kleines Schriftsystem besser liest und schneller lädt.",
+    "cover": "meridian/journal/quiet-fonts.jpg",
+    "cover_alt": "",
+    "category": 104,
+    "author": 103,
+    "tags": [
+      103,
+      104
+    ],
+    "meta_title": null,
+    "meta_description": "Eine Serife für die Stimme, eine Grotesk für die Arbeit, je eine variable Datei. Warum ein kleines Schriftsystem besser liest und schneller lädt.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jd3_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Die meisten Websites tragen mehr Schriften mit sich, als sie rechtfertigen können. Drei Familien, je vier Schnitte, dazu Kursive: ein Viertel Megabyte, das kaum jemand bemerkt und das trotzdem jeder bezahlt.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd3_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Zwei Stimmen reichen",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd3_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Eine Serifen-Schrift gibt Überschriften Charakter. Eine klare Grotesk trägt Oberfläche und Fließtext. Zwischen beiden lassen sich Hierarchie, Stimmung und Betonung ausdrücken, ohne dass eine dritte Stimme dazwischenredet.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd3_4",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Variable Schriften, mit Absicht eingesetzt",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd3_5",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Eine variable Schrift speichert alle Schnitte in einer Datei. Das ist ein Geschenk für die Performance, aber nur, wenn Sie bei den Schnitten bleiben, die Sie brauchen. Wählen Sie Regular, Medium und Bold, benennen Sie sie in Ihren Tokens und widerstehen Sie dem Regler.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd3_6",
+          "type": "code",
+          "enabled": true,
+          "data": {
+            "code": "@font-face {\n  font-family: \"Fraunces Variable\";\n  src: url(\"/fonts/fraunces.woff2\") format(\"woff2-variations\");\n  font-weight: 100 900;\n  font-display: swap;\n}",
+            "mode": "display",
+            "language": "css",
+            "caption": "Eine Datei, alle Schnitte, ohne den Text zu blockieren."
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd3_7",
+          "type": "quote",
+          "enabled": true,
+          "data": {
+            "variant": "bordered",
+            "text": "Typografie ist das Aussehen von Sprache. Weniger Schriften, klarere Sprache.",
+            "author": "Noor Haddad",
+            "role": "Design und Barrierefreiheit"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd3_8",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Selbst hosten und eine Datei vorladen",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd3_9",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Liefern Sie Schriften von der eigenen Domain: eine Verbindung weniger, kein Einwilligungsbanner für eine Schriftanfrage und ein Cache, den Sie kontrollieren. Laden Sie nur die Datei vor, die die erste Überschrift zeichnet; alles andere darf kommen, wenn es fertig ist.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 104,
+    "site_root_id": 4,
+    "title": "Besitzen Sie Ihr Publikum, mieten Sie nichts",
+    "slug": "own-your-audience-rent-nothing",
+    "is_enabled": 1,
+    "published_at": "2026-09-15 07:45:00",
+    "excerpt": "Plattformen ändern ihre Regeln über Nacht. Ein Leitfaden für kleine Verlage zu Kanälen, die Sie kontrollieren: Website, Liste und Feed.",
+    "cover": "meridian/journal/own-your-audience.jpg",
+    "cover_alt": "",
+    "category": 102,
+    "author": 101,
+    "tags": [
+      105,
+      106
+    ],
+    "meta_title": null,
+    "meta_description": "Plattformen ändern ihre Regeln über Nacht. Ein Leitfaden für kleine Verlage zu Kanälen, die Sie kontrollieren: Website, Liste und Feed.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jd4_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Jede unabhängige Verlegerin hat eine Geschichte über den Tag, an dem eine Plattform ihren Algorithmus änderte und ein Jahr Arbeit verstummte. Die Lehre ist nicht, Plattformen zu meiden. Sie ist, sie als Orte zu behandeln, die man besucht, nie als Orte, an denen man wohnt.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd4_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Drei Dinge, die Ihnen gehören",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd4_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Eine Website auf eigener Domain, eine exportierbare Mailingliste und ein Feed, den jeder abonnieren kann. Keines davon ist glamourös, und alle überstehen die nächste Plattform-Erschütterung.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd4_4",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Die Website ist das Archiv",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd4_5",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Veröffentlichen Sie alles zuerst auf Ihrer Website, mit sauberen URLs, die in zehn Jahren noch funktionieren. Social-Posts und Newsletter verweisen darauf zurück. Wenn Sie die Werkzeuge wechseln, zieht das Archiv mit.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd4_6",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Die Liste ist die Beziehung",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd4_7",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Eine E-Mail-Adresse ist ein kleiner Vertrauensbeweis. Fragen Sie offen danach, versprechen Sie einen Rhythmus und halten Sie ihn. Eine Liste mit zweitausend Menschen, die Ihre Mail öffnen, schlägt fünfzigtausend Follower, die sie nie sehen.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd4_8",
+          "type": "info-banner",
+          "enabled": true,
+          "data": {
+            "level": "secondary",
+            "title": "Eine Faustregel",
+            "text": "Wenn Sie es nicht an einem Nachmittag in ein anderes Werkzeug umziehen könnten, mieten Sie es.",
+            "animated": "no"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 105,
+    "site_root_id": 5,
+    "title": "Ein Newsletter-Rhythmus, den Sie durchhalten",
+    "slug": "a-newsletter-rhythm-you-can-keep",
+    "is_enabled": 1,
+    "published_at": "2026-09-03 08:00:00",
+    "excerpt": "Beständigkeit schlägt Ehrgeiz. Wie Sie einen Takt wählen, die Arbeit bündeln und trotzdem Platz für den gelegentlichen Longread lassen.",
+    "cover": "meridian/journal/newsletter-rhythm.jpg",
+    "cover_alt": "",
+    "category": 102,
+    "author": 102,
+    "tags": [
+      105,
+      106
+    ],
+    "meta_title": null,
+    "meta_description": "Beständigkeit schlägt Ehrgeiz. Wie Sie einen Takt wählen, die Arbeit bündeln und trotzdem Platz für den gelegentlichen Longread lassen.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jd5_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Die Newsletter, die bleiben, sind selten die ehrgeizigsten. Es sind die, deren Autorinnen einen Rhythmus fanden, der in eine gewöhnliche Woche passt, und ihn dann verteidigten.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd5_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Den Takt durch Weglassen wählen",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd5_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Beginnen Sie bei der Zeit, die Sie wirklich haben, nicht bei der, die Sie gern hätten. Sind das drei Stunden jeden zweiten Donnerstag, dann eben vierzehntägig. Eine Leserin verzeiht einen langsamen Takt lange vor einem gebrochenen.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd5_4",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Die unsichtbare Arbeit bündeln",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd5_5",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Sammeln Sie Links und Notizen die ganze Woche in einer einzigen Datei. Am Schreibtag redigieren Sie, statt zu suchen. Halten Sie eine kleine Warteschlange zeitloser Texte für die Wochen bereit, in denen das Leben dazwischenkommt.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd5_6",
+          "type": "quote",
+          "enabled": true,
+          "data": {
+            "variant": "bordered",
+            "text": "Schreiben Sie für eine Leserin, veröffentlichen Sie für hundert, und lassen Sie den Rhythmus den Rest tun.",
+            "author": "Tomás Ibarra",
+            "role": "Leitung Publishing"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd5_7",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Platz für den Longread lassen",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd5_8",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Veröffentlichen Sie in jeder sechsten Ausgabe etwas, das echte Mühe kostet. Es wird zum Text, den Menschen weiterleiten, und gibt den leichteren Ausgaben etwas, worauf sie zurückverweisen können.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 106,
+    "site_root_id": 6,
+    "title": "Tastatur zuerst: Testen ohne Maus",
+    "slug": "keyboard-first-testing-without-a-mouse",
+    "is_enabled": 1,
+    "published_at": "2026-08-25 09:30:00",
+    "excerpt": "Ziehen Sie zehn Minuten die Maus ab, und Ihre Seite verrät Ihnen alles. Eine kurze Routine, um Fokusfallen und unsichtbare Bedienelemente zu finden.",
+    "cover": "meridian/journal/keyboard-first.jpg",
+    "cover_alt": "",
+    "category": 103,
+    "author": 103,
+    "tags": [
+      107,
+      106
+    ],
+    "meta_title": null,
+    "meta_description": "Ziehen Sie zehn Minuten die Maus ab, und Ihre Seite verrät Ihnen alles. Eine kurze Routine, um Fokusfallen und unsichtbare Bedienelemente zu finden.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jd6_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Das schnellste Barrierefreiheits-Audit braucht gar kein Werkzeug. Legen Sie die Maus außer Reichweite, drücken Sie Tab und versuchen Sie, Ihre eigene Seite zu benutzen. Jede Verwirrung, die Sie spüren, spürt auch ein echter Besucher, nur ohne die Möglichkeit, aufzugeben und eine Kollegin zu fragen.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd6_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Die Zehn-Minuten-Routine",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd6_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Gehen Sie die Seite von oben mit Tab durch. Sehen Sie immer, wo der Fokus ist? Folgt die Reihenfolge der visuellen? Können Sie jedes Menü, jeden Dialog und jede Tab-Liste mit den erwarteten Tasten öffnen, benutzen und schließen?</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd6_4",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Der Fokus muss sichtbar sein",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd6_5",
+          "type": "code",
+          "enabled": true,
+          "data": {
+            "code": ":focus-visible {\n  outline: 3px solid var(--mr-focus);\n  outline-offset: 3px;\n}",
+            "mode": "display",
+            "language": "css",
+            "caption": "Eine einzige globale Regel; nie entfernen, nur umgestalten."
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd6_6",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Dialoge geben den Fokus zurück",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd6_7",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Ein natives <code>dialog</code>-Element fängt den Fokus ein, schließt mit Escape und gibt den Fokus an die Schaltfläche zurück, die es geöffnet hat. Wenn Sie ein eigenes Overlay bauen, schulden Sie Ihren Besuchern dieselben drei Verhalten.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd6_8",
+          "type": "info-banner",
+          "enabled": true,
+          "data": {
+            "level": "warning",
+            "title": "Sprunglinks sind nicht optional",
+            "text": "Der erste Tab-Stopp sollte ein Link sein, der an der Navigation vorbei zum Hauptinhalt springt.",
+            "animated": "no"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 107,
+    "site_root_id": 7,
+    "title": "Kontrast im Dunkelmodus, gemessen",
+    "slug": "contrast-in-dark-mode-measured",
+    "is_enabled": 1,
+    "published_at": "2026-08-12 11:00:00",
+    "excerpt": "Eine Palette umzukehren ergibt noch kein dunkles Theme. Was wir gemessen haben, als wir sechs Paletten gegen WCAG geprüft haben.",
+    "cover": "meridian/journal/contrast-in-dark-mode.jpg",
+    "cover_alt": "",
+    "category": 103,
+    "author": 101,
+    "tags": [
+      107,
+      104
+    ],
+    "meta_title": null,
+    "meta_description": "Eine Palette umzukehren ergibt noch kein dunkles Theme. Was wir gemessen haben, als wir sechs Paletten gegen WCAG geprüft haben.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jd7_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Ein dunkles Theme wirkt wie eine simple Umkehrung, bis man es misst. Farben, die auf Weiß problemlos bestehen, können auf Fast-Schwarz durchfallen, und reines Weiß auf reinem Schwarz leuchtet auf eine Weise, die das Auge ermüdet.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd7_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Was die Verhältnisse sagen",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd7_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>WCAG verlangt 4,5 zu 1 für Fließtext und 3 zu 1 für große Schrift und Ränder von Bedienelementen. Wir haben beides für jeden Akzent gegen seinen Hintergrund in hell und dunkel berechnet. Zwei Akzente brauchten eine hellere Dunkelmodus-Variante; keiner eine dunklere.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd7_4",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Abmildern, nicht abdunkeln",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd7_5",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Nehmen Sie ein gebrochenes Weiß für Fließtext und halten Sie den Hintergrund in einem tiefen Ton mit einem Hauch der Markenfarbe. So gewinnen Sie Komfort, ohne Kontrast aufzugeben. Reduzieren Sie die Sättigung großer Farbflächen, denn helle Flächen blühen vor dunkler Umgebung auf.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd7_6",
+          "type": "code",
+          "enabled": true,
+          "data": {
+            "code": ":root {\n  color-scheme: light dark;\n  --bg: light-dark(#eef1ef, #0e1614);\n  --ink: light-dark(#14211f, #e6eeeb);\n}",
+            "mode": "display",
+            "language": "css",
+            "caption": "Beide Paletten aus einer Deklaration mit light-dark()."
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd7_7",
+          "type": "quote",
+          "enabled": true,
+          "data": {
+            "variant": "bordered",
+            "text": "Funktioniert eine Farbe nur in einem Modus, ist sie Dekoration und keine Entscheidung.",
+            "author": "Lena Marsh",
+            "role": "Redakteurin für Performance"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd7_8",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Die Prüfung automatisieren",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd7_9",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Pack die Verhältnisse in einen Test. Eine Palettenänderung lässt dann den Build scheitern statt einen Besucher, und aus dem Streit über Geschmack wird ein Streit über Zahlen.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 108,
+    "site_root_id": 8,
+    "title": "Eine Abstandsskala für die ganze Website",
+    "slug": "one-spacing-scale-to-rule-a-site",
+    "is_enabled": 1,
+    "published_at": "2026-07-30 10:00:00",
+    "excerpt": "Zehn Tokens, ein Rhythmus. Wie eine gemeinsame Abstandsskala die Diskussion beendet, ob es 18 oder 20 Pixel sein sollen.",
+    "cover": "meridian/journal/spacing-scale.jpg",
+    "cover_alt": "",
+    "category": 104,
+    "author": 102,
+    "tags": [
+      104,
+      108
+    ],
+    "meta_title": null,
+    "meta_description": "Zehn Tokens, ein Rhythmus. Wie eine gemeinsame Abstandsskala die Diskussion beendet, ob es 18 oder 20 Pixel sein sollen.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jd8_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Layouts zerfallen selten durch große Fehler. Sie franzen durch kleine aus: hier ein Abstand von 18 Pixeln, dort 22, ein Padding, das jemand an einem Freitag verschoben hat. Eine Abstandsskala ist die billigste Reparatur, die es gibt.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd8_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Eine Basis wählen und multiplizieren",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd8_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Beginnen Sie bei einem Viertel Ihrer Basisgröße und gehen Sie eine kurze Liste durch: 0,25, 0,5, 0,75, 1, 1,5, 2, 3, 4, 6 und 8 rem. Zehn Werte reichen völlig. Braucht ein Entwurf einen elften, ist das eine Frage an die Designerin, keine Lizenz für eine neue Zahl.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd8_4",
+          "type": "code",
+          "enabled": true,
+          "data": {
+            "code": ":root {\n  --space-1: 0.25rem;\n  --space-2: 0.5rem;\n  --space-4: 1rem;\n  --space-6: 2rem;\n  --section-y: clamp(var(--space-6), 7vw, 6rem);\n}",
+            "mode": "display",
+            "language": "css",
+            "caption": "Zuerst Tokens, dann Komponenten."
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd8_5",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Sektionen besitzen den vertikalen Rhythmus",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd8_6",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Lassen Sie eine Sektion den Abstand über und unter ihrem Inhalt festlegen und ihre Kinder keinen. Dann können zwei Komponenten in beliebiger Reihenfolge nebeneinander stehen, ohne doppelte Lücken, und der Rhythmus ist auf jeder Seite gleich.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd8_7",
+          "type": "info-banner",
+          "enabled": true,
+          "data": {
+            "level": "secondary",
+            "title": "Review-Tipp",
+            "text": "Durchsuchen Sie das Stylesheet nach Pixelwerten. Jeder Treffer ist entweder ein Token, das darauf wartet, benutzt zu werden, oder ein Fehler.",
+            "animated": "no"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 109,
+    "site_root_id": 9,
+    "title": "Das richtige Maß für einen guten Absatz",
+    "slug": "the-measure-of-a-good-paragraph",
+    "is_enabled": 1,
+    "published_at": "2026-07-18 09:00:00",
+    "excerpt": "Zeilenlänge, Zeilenabstand und Schriftgröße wirken als ein System. Ein kurzer Leitfaden für Texte, die Menschen zu Ende lesen.",
+    "cover": "meridian/journal/reading-measure.jpg",
+    "cover_alt": "",
+    "category": 104,
+    "author": 103,
+    "tags": [
+      103,
+      107
+    ],
+    "meta_title": null,
+    "meta_description": "Zeilenlänge, Zeilenabstand und Schriftgröße wirken als ein System. Ein kurzer Leitfaden für Texte, die Menschen zu Ende lesen.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jd9_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Leserinnen bemerken guten Satz nicht. Sie lesen einfach weiter. Schlechter Satz ist anders: Sie ermüden, überfliegen und gehen, ohne zu wissen, warum. Drei Zahlen entscheiden, welchen der beiden Sie bauen.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd9_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Zeilenlänge: 45 bis 75 Zeichen",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd9_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Lange Zeilen lassen das Auge beim Rücksprung die Stelle verlieren; kurze Zeilen zerhacken Sätze. Eine Spalte von etwa 42 rem bei Textgröße landet bei rund 65 Zeichen, einer angenehmen Mitte.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd9_4",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Zeilenabstand und Größe",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd9_5",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Fließtext zwischen 17 und 19 Pixeln mit einem Zeilenabstand von etwa 1,65 funktioniert für die meisten Serifen- und Groteskschriften. Überschriften wollen engeren Zeilenabstand, um 1,1 bis 1,2, weil große Schrift schon mehr Luft in jeder Zeile mitbringt.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd9_6",
+          "type": "quote",
+          "enabled": true,
+          "data": {
+            "variant": "bordered",
+            "text": "Ein Absatz ist ein Versprechen: Das lässt sich leicht lesen. Typografie hält es.",
+            "author": "Noor Haddad",
+            "role": "Design und Barrierefreiheit"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd9_7",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Silbentrennung und Flattersatz",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd9_8",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Schalten Sie die Silbentrennung für Sprachen mit langen Komposita ein und setzen Sie die Sprache der Seite, damit der Browser die richtigen Regeln kennt. Ein ruhiger, gleichmäßiger Flatterrand sagt mehr über Sorgfalt als jede Verzierung.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 110,
+    "site_root_id": 10,
+    "title": "Barrierefreiheitsverträglichkeitsprüfungsdokumentation für Nichtjuristen",
+    "slug": "accessibility-conformance-documentation-for-humans",
+    "is_enabled": 1,
+    "published_at": "2026-07-04 09:00:00",
+    "excerpt": "Eine Konformitätserklärung, die niemand lesen kann, hilft niemandem. So dokumentieren Sie in klarer Sprache, was funktioniert, was nicht und was als Nächstes behoben wird.",
+    "cover": "meridian/journal/conformance-docs.jpg",
+    "cover_alt": "Fließende türkise Konturlinien auf einem tiefgrünen Verlauf",
+    "category": 103,
+    "author": 103,
+    "tags": [
+      107,
+      106
+    ],
+    "meta_title": null,
+    "meta_description": "Eine Konformitätserklärung, die niemand lesen kann, hilft niemandem. So dokumentieren Sie in klarer Sprache, was funktioniert, was nicht und was als Nächstes behoben wird.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jd10_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Alle paar Monate landet im Postfach eines kleinen Teams die Anfrage: Bitte schicken Sie uns Ihre Dokumentation zur Barrierefreiheit. Was folgt, ist meist die Suche nach einer Tabelle, die seit dem letzten Audit niemand geöffnet hat, nach einem PDF mit vierzig Seiten Kriterien und die vage Hoffnung, dass das schon reicht.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_2",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Es muss nicht so sein. Eine Konformitätserklärung ist ein Text, und wie jeder Text funktioniert sie am besten, wenn man weiß, wer ihn liest. Einkäufer wollen ein Urteil. Entwicklerinnen wollen eine Liste der Mängel. Menschen mit Behinderung wollen wissen, ob sie das Angebot heute nutzen können und was sie tun sollen, wenn nicht.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_3",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Beginnen Sie mit drei Lesergruppen",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_4",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Bevor Sie ein einziges Kriterium aufschreiben, benennen Sie Ihre Leser. Wir nehmen jedes Mal dieselben drei, und jede Gruppe bekommt einen eigenen Abschnitt, damit niemand sich durch fremde Teile kämpfen muss.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_5",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Die Entscheiderin",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_6",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Diese Leserin hat zwei Minuten. Geben Sie ihr die beanspruchte Konformitätsstufe, den geprüften Standard samt Version, das Datum der letzten Prüfung und den Geltungsbereich. Ein kurzer Absatz und eine kleine Tabelle genügen. Wenn die Antwort „teilweise konform“ lautet, sagen Sie das im ersten Satz und verstecken es nicht in einer Fußnote.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_7",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Der Verantwortliche für die Pflege",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_8",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Dieser Leser muss handeln. Jedes bekannte Problem erhält eine einfache Beschreibung dessen, was ein Mensch erlebt, das betroffene Kriterium, einen Schweregrad und eine zuständige Person. „Der Datumsauswähler lässt sich nicht mit der Tastatur bedienen“ schlägt „Verstößt gegen 2.1.1“ jedes Mal, und die Nummer können Sie trotzdem ergänzen.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_9",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Die Besucherin",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_10",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Diese Leserin möchte einen ehrlichen Satz und einen Ausweg. Sagen Sie, welche Teile der Website betroffen sind, bieten Sie eine Alternative an, etwa eine Telefonnummer oder eine E-Mail-Adresse, hinter der ein Mensch antwortet, und versprechen Sie eine Antwortzeit, die Sie halten können.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_11",
+          "type": "info-banner",
+          "enabled": true,
+          "data": {
+            "level": "info",
+            "title": "Weniger versprechen, mehr halten",
+            "text": "Eine Antwortzeit von fünf Werktagen, die Sie einhalten, ist mehr wert als das Versprechen eines Tages, das Sie verfehlen.",
+            "animated": "no"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_12",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Jeden Befund nur einmal schreiben",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_13",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Doppelte Befunde veralten. Steht derselbe Mangel in der Zusammenfassung, in der Kriterientabelle und in der Roadmap, ist einer der drei Einträge binnen eines Monats überholt. Führen Sie eine einzige Liste und erzeugen Sie die anderen Ansichten daraus.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_14",
+          "type": "code",
+          "enabled": true,
+          "data": {
+            "code": "findings:\n  - id: a11y-014\n    experience: \"The date picker cannot be operated with a keyboard.\"\n    criteria: [\"2.1.1\", \"4.1.2\"]\n    severity: high\n    owner: forms-team\n    fix_by: 2026-12-01",
+            "mode": "display",
+            "language": "yaml",
+            "caption": "Eine Quelldatei speist Erklärung, Issue-Tracker und Roadmap."
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_15",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Messen, was ein Werkzeug messen kann",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_16",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Automatische Prüfungen finden etwa ein Drittel der realen Probleme: fehlende Namen, zu wenig Kontrast, kaputte Landmarken. Lassen Sie sie bei jedem Build laufen, notieren Sie die Zahl und hören Sie dort auf. Den Rest muss ein Mensch mit Tastatur, Screenreader und etwas Geduld prüfen.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_17",
+          "type": "quote",
+          "enabled": true,
+          "data": {
+            "variant": "bordered",
+            "text": "Eine Erklärung ist kein Zertifikat. Sie ist ein Versprechen darüber, wie Sie sich verhalten, wenn etwas kaputt ist.",
+            "author": "Noor Haddad",
+            "role": "Design und Barrierefreiheit"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_18",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Abläufe testen, nicht Seiten",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_19",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Eine Seite kann jede Prüfung bestehen und als Teil eines Ablaufs trotzdem unbrauchbar sein. Wählen Sie fünf wichtige Abläufe, zum Beispiel ein Produkt finden, sich anmelden, bezahlen, Hilfe bekommen und kündigen, und gehen Sie jeden erst nur mit der Tastatur und dann mit einem Screenreader durch. Notieren Sie, wo Sie hängen geblieben sind, in der Reihenfolge, in der es passierte.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_20",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Den Arbeitsweg zeigen",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_21",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Nennen Sie Browser, Hilfstechniken und Versionen. Sagen Sie, was Sie nicht getestet haben. Eine kurze Liste „nicht abgedeckt“ schafft mehr Vertrauen als ein makelloses Blatt, dem niemand glaubt.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_22",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Die nächste Prüfung vor der Veröffentlichung planen",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_23",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Tragen Sie das Datum der nächsten Prüfung in die Erklärung selbst ein. Das erzwingt einen Kalendereintrag, zeigt den Lesern, dass das Dokument lebt, und macht die unspektakuläre Pflege zur Aufgabe von jemandem statt von niemandem.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_24",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Ein Gerüst zum Kopieren",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_25",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Unsere Vorlage hat sechs Überschriften: Geltungsbereich, Standard und Datum, Zusammenfassung, bekannte Probleme, Kontakt und geplante nächste Schritte. Jede passt auf einen Bildschirm, und die ganze Erklärung liest sich in fünf Minuten.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd10_26",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Schreiben Sie sie wie einen Brief an einen Menschen, der sich gleich auf Ihre Website verlassen wird. Wäre es Ihnen peinlich, ihm einen Satz laut vorzulesen, schreiben Sie ihn um.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 111,
+    "site_root_id": 11,
+    "title": "Die Ein-Minuten-Änderungsprotokoll-Gewohnheit",
+    "slug": "the-one-minute-changelog-habit",
+    "is_enabled": 1,
+    "published_at": "2026-06-20 16:30:00",
+    "excerpt": "Eine Zeile pro Änderung, geschrieben im selben Moment. Ihr späteres Ich und Ihre Leser werden es Ihnen danken.",
+    "cover": "meridian/journal/one-minute-changelog.jpg",
+    "cover_alt": "",
+    "category": 102,
+    "author": 102,
+    "tags": [
+      105,
+      106
+    ],
+    "meta_title": null,
+    "meta_description": "Eine Zeile pro Änderung, geschrieben im selben Moment. Ihr späteres Ich und Ihre Leser werden es Ihnen danken.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jd11_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Führen Sie neben Ihren Inhalten eine einfache Textdatei namens CHANGES. Sobald eine Änderung fertig ist, fügen Sie vor dem Schließen des Editors eine Zeile hinzu: Datum, was sich geändert hat und warum es einen Leser interessieren könnte.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jd11_2",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Einen Monat später haben Sie ein ehrliches Protokoll, einen fertigen Newsletter-Abschnitt und eine Antwort auf die Frage „Was haben wir eigentlich gemacht?“</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  }
+]

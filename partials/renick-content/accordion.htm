@@ -1,0 +1,12 @@
+{# Children render first: each item emits name="__RC_ACC__"; the shared group name makes the panels exclusive. `<details data-rc-acc ` is the marker for first_expanded. #}
+{% set accId = 'rc-accordion-' ~ (blockId ?: random(100000000)) %}
+{% set marker = '<details data-rc-acc ' %}
+{% set kids = children|default('')|replace({'name="__RC_ACC__"': 'name="' ~ accId|e('html_attr') ~ '"'}) %}
+{% if data.first_expanded|default('') == 'yes' %}
+    {% set parts = kids|split(marker, 2) %}
+    {% if parts|length == 2 %}{% set kids = parts[0] ~ marker ~ 'open ' ~ parts[1] %}{% endif %}
+{% endif %}
+{% set faqCls = data.variant|default('') == 'faq' ? ' rc-accordion--faq' : '' %}
+<div {{ attributes|raw }}>
+    <div class="mr-acc rc-accordion-inner{{ faqCls }}" id="{{ accId }}">{{ kids|raw }}</div>
+</div>

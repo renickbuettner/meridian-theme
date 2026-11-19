@@ -1,0 +1,40 @@
+{% set layout = data.layout|default('cards') in ['cards', 'plain', 'numbered', 'projects'] ? data.layout|default('cards') : 'cards' %}
+{% set cols = (data.columns|default('3')) ~ '' in ['2', '3', '4'] ? (data.columns|default('3')) ~ '' : '3' %}
+{% set band = data.band|default('none') in ['band', 'accent'] ? data.band : 'none' %}
+{% set items = (data.items|default([]))|filter(i => i.title|default('')) %}
+{% set projects = layout == 'projects' %}
+{# "bootstrap" would pose as window.bootstrap (ReservedIds in the plugin) #}
+{% set anchor = data.anchor|default('') matches '/^(?!bootstrap$)[a-z][a-z0-9-]*$/' ? data.anchor : '' %}
+<section{% if anchor %} id="{{ anchor }}"{% endif %} {{ attributes|replace({'class="': 'class="mr-section mr-features mr-features--' ~ layout ~ (band != 'none' ? ' mr-section--' ~ band : '') ~ ' '})|raw }}>
+    <div class="mr-container">
+        {{ rc_partial('_mr-section-head', {eyebrow: data.eyebrow, title: data.title, lead: data.lead}) }}
+        {% if items|length %}
+        <ul class="mr-features__grid mr-features__grid--cols-{{ cols }}" style="--mr-cols: {{ cols }}" role="list">
+            {% for item in items %}
+                {% set url = item.url|default('')|rc_url %}
+                {% set icon = layout in ['cards', 'plain'] ? rc_icon(item.icon|default(''), 24, 'mr-features__icon') : '' %}
+                {% set label = item.link_label|default('') ?: (projects ? rc_t('meridian.block.feature-grid.ui_view_project', {}, locale) : rc_t('meridian.block.feature-grid.ui_learn_more', {}, locale)) %}
+                <li class="mr-features__item{% if layout == 'cards' or projects %} mr-card{% endif %}">
+                    {% if projects and item.image|default('') %}
+                        {% set opts = {mode: 'crop', quality: 70, ratio: 0.75} %}
+                        <div class="mr-features__media">
+                            {{ rc_partial('_mr-picture', {path: item.image, widths: [400, 640, 960], opts: opts, src: item.image|rc_resize(640, 480, opts), sizes: '(min-width: 1280px) 22rem, (min-width: 768px) 30vw, 100vw', alt: item.image_alt|default(''),
+                                extra: ' loading="lazy" decoding="async" width="640" height="480"'}) }}
+                        </div>
+                    {% endif %}
+                    <div class="mr-features__body">
+                        {% if layout == 'numbered' %}<span class="mr-features__num" aria-hidden="true">{{ '%02d'|format(loop.index) }}</span>{% endif %}
+                        {% if icon %}{{ icon|raw }}{% endif %}
+                        {% if item.tag %}<p class="mr-meta mr-features__tag">{{ item.tag }}</p>{% endif %}
+                        <h3 class="mr-features__title">{% if url and projects %}<a class="mr-features__link" href="{{ url }}">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h3>
+                        {% if item.text %}<p class="mr-features__text">{{ item.text|nl2br }}</p>{% endif %}
+                        {% if url and not projects %}<p class="mr-features__more"><a href="{{ url }}">{{ label }}<span class="visually-hidden"> {{ item.title }}</span><span aria-hidden="true">&rarr;</span></a></p>{% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        {% elseif preview %}
+        <div class="rc-pv-placeholder">{{ rc_t('meridian.block.feature-grid.ui_empty', {}, locale) }}</div>
+        {% endif %}
+    </div>
+</section>

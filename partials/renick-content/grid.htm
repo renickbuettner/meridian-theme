@@ -1,0 +1,15 @@
+{% if data.columns is defined and data.columns %}
+{# Legacy grid: equal split driven by data.columns #}
+{% set cols = data.columns|default('3') %}
+{% if cols not in ['2', '3', '4'] %}{% set cols = '3' %}{% endif %}
+<div {{ attributes|raw }} data-columns="{{ cols }}">
+    <div class="rc-grid-inner rc-grid-cols-{{ cols }}">{{ children|default('')|raw }}</div>
+</div>
+{% else %}
+{% set rowClasses = 'rc-grid-inner rc-row' %}
+{% if data.equal_height|default('') == 'yes' %}{% set rowClasses = rowClasses ~ ' rc-grid--equal' %}{% endif %}
+{% if data.centering|default('') == 'yes' %}{% set rowClasses = rowClasses ~ ' rc-grid--center' %}{% endif %}
+<div {{ attributes|raw }}>
+    <div class="{{ rowClasses }}">{{ children|default('')|raw }}</div>
+</div>
+{% endif %}

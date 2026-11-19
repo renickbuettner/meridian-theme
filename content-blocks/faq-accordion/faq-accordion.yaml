@@ -1,0 +1,60 @@
+handle: faq-accordion
+name: meridian.block.faq-accordion.name
+icon: icon-question-circle
+group: Meridian
+version: 1
+settings: true
+fields:
+  eyebrow:
+    label: meridian.block.faq-accordion.eyebrow
+    type: text
+  title:
+    label: meridian.block.faq-accordion.title
+    type: text
+    commentAbove: meridian.block.faq-accordion.title_comment
+  lead:
+    label: meridian.block.faq-accordion.lead
+    type: textarea
+    size: small
+  behavior:
+    label: meridian.block.faq-accordion.behavior
+    type: dropdown
+    options:
+      multiple: meridian.block.faq-accordion.behavior_multiple
+      single: meridian.block.faq-accordion.behavior_single
+    default: multiple
+  first_open:
+    label: meridian.block.faq-accordion.first_open
+    type: dropdown
+    options:
+      'no': meridian.block.faq-accordion.first_open_no
+      'yes': meridian.block.faq-accordion.first_open_yes
+    default: 'no'
+  search:
+    label: meridian.block.faq-accordion.search
+    type: dropdown
+    options:
+      'no': meridian.block.faq-accordion.search_no
+      'yes': meridian.block.faq-accordion.search_yes
+    default: 'no'
+    commentAbove: meridian.block.faq-accordion.search_comment
+  markup:
+    label: meridian.block.faq-accordion.markup
+    type: dropdown
+    options:
+      'yes': meridian.block.faq-accordion.markup_yes
+      'no': meridian.block.faq-accordion.markup_no
+    default: 'yes'
+    commentAbove: meridian.block.faq-accordion.markup_comment
+  items:
+    label: meridian.block.faq-accordion.items
+    type: repeater
+    fields:
+      question:
+        label: meridian.block.faq-accordion.question
+        type: text
+      answer:
+        label: meridian.block.faq-accordion.answer
+        type: textarea
+        size: small
+        commentAbove: meridian.block.faq-accordion.answer_comment

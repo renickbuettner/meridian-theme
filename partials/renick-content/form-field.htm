@@ -1,0 +1,41 @@
+{# Visible label tied by for/id, required marked in text and with required, autocomplete from the field name. Error text is attached by the plugin's forms.js via data-rc-field. #}
+{% set type = data.field_type|default('text') %}
+{% if type not in ['text', 'email', 'tel', 'number', 'url', 'date', 'time', 'password', 'hidden', 'textarea', 'select', 'checkbox', 'switch'] %}{% set type = 'text' %}{% endif %}
+{% set label = data.label|default('') %}
+{% set fname = data.name|default('')|trim %}
+{% if fname == '' %}{% set fname = label|lower|replace({' ': '_', 'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss'})|replace({'-': '_'}) %}{% endif %}
+{% set fname = fname|replace({'[': '', ']': '', '"': '', "'": ''}) %}
+{% set required = data.required|default(false) is same as(true) or data.required|default(false) in [1, '1', 'true', 'yes'] %}
+{% set isPrivacy = data.is_privacy|default(false) is same as(true) or data.is_privacy|default(false) in [1, '1', 'true', 'yes'] %}
+{% set half = data.half_width|default(false) is same as(true) or data.half_width|default(false) in [1, '1', 'true', 'yes'] %}
+{% set id = 'f-' ~ (blockId ?: random(100000000)) %}
+{% set autoMap = {'name': 'name', 'full_name': 'name', 'first_name': 'given-name', 'last_name': 'family-name', 'email': 'email', 'phone': 'tel', 'tel': 'tel', 'company': 'organization', 'organization': 'organization', 'job_title': 'organization-title', 'street': 'street-address', 'address': 'street-address', 'zip': 'postal-code', 'city': 'address-level2', 'country': 'country-name'} %}
+{% set auto = autoMap[fname|lower]|default(type == 'email' ? 'email' : (type == 'tel' ? 'tel' : '')) %}
+{% if type == 'hidden' %}
+<input type="hidden" name="{{ fname }}" value="{{ data.placeholder|default('') }}">
+{% else %}
+<div {{ attributes|replace({'class="': 'class="rc-form-row mr-field ' ~ (half ? 'rc-form-row--half ' : '') })|raw }} data-rc-field="{{ fname }}">
+    {% if type in ['checkbox', 'switch'] %}
+        <div class="mr-check">
+            <input type="checkbox" id="{{ id }}" name="{{ fname }}" value="1"{{ required ? ' required' }}{% if isPrivacy %} data-rc-privacy{% endif %}>
+            <label for="{{ id }}">{{ label }}{% if required %} <span class="mr-req" aria-hidden="true">*</span>{% endif %}</label>
+        </div>
+    {% else %}
+        <label class="mr-label" for="{{ id }}">{{ label }}{% if required %} <span class="mr-req" aria-hidden="true">*</span>{% endif %}</label>
+        {% if type == 'textarea' %}
+            <textarea class="mr-input" id="{{ id }}" name="{{ fname }}" rows="5" maxlength="5000"{{ required ? ' required aria-required="true"' }}{% if data.placeholder|default('') %} placeholder="{{ data.placeholder }}"{% endif %}></textarea>
+        {% elseif type == 'select' %}
+            <select class="mr-input" id="{{ id }}" name="{{ fname }}"{{ required ? ' required aria-required="true"' }}>
+                <option value=""{{ required ? ' disabled' }} selected>{{ rc_t('meridian.block.form.ui_choose') }}</option>
+                {% for line in data.options|default('')|split("\n") %}
+                    {% set parts = (line ~ '')|split('|', 2) %}
+                    {% set optValue = parts[0]|trim %}
+                    {% if optValue != '' %}<option value="{{ optValue }}">{{ parts[1] is defined ? parts[1]|trim : optValue }}</option>{% endif %}
+                {% endfor %}
+            </select>
+        {% else %}
+            <input class="mr-input" type="{{ type }}" id="{{ id }}" name="{{ fname }}" maxlength="500"{{ required ? ' required aria-required="true"' }}{% if auto %} autocomplete="{{ auto }}"{% endif %}{% if data.placeholder|default('') %} placeholder="{{ data.placeholder }}"{% endif %}{% if type == 'email' %} inputmode="email" autocapitalize="none" spellcheck="false"{% endif %}>
+        {% endif %}
+    {% endif %}
+</div>
+{% endif %}

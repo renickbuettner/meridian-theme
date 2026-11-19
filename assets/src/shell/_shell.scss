@@ -1,0 +1,88 @@
+// Critical shell: the page frame (skip link, topbar, docked sidebar, content column). Inlined in <head> on every page.
+@use "../mr";
+
+.mr-skip {
+    position: fixed;
+    inset-inline-start: var(--mr-space-2);
+    z-index: 100;
+    padding: var(--mr-space-3) var(--mr-space-4);
+    border-radius: var(--mr-radius-sm);
+    background: var(--mr-accent);
+    color: var(--mr-on-accent);
+    font-weight: 600;
+    transform: translateY(-250%);
+}
+.mr-skip:focus, .mr-skip:focus-visible { transform: none; z-index: 1000; transition: none; color: var(--mr-on-accent); }
+
+// Focused, the link must not cover the control that takes focus next: below the top bar, or beside the docked sidebar.
+.mr-skip { inset-block-start: calc(var(--mr-topbar-h) + var(--mr-space-2)); }
+@mixin skip-docked($mode) {
+    body:has(.mr-app[data-sidebar="#{$mode}"]) .mr-skip { inset-block-start: var(--mr-space-2); }
+    body:has(.mr-app[data-sidebar="#{$mode}"][data-sidebar-pos="start"]) .mr-skip { inset-inline-start: calc(var(--mr-sidebar-w) + var(--mr-space-2)); }
+}
+@include skip-docked(fixed);
+@include mr.up(lg) { @include skip-docked(auto); }
+
+.mr-app { min-height: 100dvh; }
+
+// Default frame: a sticky top bar that holds the burger; the sidebar is the drawer dialog inside it.
+.mr-aside {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--mr-z-topbar);
+    display: flex;
+    flex-direction: column;
+    background: var(--mr-bg);
+    border-block-end: var(--mr-border);
+}
+
+.mr-topbar {
+    display: flex;
+    align-items: center;
+    gap: var(--mr-space-3);
+    min-height: var(--mr-topbar-h);
+    padding-inline: var(--mr-gutter);
+}
+
+.mr-main-wrap { display: flex; flex-direction: column; min-height: 100dvh; }
+.mr-main-wrap > main { flex: 1; outline: none; }
+.mr-app > .mr-aside ~ .mr-main-wrap { min-height: calc(100dvh - var(--mr-topbar-h)); }
+
+// Docked frame: a fixed 15rem column on the inline-start (or -end) side.
+@mixin docked {
+    .mr-aside {
+        position: fixed;
+        inset-block: 0;
+        inset-inline-start: 0;
+        width: var(--mr-sidebar-w);
+        z-index: var(--mr-z-aside);
+        border-block-end: 0;
+        border-inline-end: var(--mr-border);
+        background: var(--mr-surface);
+    }
+    .mr-topbar { display: none; }
+    .mr-sidebar .drawer-header { display: none; }
+    .mr-sidebar .mr-sidebar__head { margin-inline-end: 0; }
+    .mr-main-wrap { margin-inline-start: var(--mr-sidebar-w); min-height: 100dvh; }
+    .mr-app > .mr-aside ~ .mr-main-wrap { min-height: 100dvh; }
+    &[data-sidebar-pos="end"] .mr-aside { inset-inline-start: auto; inset-inline-end: 0; border-inline-end: 0; border-inline-start: var(--mr-border); }
+    &[data-sidebar-pos="end"] .mr-main-wrap { margin-inline-start: 0; margin-inline-end: var(--mr-sidebar-w); }
+}
+
+@include mr.up(lg) {
+    .mr-app[data-sidebar="auto"] { @include docked; }
+}
+.mr-app[data-sidebar="fixed"] { @include docked; }
+
+// The docked sidebar fills the column; the drawer variant is styled by Bootstrap plus the rules in the sidebar module.
+.mr-sidebar { flex: 1; min-height: 0; }
+.mr-sidebar .drawer-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mr-space-5);
+    height: 100%;
+    padding: var(--mr-space-5) var(--mr-space-4);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+

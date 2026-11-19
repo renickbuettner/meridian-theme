@@ -1,0 +1,4 @@
+{# data.html is emitted with |raw by design (trusted editors only); do not add sanitization #}
+{# The box is an inner element so the spacing classes on the root pad around it, not inside it #}
+{% set boxed = data.variant|default('') == 'boxed' %}
+<div {{ attributes|raw }}>{% if boxed %}<div class="rc-richtext-box">{{ data.html|default('')|raw }}</div>{% else %}{{ data.html|default('')|raw }}{% endif %}</div>

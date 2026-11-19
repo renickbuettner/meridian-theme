@@ -1,0 +1,26 @@
+url = "/journal/category/:slug"
+layout = "default"
+title = "Journal category"
+is_hidden = 0
+==
+function onStart()
+{
+    require_once meridian_path('partials/journal/lib.php');
+    $category = \Tailor\Models\EntryRecord::inSection('Meridian\\Category')->where('slug', $this->param('slug'))->first();
+    if (!$category) {
+        return meridian_journal_not_found($this);
+    }
+
+    $index = meridian_journal_index_entry();
+    $categoryId = $category->id;
+
+    return meridian_journal_listing(
+        $this,
+        meridian_journal_posts()->whereHas('category', fn ($q) => $q->where('id', $categoryId)),
+        ['eyebrow' => meridian_journal_t('meridian.front.journal.category_eyebrow'), 'title' => (string) $category->title, 'lead' => trim((string) $category->description)],
+        [['label' => $index ? (string) $index->title : meridian_journal_t('meridian.front.journal.eyebrow'), 'url' => meridian_journal_url('journal')], ['label' => (string) $category->title, 'url' => null]],
+        ['category' => (string) $category->slug]
+    );
+}
+==
+{% partial 'journal/listing' %}

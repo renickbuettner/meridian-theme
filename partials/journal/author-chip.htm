@@ -1,0 +1,4 @@
+{# Avatar (portrait or initials) for an author array. size: sm | lg #}
+<span class="mr-avatar mr-avatar--{{ size|default('sm') }}" aria-hidden="true">
+    {% if author.avatar.src %}{% partial 'journal/picture' image=author.avatar sizes=(size == 'lg' ? '96px' : '40px') width=96 height=96 alt='' %}{% else %}{{ author.initials }}{% endif %}
+</span>

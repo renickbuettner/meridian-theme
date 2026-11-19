@@ -1,0 +1,59 @@
+url = "/search"
+layout = "default"
+title = "Search"
+is_hidden = 0
+==
+function onStart()
+{
+    require_once meridian_path('partials/journal/lib.php');
+
+    $term = mb_substr(trim((string) input('q')), 0, 80);
+    $title = meridian_journal_t('meridian.front.journal.search_title');
+    $cards = [];
+    $pages = [];
+
+    if (mb_strlen($term) >= 2) {
+        $like = '%' . str_replace(['%', '_', '\\'], ' ', $term) . '%';
+        $match = fn ($q) => $q->where('title', 'like', $like);
+
+        $posts = meridian_journal_posts()->where(function ($q) use ($like, $match) {
+            $q->where('title', 'like', $like)
+                ->orWhere('excerpt', 'like', $like)
+                ->orWhere('content', 'like', $like)
+                ->orWhereHas('tags', $match)
+                ->orWhereHas('category', $match)
+                ->orWhereHas('author', $match);
+        })->limit(24)->get();
+        $cards = meridian_journal_cards($posts);
+
+        foreach (\Tailor\Models\EntryRecord::inSection('Meridian\\Page')->applyPublishedStatus()
+            ->where(fn ($q) => $q->where('title', 'like', $like)->orWhere('meta_description', 'like', $like))
+            ->where('fullslug', '!=', 'journal')->orderBy('nest_left')->limit(12)->get() as $entry) {
+            $isHome = $entry->fullslug === 'home';
+            $pages[] = [
+                'title' => (string) $entry->title,
+                'excerpt' => trim((string) $entry->meta_description),
+                'url' => $isHome ? \Cms::pageUrl('index') : \Cms::pageUrl('page', ['path' => $entry->fullslug]),
+            ];
+        }
+    }
+
+    $this['jTerm'] = $term;
+    $this['jCards'] = $cards;
+    $this['jPages'] = $pages;
+    $this['jCategories'] = meridian_journal_categories();
+    $this['jIndexUrl'] = meridian_journal_url('journal');
+    $this['jSearchUrl'] = \Cms::pageUrl('search');
+    $this['jHead'] = ['eyebrow' => meridian_journal_t('meridian.front.journal.search_eyebrow'), 'title' => $title, 'lead' => meridian_journal_t('meridian.front.journal.search_lead')];
+
+    meridian_journal_seo($this, [
+        'title' => $title,
+        'description' => meridian_journal_t('meridian.front.journal.search_lead'),
+        'url' => \Cms::pageUrl('search'),
+        'noindex' => true,
+        'schemaType' => 'SearchResultsPage',
+        'breadcrumbs' => [['label' => $title, 'url' => null]],
+    ]);
+}
+==
+{% partial 'journal/search' %}

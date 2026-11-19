@@ -1,0 +1,4 @@
+[
+    {"type": "folder", "path": "meridian/project-map", "source": "seeds/media/meridian/project-map"},
+    {"type": "folder", "path": "meridian/showcase", "source": "seeds/media/meridian/showcase"}
+]

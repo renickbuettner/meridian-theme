@@ -1,0 +1,2 @@
+{% set compare = item.compare_price|default('') %}
+<{{ tag }} class="rc-shop-price rc-{{ shop }}-price {{ cls }}">{{ item.price }}{% if compare %} <s class="rc-shop-compare">{{ compare }}</s>{% endif %}</{{ tag }}>

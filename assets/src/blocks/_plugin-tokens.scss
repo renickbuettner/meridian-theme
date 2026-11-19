@@ -1,0 +1,11 @@
+// The plugin sheet reads Bootstrap 5 token names with hard-coded fallbacks; blocks that still use its rules point those names at Meridian's tokens.
+@mixin bs5-tokens {
+    --bs-primary: var(--mr-accent);
+    --bs-body-bg: var(--mr-surface);
+    --bs-body-color: var(--mr-ink);
+    --bs-border-color: var(--mr-line);
+    --bs-secondary-color: var(--mr-muted);
+    --bs-secondary-bg: var(--mr-surface-2);
+    --bs-border-radius: var(--mr-radius-sm);
+    --bs-border-radius-lg: var(--mr-radius-md);
+}

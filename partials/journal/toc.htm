@@ -1,0 +1,11 @@
+{# Table of contents from the post outline; the journal-toc island marks the section being read. #}
+{% if outline|length > 1 %}
+    <nav class="mr-toc" aria-labelledby="mr-toc-title" data-island="journal-toc" data-island-load="idle">
+        <h2 class="mr-toc__title" id="mr-toc-title">{{ 'meridian.front.journal.toc'|_ }}</h2>
+        <ol class="mr-toc__list">
+            {% for item in outline %}
+                <li class="mr-toc__item mr-toc__item--{{ item.level }}"><a href="#{{ item.id }}">{{ item.text }}</a></li>
+            {% endfor %}
+        </ol>
+    </nav>
+{% endif %}

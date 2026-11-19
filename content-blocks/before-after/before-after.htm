@@ -1,0 +1,39 @@
+{# The optional dark images swap in with the colour scheme (CSS), so the artwork keeps its own palette in dark mode. Both images are cropped to the before image's ratio so the panes line up. Without JS they stack (html.js switches to the overlay in CSS, so nothing shifts). #}
+{% set start = data.start|default(50) in [25, 50, 75, '25', '50', '75'] ? data.start|default(50) : 50 %}
+{% set before = data.before_image|default('') %}
+{% set after = data.after_image|default('') %}
+{% set dims = rc_image_size(before) %}
+{% set ratio = dims ? dims[1] / dims[0] : 0.5625 %}
+{% set sizes = '(min-width: 1280px) 60rem, (min-width: 992px) calc(100vw - 19rem), 100vw' %}
+{% set beforeLabel = data.before_label|default('')|trim ?: rc_t('meridian.block.before-after.ui_before') %}
+{% set afterLabel = data.after_label|default('')|trim ?: rc_t('meridian.block.before-after.ui_after') %}
+{% if before and after %}
+<figure {{ attributes|replace({'class="': 'class="mr-ba' ~ (data.tint ? ' mr-ba--tint' : '') ~ (data.before_image_dark or data.after_image_dark ? ' mr-ba--dual' : '') ~ ' '})|raw }} data-island="before-after" data-start="{{ start }}" style="--mr-ba-ratio: {{ dims ? dims[0] ~ ' / ' ~ dims[1] : '16 / 9' }}; --mr-ba-pos: {{ start }}%">
+    <div class="mr-ba__stage">
+        {% for side in ['before', 'after'] %}
+            {% set path = side == 'before' ? before : after %}
+            {% set alt = (side == 'before' ? data.before_alt : data.after_alt)|default('') %}
+            {% set label = side == 'before' ? beforeLabel : afterLabel %}
+            <div class="mr-ba__pane mr-ba__pane--{{ side }}">
+                {% set darkPath = (side == 'before' ? data.before_image_dark : data.after_image_dark)|default('') %}
+                {% for variant in (darkPath ? ['light', 'dark'] : ['light']) %}
+                {% set vpath = variant == 'dark' ? darkPath : path %}
+                {% set srcset = rc_srcset(vpath, null, {ratio: ratio}) %}
+                {% set srcsetWebp = rc_srcset(vpath, null, {ratio: ratio, extension: 'webp'}) %}
+                {% set srcsetAvif = rc_srcset(vpath, null, {ratio: ratio, extension: 'avif'}) %}
+                <picture{% if darkPath %} class="mr-ba__art mr-ba__art--{{ variant }}"{% endif %}>
+                    {% if srcsetAvif and srcsetAvif != srcset %}<source srcset="{{ srcsetAvif }}" sizes="{{ sizes }}" type="image/avif">{% endif %}
+                    {% if srcsetWebp and srcsetWebp != srcset %}<source srcset="{{ srcsetWebp }}" sizes="{{ sizes }}" type="image/webp">{% endif %}
+                    <img src="{{ vpath|media }}"{% if srcset %} srcset="{{ srcset }}" sizes="{{ sizes }}"{% endif %} alt="{{ variant == 'dark' ? '' : alt }}"{% if dims %} width="{{ dims[0] }}" height="{{ dims[1] }}"{% endif %}{% if not (priority|default(false) and side == 'after') %} loading="lazy"{% endif %} decoding="async" draggable="false">
+                </picture>
+                {% endfor %}
+                <span class="mr-ba__tag">{{ label }}</span>
+            </div>
+        {% endfor %}
+        <div class="mr-ba__handle mr-js-only" role="slider" tabindex="0" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ start }}" aria-label="{{ rc_t('meridian.block.before-after.ui_slider') }}" aria-valuetext="{{ rc_t('meridian.block.before-after.ui_value', {before: beforeLabel, after: afterLabel, percent: start}) }}" data-text="{{ rc_t('meridian.block.before-after.ui_value', {before: beforeLabel, after: afterLabel, percent: ':percent'}) }}">
+            <span class="mr-ba__knob" aria-hidden="true"></span>
+        </div>
+    </div>
+    {% if data.caption %}<figcaption class="mr-ba__caption">{{ data.caption }}</figcaption>{% endif %}
+</figure>
+{% endif %}

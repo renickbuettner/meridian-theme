@@ -1,0 +1,26 @@
+{# The formatted final value is server-rendered; the island only replays a count-up on that number span. #}
+{% set sep = locale in ['de', 'es'] ? {dec: ',', thou: '.'} : {dec: '.', thou: ','} %}
+{% set items = (data.items|default([]))|filter(i => i.value|default('') matches '/^-?\\d+([.,]\\d+)?$/') %}
+{% if items|length %}
+<section {{ attributes|replace({'class="': 'class="mr-stats '})|raw }} data-island="stat-counters" data-locale="{{ locale }}">
+    {% if data.title|default('') or data.intro|default('') %}
+    <header class="mr-stats__head">
+        {% if data.title|default('') %}<h2 class="mr-stats__title">{{ data.title }}</h2>{% endif %}
+        {% if data.intro|default('') %}<p class="mr-lead">{{ data.intro|nl2br }}</p>{% endif %}
+    </header>
+    {% endif %}
+    <dl class="mr-stats__list">
+        {% for item in items %}
+            {% set raw = item.value|replace({',': '.'}) %}
+            {% set decimals = '.' in raw ? (raw|split('.')|last)|length : 0 %}
+            <div class="mr-stats__item">
+                <dt>{{ item.label|default('') }}</dt>
+                <dd>
+                    <span class="mr-stats__figure">{% if item.prefix|default('') %}<span class="mr-stats__affix">{{ item.prefix }}</span>{% endif %}<span class="mr-stats__num" data-value="{{ raw }}" data-decimals="{{ decimals }}">{{ raw|number_format(decimals, sep.dec, sep.thou) }}</span>{% if item.suffix|default('') %}<span class="mr-stats__affix">{{ item.suffix }}</span>{% endif %}</span>
+                    {% if item.note|default('') %}<small>{{ item.note }}</small>{% endif %}
+                </dd>
+            </div>
+        {% endfor %}
+    </dl>
+</section>
+{% endif %}

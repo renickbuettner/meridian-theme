@@ -1,0 +1,87 @@
+handle: pricing-plans
+name: meridian.block.pricing-plans.name
+icon: icon-tags
+group: Meridian
+version: 1
+settings: true
+fields:
+  eyebrow:
+    label: meridian.block.pricing-plans.eyebrow
+    type: text
+  title:
+    label: meridian.block.pricing-plans.title
+    type: text
+    commentAbove: meridian.block.pricing-plans.title_comment
+  lead:
+    label: meridian.block.pricing-plans.lead
+    type: textarea
+    size: small
+  currency:
+    label: meridian.block.pricing-plans.currency
+    type: dropdown
+    translatable: false
+    default: EUR
+    options:
+      EUR: meridian.block.pricing-plans.currency_eur
+      USD: meridian.block.pricing-plans.currency_usd
+      GBP: meridian.block.pricing-plans.currency_gbp
+      CHF: meridian.block.pricing-plans.currency_chf
+  unit:
+    label: meridian.block.pricing-plans.unit
+    type: text
+    commentAbove: meridian.block.pricing-plans.unit_comment
+  yearly_note:
+    label: meridian.block.pricing-plans.yearly_note
+    type: text
+    commentAbove: meridian.block.pricing-plans.yearly_note_comment
+  footnote:
+    label: meridian.block.pricing-plans.footnote
+    type: text
+  plans:
+    label: meridian.block.pricing-plans.plans
+    type: repeater
+    titleFrom: name
+    commentAbove: meridian.block.pricing-plans.plans_comment
+    fields:
+      name:
+        label: meridian.block.pricing-plans.plan_name
+        type: text
+      badge:
+        label: meridian.block.pricing-plans.plan_badge
+        type: text
+      description:
+        label: meridian.block.pricing-plans.plan_description
+        type: textarea
+        size: small
+      price_monthly:
+        label: meridian.block.pricing-plans.plan_price_monthly
+        type: text
+        translatable: false
+        commentAbove: meridian.block.pricing-plans.plan_price_comment
+      price_yearly:
+        label: meridian.block.pricing-plans.plan_price_yearly
+        type: text
+        translatable: false
+        commentAbove: meridian.block.pricing-plans.plan_price_yearly_comment
+      price_label:
+        label: meridian.block.pricing-plans.plan_price_label
+        type: text
+        commentAbove: meridian.block.pricing-plans.plan_price_label_comment
+      features:
+        label: meridian.block.pricing-plans.plan_features
+        type: textarea
+        size: large
+        commentAbove: meridian.block.pricing-plans.plan_features_comment
+      cta_label:
+        label: meridian.block.pricing-plans.plan_cta_label
+        type: text
+      cta_url:
+        label: meridian.block.pricing-plans.plan_cta_url
+        type: pagefinder
+        singleMode: true
+        allowCustomUrl: true
+        translatable: false
+      featured:
+        label: meridian.block.pricing-plans.plan_featured
+        type: switch
+        default: false

@@ -1,0 +1,64 @@
+{# The permanent frame (data-turbo-permanent): scroll position, open <details> and focus survive Turbo visits.
+   Docked at 992px+ (or always, per setting); below that the same markup is a native <dialog> drawer (Bootstrap 6 Drawer). #}
+{% set _mode = meridianLook.sidebar %}
+{% set _side = meridianLook.position == 'end' ? 'drawer-end' : 'drawer-start' %}
+<header class="mr-aside" id="mr-aside" data-turbo-permanent>
+    {% partial 'site/icons' %}
+    {% if _mode != 'fixed' %}
+        <div class="mr-topbar">
+            <button class="mr-icon-btn" type="button" data-mr-drawer-toggle aria-controls="mr-sidebar" aria-haspopup="dialog">
+                {% partial 'site/icon' name='menu' %}
+                <span class="visually-hidden">{{ 'meridian.front.nav.menu'|_ }}</span>
+            </button>
+            {% partial 'site/brand' compact=true %}
+            <a class="mr-icon-btn mr-topbar__search" href="{{ 'search'|page }}" data-mr-palette-open data-turbo="false">
+                {% partial 'site/icon' name='search' %}
+                <span class="visually-hidden">{{ 'meridian.front.search.open'|_ }}</span>
+            </a>
+        </div>
+    {% endif %}
+
+    {% if _mode == 'fixed' %}<div class="mr-sidebar" id="mr-sidebar">{% else %}<dialog class="{{ _mode == 'offcanvas' ? 'drawer' : 'lg:drawer' }} {{ _side }} mr-sidebar" id="mr-sidebar" tabindex="-1" aria-label="{{ 'meridian.front.nav.sidebar'|_ }}">
+        <div class="drawer-header">
+            <button class="mr-icon-btn" type="button" data-mr-drawer-close aria-label="{{ 'meridian.front.nav.close_menu'|_ }}">{% partial 'site/icon' name='close' %}</button>
+        </div>{% endif %}
+        <div class="drawer-body">
+            <div class="mr-sidebar__head">
+                {% partial 'site/brand' %}
+                {% partial 'site/lang-switch' %}
+            </div>
+
+            <a class="mr-search" href="{{ 'search'|page }}" data-mr-palette-open data-turbo="false" aria-haspopup="dialog">
+                {% partial 'site/icon' name='search' %}
+                <span class="mr-search__label">{{ 'meridian.front.search.open'|_ }}</span>
+                <kbd class="mr-search__key" data-mr-palette-key hidden aria-hidden="true">Ctrl K</kbd>
+            </a>
+
+            <nav class="mr-nav" aria-label="{{ 'meridian.front.nav.primary'|_ }}">
+                <ul>
+                    {% for item in meridianNav|default([]) %}
+                        {% set _isHome = item.slug == 'home' %}
+                        {% set _url = _isHome ? ('index'|page) : ('page'|page({ path: item.fullslug })) %}
+                        {% set _cur = meridianCurrentUrl|default('')|trim('/') %}
+                        {% set _active = _url|trim('/') == _cur %}
+                        {% set _within = not _active and not _isHome and _cur starts with (_url|trim('/') ~ '/') %}
+                        <li><a href="{{ _url }}"{{ _isHome ? ' data-mr-home' }}{{ _active ? ' aria-current="page"' : (_within ? ' aria-current="true"') }}>
+                            {% partial 'site/icon' name=(item.icon ?: (_isHome ? 'home' : 'journal')) %}
+                            <span>{{ _isHome ? ('meridian.front.nav.home'|_) : item.label }}</span>
+                        </a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+            <div class="mr-sidebar__foot">
+                <button class="mr-mode" type="button" data-mr-mode-toggle hidden>
+                    <svg class="mr-icon mr-icon--sun" aria-hidden="true" focusable="false"><use href="#mr-i-sun"/></svg>
+                    <svg class="mr-icon mr-icon--moon" aria-hidden="true" focusable="false"><use href="#mr-i-moon"/></svg>
+                    <span class="mr-mode__to-dark">{{ 'meridian.front.mode.to_dark'|_ }}</span>
+                    <span class="mr-mode__to-light">{{ 'meridian.front.mode.to_light'|_ }}</span>
+                </button>
+            </div>
+        </div>
+    {% if _mode == 'fixed' %}</div>{% else %}</dialog>{% endif %}
+    {% partial 'site/palette' %}
+</header>

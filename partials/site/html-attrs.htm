@@ -1,0 +1,2 @@
+{# Look settings on <html>. Server-side so the no-JS view and the editor preview match; the head script adds data-bs-theme for a stored or forced mode. #}
+data-scheme="{{ meridianLook.scheme }}" data-mode-default="{{ meridianLook.mode }}"{% if meridianLook.mode != 'system' %} data-bs-theme="{{ meridianLook.mode }}"{% endif %}

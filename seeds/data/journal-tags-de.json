@@ -1,0 +1,58 @@
+[
+  {
+    "id": 101,
+    "site_root_id": 1,
+    "title": "Core Web Vitals",
+    "slug": "core-web-vitals",
+    "is_enabled": 1
+  },
+  {
+    "id": 102,
+    "site_root_id": 2,
+    "title": "Bilder",
+    "slug": "images",
+    "is_enabled": 1
+  },
+  {
+    "id": 103,
+    "site_root_id": 3,
+    "title": "Typografie",
+    "slug": "typography",
+    "is_enabled": 1
+  },
+  {
+    "id": 104,
+    "site_root_id": 4,
+    "title": "CSS",
+    "slug": "css",
+    "is_enabled": 1
+  },
+  {
+    "id": 105,
+    "site_root_id": 5,
+    "title": "Redaktion",
+    "slug": "editorial",
+    "is_enabled": 1
+  },
+  {
+    "id": 106,
+    "site_root_id": 6,
+    "title": "Workflow",
+    "slug": "workflow",
+    "is_enabled": 1
+  },
+  {
+    "id": 107,
+    "site_root_id": 7,
+    "title": "Barrierefreiheit",
+    "slug": "accessibility",
+    "is_enabled": 1
+  },
+  {
+    "id": 108,
+    "site_root_id": 8,
+    "title": "Designsysteme",
+    "slug": "design-systems",
+    "is_enabled": 1
+  }
+]

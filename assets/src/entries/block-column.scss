@@ -1,0 +1,41 @@
+@use "../mr";
+
+// Rows are 12 tracks built from the plugin's rc-col-N classes. The row is a size container: the sidebar and the drawer change how
+// much width a page gets, so the container (not the viewport) decides when columns split.
+$cols: 12;
+$split: 48rem;
+
+@function span($n) {
+    @return calc((100% - #{$cols - 1} * var(--mr-col-gap)) / #{$cols} * #{$n} + #{$n - 1} * var(--mr-col-gap));
+}
+
+.rc-row {
+    --mr-col-gap: var(--mr-space-5);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--mr-col-gap);
+    margin: 0;
+    padding: 0;
+    container: mr-row / inline-size;
+}
+.rc-row.rc-grid--equal { align-items: stretch; }
+.rc-row.rc-grid--center { justify-content: center; }
+
+html .rc-row > .rc-column {
+    flex: 0 0 100%;
+    width: auto;
+    max-width: 100%;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+}
+.rc-grid--equal > .rc-column > .rc-column-inner { height: 100%; }
+.rc-column-inner > :last-child { margin-block-end: 0; }
+
+@container mr-row (min-width: #{$split}) {
+    html .rc-row > .rc-col { flex: 1 1 0; }
+    @for $n from 1 through $cols {
+        html .rc-row > .rc-col-#{$n} { flex: 0 0 span($n); }
+    }
+}

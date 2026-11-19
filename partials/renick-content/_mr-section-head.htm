@@ -1,0 +1,8 @@
+{# eyebrow, title, lead, titleId; the block's h2 and its intro. #}
+{%- if eyebrow|default('') or title|default('') or lead|default('') -%}
+<header class="mr-section-head">
+    {% if eyebrow|default('') %}<p class="mr-eyebrow">{{ eyebrow }}</p>{% endif %}
+    {% if title|default('') %}<h2{% if titleId|default('') %} id="{{ titleId }}"{% endif %}>{{ title }}</h2>{% endif %}
+    {% if lead|default('') %}<p class="mr-lead">{{ lead|nl2br }}</p>{% endif %}
+</header>
+{%- endif -%}

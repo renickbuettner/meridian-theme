@@ -1,0 +1,157 @@
+{# Step wizard. Static: one long form (questions, then the lead fields). Island: one step at a time with per-step validation. Posts to the plugin's form endpoint; forms.js owns the request. #}
+{% set questions = [] %}
+{% for q in data.questions|default([]) %}
+    {% if q.question|default('')|trim != '' %}
+        {% set opts = [] %}
+        {% for line in q.options|default('')|split("\n") %}
+            {% set parts = (line ~ '')|split('|', 2) %}
+            {% if parts[0]|trim != '' %}
+                {% set opts = opts|merge([{label: parts[0]|trim, key: parts[1] is defined ? parts[1]|trim : ''}]) %}
+            {% endif %}
+        {% endfor %}
+        {% set kind = q.kind|default('single') in ['single', 'multiple', 'text'] ? q.kind|default('single') : 'single' %}
+        {% if kind == 'text' or opts %}
+            {% set questions = questions|merge([{
+                question: q.question|trim,
+                hint: q.hint|default(''),
+                kind: kind,
+                required: q.required is not defined or q.required is null or q.required is same as(true) or q.required in [1, '1', 'true', 'yes'],
+                options: opts
+            }]) %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+{% set total = questions|length + 1 %}
+{% set results = [] %}
+{% for r in data.results|default([]) %}
+    {% if r.key|default('')|trim != '' and r.title|default('') != '' %}{% set results = results|merge([r]) %}{% endif %}
+{% endfor %}
+{% set askMessage = data.ask_message|default(false) is same as(true) or data.ask_message|default(false) in [1, '1', 'true', 'yes'] %}
+{% set ns = 'mrwz' ~ random(1000, 9999) %}
+{% set t = 'meridian.block.step-wizard.' %}
+
+<section {{ attributes|replace({'class="': 'class="mr-wiz '})|raw }} data-island="step-wizard"
+         data-msg-choose="{{ rc_t(t ~ 'ui_err_choose') }}"
+         data-msg-choose-multiple="{{ rc_t(t ~ 'ui_err_choose_multiple') }}"
+         data-msg-text="{{ rc_t(t ~ 'ui_err_text') }}"
+         data-msg-required="{{ rc_t(t ~ 'ui_err_required') }}"
+         data-msg-email="{{ rc_t(t ~ 'ui_err_email') }}"
+         data-msg-privacy="{{ rc_t(t ~ 'ui_err_privacy') }}">
+    {% if data.title|default('') or data.intro|default('') or data.eyebrow|default('') %}
+    <header class="mr-wiz__head">
+        {% if data.eyebrow|default('') %}<p class="mr-eyebrow">{{ data.eyebrow }}</p>{% endif %}
+        {% if data.title|default('') %}<h2 class="mr-wiz__title">{{ data.title }}</h2>{% endif %}
+        {% if data.intro|default('') %}<p class="mr-lead">{{ data.intro }}</p>{% endif %}
+    </header>
+    {% endif %}
+
+    <form class="rc-form-el mr-form mr-wiz__form mr-card" data-rc-form data-endpoint="/renick-content/form" action="/renick-content/form" method="post" novalidate>
+        <div class="rc-form-success mr-wiz__success" role="status" aria-live="polite" tabindex="-1">
+            {{ data.success_message|default(rc_t('block.front.form_success', {}, locale))|nl2br }}
+        </div>
+        <div class="rc-form-error" role="alert" hidden></div>
+
+        <div class="rc-form-fields mr-wiz__fields">
+            <input type="hidden" name="_form" value="{{ data.form_name|default('Quiz') }}">
+            <input type="hidden" name="recommendation" value="" data-wiz-recommendation>
+            <input type="hidden" name="summary" value="" data-wiz-summary>
+            <div class="rc-form-hp" aria-hidden="true">
+                <label>{{ rc_t('block.front.form_honeypot', {}, locale) }}
+                    <input type="text" name="website" tabindex="-1" autocomplete="off">
+                </label>
+            </div>
+
+            <div class="mr-wiz__progress mr-js-only" aria-hidden="true">
+                {% for q in questions %}<span class="mr-wiz__dot"></span>{% endfor %}
+            </div>
+
+            <div class="mr-wiz__steps">
+            {% for q in questions %}
+                {% set n = loop.index %}
+                {% set sid = ns ~ '-' ~ n %}
+                <fieldset class="mr-wiz__step" data-step data-kind="{{ q.kind }}" data-required="{{ q.required ? '1' : '0' }}"
+                          {% if q.kind == 'single' %}role="radiogroup" {{ q.required ? 'aria-required="true"' }}{% endif %}
+                          {% if q.hint %}aria-describedby="{{ sid }}-hint"{% endif %}>
+                    <legend class="mr-wiz__legend" tabindex="-1">
+                        <span class="mr-wiz__kicker">{{ rc_t(t ~ 'ui_kicker', {current: n, total: total - 1}) }}</span>
+                        <span class="mr-wiz__question" id="{{ sid }}-q" data-question>{{ q.question }}{% if not q.required %} <span class="mr-wiz__optional">({{ rc_t(t ~ 'ui_optional') }})</span>{% endif %}</span>
+                    </legend>
+                    {% if q.hint %}<p class="mr-wiz__hint" id="{{ sid }}-hint">{{ q.hint }}</p>{% endif %}
+                    {% if q.kind == 'text' %}
+                        <textarea class="mr-input" name="q{{ n }}" rows="4" maxlength="1000" aria-labelledby="{{ sid }}-q" data-answer {{ q.required ? 'required' }}></textarea>
+                    {% else %}
+                        <div class="mr-wiz__options">
+                        {% for o in q.options %}
+                            <label class="mr-wiz__option">
+                                <input type="{{ q.kind == 'multiple' ? 'checkbox' : 'radio' }}"
+                                       name="q{{ n }}{{ q.kind == 'multiple' ? '_' ~ loop.index }}" value="{{ o.label }}"
+                                       data-answer {% if o.key %}data-result="{{ o.key }}"{% endif %}
+                                       {{ q.kind == 'single' and q.required ? 'required' }}>
+                                <span class="mr-wiz__option-text">{{ o.label }}</span>
+                            </label>
+                        {% endfor %}
+                        </div>
+                    {% endif %}
+                </fieldset>
+            {% endfor %}
+
+                <fieldset class="mr-wiz__step mr-wiz__step--final" data-step data-final>
+                    <legend class="mr-wiz__legend" tabindex="-1">
+                        <span class="mr-wiz__kicker">{{ rc_t(t ~ 'ui_kicker_final') }}</span>
+                        <span class="mr-wiz__question">{{ data.lead_title|default(rc_t(t ~ 'ui_lead_title')) }}</span>
+                    </legend>
+
+                    {% for r in results %}
+                    <div class="mr-wiz__result mr-js-only" data-result-card="{{ r.key|trim }}" hidden>
+                        <p class="mr-eyebrow">{{ rc_t(t ~ 'ui_result_label') }}</p>
+                        <h3 class="mr-wiz__result-title">{{ r.title }}</h3>
+                        {% if r.text|default('') %}<p>{{ r.text }}</p>{% endif %}
+                        {% if r.cta_label|default('') and r.cta_url|default('') %}<a class="mr-btn mr-btn--ghost" href="{{ r.cta_url|rc_url }}">{{ r.cta_label }}</a>{% endif %}
+                    </div>
+                    {% endfor %}
+
+                    <p class="mr-wiz__hint">{{ data.lead_intro|default(rc_t(t ~ 'ui_lead_intro')) }}</p>
+                    <p class="mr-form__hint">{{ rc_t('meridian.block.form.ui_required_hint') }}</p>
+
+                    <div class="mr-wiz__lead">
+                        <div class="rc-form-row" data-rc-field="name">
+                            <label class="mr-field" for="{{ ns }}-name">
+                                <span class="mr-label">{{ rc_t(t ~ 'ui_name') }}<span class="mr-req" aria-hidden="true"> *</span></span>
+                                <input class="mr-input" id="{{ ns }}-name" type="text" name="name" maxlength="200" autocomplete="name" required>
+                            </label>
+                        </div>
+                        <div class="rc-form-row" data-rc-field="email">
+                            <label class="mr-field" for="{{ ns }}-email">
+                                <span class="mr-label">{{ rc_t(t ~ 'ui_email') }}<span class="mr-req" aria-hidden="true"> *</span></span>
+                                <input class="mr-input" id="{{ ns }}-email" type="email" name="email" maxlength="200" autocomplete="email" required>
+                            </label>
+                        </div>
+                        {% if askMessage %}
+                        <div class="rc-form-row mr-wiz__lead-wide" data-rc-field="message">
+                            <label class="mr-field" for="{{ ns }}-message">
+                                <span class="mr-label">{{ rc_t(t ~ 'ui_message') }} ({{ rc_t(t ~ 'ui_optional') }})</span>
+                                <textarea class="mr-input" id="{{ ns }}-message" name="message" rows="4" maxlength="2000"></textarea>
+                            </label>
+                        </div>
+                        {% endif %}
+                        <div class="rc-form-row mr-wiz__lead-wide" data-rc-field="privacy">
+                            <label class="mr-check" for="{{ ns }}-privacy">
+                                <input id="{{ ns }}-privacy" type="checkbox" name="privacy" value="1" required>
+                                <span>{{ data.privacy_label|default(rc_t(t ~ 'ui_privacy')) }}<span class="mr-req" aria-hidden="true"> *</span></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="rc-form-captcha" data-rc-captcha
+                         data-captcha-label="{{ rc_t('block.front.form_captcha_label', {}, locale) }}"
+                         data-captcha-error="{{ rc_t('block.front.form_captcha_error', {}, locale) }}"></div>
+                </fieldset>
+            </div>
+
+            <div class="mr-wiz__nav">
+                <button type="button" class="mr-btn mr-btn--ghost mr-js-only" data-wiz-back hidden>{{ rc_t(t ~ 'ui_back') }}</button>
+                <button type="button" class="mr-btn mr-js-only" data-wiz-next>{{ rc_t(t ~ 'ui_next') }}</button>
+                <button type="submit" class="mr-btn rc-form-submit" data-wiz-submit>{{ data.submit_label|default(rc_t('block.front.form_submit', {}, locale)) }}</button>
+            </div>
+        </div>
+    </form>
+</section>

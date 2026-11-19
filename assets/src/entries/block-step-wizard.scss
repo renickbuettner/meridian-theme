@@ -1,0 +1,141 @@
+@use "../blocks/form";
+@use "../mr";
+
+.mr-wiz__head { margin-block-end: var(--mr-space-6); max-inline-size: var(--mr-w-prose); }
+.mr-wiz__title { margin: 0 0 var(--mr-space-3); font-size: var(--mr-text-h2); }
+.mr-wiz__head .mr-lead { margin-block: 0; }
+
+.mr-wiz__form { max-inline-size: var(--mr-w-content); padding: var(--mr-space-5); }
+@include mr.up(md) { .mr-wiz__form { padding: var(--mr-space-6); } }
+
+.mr-wiz__fields { display: grid; gap: var(--mr-space-5); }
+
+// With JS on, the markup before the island is ready already looks like step 1, so the swap does not shift the page.
+html.js [data-island="step-wizard"]:not([data-island-ready], [data-island-error]) {
+    .mr-wiz__step:not(:first-child),
+    [data-wiz-submit] { display: none; }
+    .mr-wiz__progress { display: flex; visibility: hidden; }
+    [data-wiz-next] { display: inline-flex; visibility: hidden; }
+}
+
+// Segments, not a number row: scales to any step count and never wraps.
+.mr-wiz__progress { display: flex; gap: var(--mr-space-2); }
+.mr-wiz__dot {
+    flex: 1 1 0;
+    block-size: var(--mr-space-1);
+    border-radius: var(--mr-radius-pill);
+    background: var(--mr-line-strong);
+    transition: background-color var(--mr-dur) var(--mr-ease);
+}
+.mr-wiz__dot.is-done,
+.mr-wiz__dot.is-current { background: var(--mr-accent); }
+.mr-wiz__dot.is-current { box-shadow: 0 0 0 var(--mr-space-1) var(--mr-accent-soft); }
+
+.mr-wiz__steps { display: grid; gap: var(--mr-space-6); }
+.mr-wiz__step {
+    display: grid;
+    gap: var(--mr-space-4);
+    min-inline-size: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.mr-wiz__step[hidden] { display: none; }
+// Long form without JS: a hairline between the questions.
+.mr-wiz__step + .mr-wiz__step { padding-block-start: var(--mr-space-6); border-block-start: var(--mr-border); }
+[data-island-ready] .mr-wiz__step + .mr-wiz__step { padding-block-start: 0; border-block-start: 0; }
+
+.mr-wiz__legend {
+    display: grid;
+    gap: var(--mr-space-2);
+    float: none;
+    inline-size: 100%;
+    margin: 0;
+    margin-block-end: var(--mr-space-3);
+    padding: 0;
+    color: var(--mr-ink);
+}
+.mr-wiz__legend,
+.mr-wiz__option,
+.mr-wiz__step textarea,
+.mr-wiz__lead .mr-input { scroll-margin-block: var(--mr-space-9); }
+.mr-wiz__legend:focus { outline: 0; }
+.mr-wiz__kicker {
+    font-size: var(--mr-text-xs);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mr-accent);
+}
+.mr-wiz__question {
+    font-family: var(--mr-font-serif);
+    font-size: var(--mr-text-h3);
+    font-weight: 400;
+    line-height: var(--mr-leading-tight);
+    overflow-wrap: anywhere;
+}
+.mr-wiz__optional { font-family: var(--mr-font-sans); font-size: var(--mr-text-sm); color: var(--mr-muted); }
+.mr-wiz__hint { margin: 0; color: var(--mr-muted); font-size: var(--mr-text-sm); }
+
+.mr-wiz__options { display: grid; gap: var(--mr-space-3); }
+.mr-wiz__option {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--mr-space-3);
+    min-block-size: var(--mr-target);
+    padding: var(--mr-space-3) var(--mr-space-4);
+    border: 1px solid var(--mr-line-strong);
+    border-radius: var(--mr-radius-md);
+    background: var(--mr-surface);
+    cursor: pointer;
+    transition: border-color var(--mr-dur) var(--mr-ease), background-color var(--mr-dur) var(--mr-ease);
+}
+.mr-wiz__option:hover { border-color: var(--mr-ink); }
+.mr-wiz__option:has(input:checked) {
+    border-color: var(--mr-accent);
+    background: var(--mr-accent-soft);
+    box-shadow: inset 0 0 0 1px var(--mr-accent);
+}
+.mr-wiz__option:has(input:focus-visible) { border-color: var(--mr-accent); }
+.mr-wiz__option input {
+    flex: none;
+    inline-size: var(--mr-space-5);
+    block-size: var(--mr-space-5);
+    margin: 0;
+    margin-block-start: calc(var(--mr-space-1) / 2);
+    accent-color: var(--mr-accent);
+}
+.mr-wiz__option-text { min-inline-size: 0; overflow-wrap: anywhere; line-height: 1.5; }
+
+// Group error: the plugin's .rc-form-field-error styling, kept here because the row is a fieldset.
+.mr-wiz__step > .rc-form-field-error { margin: 0; }
+.mr-wiz__step:has(.rc-form-field-error) .mr-wiz__option { border-color: var(--mr-error); }
+
+.mr-wiz__result {
+    display: grid;
+    gap: var(--mr-space-3);
+    justify-items: start;
+    padding: var(--mr-space-5);
+    border: 1px solid var(--mr-accent);
+    border-radius: var(--mr-radius-md);
+    background: var(--mr-accent-soft);
+}
+.mr-wiz__result[hidden] { display: none; }
+.mr-wiz__result > * { margin: 0; }
+.mr-wiz__result-title { font-family: var(--mr-font-serif); font-size: var(--mr-text-h3); font-weight: 400; line-height: var(--mr-leading-tight); }
+
+.mr-wiz__lead { display: grid; gap: var(--mr-space-5); grid-template-columns: minmax(0, 1fr); }
+.mr-wiz__lead > .rc-form-row { min-inline-size: 0; }
+@include mr.up(sm) {
+    .mr-wiz__lead { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--mr-space-5) var(--mr-space-4); }
+    .mr-wiz__lead-wide { grid-column: 1 / -1; }
+}
+.mr-wiz__lead .mr-check { padding: 0; }
+
+.mr-wiz__nav { display: flex; flex-wrap: wrap; gap: var(--mr-space-3); justify-content: flex-end; }
+.mr-wiz__nav [hidden] { display: none; }
+.mr-wiz__nav [data-wiz-back] { margin-inline-end: auto; }
+
+.mr-wiz__form .mr-wiz__success { display: none; padding: 0; border: 0; background: none; box-shadow: none; }
+.mr-wiz__form.rc-form-sent .mr-wiz__success { display: block; }
+.mr-wiz__form.rc-form-sent .mr-wiz__success:focus { outline: 0; }

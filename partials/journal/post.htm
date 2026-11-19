@@ -1,0 +1,64 @@
+{# A journal post: head, cover, outline + prose, tags, author box, related posts. #}
+{% put styles %}<link rel="stylesheet" href="{{ ['assets/dist/layout-blog.css']|theme }}">{% endput %}
+{% partial 'site/block-css' css=blockCss %}
+<div class="mr-postpage">
+{% partial 'site/breadcrumbs' trail=seoBreadcrumbs %}
+<article class="mr-post">
+    <header class="mr-container mr-post__head">
+        {% if post.category %}<p class="mr-eyebrow"><a href="{{ post.category.url }}">{{ post.category.title }}</a></p>{% endif %}
+        <h1 class="mr-post__title">{{ post.title }}</h1>
+        {% if post.excerpt %}<p class="mr-lead mr-post__lead">{{ post.excerpt }}</p>{% endif %}
+        <p class="mr-post__meta">
+            {% if post.author %}
+                <a class="mr-post__author" href="{{ post.author.url }}">{% partial 'journal/author-chip' author=post.author %}<span>{{ post.author.name }}</span></a>
+            {% endif %}
+            {% if post.iso %}<time datetime="{{ post.iso }}">{{ post.date }}</time>{% endif %}
+            <span>{{ 'meridian.front.journal.read_time'|_({ minutes: post.minutes }) }}</span>
+        </p>
+    </header>
+
+    {% if post.cover.src %}
+        <figure class="mr-container mr-post__cover">
+            {% partial 'journal/picture' image=post.cover sizes='(min-width: 992px) 56rem, 100vw' width=1600 height=900 alt=post.alt eager=true %}
+        </figure>
+    {% endif %}
+
+    <div class="mr-container mr-post__layout">
+        {% partial 'journal/toc' %}
+        <div class="mr-post__body mr-prose">{{ postHtml|raw }}</div>
+    </div>
+
+    <footer class="mr-container mr-post__foot">
+        {% if post.tags|length %}
+            <nav class="mr-post__tags" aria-label="{{ 'meridian.front.journal.tags'|_ }}">
+                <ul class="mr-cluster">
+                    {% for tag in post.tags %}<li><a class="mr-chip" href="{{ tag.url }}">{{ tag.title }}</a></li>{% endfor %}
+                </ul>
+            </nav>
+        {% endif %}
+        {% if post.author %}
+            <aside class="mr-card mr-author" aria-labelledby="mr-author-title">
+                {% partial 'journal/author-chip' author=post.author size='lg' %}
+                <div class="mr-author__text">
+                    <h2 class="mr-meta" id="mr-author-title">{{ 'meridian.front.journal.author_about'|_ }}</h2>
+                    <p class="mr-author__name"><a href="{{ post.author.url }}">{{ post.author.name }}</a>{% if post.author.role %}<span>{{ post.author.role }}</span>{% endif %}</p>
+                    {% if post.author.bio %}<p>{{ post.author.bio }}</p>{% endif %}
+                    <p><a class="mr-btn mr-btn--ghost mr-btn--sm" href="{{ post.author.url }}">{{ 'meridian.front.journal.author_posts'|_({ name: post.author.name }) }}</a></p>
+                </div>
+            </aside>
+        {% endif %}
+    </footer>
+
+    {% if related|length %}
+        <section class="mr-section mr-section--band mr-post__related" aria-labelledby="mr-related-title">
+            <div class="mr-container">
+                <h2 class="mr-related__title" id="mr-related-title">{{ 'meridian.front.journal.related'|_ }}</h2>
+                <div class="mr-jgrid mr-jgrid--related">
+                    {% for card in related %}{% partial 'journal/card' card=card heading='h3' %}{% endfor %}
+                </div>
+                <p><a class="mr-btn mr-btn--ghost" href="{{ journalUrl }}">{{ 'meridian.front.journal.back'|_ }}</a></p>
+            </div>
+        </section>
+    {% endif %}
+</article>
+</div>

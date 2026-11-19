@@ -1,0 +1,133 @@
+@use "../mr";
+@use "../partials-a/surface";
+
+// Five call-to-action variants on one recipe: radius-lg panels, serif title, one button family.
+[data-rc-cta] { container: mr-cta / inline-size; }
+
+.rc-cta-title { margin: 0 0 var(--mr-space-3); font-size: var(--mr-text-h2); line-height: var(--mr-leading-tight); }
+.rc-cta-text { margin: 0 0 var(--mr-space-4); font-size: var(--mr-text-lg); line-height: 1.55; }
+.rc-cta-footnote { margin: 0 0 var(--mr-space-4); font-size: var(--mr-text-xs); color: var(--mr-muted); }
+.rc-cta-copy > :last-child { margin-block-end: 0; }
+.rc-cta-actions { display: flex; flex-wrap: wrap; gap: var(--mr-space-3); margin-block-start: var(--mr-space-5); }
+
+// Button variants that depend on what is behind them.
+html .rc-cta-btn--light {
+    --bs-link-color: black;
+    background: white;
+    border-color: white;
+    color: black;
+}
+html .rc-cta-btn--light:hover { background: color-mix(in oklab, white 85%, black); color: black; }
+html .rc-cta-btn--dark { --bs-link-color: var(--mr-bg); background: var(--mr-ink); border-color: var(--mr-ink); color: var(--mr-bg); }
+html .rc-cta-btn--dark:hover { background: color-mix(in oklab, var(--mr-ink) 85%, var(--mr-bg)); color: var(--mr-bg); }
+html .rc-cta-btn--outline-light { --bs-link-color: white; background: transparent; border-color: white; color: white; }
+html .rc-cta-btn--outline-light:hover { background: rgb(255 255 255 / 0.18); color: white; }
+
+// hero: centred, tinted; with a picture the text turns white on a scrim.
+html .rc-cta-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: var(--mr-space-8) var(--mr-gutter);
+    border: var(--mr-border);
+    border-radius: var(--mr-radius-lg);
+    // Lighter than --mr-accent-soft so accent text (ghost button) keeps AA contrast in every scheme.
+    background: color-mix(in oklab, var(--mr-accent) 8%, var(--mr-bg));
+    color: var(--mr-ink);
+    text-align: center;
+    @include surface.plugin-links;
+}
+.rc-cta-hero-inner { position: relative; max-width: var(--mr-w-prose); margin-inline: auto; }
+.rc-cta-hero .rc-cta-actions { justify-content: center; }
+.rc-cta-hero .rc-cta-text { color: var(--mr-muted); }
+html .rc-cta-hero--bg {
+    border: 0;
+    background: black;
+    color: white;
+    --mr-focus: white;
+    --mr-muted: rgb(255 255 255 / 0.88);
+}
+html .rc-cta-hero--bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: color-mix(in oklab, black 62%, transparent);
+}
+.rc-cta-hero--bg picture { display: contents; }
+html .rc-cta-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+}
+.rc-cta-hero--bg .rc-cta-text { color: white; }
+.rc-cta-hero--bg .mr-btn:not(.mr-btn--ghost):not([class*="rc-cta-btn"]) { background: white; border-color: white; color: black; }
+.rc-cta-hero--bg .mr-btn:not(.mr-btn--ghost):not([class*="rc-cta-btn"]):hover { background: color-mix(in oklab, white 85%, black); }
+.rc-cta-hero--bg .mr-btn--ghost { border-color: white; color: white; }
+.rc-cta-hero--bg .mr-btn--ghost:hover { background: rgb(255 255 255 / 0.18); color: white; }
+
+// hero-split: copy beside a picture once the block is wide enough.
+.rc-cta-split { display: grid; gap: var(--mr-space-6); align-items: center; }
+.rc-cta-media { border-radius: var(--mr-radius-lg); }
+html .rc-cta-media img { display: block; width: 100%; height: auto; }
+@container mr-cta (min-width: 48rem) {
+    .rc-cta-split--media { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--mr-space-7); }
+}
+
+// panel: a solid accent bar with the action on the right.
+.rc-cta-panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--mr-space-4) var(--mr-space-6);
+    padding: var(--mr-space-6);
+    border-radius: var(--mr-radius-lg);
+    background: var(--mr-accent);
+    color: var(--mr-on-accent);
+    --mr-focus: var(--mr-on-accent);
+}
+.rc-cta-panel .rc-cta-copy { flex: 1 1 20rem; }
+.rc-cta-panel .rc-cta-title { font-size: var(--mr-text-h3); margin-block-end: var(--mr-space-1); }
+.rc-cta-panel .rc-cta-text { margin: 0; font-size: var(--mr-text-base); }
+html .rc-cta-panel .rc-cta-btn--light { background: var(--mr-on-accent); border-color: var(--mr-on-accent); color: var(--mr-accent); }
+html .rc-cta-panel .rc-cta-btn--light:hover { background: color-mix(in oklab, var(--mr-on-accent) 88%, var(--mr-accent)); color: var(--mr-accent); }
+
+// minimal and bookmark: quiet surfaces.
+.rc-cta-minimal {
+    @include surface.surface;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--mr-space-3) var(--mr-space-5);
+    padding: var(--mr-space-4) var(--mr-space-5);
+}
+.rc-cta-minimal .rc-cta-text { margin: 0; font-size: var(--mr-text-base); flex: 1 1 16rem; }
+.rc-cta-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--mr-target);
+    gap: var(--mr-space-1);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.rc-cta-link:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+
+.rc-cta-bookmark {
+    @include surface.surface;
+    display: grid;
+    gap: var(--mr-space-5);
+    padding: var(--mr-space-5);
+}
+.rc-cta-bookmark .rc-cta-title { font-family: var(--mr-font-serif); font-size: var(--mr-text-h4); line-height: 1.25; }
+.rc-cta-bookmark .rc-cta-text { font-size: var(--mr-text-base); }
+.rc-cta-bookmark .rc-cta-media { border-radius: var(--mr-radius-md); }
+@container mr-cta (min-width: 40rem) {
+    .rc-cta-bookmark--media { grid-template-columns: 14rem minmax(0, 1fr); align-items: center; }
+}

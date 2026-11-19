@@ -1,0 +1,68 @@
+{# f: field map (kind, type, name, label, required, id, options, ...); without id the label wraps the control only. Radios render as a fieldset. #}
+{% set star = f.required ? '<span class="mr-req" aria-hidden="true"> *</span>' : '' %}
+{% set req = f.required ? 'required' : '' %}
+{% set fid = f.id|default('') %}
+{% set desc = fid and f.comment|default('') ? 'aria-describedby="' ~ fid ~ '-comment"' : '' %}
+{% set labelFor = fid ? ' for="' ~ fid ~ '"' : '' %}
+{% set idAttr = fid ? ' id="' ~ fid ~ '"' : '' %}
+{% if f.kind == 'checkbox' %}
+    <label class="mr-check{{ f.switch|default(false) ? ' mr-check--switch' }}"{{ labelFor|raw }}>
+        <input type="checkbox"{{ idAttr|raw }} name="{{ f.name }}" value="1"
+               {% if f.switch|default(false) %}role="switch"{% endif %}
+               {{ req }} {{ desc|raw }}
+               {% if f.privacy|default(false) %}data-rc-privacy{% endif %}>
+        <span>{{ f.label }}{{ star|raw }}</span>
+    </label>
+{% elseif f.kind == 'radio' %}
+    <fieldset class="mr-fieldset" {{ desc|raw }}>
+        <legend class="mr-label">{{ f.label }}{{ star|raw }}</legend>
+        {% for option in f.options %}
+            <label class="mr-check">
+                <input type="radio" name="{{ f.name }}" value="{{ option.value }}" {{ req }}>
+                <span>{{ option.label }}</span>
+            </label>
+        {% endfor %}
+    </fieldset>
+{% elseif f.kind == 'select' %}
+    <label class="mr-field"{{ labelFor|raw }}>
+        <span class="mr-label">{{ f.label }}{{ star|raw }}</span>
+        <span class="mr-select">
+            <select class="mr-input"{{ idAttr|raw }} name="{{ f.name }}" {{ req }} {{ desc|raw }}>
+                <option value=""{{ f.required ? ' disabled' }} selected>{{ rc_t('meridian.block.form.ui_choose') }}</option>
+                {% for option in f.options %}
+                    <option value="{{ option.value }}">{{ option.label }}</option>
+                {% endfor %}
+            </select>
+            {{ rc_icon('chevron-down', 18) }}
+        </span>
+    </label>
+{% elseif f.kind == 'textarea' %}
+    <label class="mr-field"{{ labelFor|raw }}>
+        <span class="mr-label">{{ f.label }}{{ star|raw }}</span>
+        <textarea class="mr-input"{{ idAttr|raw }} name="{{ f.name }}" rows="5"
+                  {% if f.maxlength|default('') %}maxlength="{{ f.maxlength }}"{% endif %}
+                  {{ req }} {{ desc|raw }}
+                  {% if f.placeholder|default('') %}placeholder="{{ f.placeholder }}"{% endif %}></textarea>
+    </label>
+{% elseif f.kind == 'file' %}
+    <label class="mr-field"{{ labelFor|raw }}>
+        <span class="mr-label">{{ f.label }}{{ star|raw }}</span>
+        {# The limits are the server's; repeated so the picker filters and forms.ts refuses before the upload #}
+        <input class="mr-input mr-file" type="file"{{ idAttr|raw }} name="{{ f.name }}{{ f.multiple ? '[]' }}"
+               {% if f.accept %}accept="{{ f.accept }}"{% endif %}
+               {% if f.max_files %}data-rc-max-files="{{ f.max_files }}"{% endif %}
+               {% if f.max_kb %}data-rc-max-kb="{{ f.max_kb }}"{% endif %}
+               {{ req }} {{ desc|raw }} {{ f.multiple ? 'multiple' }}>
+    </label>
+{% else %}
+    <label class="mr-field"{{ labelFor|raw }}>
+        <span class="mr-label">{{ f.label }}{{ star|raw }}</span>
+        <input class="mr-input" type="{{ f.type }}"{{ idAttr|raw }} name="{{ f.name }}"
+               {% if f.maxlength|default('') %}maxlength="{{ f.maxlength }}"{% endif %}
+               {% if f.step|default('') %}step="{{ f.step }}"{% endif %}
+               {{ req }} {{ desc|raw }}
+               {% if f.placeholder|default('') %}placeholder="{{ f.placeholder }}"{% endif %}
+               {% if f.autocomplete|default('') %}autocomplete="{{ f.autocomplete }}"{% endif %}>
+    </label>
+{% endif %}
+{% if fid and f.comment|default('') %}<p class="rc-form-comment mr-hint" id="{{ fid }}-comment">{{ f.comment }}</p>{% endif %}

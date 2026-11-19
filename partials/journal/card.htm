@@ -1,0 +1,23 @@
+{# One journal card. {% partial 'journal/card' card=card lead=false heading='h2' %}. The title link stretches over the card; category and author links sit above it. #}
+{% set _h = heading|default('h2') %}
+<article class="mr-jcard{{ lead ? ' mr-jcard--lead' }}">
+    <div class="mr-jcard__media" aria-hidden="true">
+        {% if card.image.src %}
+            {% partial 'journal/picture' image=card.image sizes=(lead ? '(min-width: 992px) 40rem, 100vw' : '(min-width: 1280px) 22rem, (min-width: 576px) 50vw, 100vw') width=(lead ? 1200 : 640) height=(lead ? 750 : 400) alt='' eager=lead %}
+        {% else %}
+            <span class="mr-jcard__ph"></span>
+        {% endif %}
+    </div>
+    <div class="mr-jcard__body">
+        <p class="mr-jcard__meta">
+            {% if card.category %}<a class="mr-jcard__cat" href="{{ card.category.url }}">{{ card.category.title }}</a>{% endif %}
+            <span>{{ 'meridian.front.journal.read_time'|_({ minutes: card.minutes }) }}</span>
+        </p>
+        <{{ _h }} class="mr-jcard__title"><a class="mr-jcard__link" href="{{ card.url }}">{{ card.titleHtml|raw }}</a></{{ _h }}>
+        {% if card.excerpt %}<p class="mr-jcard__excerpt">{{ card.excerpt }}</p>{% endif %}
+        <p class="mr-jcard__foot">
+            {% if card.author %}<a class="mr-jcard__author" href="{{ card.author.url }}">{{ card.author.name }}</a>{% endif %}
+            {% if card.iso %}<time datetime="{{ card.iso }}">{{ card.date }}</time>{% endif %}
+        </p>
+    </div>
+</article>

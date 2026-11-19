@@ -1,0 +1,58 @@
+handle: portfolio-grid
+name: meridian.block.portfolio-grid.name
+icon: icon-th
+group: Meridian
+version: 1
+settings: true
+fields:
+  eyebrow:
+    label: meridian.block.portfolio-grid.eyebrow
+    type: text
+  title:
+    label: meridian.block.portfolio-grid.title
+    type: text
+  intro:
+    label: meridian.block.portfolio-grid.intro
+    type: textarea
+    size: small
+  columns:
+    label: meridian.block.portfolio-grid.columns
+    type: dropdown
+    options:
+      '2': meridian.block.portfolio-grid.columns_2
+      '3': meridian.block.portfolio-grid.columns_3
+    default: '3'
+  items:
+    label: meridian.block.portfolio-grid.items
+    type: repeater
+    titleFrom: title
+    fields:
+      title:
+        label: meridian.block.portfolio-grid.items_title
+        type: text
+      category:
+        label: meridian.block.portfolio-grid.items_category
+        type: text
+        commentAbove: meridian.block.portfolio-grid.items_category_comment
+      year:
+        label: meridian.block.portfolio-grid.items_year
+        type: text
+      summary:
+        label: meridian.block.portfolio-grid.items_summary
+        type: textarea
+        size: small
+      image:
+        label: meridian.block.portfolio-grid.items_image
+        type: mediafinder
+        mode: image
+        maxItems: 1
+      image_alt:
+        label: meridian.block.portfolio-grid.items_image_alt
+        type: text
+        commentAbove: meridian.block.portfolio-grid.items_image_alt_comment
+      url:
+        label: meridian.block.portfolio-grid.items_url
+        type: pagefinder
+        singleMode: true
+        allowCustomUrl: true
+        translatable: false

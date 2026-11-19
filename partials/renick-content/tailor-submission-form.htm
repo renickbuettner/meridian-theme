@@ -1,0 +1,80 @@
+{% set form = rc_tailor_submission_form(data) %}
+{% set submitLabel = (data.submit_label|default(''))|trim %}
+{% if submitLabel == '' %}{% set submitLabel = rc_t('block.front.tailor_submit', {}, locale) %}{% endif %}
+{# `is defined` on purpose: an absent key takes the default, an explicitly cleared picker stores '' and stays iconless #}
+{% set successIcon = data.success_icon is defined ? (data.success_icon ~ '')|trim : form.success_icon %}
+<div {{ attributes|raw }}>
+    {% if form.error %}
+        {% if preview %}
+            <div class="rc-pv-placeholder">{{ rc_t('block.front.tailor_' ~ form.error, {}, locale) }}</div>
+        {% else %}
+            {# no markup on the frontend: an editor mistake must not become a broken form #}
+            <!-- tailor-submission-form: {{ form.error }} -->
+        {% endif %}
+    {% else %}
+        {# method="post" matters without JS: a GET submit would put the visitor's answers into the URL and logs #}
+        <form class="rc-form-el mr-form"
+              method="post"
+              data-rc-form
+              data-rc-october="{{ form.handler }}"
+              data-error-message="{{ rc_t('block.front.tailor_error', {}, locale) }}"
+              data-file-too-large="{{ rc_t('block.front.tailor_file_too_large', {}, locale) }}"
+              data-files-too-many="{{ rc_t('block.front.tailor_files_too_many', {}, locale) }}"
+              data-file-wrong-type="{{ rc_t('block.front.tailor_file_wrong_type', {}, locale) }}"
+              data-payload-too-large="{{ rc_t('block.front.tailor_payload_too_large', {}, locale) }}"
+              novalidate>
+            <div class="rc-form-success" role="status" aria-live="polite">
+                {% if successIcon %}<span class="rc-form-success-icon mr-form-success-icon" aria-hidden="true">{{ rc_icon(successIcon, 22) }}</span>{% endif %}
+                <span class="rc-form-success-text">{{ data.success_message|default(rc_t('block.front.tailor_success', {}, locale))|nl2br }}</span>
+            </div>
+            <div class="rc-form-error" role="alert" hidden></div>
+            <fieldset class="rc-form-fields" {{ preview ? 'disabled' }}>
+                <input type="hidden" name="{{ form.payload_field }}" value="{{ form.payload }}">
+                <div class="rc-form-hp" aria-hidden="true">
+                    <label>{{ rc_t('block.front.form_honeypot', {}, locale) }}
+                        <input type="text" name="_oc_hp" tabindex="-1" autocomplete="off">
+                    </label>
+                </div>
+                <div class="mr-form__fields">
+                {% for field in form.fields %}
+                    {% set kind = field.htmlType in ['checkbox', 'radio', 'select', 'textarea', 'file'] ? field.htmlType : 'input' %}
+                    {% set autocomplete = kind != 'input' ? '' : (field.htmlType == 'email' ? 'email' : (field.name == 'name' ? 'name' : (field.name in ['phone', 'telephone', 'tel'] ? 'tel' : ''))) %}
+                    {% set options = (field.options|default([]))|map((option, value) => {value: value, label: option}) %}
+                    <div class="mr-form-row" data-rc-field="{{ field.name }}">
+                        {{ rc_partial('_form-control', {f: {
+                            kind: kind,
+                            type: field.htmlType,
+                            id: 'rc-tsf-' ~ form.uid ~ '-' ~ field.name,
+                            name: field.name,
+                            label: field.label,
+                            required: field.required,
+                            comment: field.comment,
+                            placeholder: field.placeholder,
+                            maxlength: kind == 'textarea' or field.htmlType in ['text', 'email', 'password', 'url'] ? field.maxlength : '',
+                            step: field.step,
+                            options: options,
+                            privacy: field.accepted,
+                            autocomplete: autocomplete,
+                            accept: field.accept,
+                            multiple: field.multiple,
+                            max_files: field.max_files,
+                            max_kb: field.max_kb
+                        }}) }}
+                    </div>
+                {% endfor %}
+                </div>
+                {% if form.captcha %}
+                    {# forms.ts fetches the challenge at init; a server-rendered one would be frozen by the render cache #}
+                    <div class="rc-form-captcha" data-rc-captcha
+                         {% if form.captcha_force %}data-captcha-force="1"{% endif %}
+                         data-captcha-label="{{ rc_t('block.front.form_captcha_label', {}, locale) }}"
+                         data-captcha-error="{{ rc_t('block.front.form_captcha_error', {}, locale) }}"></div>
+                {% endif %}
+                <div>
+                    <button type="submit" class="mr-btn rc-form-submit">{{ submitLabel }}{{ rc_icon('arrow-right', 18) }}</button>
+                </div>
+            </fieldset>
+            {% if preview %}<p class="rc-form-preview-note mr-hint">{{ rc_t('block.front.tailor_preview', {}, locale) }}</p>{% endif %}
+        </form>
+    {% endif %}
+</div>

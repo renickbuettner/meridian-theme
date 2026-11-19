@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "Performance",
+    "slug": "performance",
+    "is_enabled": 1,
+    "description": "Loading, rendering and the numbers behind a page that feels instant."
+  },
+  {
+    "id": 2,
+    "title": "Publishing",
+    "slug": "publishing",
+    "is_enabled": 1,
+    "description": "Independent publishing: audiences, rhythm and owning your channels."
+  },
+  {
+    "id": 3,
+    "title": "Accessibility",
+    "slug": "accessibility",
+    "is_enabled": 1,
+    "description": "Making pages work for keyboards, screen readers and tired eyes."
+  },
+  {
+    "id": 4,
+    "title": "Design",
+    "slug": "design",
+    "is_enabled": 1,
+    "description": "Type, spacing and the quiet decisions that hold a layout together."
+  }
+]

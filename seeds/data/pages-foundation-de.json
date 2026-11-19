@@ -1,0 +1,302 @@
+[
+  {
+    "id": 101,
+    "title": "Startseite",
+    "slug": "home",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "home",
+    "meta_title": null,
+    "meta_description": "Durchdachte Essays \u00fcber Web-Performance, unabh\u00e4ngiges Publizieren und die kleinen Details, die digitale Erlebnisse m\u00fchelos wirken lassen.",
+    "schema_type": "WebPage",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrhomede10",
+          "type": "hero",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "layout": "editorial",
+            "eyebrow": "Das Meridian-Journal",
+            "title": "Notizen f\u00fcr",
+            "title_accent": "ein schnelleres Web.",
+            "lead": "Durchdachte Essays \u00fcber Web-Performance, unabh\u00e4ngiges Publizieren und die kleinen Details, die digitale Erlebnisse m\u00fchelos wirken lassen.",
+            "primary_label": "Zum Journal",
+            "primary_url": "october://cms-page@link/page?path=journal",
+            "secondary_label": "\u00dcber das Journal",
+            "secondary_url": "october://cms-page@link/page?path=about",
+            "highlights": [
+              {
+                "label": "Performance"
+              },
+              {
+                "label": "Barrierefreiheit"
+              },
+              {
+                "label": "Unabh\u00e4ngiges Publizieren"
+              }
+            ]
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrhomede11",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrhomede12",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_top": "lg",
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Neu im Journal",
+                "level": "h2"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrhomede13",
+              "type": "tailor-list",
+              "enabled": true,
+              "settings": {
+                "spacing_top": "md"
+              },
+              "data": {
+                "blueprint": "Meridian\\Post",
+                "view": "cards",
+                "columns_mobile": "12",
+                "columns_tablet": "6",
+                "columns_desktop": "4",
+                "columns_wide": "4",
+                "mode": "limit",
+                "per_page": 3,
+                "sort_column": "published_at",
+                "sort_direction": "desc",
+                "thumbnail_column": "cover",
+                "description_column": "excerpt",
+                "button_label": "Artikel lesen"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrhomede14",
+              "type": "button",
+              "enabled": true,
+              "settings": {
+                "spacing_top": "md"
+              },
+              "data": {
+                "label": "Alle Artikel",
+                "url": "october://cms-page@link/page?path=journal",
+                "style": "secondary",
+                "target": "_self"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrhomede15",
+          "type": "feature-grid",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "layout": "cards",
+            "columns": "3",
+            "eyebrow": "Was Sie erwartet",
+            "title": "Ein ruhiges Theme mit Raum zum Denken",
+            "lead": "Meridian verbindet eine ruhige Seitenleiste mit gro\u00dfz\u00fcgigem Wei\u00dfraum, einer Serifenschrift und interaktiven Bl\u00f6cken, die erst beim Scrollen geladen werden.",
+            "items": [
+              {
+                "icon": "gauge",
+                "title": "Schnell von Haus aus",
+                "text": "Kritisches CSS inline, vorab dimensionierte Bilder und Skripte, die erst laden, wenn Sie sie brauchen."
+              },
+              {
+                "icon": "shield-check",
+                "title": "Zug\u00e4nglich f\u00fcr alle",
+                "text": "Tastatur zuerst, sichtbarer Fokus, ehrlicher Kontrast in jedem Farbschema und eine Schublade, die sich benimmt."
+              },
+              {
+                "icon": "layers",
+                "title": "Zum Erweitern gebaut",
+                "text": "Drei Farbschemata, eine Anleitung f\u00fcr Child-Themes und Bl\u00f6cke f\u00fcr jede Seite."
+              }
+            ]
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrhomede16",
+          "type": "cta-band",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "tone": "soft",
+            "title": "Lesen Sie in Ihrem eigenen Tempo",
+            "text": "Neue Essays erscheinen, wenn sie fertig sind, nie nach einem Takt, der Eile belohnt.",
+            "primary_label": "Journal durchst\u00f6bern",
+            "primary_url": "october://cms-page@link/page?path=journal",
+            "secondary_label": "\u00dcber dieses Projekt",
+            "secondary_url": "october://cms-page@link/page?path=about"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    },
+    "site_root_id": 1
+  },
+  {
+    "id": 102,
+    "title": "\u00dcber uns",
+    "slug": "about",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "about",
+    "meta_title": null,
+    "meta_description": "Ein kleines Studio-Theme f\u00fcr Menschen, die sorgf\u00e4ltig ver\u00f6ffentlichen.",
+    "schema_type": "AboutPage",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mraboutde01",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "lg",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mraboutde02",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "\u00dcber Meridian",
+                "level": "h1"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mraboutde03",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Ein kleines Studio-Theme f\u00fcr Menschen, die sorgf\u00e4ltig ver\u00f6ffentlichen.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mraboutde04",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_top": "lg",
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Was uns wichtig ist",
+                "level": "h2"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mraboutde05",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Lesbare Typografie, ehrliche Performance und Seiten, die mit Tastatur, Screenreader und langsamer Verbindung funktionieren.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    "site_root_id": 2
+  }
+]

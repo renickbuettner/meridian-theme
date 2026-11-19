@@ -1,0 +1,67 @@
+// Page parts below the fold: footer, breadcrumbs, pagination, Turbo bar, view transitions. Loaded as layout-sidebar.css.
+@use "../mr";
+
+// Footer
+.mr-footer { border-block-start: var(--mr-border); padding-block: var(--mr-space-5); font-size: var(--mr-text-sm); color: var(--mr-muted); }
+.mr-footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--mr-space-2) var(--mr-space-5); }
+.mr-footer ul { display: flex; flex-wrap: wrap; gap: var(--mr-space-1) var(--mr-space-4); margin: 0; padding: 0; list-style: none; }
+.mr-footer a { color: var(--mr-muted); display: inline-flex; align-items: center; min-height: 1.5rem; }
+.mr-footer a:hover { color: var(--mr-accent); }
+@media (pointer: coarse) { .mr-footer a { min-height: var(--mr-target); } }
+
+// Breadcrumbs (visible trail; the JSON-LD twin is emitted by the SEO partial)
+.mr-breadcrumbs { padding-block: var(--mr-space-4) 0; font-size: var(--mr-text-sm); line-height: var(--mr-space-5); }
+.mr-breadcrumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: var(--mr-space-1) var(--mr-space-2); margin: 0; padding: 0; list-style: none; color: var(--mr-muted); }
+.mr-breadcrumbs li { display: flex; align-items: center; gap: var(--mr-space-2); min-inline-size: 0; }
+// The separator travels with the crumb that follows it, so it never dangles at the end of a wrapped row.
+.mr-breadcrumbs li + li::before { content: "/"; color: var(--mr-line-strong); }
+// Earlier crumbs keep their size; a long current page wraps instead of hiding its name behind an ellipsis.
+.mr-breadcrumbs li:not(:last-child) { flex: none; }
+.mr-breadcrumbs li:last-child { display: block; }
+.mr-breadcrumbs li:last-child::before { margin-inline-end: var(--mr-space-2); }
+.mr-breadcrumbs [aria-current="page"] { overflow-wrap: anywhere; }
+.mr-breadcrumbs a { display: inline-flex; align-items: center; min-height: 1.5rem; color: var(--mr-muted); }
+@media (pointer: coarse) { .mr-breadcrumbs a { min-height: var(--mr-target); } }
+.mr-breadcrumbs [aria-current="page"] { color: var(--mr-ink); }
+// Docked: the first row shares the sidebar logo's centre line.
+@mixin crumbs-docked { .mr-breadcrumbs { padding-block-start: var(--mr-space-5); } .mr-breadcrumbs ol { min-block-size: var(--mr-target); } }
+.mr-app[data-sidebar="fixed"] { @include crumbs-docked; }
+@include mr.up(lg) { .mr-app[data-sidebar="auto"] { @include crumbs-docked; } }
+
+// Pagination
+.mr-pagination { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--mr-space-2); margin: var(--mr-space-7) 0 0; padding: 0; list-style: none; }
+.mr-pagination a,
+.mr-pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-inline-size: var(--mr-target);
+    min-height: var(--mr-target);
+    padding: 0 var(--mr-space-3);
+    border: 1px solid var(--mr-line-strong);
+    border-radius: var(--mr-radius-pill);
+    color: var(--mr-ink);
+    text-decoration: none;
+}
+.mr-pagination a:hover { background: var(--mr-accent-soft); }
+.mr-pagination [aria-current="page"] { background: var(--mr-accent); border-color: var(--mr-accent); color: var(--mr-on-accent); }
+
+// Turbo progress bar: thin, accent coloured (the inline sheet of the framework loses to this specificity).
+html .jax-progress-bar { background: var(--mr-accent); height: 2px; z-index: 200; }
+
+// View transitions: the sidebar is a shared element that must not cross-fade with the page.
+#mr-aside { view-transition-name: mr-aside; }
+::view-transition-group(mr-aside) { animation: none; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 160ms; }
+@include mr.reduced-motion {
+    ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}
+
+// A page made only of narrow columns narrows breadcrumb and footer to the same edges; any wide block restores the wide frame.
+@mixin frame-follows($narrow, $width) {
+    .mr-main-wrap:has(main :is(#{$narrow})):not(:has(main :is(.mr-container, .rc-section-inner):not(.mr-container--full, #{$narrow}, .mr-breadcrumbs *))) {
+        .mr-breadcrumbs .mr-container, .mr-footer .mr-container { max-width: #{$width}; }
+    }
+}
+@include frame-follows(".mr-container--prose, .rc-w-narrow", var(--mr-w-prose));
+@include frame-follows(".mr-container--content", var(--mr-w-content));

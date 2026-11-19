@@ -1,0 +1,34 @@
+// Shared by the landing blocks: section intro and the adaptive item grid. Mixins only, no CSS on import.
+@use "../mr";
+
+@mixin section-head {
+    .mr-section-head {
+        max-width: var(--mr-w-prose);
+        margin-block-end: var(--mr-space-7);
+    }
+    .mr-section-head > h2 { margin: 0; }
+    .mr-section-head > .mr-lead { margin: var(--mr-space-4) 0 0; }
+}
+
+// --mr-cols is the wanted column count; items never get narrower than --mr-card-min, so the grid drops to 2 and 1 columns by the width it really has.
+@mixin item-grid($gap: var(--mr-space-5)) {
+    display: grid;
+    gap: $gap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, max(var(--mr-card-min), calc((100% - (var(--mr-cols, 3) - 1) * #{$gap}) / var(--mr-cols, 3)))), 1fr));
+}
+
+// Anchored sections clear the mobile top bar.
+@mixin anchor-offset {
+    .mr-section[id] { scroll-margin-block-start: calc(var(--mr-topbar-h) + var(--mr-space-4)); }
+}
+
+// Light-toned demo artwork glares on a dark page: a gentle dim only, desaturating makes sand and terracotta read as grey.
+@mixin dim-art($sel) {
+    @media (prefers-color-scheme: dark) {
+        html:not([data-bs-theme]) #{$sel} { filter: brightness(0.86); }
+    }
+    html[data-bs-theme="dark"] #{$sel} { filter: brightness(0.86); }
+}

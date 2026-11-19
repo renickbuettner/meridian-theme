@@ -1,0 +1,70 @@
+{# CSS-only billing switch: two radios plus :has() swap the price rows, so it works without JS. Prices are text on purpose ("Custom" is a valid price). #}
+{% set plans = (data.plans|default([]))|filter(p => p.name|default('')) %}
+{% set currency = data.currency|default('EUR') in ['EUR', 'USD', 'GBP', 'CHF'] ? data.currency|default('EUR') : 'EUR' %}
+{% set symbol = {'EUR': '€', 'USD': '$', 'GBP': '£', 'CHF': 'CHF'}[currency] %}
+{% set uid = 'plans-' ~ (blockId ?: random(100000000)) %}
+{% set hasYearly = plans|filter(p => p.price_yearly|default(''))|length > 0 %}
+{% set hl = data.title ? 'h3' : 'h2' %}
+{% if plans|length %}
+<section {{ attributes|replace({'class="': 'class="mr-plans '})|raw }}>
+    {% if data.eyebrow or data.title or data.lead %}
+        <header class="mr-plans__head">
+            {% if data.eyebrow %}<p class="mr-eyebrow">{{ data.eyebrow }}</p>{% endif %}
+            {% if data.title %}<h2 class="mr-plans__title">{{ data.title }}</h2>{% endif %}
+            {% if data.lead %}<p class="mr-lead">{{ data.lead|nl2br }}</p>{% endif %}
+        </header>
+    {% endif %}
+    {% if hasYearly %}
+        <fieldset class="mr-plans__billing">
+            <legend class="visually-hidden">{{ rc_t('meridian.block.pricing-plans.ui_billing') }}</legend>
+            <input type="radio" class="mr-plans__radio" name="{{ uid }}" id="{{ uid }}-m" value="monthly" checked>
+            <label for="{{ uid }}-m">{{ rc_t('meridian.block.pricing-plans.ui_monthly') }}</label>
+            <input type="radio" class="mr-plans__radio" name="{{ uid }}" id="{{ uid }}-y" value="yearly">
+            <label for="{{ uid }}-y">{{ rc_t('meridian.block.pricing-plans.ui_yearly') }}</label>
+        </fieldset>
+        {% if data.yearly_note %}<p class="mr-plans__note mr-plans__note--yearly">{{ data.yearly_note }}</p>{% endif %}
+    {% endif %}
+    <ul class="mr-plans__grid mr-plans__grid--n{{ plans|length }}" role="list">
+        {% for plan in plans %}
+            {% set cta = plan.cta_url|rc_url %}
+            {% set monthly = plan.price_monthly|default('')|trim %}
+            {% set yearly = plan.price_yearly|default('')|trim ?: monthly %}
+            {% set featured = plan.featured|default(false) in [true, 1, '1', 'true', 'yes'] %}
+            <li class="mr-plan mr-card{{ featured ? ' mr-plan--featured' : '' }}">
+                <div class="mr-plan__top">
+                    <{{ hl }} class="mr-plan__name">{{ plan.name }}</{{ hl }}>
+                    {% if plan.badge %}<span class="mr-plan__badge">{{ plan.badge }}</span>{% endif %}
+                </div>
+                {% if plan.description %}<p class="mr-plan__desc">{{ plan.description }}</p>{% endif %}
+                {% if monthly != '' or plan.price_label %}
+                    <p class="mr-plan__price">
+                        {% for mode, amount in {'monthly': monthly, 'yearly': yearly} %}
+                            <span class="mr-plan__amount mr-plan__amount--{{ mode }}">
+                                {% if plan.price_label and amount == '' %}
+                                    <span class="mr-plan__figure mr-plan__figure--text">{{ plan.price_label }}</span>
+                                {% elseif amount matches '/^[0-9.,]+$/' %}
+                                    <span class="mr-plan__figure">{{ rc_t('meridian.block.pricing-plans.ui_price_format', {symbol: symbol, price: amount}) }}</span>
+                                    <span class="mr-plan__per">{{ data.unit ? data.unit ~ ' ' : '' }}{{ rc_t('meridian.block.pricing-plans.ui_per_month') }}{% if mode == 'yearly' and hasYearly %}, {{ rc_t('meridian.block.pricing-plans.ui_billed_yearly') }}{% endif %}</span>
+                                {% else %}
+                                    <span class="mr-plan__figure mr-plan__figure--text">{{ amount }}</span>
+                                {% endif %}
+                            </span>
+                        {% endfor %}
+                    </p>
+                {% endif %}
+                {% if plan.features %}
+                    <ul class="mr-plan__features" role="list">
+                        {% for line in plan.features|split("\n")|filter(l => l|trim) %}
+                            <li>{{ rc_icon('check', 18, 'mr-plan__tick') }}<span>{{ line|trim }}</span></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                {% if plan.cta_label and cta %}
+                    <a class="mr-btn{{ featured ? '' : ' mr-btn--ghost' }} mr-plan__cta" href="{{ cta }}">{{ plan.cta_label }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    {% if data.footnote %}<p class="mr-plans__note">{{ data.footnote }}</p>{% endif %}
+</section>
+{% endif %}

@@ -1,0 +1,34 @@
+handle: fact-list
+name: meridian.block.fact-list.name
+icon: icon-list-alt
+group: Meridian
+version: 1
+settings: true
+fields:
+  title:
+    label: meridian.block.fact-list.title
+    type: text
+    commentAbove: meridian.block.fact-list.title_comment
+  variant:
+    label: meridian.block.fact-list.variant
+    type: dropdown
+    default: strip
+    options:
+      strip: meridian.block.fact-list.variant_strip
+      figures: meridian.block.fact-list.variant_figures
+      list: meridian.block.fact-list.variant_list
+  items:
+    label: meridian.block.fact-list.items
+    type: repeater
+    titleFrom: label
+    fields:
+      label:
+        label: meridian.block.fact-list.item_label
+        type: text
+      value:
+        label: meridian.block.fact-list.item_value
+        type: text
+      note:
+        label: meridian.block.fact-list.item_note
+        type: text
+        commentAbove: meridian.block.fact-list.item_note_comment

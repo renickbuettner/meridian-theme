@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="{{ meridianLook.themeColors.light }}" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="{{ meridianLook.themeColors.dark }}" media="(prefers-color-scheme: dark)">
+{# Before first paint: the visitor's stored choice beats the theme default; "system" leaves color-scheme to the OS. data-turbo-eval-once keeps Turbo from re-running it. #}
+<script data-turbo-eval-once="mr-head">
+(function (root) {
+    var mode = null;
+    try { mode = localStorage.getItem('mr-mode'); } catch (e) {}
+    if (mode !== 'light' && mode !== 'dark') { mode = root.getAttribute('data-mode-default'); }
+    if (mode === 'light' || mode === 'dark') { root.setAttribute('data-bs-theme', mode); }
+    root.classList.add('js');
+})(document.documentElement);
+</script>
+{# `turbo` is required: plain {% framework %} omits the router. A page passes turbo=false to opt out. #}
+{% if turbo is not same as(false) %}
+    <meta name="turbo-visit-control" content="enable">
+    {% if meridianLook.transitions %}<meta name="turbo-view-transition" content="same-origin">{% endif %}
+{% endif %}
+<meta name="mr-prefetch" content="{{ meridianLook.prefetch ? 'hover' : 'off' }}">
+{% partial 'seo/head' %}
+<link rel="preload" href="{{ 'assets/fonts/inter-latin-wght-normal.woff2'|theme }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ 'assets/fonts/fraunces-latin-wght-normal.woff2'|theme }}" as="font" type="font/woff2" crossorigin>
+<style data-mr-critical>{{ meridianLook.inlineCss|raw }}</style>
+<link rel="stylesheet" href="{{ meridianCss }}">
+{% if meridianLook.customCss %}<style data-mr-custom>{{ meridianLook.customCss|raw }}</style>{% endif %}
+<script type="module" src="{{ 'assets/dist/js/shell.js'|theme }}"></script>

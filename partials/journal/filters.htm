@@ -1,0 +1,9 @@
+{# Category chips. active = the current category slug, '' for all. #}
+<nav class="mr-jfilters" aria-label="{{ 'meridian.front.journal.nav'|_ }}">
+    <ul class="mr-cluster">
+        <li><a class="mr-chip" href="{{ jIndexUrl }}"{{ active == '' and not noAll ? ' aria-current="true"' }}>{{ 'meridian.front.journal.all'|_ }}</a></li>
+        {% for category in jCategories %}
+            <li><a class="mr-chip" href="{{ category.url }}"{{ active == category.slug ? ' aria-current="true"' }}>{{ category.title }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>

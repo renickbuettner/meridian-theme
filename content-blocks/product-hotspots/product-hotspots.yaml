@@ -1,0 +1,70 @@
+handle: product-hotspots
+name: meridian.block.product-hotspots.name
+icon: icon-crosshairs
+group: Meridian
+version: 1
+settings: true
+fields:
+  eyebrow:
+    label: meridian.block.product-hotspots.eyebrow
+    type: text
+  title:
+    label: meridian.block.product-hotspots.title
+    type: text
+  intro:
+    label: meridian.block.product-hotspots.intro
+    type: textarea
+    size: small
+  image:
+    label: meridian.block.product-hotspots.image
+    type: mediafinder
+    mode: image
+    maxItems: 1
+  image_dark:
+    label: meridian.block.product-hotspots.image_dark
+    type: mediafinder
+    mode: image
+    maxItems: 1
+    commentAbove: meridian.block.product-hotspots.image_dark_comment
+  image_alt:
+    label: meridian.block.product-hotspots.image_alt
+    type: text
+    commentAbove: meridian.block.product-hotspots.image_alt_comment
+  caption:
+    label: meridian.block.product-hotspots.caption
+    type: text
+  hotspots:
+    label: meridian.block.product-hotspots.hotspots
+    type: repeater
+    titleFrom: title
+    commentAbove: meridian.block.product-hotspots.hotspots_comment
+    fields:
+      title:
+        label: meridian.block.product-hotspots.hotspots_title
+        type: text
+      text:
+        label: meridian.block.product-hotspots.hotspots_text
+        type: textarea
+        size: small
+      x:
+        label: meridian.block.product-hotspots.hotspots_x
+        type: number
+        span: left
+        translatable: false
+        commentAbove: meridian.block.product-hotspots.hotspots_x_comment
+      y:
+        label: meridian.block.product-hotspots.hotspots_y
+        type: number
+        span: right
+        translatable: false
+        commentAbove: meridian.block.product-hotspots.hotspots_y_comment
+      url:
+        label: meridian.block.product-hotspots.hotspots_url
+        type: pagefinder
+        singleMode: true
+        allowCustomUrl: true
+        translatable: false
+      link_label:
+        label: meridian.block.product-hotspots.hotspots_link_label
+        type: text
+        commentAbove: meridian.block.product-hotspots.hotspots_link_label_comment

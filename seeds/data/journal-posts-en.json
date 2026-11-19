@@ -1,0 +1,2050 @@
+[
+  {
+    "id": 1,
+    "title": "Field notes on a faster LCP",
+    "slug": "field-notes-on-a-faster-lcp",
+    "is_enabled": 1,
+    "published_at": "2026-10-14 08:30:00",
+    "excerpt": "Largest Contentful Paint is mostly a story about one image and one request. Notes from tuning eleven real pages below two seconds.",
+    "cover": "meridian/journal/field-notes-lcp.jpg",
+    "cover_alt": "",
+    "category": 1,
+    "author": 1,
+    "tags": [
+      1,
+      2
+    ],
+    "meta_title": null,
+    "meta_description": "Largest Contentful Paint is mostly a story about one image and one request. Notes from tuning eleven real pages below two seconds.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jr1_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Every slow page we looked at this year had the same shape: one large element, discovered late, loaded politely behind everything else. Largest Contentful Paint sounds abstract, but in practice it is a story about a single image or a single headline and the path the browser takes to find it.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr1_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Find the element first",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr1_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Before changing anything, open the performance panel and look at which node the browser actually picked. On our pages it was a hero photo nine times out of eleven, a text block twice. The fix for those two groups is completely different, which is why guessing wastes weeks.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr1_4",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "When it is an image",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr1_5",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Give the browser everything it needs in the first HTML response: the real URL, the right size, no lazy loading and a high fetch priority. A <code>srcset</code> that lets a phone download a 480 pixel file instead of a 1600 pixel one is usually worth more than any server tweak.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr1_6",
+          "type": "code",
+          "enabled": true,
+          "data": {
+            "code": "<img src=\"/media/hero-960.avif\"\n     srcset=\"/media/hero-480.avif 480w, /media/hero-960.avif 960w, /media/hero-1600.avif 1600w\"\n     sizes=\"(min-width: 992px) 60vw, 100vw\"\n     width=\"1600\" height=\"1000\" fetchpriority=\"high\" alt=\"\">",
+            "mode": "display",
+            "language": "html",
+            "caption": "The hero image: explicit size, honest candidates, high priority."
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr1_7",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "When it is text",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr1_8",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>A text LCP almost always waits for a web font. Preload the one file that draws the headline, use <code>font-display: swap</code> and keep the fallback metrics close to the real font so nothing jumps when it arrives.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr1_9",
+          "type": "quote",
+          "enabled": true,
+          "data": {
+            "variant": "bordered",
+            "text": "A fast page is not a clever page. It is a page that never made the browser guess.",
+            "author": "Lena Marsh",
+            "role": "Performance editor"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr1_10",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Measure like a visitor",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr1_11",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Lab numbers are a starting point, field data is the truth. Look at the 75th percentile on real phones over real connections, and only call a fix finished when that number moves. We re-checked every page two weeks after shipping; two of the eleven had quietly regressed.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr1_12",
+          "type": "info-banner",
+          "enabled": true,
+          "data": {
+            "level": "success",
+            "title": "The short version",
+            "text": "Find the LCP element, ship it in the first response, give it the right size and priority, then verify with field data.",
+            "animated": "no"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "title": "Images that never shift the layout",
+    "slug": "images-that-never-shift-the-layout",
+    "is_enabled": 1,
+    "published_at": "2026-10-02 09:00:00",
+    "excerpt": "Reserve the space, and the page stays still. A practical checklist for responsive images, aspect ratios and late-loading media.",
+    "cover": "meridian/journal/images-without-layout-shift.jpg",
+    "cover_alt": "",
+    "category": 1,
+    "author": 2,
+    "tags": [
+      2,
+      4
+    ],
+    "meta_title": null,
+    "meta_description": "Reserve the space, and the page stays still. A practical checklist for responsive images, aspect ratios and late-loading media.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jr2_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Layout shift is the most irritating kind of slowness: you start reading, an image arrives, and the sentence jumps away from you. The cure is old and almost embarrassingly simple. Tell the browser how big the image will be before it has any pixels.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr2_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Width and height, always",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr2_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Modern browsers turn the <code>width</code> and <code>height</code> attributes into an aspect ratio before the file arrives. Pair them with <code>max-width: 100%</code> and <code>height: auto</code> and the box is reserved at every screen size.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr2_4",
+          "type": "code",
+          "enabled": true,
+          "data": {
+            "code": "img {\n  max-width: 100%;\n  height: auto;\n}\n\n.cover {\n  aspect-ratio: 16 / 10;\n  object-fit: cover;\n}",
+            "mode": "display",
+            "language": "css",
+            "caption": "Intrinsic ratio from the attributes, forced ratio for cropped covers."
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr2_5",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Crops belong on the server",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr2_6",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>A CSS crop still downloads the whole photograph. Let the server deliver a file that already has the right ratio and a handful of widths, then let <code>sizes</code> describe how wide the image really is in the layout. On a three column grid that is a third of the viewport, not all of it.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr2_7",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Late media and embeds",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr2_8",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Iframes, video posters and ads are the same problem wearing a different coat. Wrap each one in a box with a fixed aspect ratio, and let the content fade in inside it. If a slot might stay empty, collapse it with a transition rather than a jump.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr2_9",
+          "type": "info-banner",
+          "enabled": true,
+          "data": {
+            "level": "warning",
+            "title": "Check before you ship",
+            "text": "Throttle the network, hard reload and watch the page. If anything moves after the first paint, you have found your next ticket.",
+            "animated": "no"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "title": "A quiet case for fewer fonts",
+    "slug": "a-quiet-case-for-fewer-fonts",
+    "is_enabled": 1,
+    "published_at": "2026-09-22 10:15:00",
+    "excerpt": "One serif for the voice, one sans for the work, one variable file each. Why a small type system reads better and loads faster.",
+    "cover": "meridian/journal/quiet-fonts.jpg",
+    "cover_alt": "",
+    "category": 4,
+    "author": 3,
+    "tags": [
+      3,
+      4
+    ],
+    "meta_title": null,
+    "meta_description": "One serif for the voice, one sans for the work, one variable file each. Why a small type system reads better and loads faster.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jr3_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Most sites carry more typefaces than they can justify. Three families, four weights each, plus italics: a quarter of a megabyte that few visitors will ever notice, and that every one of them pays for.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr3_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Two voices are enough",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr3_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>A serif display face gives headlines character. A clean sans carries the interface and the body text. Between them you can express hierarchy, mood and emphasis without a third voice interrupting.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr3_4",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Variable fonts, used on purpose",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr3_5",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>A variable font stores every weight in one file. That is a gift for performance, but only if you stop at the weights you need. Pick a regular, a medium and a bold, name them in your tokens and resist the slider.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr3_6",
+          "type": "code",
+          "enabled": true,
+          "data": {
+            "code": "@font-face {\n  font-family: \"Fraunces Variable\";\n  src: url(\"/fonts/fraunces.woff2\") format(\"woff2-variations\");\n  font-weight: 100 900;\n  font-display: swap;\n}",
+            "mode": "display",
+            "language": "css",
+            "caption": "One file, every weight, swapped in without blocking text."
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr3_7",
+          "type": "quote",
+          "enabled": true,
+          "data": {
+            "variant": "bordered",
+            "text": "Typography is what language looks like. Fewer faces, clearer language.",
+            "author": "Noor Haddad",
+            "role": "Design and accessibility"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr3_8",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Self-host and preload one file",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr3_9",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Serve fonts from your own domain: one connection fewer, no consent banner for a font request and a cache you control. Preload only the file that draws the first headline; everything else can arrive when it is ready.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "title": "Own your audience, rent nothing",
+    "slug": "own-your-audience-rent-nothing",
+    "is_enabled": 1,
+    "published_at": "2026-09-15 07:45:00",
+    "excerpt": "Platforms change their rules overnight. A small publisher’s guide to channels you control: a site, a list and a feed.",
+    "cover": "meridian/journal/own-your-audience.jpg",
+    "cover_alt": "",
+    "category": 2,
+    "author": 1,
+    "tags": [
+      5,
+      6
+    ],
+    "meta_title": null,
+    "meta_description": "Platforms change their rules overnight. A small publisher’s guide to channels you control: a site, a list and a feed.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jr4_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Every independent publisher has a story about the day a platform changed its algorithm and a year of work went quiet. The lesson is not to avoid platforms. It is to treat them as places you visit, never as places you live.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr4_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Three things that are yours",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr4_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>A site on your own domain, a mailing list you can export and a feed that anyone can subscribe to. None of them is glamorous, and all of them survive the next platform shake-up.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr4_4",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "The site is the archive",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr4_5",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Publish everything on your site first, with clean URLs that will still work in ten years. Social posts and newsletters point back to it. When you move tools, the archive moves with you.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr4_6",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "The list is the relationship",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr4_7",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>An email address is a small act of trust. Ask for it plainly, promise a rhythm and keep the promise. A list of two thousand people who open your mail beats a following of fifty thousand who never see it.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr4_8",
+          "type": "info-banner",
+          "enabled": true,
+          "data": {
+            "level": "secondary",
+            "title": "A rule of thumb",
+            "text": "If you could not move it to another tool in an afternoon, you are renting it.",
+            "animated": "no"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "title": "A newsletter rhythm you can keep",
+    "slug": "a-newsletter-rhythm-you-can-keep",
+    "is_enabled": 1,
+    "published_at": "2026-09-03 08:00:00",
+    "excerpt": "Consistency beats ambition. How to pick a cadence, batch the work and still leave room for the occasional long read.",
+    "cover": "meridian/journal/newsletter-rhythm.jpg",
+    "cover_alt": "",
+    "category": 2,
+    "author": 2,
+    "tags": [
+      5,
+      6
+    ],
+    "meta_title": null,
+    "meta_description": "Consistency beats ambition. How to pick a cadence, batch the work and still leave room for the occasional long read.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jr5_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>The newsletters that last are rarely the most ambitious ones. They are the ones whose authors found a rhythm that fits an ordinary week, and then protected it.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr5_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Choose a cadence by subtraction",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr5_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Start from the time you really have, not the time you wish you had. If that is three hours every other Thursday, then fortnightly it is. A reader will forgive a slow cadence long before they forgive a broken one.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr5_4",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Batch the invisible work",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr5_5",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Collect links and notes all week in a single file. On writing day you are editing, not searching. Keep a small queue of evergreen pieces for the weeks when life gets in the way.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr5_6",
+          "type": "quote",
+          "enabled": true,
+          "data": {
+            "variant": "bordered",
+            "text": "Write for one reader, ship for a hundred, and let the rhythm do the rest.",
+            "author": "Tomás Ibarra",
+            "role": "Publishing lead"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr5_7",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Leave room for the long read",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr5_8",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Every sixth issue, publish something that takes real effort. It becomes the piece people forward, and it gives the lighter issues something to point back to.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "title": "Keyboard first: testing without a mouse",
+    "slug": "keyboard-first-testing-without-a-mouse",
+    "is_enabled": 1,
+    "published_at": "2026-08-25 09:30:00",
+    "excerpt": "Unplug the mouse for ten minutes and your page tells you everything. A short routine for finding focus traps and invisible controls.",
+    "cover": "meridian/journal/keyboard-first.jpg",
+    "cover_alt": "",
+    "category": 3,
+    "author": 3,
+    "tags": [
+      7,
+      6
+    ],
+    "meta_title": null,
+    "meta_description": "Unplug the mouse for ten minutes and your page tells you everything. A short routine for finding focus traps and invisible controls.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jr6_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>The fastest accessibility audit needs no tool at all. Put the mouse out of reach, press Tab and try to use your own page. Every confusion you feel is one a real visitor feels too, only without the option to give up and ask a colleague.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr6_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "The ten minute routine",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr6_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Tab through the page from the top. Can you always see where focus is? Does the order follow the visual order? Can you open, use and close every menu, dialog and tab list with the keys people expect?</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr6_4",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Focus must be visible",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr6_5",
+          "type": "code",
+          "enabled": true,
+          "data": {
+            "code": ":focus-visible {\n  outline: 3px solid var(--mr-focus);\n  outline-offset: 3px;\n}",
+            "mode": "display",
+            "language": "css",
+            "caption": "A single global rule; never remove it, only restyle it."
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr6_6",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Dialogs return focus",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr6_7",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>A native <code>dialog</code> element traps focus, closes with Escape and returns focus to the button that opened it. If you build your own overlay, you owe your visitors the same three behaviours.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr6_8",
+          "type": "info-banner",
+          "enabled": true,
+          "data": {
+            "level": "warning",
+            "title": "Skip links are not optional",
+            "text": "The first Tab stop should be a link that jumps past the navigation to the main content.",
+            "animated": "no"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "title": "Contrast in dark mode, measured",
+    "slug": "contrast-in-dark-mode-measured",
+    "is_enabled": 1,
+    "published_at": "2026-08-12 11:00:00",
+    "excerpt": "Inverting a palette does not give you a dark theme. What we measured when we checked six palettes against WCAG.",
+    "cover": "meridian/journal/contrast-in-dark-mode.jpg",
+    "cover_alt": "",
+    "category": 3,
+    "author": 1,
+    "tags": [
+      7,
+      4
+    ],
+    "meta_title": null,
+    "meta_description": "Inverting a palette does not give you a dark theme. What we measured when we checked six palettes against WCAG.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jr7_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>A dark theme feels like a simple inversion until you measure it. Colours that pass comfortably on white can fail on near-black, and pure white text on pure black glows in a way that tires the eye.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr7_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "What the ratios say",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr7_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>WCAG asks for 4.5 to 1 for body text and 3 to 1 for large text and interface boundaries. We calculated both for every accent against its background in light and dark. Two accents needed a lighter dark-mode variant; none needed a darker one.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr7_4",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Soften, do not dim",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr7_5",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Use an off-white for body text and keep the background a deep tone with a hint of the brand hue. You gain comfort without giving up contrast. Reduce the saturation of large colour fields, because bright areas bloom against dark surroundings.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr7_6",
+          "type": "code",
+          "enabled": true,
+          "data": {
+            "code": ":root {\n  color-scheme: light dark;\n  --bg: light-dark(#eef1ef, #0e1614);\n  --ink: light-dark(#14211f, #e6eeeb);\n}",
+            "mode": "display",
+            "language": "css",
+            "caption": "Both palettes from one declaration with light-dark()."
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr7_7",
+          "type": "quote",
+          "enabled": true,
+          "data": {
+            "variant": "bordered",
+            "text": "If a colour only works in one mode, it is a decoration, not a decision.",
+            "author": "Lena Marsh",
+            "role": "Performance editor"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr7_8",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Automate the check",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr7_9",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Put the ratios in a test. A palette change then fails the build instead of failing a visitor, and the argument about taste becomes an argument about numbers.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "title": "One spacing scale to rule a site",
+    "slug": "one-spacing-scale-to-rule-a-site",
+    "is_enabled": 1,
+    "published_at": "2026-07-30 10:00:00",
+    "excerpt": "Ten tokens, one rhythm. How a shared spacing scale ends the argument about whether it should be 18 or 20 pixels.",
+    "cover": "meridian/journal/spacing-scale.jpg",
+    "cover_alt": "",
+    "category": 4,
+    "author": 2,
+    "tags": [
+      4,
+      8
+    ],
+    "meta_title": null,
+    "meta_description": "Ten tokens, one rhythm. How a shared spacing scale ends the argument about whether it should be 18 or 20 pixels.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jr8_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Layouts rarely fall apart through big mistakes. They fray through small ones: a margin of 18 pixels here, 22 there, a padding that someone nudged on a Friday. A spacing scale is the cheapest repair there is.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr8_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Pick a base and multiply",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr8_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Start from a quarter of your root size and step through a short list: 0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4, 6 and 8 rem. Ten values are plenty. If a design needs an eleventh, treat it as a question for the designer, not a licence for a new number.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr8_4",
+          "type": "code",
+          "enabled": true,
+          "data": {
+            "code": ":root {\n  --space-1: 0.25rem;\n  --space-2: 0.5rem;\n  --space-4: 1rem;\n  --space-6: 2rem;\n  --section-y: clamp(var(--space-6), 7vw, 6rem);\n}",
+            "mode": "display",
+            "language": "css",
+            "caption": "Tokens first, components second."
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr8_5",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Sections own the vertical rhythm",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr8_6",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Let a section set the space above and below its content, and let its children set none. Then two components can sit together in any order without doubled gaps, and the rhythm is identical on every page.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr8_7",
+          "type": "info-banner",
+          "enabled": true,
+          "data": {
+            "level": "secondary",
+            "title": "Review tip",
+            "text": "Search the stylesheet for pixel values. Every hit is either a token waiting to be used or a bug.",
+            "animated": "no"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "title": "The measure of a good paragraph",
+    "slug": "the-measure-of-a-good-paragraph",
+    "is_enabled": 1,
+    "published_at": "2026-07-18 09:00:00",
+    "excerpt": "Line length, leading and size work as one system. A short guide to prose that people finish reading.",
+    "cover": "meridian/journal/reading-measure.jpg",
+    "cover_alt": "",
+    "category": 4,
+    "author": 3,
+    "tags": [
+      3,
+      7
+    ],
+    "meta_title": null,
+    "meta_description": "Line length, leading and size work as one system. A short guide to prose that people finish reading.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jr9_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Readers do not notice good typesetting. They simply keep reading. Bad typesetting is different: they tire, skim and leave without knowing why. Three numbers decide which of the two you build.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr9_2",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Measure: 45 to 75 characters",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr9_3",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Long lines make the eye lose its place on the return sweep; short lines chop sentences into pieces. A column of about 42 rem at body size lands near 65 characters, which is a comfortable middle.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr9_4",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Leading and size",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr9_5",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Body text between 17 and 19 pixels with a line height of about 1.65 works for most serif and sans faces. Headlines want tighter leading, around 1.1 to 1.2, because large type has more air built into each line already.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr9_6",
+          "type": "quote",
+          "enabled": true,
+          "data": {
+            "variant": "bordered",
+            "text": "A paragraph is a promise: this will be easy to read. Typography keeps it.",
+            "author": "Noor Haddad",
+            "role": "Design and accessibility"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr9_7",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Hyphenation and rag",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr9_8",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Turn hyphenation on for languages with long compound words, and set the language on the page so the browser knows which rules to use. A calm, even rag at the right edge says more about care than any decorative flourish.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "title": "Accessibility conformance documentation, written for humans",
+    "slug": "accessibility-conformance-documentation-for-humans",
+    "is_enabled": 1,
+    "published_at": "2026-07-04 09:00:00",
+    "excerpt": "A conformance statement nobody can read helps nobody. How to document what works, what does not and what you will fix next, in plain language.",
+    "cover": "meridian/journal/conformance-docs.jpg",
+    "cover_alt": "Flowing teal contour lines on a deep green gradient",
+    "category": 3,
+    "author": 3,
+    "tags": [
+      7,
+      6
+    ],
+    "meta_title": null,
+    "meta_description": "A conformance statement nobody can read helps nobody. How to document what works, what does not and what you will fix next, in plain language.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jr10_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Every few months a request lands in a small team’s inbox: please send us your accessibility conformance documentation. What follows is usually a scramble for a spreadsheet nobody has opened since the last audit, a PDF with forty pages of criteria and a vague hope that the answer is good enough.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_2",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>It does not have to be like that. A conformance statement is a piece of writing, and like any writing it works best when you know who reads it. Procurement officers want a verdict. Developers want a list of defects. Disabled visitors want to know whether they can use the thing today, and what to do if they cannot.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_3",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Start with three readers",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_4",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Before you write a single criterion, name your readers. We use the same three every time, and each gets a section of their own so nobody has to wade through the others.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_5",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "The decision maker",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_6",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>This reader has two minutes. Give them the conformance level you claim, the standard and version you tested against, the date of the last review and the scope. Keep it to a short paragraph and a small table. If the answer is “partially conforms”, say so in the first sentence and never hide it behind a footnote.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_7",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "The maintainer",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_8",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>This reader needs to act. Every known issue gets a plain description of what a person experiences, the criterion it touches, a severity and an owner. “The date picker cannot be operated with a keyboard” beats “Fails 2.1.1” every time, and you can still add the number for people who search by it.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_9",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "The visitor",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_10",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>This reader wants an honest sentence and a way out. Say which parts of the site are affected, offer an alternative such as a phone number or an email address that a human answers, and promise a reply time you can keep.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_11",
+          "type": "info-banner",
+          "enabled": true,
+          "data": {
+            "level": "info",
+            "title": "Promise less, keep it",
+            "text": "A response time of five working days that you meet is worth more than a promise of one day that you miss.",
+            "animated": "no"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_12",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Write each finding once",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_13",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Duplicated findings rot. When the same defect appears in the summary, in the criteria table and in the roadmap, one of the three will be out of date within a month. Keep a single list of findings and generate the other views from it.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_14",
+          "type": "code",
+          "enabled": true,
+          "data": {
+            "code": "findings:\n  - id: a11y-014\n    experience: \"The date picker cannot be operated with a keyboard.\"\n    criteria: [\"2.1.1\", \"4.1.2\"]\n    severity: high\n    owner: forms-team\n    fix_by: 2026-12-01",
+            "mode": "display",
+            "language": "yaml",
+            "caption": "One source file feeds the statement, the issue tracker and the roadmap."
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_15",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Measure what a tool can measure",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_16",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Automated checks find roughly a third of real-world problems: missing names, low contrast, broken landmarks. Run them on every build, record the number and stop there. The rest needs a human with a keyboard, a screen reader and a bit of patience.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_17",
+          "type": "quote",
+          "enabled": true,
+          "data": {
+            "variant": "bordered",
+            "text": "A statement is not a certificate. It is a promise about how you will behave when something is broken.",
+            "author": "Noor Haddad",
+            "role": "Design and accessibility"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_18",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Test the journeys, not the pages",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_19",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>A page can pass every check and still be unusable as part of a flow. Pick five journeys that matter, for example finding a product, signing up, paying, getting support and cancelling, and walk each one with a keyboard only and then with a screen reader. Write down where you got stuck, in the order you got stuck.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_20",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Show your working",
+            "level": "h3"
+          },
+          "settings": {
+            "spacing_top": "md",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_21",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>List the browsers, assistive technologies and versions you used. Say what you did not test. A short “not covered” list builds more trust than a clean sheet that nobody believes.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_22",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "Plan the next review before you publish",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_23",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Put the date of the next review into the statement itself. It forces a calendar entry, it tells readers the document is alive and it makes the unglamorous work of maintaining it somebody’s job rather than nobody’s.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_24",
+          "type": "heading",
+          "enabled": true,
+          "data": {
+            "text": "A skeleton you can copy",
+            "level": "h2"
+          },
+          "settings": {
+            "spacing_top": "lg",
+            "spacing_bottom": "xs"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_25",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Our own template has six headings: scope, standard and date, summary, known issues, how to reach us and what we plan next. Each fits on one screen, and the whole statement reads in five minutes.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr10_26",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Write it like a letter to a person who is about to rely on your site. If you would be embarrassed to read a sentence aloud to that person, rewrite it.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "title": "The one-minute changelog habit",
+    "slug": "the-one-minute-changelog-habit",
+    "is_enabled": 1,
+    "published_at": "2026-06-20 16:30:00",
+    "excerpt": "One line per change, written the moment you finish. Your future self and your readers will thank you.",
+    "cover": "meridian/journal/one-minute-changelog.jpg",
+    "cover_alt": "",
+    "category": 2,
+    "author": 2,
+    "tags": [
+      5,
+      6
+    ],
+    "meta_title": null,
+    "meta_description": "One line per change, written the moment you finish. Your future self and your readers will thank you.",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_jr11_1",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>Keep a plain text file called CHANGES next to your content. When you finish a change, add one line before you close the editor: the date, what changed and why a reader might care.</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_jr11_2",
+          "type": "richtext",
+          "enabled": true,
+          "data": {
+            "html": "<p>A month later you will have an honest log, a ready-made newsletter section and an answer to the question “what did we actually do?”</p>"
+          },
+          "settings": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  }
+]

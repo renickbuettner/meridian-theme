@@ -1,0 +1,8 @@
+@use "../mr";
+
+// Same scale as the rc-pt-* / rc-pb-* presets in _plugin.scss.
+html .rc-spacer[data-height="xs"] { height: var(--mr-space-2); }
+html .rc-spacer[data-height="sm"] { height: var(--mr-space-4); }
+html .rc-spacer[data-height="md"] { height: var(--mr-space-6); }
+html .rc-spacer[data-height="lg"] { height: var(--mr-space-7); }
+html .rc-spacer[data-height="xl"] { height: var(--mr-section-y); }

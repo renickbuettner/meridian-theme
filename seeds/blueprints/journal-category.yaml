@@ -1,0 +1,25 @@
+uuid: meridiancategory0002a1b8c2d9e3f0000002
+handle: Meridian\Category
+type: entry
+name: Category
+drafts: false
+multisite: all
+
+navigation:
+    parent: Meridian\Post
+    label: meridian.blog.nav.categories
+    icon: icon-folder-open
+    order: 200
+
+fields:
+    title:
+        label: meridian.blog.field.name
+        type: text
+        required: true
+
+    description:
+        label: meridian.blog.field.description
+        type: textarea
+        size: small
+        span: full
+        column: false

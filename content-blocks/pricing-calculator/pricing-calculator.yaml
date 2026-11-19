@@ -1,0 +1,95 @@
+handle: pricing-calculator
+name: meridian.block.pricing-calculator.name
+icon: icon-calculator
+group: Meridian
+version: 1
+settings: true
+fields:
+  eyebrow:
+    label: meridian.block.pricing-calculator.eyebrow
+    type: text
+  title:
+    label: meridian.block.pricing-calculator.title
+    type: text
+  intro:
+    label: meridian.block.pricing-calculator.intro
+    type: textarea
+    size: small
+  product_name:
+    label: meridian.block.pricing-calculator.product_name
+    type: text
+    commentAbove: meridian.block.pricing-calculator.product_name_comment
+  currency:
+    label: meridian.block.pricing-calculator.currency
+    type: dropdown
+    translatable: false
+    default: EUR
+    options:
+      EUR: meridian.block.pricing-calculator.currency_eur
+      USD: meridian.block.pricing-calculator.currency_usd
+      GBP: meridian.block.pricing-calculator.currency_gbp
+      CHF: meridian.block.pricing-calculator.currency_chf
+  yearly_discount:
+    label: meridian.block.pricing-calculator.yearly_discount
+    type: number
+    translatable: false
+    default: 20
+    commentAbove: meridian.block.pricing-calculator.yearly_discount_comment
+  seats_min:
+    label: meridian.block.pricing-calculator.seats_min
+    type: number
+    translatable: false
+    default: 1
+  seats_max:
+    label: meridian.block.pricing-calculator.seats_max
+    type: number
+    translatable: false
+    default: 100
+  seats_default:
+    label: meridian.block.pricing-calculator.seats_default
+    type: number
+    translatable: false
+    default: 10
+  term_max:
+    label: meridian.block.pricing-calculator.term_max
+    type: number
+    translatable: false
+    default: 36
+    commentAbove: meridian.block.pricing-calculator.term_max_comment
+  term_default:
+    label: meridian.block.pricing-calculator.term_default
+    type: number
+    translatable: false
+    default: 12
+  tiers:
+    label: meridian.block.pricing-calculator.tiers
+    type: repeater
+    commentAbove: meridian.block.pricing-calculator.tiers_comment
+    fields:
+      name:
+        label: meridian.block.pricing-calculator.tier_name
+        type: text
+      seats_up_to:
+        label: meridian.block.pricing-calculator.tier_seats_up_to
+        type: number
+        translatable: false
+        commentAbove: meridian.block.pricing-calculator.tier_seats_up_to_comment
+      unit_price:
+        label: meridian.block.pricing-calculator.tier_unit_price
+        type: text
+        translatable: false
+        commentAbove: meridian.block.pricing-calculator.tier_unit_price_comment
+      features:
+        label: meridian.block.pricing-calculator.tier_features
+        type: textarea
+        size: small
+        commentAbove: meridian.block.pricing-calculator.tier_features_comment
+      cta_label:
+        label: meridian.block.pricing-calculator.tier_cta_label
+        type: text
+      cta_url:
+        label: meridian.block.pricing-calculator.tier_cta_url
+        type: pagefinder
+        singleMode: true
+        allowCustomUrl: true
+        translatable: false

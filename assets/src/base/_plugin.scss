@@ -1,0 +1,33 @@
+// Renick.Content's own classes (renick-content.css) mapped onto Meridian's tokens. `html` raises specificity above the plugin sheet, which loads later.
+html {
+    .rc-w-container,
+    .rc-w-narrow {
+        width: 100%;
+        margin-inline: auto;
+        padding-inline: var(--mr-gutter);
+    }
+    .rc-w-container { max-width: var(--mr-w-wide); }
+    .rc-w-narrow { max-width: var(--mr-w-prose); margin-inline: auto; }
+
+    // A button straight after text keeps the lead-to-action gap even when the editor set no spacing on it.
+    .rc-richtext + .rc-button:not([class*="rc-pt-"]),
+    .rc-heading + .rc-button:not([class*="rc-pt-"]) { padding-top: var(--mr-space-5); }
+
+    // The editor's spacing presets share the section rhythm.
+    .rc-pt-xs { padding-top: var(--mr-space-2); }
+    .rc-pb-xs { padding-bottom: var(--mr-space-2); }
+    .rc-pt-sm { padding-top: var(--mr-space-4); }
+    .rc-pb-sm { padding-bottom: var(--mr-space-4); }
+    .rc-pt-md { padding-top: var(--mr-space-6); }
+    .rc-pb-md { padding-bottom: var(--mr-space-6); }
+    .rc-pt-lg { padding-top: clamp(var(--mr-space-7), 2rem + 2vw, var(--mr-space-7)); }
+    .rc-pb-lg { padding-bottom: clamp(var(--mr-space-7), 2rem + 2vw, var(--mr-space-7)); }
+    .rc-pt-xl { padding-top: var(--mr-section-y); }
+    .rc-pb-xl { padding-bottom: var(--mr-section-y); }
+
+    .rc-richtext--boxed {
+        background: var(--mr-surface);
+        border: var(--mr-border);
+        border-radius: var(--mr-radius-md);
+    }
+}

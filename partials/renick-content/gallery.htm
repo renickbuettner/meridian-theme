@@ -1,0 +1,58 @@
+{# The plugin bundles GLightbox; it binds .gallery-lightbox anchors inside the block root (class rc-gallery) #}
+{% set variant = (data.variant in ['labels', 'cards']) ? data.variant : 'simple' %}
+
+{% set cols_m = (data.cols_mobile|default('12')) ~ '' %}
+{% set cols_m = (cols_m matches '/^([1-9]|1[0-2])$/') ? cols_m : '12' %}
+{% set cols_t = (data.cols_tablet|default('6')) ~ '' %}
+{% set cols_t = (cols_t matches '/^([1-9]|1[0-2])$/') ? cols_t : '6' %}
+{% set cols_d = (data.cols_desktop|default('4')) ~ '' %}
+{% set cols_d = (cols_d matches '/^([1-9]|1[0-2])$/') ? cols_d : '4' %}
+
+{% set thumb_w = (data.thumb_width|default('420')) ~ '' %}
+{% set thumb_w = (thumb_w matches '/^[1-9]\\d{0,3}$/') ? thumb_w : '420' %}
+{% set thumb_h = (data.thumb_height|default('220')) ~ '' %}
+{% set thumb_h = (thumb_h matches '/^[1-9]\\d{0,3}$/') ? thumb_h : '220' %}
+
+{# The grid follows the gallery's width (40rem and 56rem), not the viewport, so the sizes are estimates the browser refines with "auto" #}
+{% set thumb_ratio = thumb_h / thumb_w %}
+{% set thumb_widths = [thumb_w, (thumb_w * 1.5)|round, thumb_w * 2] %}
+{% set thumb_sizes = 'auto, (min-width: 992px) calc((100vw - 19rem) * ' ~ (cols_d / 12) ~ '), (min-width: 640px) ' ~ (100 * cols_t / 12)|round ~ 'vw, ' ~ (100 * cols_m / 12)|round ~ 'vw' %}
+
+{% set items = data.images is iterable ? data.images : (data.images|default('')|replace({',': "\n"})|split("\n")) %}
+<div {{ attributes|raw }}>
+    <div class="rc-gallery-grid" style="--g-m: {{ cols_m }}; --g-t: {{ cols_t }}; --g-d: {{ cols_d }}">
+        {% for item in items %}
+            {% if item is iterable %}
+                {% set path = (item.image|default(''))|trim %}
+                {% set alt = (item.alt|default(''))|trim %}
+                {% set caption = (item.caption|default(''))|trim %}
+            {% else %}
+                {% set parts = (item ~ '')|split('|', 2) %}
+                {% set path = parts[0]|trim %}
+                {% set alt = parts[1] is defined ? parts[1]|trim : '' %}
+                {% set caption = '' %}
+            {% endif %}
+            {% if alt == '' and data.captions|default('hide') == 'show' %}
+                {% set alt = path|split('/')|last %}
+            {% endif %}
+            {% if path %}
+                {% set full = path|media %}
+                {# When rc_resize degrades to the plain URL the srcsets are empty and the <picture> falls back to the <img> #}
+                {% set thumb = path|rc_resize(thumb_w, thumb_h, {mode: 'crop', extension: 'jpg'}) %}
+                {% set lightbox_title = caption != '' ? caption : alt %}
+                {# The link carries the name, so the thumbnail itself is decorative #}
+                {% set link_label = alt ?: (caption ?: rc_t('block.front.gallery_view_image', {'index': loop.index, 'total': items|length}, locale)) %}
+                {# figure (not div) so the simple variant's <figcaption> stays valid HTML #}
+                <figure class="rc-gallery-item">
+                    <a href="{{ full }}" class="rc-gallery-lightbox gallery-lightbox" data-glightbox="title: {{ lightbox_title }}" aria-label="{{ link_label }}">
+                        {% if variant == 'cards' %}<div class="rc-gallery-card">{% endif %}
+                        {{ rc_partial('_mr-picture', {path: path, widths: thumb_widths, opts: {ratio: thumb_ratio, extension: 'jpg'}, src: thumb, sizes: thumb_sizes, alt: '', cls: 'rc-gallery-thumb', extra: ' width="' ~ thumb_w ~ '" height="' ~ thumb_h ~ '" loading="lazy" fetchpriority="low"'}) }}
+                        {% if variant == 'labels' and alt %}<div class="rc-gallery-label label">{{ alt }}</div>{% endif %}
+                        {% if variant == 'cards' %}{% if alt or caption %}<div class="rc-gallery-card-body">{% if alt %}<div class="rc-gallery-card-title">{{ alt }}</div>{% endif %}{% if caption %}<div class="rc-gallery-card-text">{{ caption }}</div>{% endif %}</div>{% endif %}</div>{% endif %}
+                    </a>
+                    {% if variant == 'simple' and (caption or alt) %}<figcaption>{{ caption != '' ? caption : alt }}</figcaption>{% endif %}
+                </figure>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

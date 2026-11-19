@@ -1,0 +1,68 @@
+url = "/docs/:path?*"
+layout = "default"
+title = "Documentation"
+is_hidden = 0
+
+[section]
+handle = "Meridian\Page"
+==
+function onStart()
+{
+    // Same page entries as page.htm; this template only adds the page tree and the on-this-page nav.
+    $path = trim((string) $this->param('path'), '/');
+    $fullslug = $path === '' ? 'docs' : 'docs/' . $path;
+
+    require_once meridian_path('partials/site/preview.php');
+    $entry = meridian_preview_entry('Meridian\\Page')
+        ?: \Tailor\Models\EntryRecord::inSection('Meridian\\Page')
+            ->applyPublishedStatus()
+            ->where('fullslug', $fullslug)
+            ->first();
+
+    if (!$entry) {
+        $this->setStatusCode(404);
+        return $this->controller->run('404');
+    }
+
+    $this['entry'] = $entry;
+
+    require_once meridian_path('partials/site/page-seo.php');
+    meridian_page_seo($this, $entry, meridian_locale());
+    require_once meridian_path('partials/site/block-css.php');
+    $this['blockCss'] = meridian_block_css($entry->content);
+
+    require_once meridian_path('partials/site/docs.php');
+    $tree = meridian_docs_tree();
+    $this['docsTree'] = $tree;
+    $this['docsNav'] = meridian_docs_neighbours($tree['flat'], (string) $entry->fullslug);
+    $this['docsCurrent'] = (string) $entry->fullslug;
+    $this['docsTocCount'] = meridian_docs_heading_count($entry->content);
+}
+==
+{% put styles %}<link rel="stylesheet" href="{{ ['assets/dist/layout-docs.css']|theme }}">{% endput %}
+{% partial 'site/block-css' css=blockCss %}
+{% if seoBreadcrumbs|length %}{% partial 'site/breadcrumbs' trail=seoBreadcrumbs %}{% endif %}
+<div class="mr-container mr-docs" data-island="docs-toc" data-island-load="eager">
+    {% partial 'docs/tree' tree=docsTree current=docsCurrent %}
+    {% if docsTocCount >= 5 %}
+    <details class="mr-docs__toc mr-docs__toc--inline" data-toc-inline>
+            <summary>{{ 'meridian.front.docs.on_this_page'|_ }}</summary>
+            <nav aria-label="{{ 'meridian.front.docs.on_this_page'|_ }}"><ol class="mr-docs__toc-list" data-toc-list></ol></nav>
+    </details>
+    {% endif %}
+    <article class="mr-docs__article rc-document">
+        {% component 'renickContent' document=entry.content %}
+        {% if docsNav.prev or docsNav.next %}
+            <nav class="mr-docs__pager" aria-label="{{ 'meridian.front.docs.pager'|_ }}">
+                {% if docsNav.prev %}<a class="mr-docs__pager-prev" href="{{ 'page'|page({ path: docsNav.prev.fullslug }) }}" rel="prev"><span>{{ 'meridian.front.docs.previous'|_ }}</span><strong>{{ docsNav.prev.label }}</strong></a>{% endif %}
+                {% if docsNav.next %}<a class="mr-docs__pager-next" href="{{ 'page'|page({ path: docsNav.next.fullslug }) }}" rel="next"><span>{{ 'meridian.front.docs.next'|_ }}</span><strong>{{ docsNav.next.label }}</strong></a>{% endif %}
+            </nav>
+        {% endif %}
+    </article>
+    {% if docsTocCount >= 2 %}
+    <aside class="mr-docs__toc mr-docs__toc--side" aria-label="{{ 'meridian.front.docs.on_this_page'|_ }}">
+        <p class="mr-docs__toc-title" id="mr-docs-toc-title">{{ 'meridian.front.docs.on_this_page'|_ }}</p>
+        <nav aria-labelledby="mr-docs-toc-title"><ol class="mr-docs__toc-list" data-toc-list></ol></nav>
+    </aside>
+    {% endif %}
+</div>

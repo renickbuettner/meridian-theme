@@ -1,0 +1,2046 @@
+[
+  {
+    "id": 500,
+    "title": "Block showcase",
+    "slug": "showcase",
+    "is_enabled": 1,
+    "hide_from_nav": 1,
+    "show_in_footer": 0,
+    "nav_icon": "docs",
+    "meta_title": null,
+    "meta_description": "Every Meridian block with realistic content: layout blocks here, twelve interactive blocks on the pages below.",
+    "schema_type": "CollectionPage",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrsc_500_en01",
+          "type": "hero",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "layout": "centered",
+            "eyebrow": "Block showcase",
+            "title": "Every block,",
+            "title_accent": "ready to try.",
+            "lead": "Meridian ships twelve interactive blocks and a set of layout blocks. Each one below runs with realistic content, so you can click, drag and tab through it.",
+            "primary_label": "Explore maps and work",
+            "primary_url": "october://cms-page@link/page?path=showcase/explore",
+            "secondary_label": "See pricing blocks",
+            "secondary_url": "october://cms-page@link/page?path=showcase/compare",
+            "note": "No sign-up. Nothing leaves your browser.",
+            "highlights": [
+              {
+                "label": "Cookie-free"
+              },
+              {
+                "label": "Hosted in the EU"
+              },
+              {
+                "label": "Under 1 KB script"
+              }
+            ],
+            "image": "",
+            "image_alt": ""
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrsc_500_en15",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "lg",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_500_en13",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "md"
+              },
+              "data": {
+                "html": "<p class=\"mr-eyebrow\">Explore</p><h2>Interactive blocks</h2>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrsc_500_en14",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<ul class=\"mr-link-cards\"><li><a href=\"october://cms-page@link/page?path=showcase/explore\"><strong>Maps, work and product tours</strong><span>Project map, portfolio grid, product hotspots.</span></a></li><li><a href=\"october://cms-page@link/page?path=showcase/compare\"><strong>Pricing, comparisons and answers</strong><span>Pricing calculator, before and after, feature tabs, FAQ.</span></a></li><li><a href=\"october://cms-page@link/page?path=showcase/story\"><strong>Stories, numbers and plans</strong><span>Scroll timeline, stat counters, roadmap board.</span></a></li><li><a href=\"october://cms-page@link/page?path=showcase/guide\"><strong>Guided steps and search</strong><span>Step wizard and command palette.</span></a></li></ul>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_500_en02",
+          "type": "logo-cloud",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "title": "Trusted by independent teams",
+            "logos": [
+              {
+                "image": "meridian/landing/logos/northwind.svg",
+                "name": "Northwind"
+              },
+              {
+                "image": "meridian/landing/logos/fieldnotes.svg",
+                "name": "Fieldnotes"
+              },
+              {
+                "image": "meridian/landing/logos/lumenworks.svg",
+                "name": "Lumenworks"
+              },
+              {
+                "image": "meridian/landing/logos/harborline.svg",
+                "name": "Harborline"
+              },
+              {
+                "image": "meridian/landing/logos/tidewater.svg",
+                "name": "Tidewater"
+              },
+              {
+                "image": "meridian/landing/logos/quillhouse.svg",
+                "name": "Quillhouse"
+              }
+            ]
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrsc_500_en03",
+          "type": "feature-grid",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "anchor": "features",
+            "layout": "cards",
+            "columns": "3",
+            "eyebrow": "Why Tidepool",
+            "title": "Everything you need, nothing you have to explain",
+            "lead": "One calm dashboard replaces the tangle of tags, banners and exports.",
+            "items": [
+              {
+                "icon": "zap",
+                "title": "Loads in a blink",
+                "text": "The tracking script is under 1 KB, so your pages stay as fast as you built them."
+              },
+              {
+                "icon": "shield-check",
+                "title": "Private by design",
+                "text": "No cookies and no personal data, so there is nothing to consent to and nothing to leak."
+              },
+              {
+                "icon": "gauge",
+                "title": "Real-time answers",
+                "text": "See traffic as it happens and compare any two periods in a single click."
+              },
+              {
+                "icon": "route",
+                "title": "Follow the journey",
+                "text": "Understand which pages lead to a signup, without stitching people together."
+              },
+              {
+                "icon": "layers",
+                "title": "Goals and events",
+                "text": "Track downloads, signups and outbound links with one line of markup."
+              },
+              {
+                "icon": "users",
+                "title": "Made for teams",
+                "text": "Share a public dashboard or send a weekly summary to everyone who needs it."
+              }
+            ]
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrsc_500_en17",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_500_en16",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "What customers say",
+                "level": "h2"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrsc_500_en04",
+              "type": "testimonials",
+              "enabled": true,
+              "settings": {
+                "spacing_top": "md"
+              },
+              "data": {
+                "columns": "3",
+                "variant": "cards",
+                "items": [
+                  {
+                    "quote": "We dropped three tools and our pages got a full second faster.",
+                    "author": "Mara Lindqvist",
+                    "role": "Head of Growth, Northwind"
+                  },
+                  {
+                    "quote": "Finally a dashboard I can explain to my team in five minutes.",
+                    "author": "Jonas Weber",
+                    "role": "Founder, Fieldnotes"
+                  },
+                  {
+                    "quote": "No banner, no legal review, no drop in numbers. It just works.",
+                    "author": "Amira Haddad",
+                    "role": "Editor in chief, Harborline"
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_500_en05",
+          "type": "plan-teaser",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "band": "band",
+            "eyebrow": "Pricing",
+            "title": "Simple plans that grow with you",
+            "lead": "Pay for pageviews, not for seats. Every plan includes every feature.",
+            "link_label": "Compare all plans",
+            "link_url": "october://cms-page@link/page?path=pricing",
+            "plans": [
+              {
+                "name": "Starter",
+                "price": "$9",
+                "period": "per month",
+                "text": "For personal sites and side projects.",
+                "features": "10,000 pageviews\n1 site\n6 months of history",
+                "cta_label": "Start free trial",
+                "cta_url": "october://cms-page@link/page?path=pricing"
+              },
+              {
+                "name": "Team",
+                "price": "$29",
+                "period": "per month",
+                "text": "For teams that publish every week.",
+                "features": "100,000 pageviews\n10 sites\nUnlimited history\nWeekly email summary",
+                "featured": true,
+                "cta_label": "Start free trial",
+                "cta_url": "october://cms-page@link/page?path=pricing"
+              },
+              {
+                "name": "Scale",
+                "price": "$79",
+                "period": "per month",
+                "text": "For busy publishers and agencies.",
+                "features": "1 million pageviews\nUnlimited sites\nPriority support",
+                "cta_label": "Talk to us",
+                "cta_url": "october://cms-page@link/page?path=contact"
+              }
+            ]
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrsc_500_en18",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_500_en06",
+              "type": "pricing-plans",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "currency": "EUR",
+                "unit": "per seat",
+                "yearly_note": "Yearly billing saves about 17 percent.",
+                "footnote": "Prices exclude VAT. Cancel any time.",
+                "plans": [
+                  {
+                    "name": "Starter",
+                    "description": "For one site and a curious mind.",
+                    "price_monthly": "0",
+                    "price_yearly": "0",
+                    "features": "1 site\n10,000 pageviews a month\n30 days of history\nCommunity support",
+                    "cta_label": "Start for free",
+                    "cta_url": "october://cms-page@link/page?path=contact",
+                    "featured": false
+                  },
+                  {
+                    "name": "Team",
+                    "badge": "Most popular",
+                    "description": "For teams who share one source of truth.",
+                    "price_monthly": "12",
+                    "price_yearly": "10",
+                    "features": "Unlimited sites\n1 million pageviews a month\n24 months of history\nShared dashboards and alerts\nEmail support within one working day",
+                    "cta_label": "Start 14-day trial",
+                    "cta_url": "october://cms-page@link/page?path=contact",
+                    "featured": true
+                  },
+                  {
+                    "name": "Enterprise",
+                    "description": "For organisations with security and audit needs.",
+                    "price_label": "Custom",
+                    "features": "Everything in Team\nSingle sign-on and audit log\nData residency of your choice\nDedicated success manager\n99.9% uptime agreement",
+                    "cta_label": "Talk to sales",
+                    "cta_url": "october://cms-page@link/page?path=contact",
+                    "featured": false
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_500_en19",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_500_en10",
+              "type": "compare-table",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "title": "Compare plans",
+                "columns": "Starter\nTeam\nEnterprise",
+                "featured_column": 2,
+                "rows": [
+                  {
+                    "group": true,
+                    "label": "Usage"
+                  },
+                  {
+                    "group": false,
+                    "label": "Sites",
+                    "values": "1|Unlimited|Unlimited"
+                  },
+                  {
+                    "group": false,
+                    "label": "Pageviews per month",
+                    "values": "10,000|1 million|Unlimited"
+                  },
+                  {
+                    "group": false,
+                    "label": "History",
+                    "values": "30 days|24 months|Unlimited"
+                  },
+                  {
+                    "group": true,
+                    "label": "Collaboration"
+                  },
+                  {
+                    "group": false,
+                    "label": "Shared dashboards",
+                    "values": "no|yes|yes"
+                  },
+                  {
+                    "group": false,
+                    "label": "Alerts and weekly digests",
+                    "values": "no|yes|yes"
+                  },
+                  {
+                    "group": false,
+                    "label": "Single sign-on",
+                    "values": "no|no|yes"
+                  },
+                  {
+                    "group": true,
+                    "label": "Support"
+                  },
+                  {
+                    "group": false,
+                    "label": "Support channel",
+                    "values": "Community|Email|Dedicated manager"
+                  },
+                  {
+                    "group": false,
+                    "label": "Uptime agreement",
+                    "values": "no|no|99.9%"
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_500_en21",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_500_en20",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Facts and agenda",
+                "level": "h2"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrsc_500_en07",
+              "type": "fact-list",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "variant": "strip",
+                "items": [
+                  {
+                    "label": "Client",
+                    "value": "Harbor Line"
+                  },
+                  {
+                    "label": "Industry",
+                    "value": "Passenger transport"
+                  },
+                  {
+                    "label": "Timeline",
+                    "value": "14 weeks"
+                  },
+                  {
+                    "label": "Services",
+                    "value": "Research, design, build"
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrsc_500_en09",
+              "type": "agenda",
+              "enabled": true,
+              "settings": {"spacing_top": "md"},
+              "data": {
+                "title": "Agenda",
+                "items": [
+                  {
+                    "time": "18:00",
+                    "title": "Welcome and the three metrics",
+                    "speaker": "Jonas Weber",
+                    "text": "What LCP, CLS and INP measure and why they disagree with your gut."
+                  },
+                  {
+                    "time": "18:15",
+                    "title": "Live audit of a real page",
+                    "speaker": "Jonas Weber",
+                    "text": "We open a page nobody has prepared and find what to fix first."
+                  },
+                  {
+                    "time": "18:40",
+                    "title": "Fixes that stick",
+                    "speaker": "With Aino Koskinen",
+                    "text": "Budgets, checks in CI and how to keep a fast site fast."
+                  },
+                  {
+                    "time": "18:50",
+                    "title": "Questions",
+                    "text": "Ask anything; we answer in the order you vote."
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_500_en22",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_500_en08",
+              "type": "event-details",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "name": "Ship faster pages: a live webinar",
+                "description": "A 60-minute live session on measuring and fixing the three metrics that matter.",
+                "status": "scheduled",
+                "start": "2026-12-03 17:00:00",
+                "end": "2026-12-03 18:00:00",
+                "timezone": "Europe/Berlin",
+                "mode": "online",
+                "performer": "Jonas Weber",
+                "price": "",
+                "currency": "EUR",
+                "countdown": "yes"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_500_en23",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_500_en11",
+              "type": "locations",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "title": "Where to find us",
+                "lead": "Two studios, one team. Visits by appointment.",
+                "items": [
+                  {
+                    "name": "Hamburg",
+                    "address": "Speicherstadt 12\n20457 Hamburg\nGermany",
+                    "phone": "+49 40 5550 1234",
+                    "email": "hamburg@meridian.example",
+                    "hours": "Mon–Thu|9:00–17:00\nFri|9:00–13:00",
+                    "map_url": "https://www.openstreetmap.org/?mlat=53.5436&mlon=9.9894#map=16/53.5436/9.9894"
+                  },
+                  {
+                    "name": "Lisbon",
+                    "address": "Rua da Prata 88\n1100-420 Lisboa\nPortugal",
+                    "phone": "+351 21 555 0199",
+                    "email": "lisbon@meridian.example",
+                    "hours": "Mon–Fri|10:00–18:00",
+                    "map_url": "https://www.openstreetmap.org/?mlat=38.7112&mlon=-9.1393#map=16/38.7112/-9.1393"
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_500_en12",
+          "type": "cta-band",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "tone": "accent",
+            "title": "Ready for analytics you can explain?",
+            "text": "Start a free trial today and see your first numbers in under two minutes.",
+            "primary_label": "Start free trial",
+            "primary_url": "october://cms-page@link/page?path=pricing",
+            "secondary_label": "Talk to us",
+            "secondary_url": "october://cms-page@link/page?path=contact",
+            "note": "14 days free. No credit card needed."
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 501,
+    "title": "Maps, work and product tours",
+    "slug": "explore",
+    "is_enabled": 1,
+    "hide_from_nav": 1,
+    "show_in_footer": 0,
+    "nav_icon": "docs",
+    "meta_title": null,
+    "meta_description": "A project map with fourteen pins, a filterable portfolio grid and a product tour with hotspots.",
+    "schema_type": "WebPage",
+    "parent_id": 500,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrsc_501_en03",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "lg",
+            "spacing_bottom": "sm"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_501_en01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Maps, work and product tours",
+                "level": "h1"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrsc_501_en02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Three blocks that turn places, projects and screens into something you can explore.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_501_en05",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "sm",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_501_en04",
+              "type": "project-map",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "eyebrow": "Our global footprint",
+                "title": "Where we build",
+                "intro": "Fourteen projects on five continents. Filter by type, pick a pin and read the story behind it.",
+                "footnote": "Built around people, rooted in place.",
+                "more_url": "october://cms-page@link/page?path=case-studies",
+                "more_label": "Read our case studies",
+                "pins": [
+                  {
+                    "title": "Lisbon Harbor Redevelopment",
+                    "category": "Public",
+                    "location": "Lisbon, Portugal",
+                    "lat": "38.72",
+                    "lon": "-9.14",
+                    "status": "completed",
+                    "year": "2025",
+                    "summary": "A former cargo quay became a car-free promenade with shaded seating, a fish market hall and a ferry stop.",
+                    "image": "meridian/project-map/harbor.jpg",
+                    "image_alt": "Illustrated waterfront skyline at sunset",
+                    "url": "",
+                    "link_label": ""
+                  },
+                  {
+                    "title": "Vancouver Timber Court",
+                    "category": "Residential",
+                    "location": "Vancouver, Canada",
+                    "lat": "49.28",
+                    "lon": "-123.12",
+                    "status": "completed",
+                    "year": "2023",
+                    "summary": "Forty-two homes in cross-laminated timber around a shared courtyard with a community kitchen.",
+                    "image": "meridian/project-map/courtyard.jpg",
+                    "image_alt": "Illustrated courtyard houses",
+                    "url": "",
+                    "link_label": ""
+                  },
+                  {
+                    "title": "Brooklyn Rowhouse Yard",
+                    "category": "Mixed-use",
+                    "location": "New York, USA",
+                    "lat": "40.68",
+                    "lon": "-73.94",
+                    "status": "building",
+                    "year": "2027",
+                    "summary": "Workshops below, apartments above, and a green roof the whole block can use. Construction is underway.",
+                    "image": "meridian/project-map/tower.jpg",
+                    "image_alt": "Illustrated slim tower at dusk",
+                    "url": "",
+                    "link_label": ""
+                  },
+                  {
+                    "title": "Mexico City Garden Block",
+                    "category": "Residential",
+                    "location": "Mexico City, Mexico",
+                    "lat": "19.43",
+                    "lon": "-99.13",
+                    "status": "completed",
+                    "year": "2022",
+                    "summary": "Stepped terraces with planted balconies keep every apartment cool without air conditioning.",
+                    "image": "meridian/project-map/terraces.jpg",
+                    "image_alt": "Illustrated stepped terraces",
+                    "url": "",
+                    "link_label": ""
+                  },
+                  {
+                    "title": "Santiago River Walk",
+                    "category": "Public",
+                    "location": "Santiago, Chile",
+                    "lat": "-33.45",
+                    "lon": "-70.67",
+                    "status": "planned",
+                    "year": "2028",
+                    "summary": "A two-kilometre riverside path with three footbridges, planned with the neighbourhoods on both banks.",
+                    "image": "meridian/project-map/bridge.jpg",
+                    "image_alt": "Illustrated footbridge over a river",
+                    "url": "",
+                    "link_label": ""
+                  },
+                  {
+                    "title": "Berlin Courtyard Houses",
+                    "category": "Residential",
+                    "location": "Berlin, Germany",
+                    "lat": "52.52",
+                    "lon": "13.40",
+                    "status": "completed",
+                    "year": "2024",
+                    "summary": "A quiet infill project that reopened a closed block to the street and added twenty-eight rental homes.",
+                    "image": "meridian/project-map/courtyard.jpg",
+                    "image_alt": "Illustrated courtyard houses",
+                    "url": "",
+                    "link_label": ""
+                  },
+                  {
+                    "title": "Istanbul Bazaar Hall",
+                    "category": "Mixed-use",
+                    "location": "Istanbul, Türkiye",
+                    "lat": "41.01",
+                    "lon": "28.98",
+                    "status": "building",
+                    "year": "2027",
+                    "summary": "A restored market hall with new studios on the upper floors and a covered passage to the old town.",
+                    "image": "meridian/project-map/terraces.jpg",
+                    "image_alt": "Illustrated stepped terraces",
+                    "url": "",
+                    "link_label": ""
+                  },
+                  {
+                    "title": "Nairobi Learning Commons",
+                    "category": "Public",
+                    "location": "Nairobi, Kenya",
+                    "lat": "-1.29",
+                    "lon": "36.82",
+                    "status": "completed",
+                    "year": "2024",
+                    "summary": "A library, classrooms and an open-air reading garden, built from locally fired brick.",
+                    "image": "meridian/project-map/campus.jpg",
+                    "image_alt": "Illustrated low campus buildings",
+                    "url": "",
+                    "link_label": ""
+                  },
+                  {
+                    "title": "Johannesburg Market Terraces",
+                    "category": "Mixed-use",
+                    "location": "Johannesburg, South Africa",
+                    "lat": "-26.20",
+                    "lon": "28.05",
+                    "status": "planned",
+                    "year": "2029",
+                    "summary": "Street stalls, a daycare and forty flats on one stepped site; the design phase starts next spring.",
+                    "image": "meridian/project-map/terraces.jpg",
+                    "image_alt": "Illustrated stepped terraces",
+                    "url": "",
+                    "link_label": ""
+                  },
+                  {
+                    "title": "Singapore Canopy Tower",
+                    "category": "Mixed-use",
+                    "location": "Singapore",
+                    "lat": "1.35",
+                    "lon": "103.82",
+                    "status": "completed",
+                    "year": "2023",
+                    "summary": "A slim tower with sky gardens every five floors and a public ground level that stays open at night.",
+                    "image": "meridian/project-map/tower.jpg",
+                    "image_alt": "Illustrated slim tower at dusk",
+                    "url": "",
+                    "link_label": ""
+                  },
+                  {
+                    "title": "Shanghai Riverside Lofts",
+                    "category": "Residential",
+                    "location": "Shanghai, China",
+                    "lat": "31.23",
+                    "lon": "121.47",
+                    "status": "building",
+                    "year": "2026",
+                    "summary": "Former warehouses turned into lofts, with the brick facade kept and a new rooftop pool house.",
+                    "image": "meridian/project-map/harbor.jpg",
+                    "image_alt": "Illustrated waterfront skyline at sunset",
+                    "url": "",
+                    "link_label": ""
+                  },
+                  {
+                    "title": "Tokyo Quiet Library",
+                    "category": "Public",
+                    "location": "Tokyo, Japan",
+                    "lat": "35.68",
+                    "lon": "139.69",
+                    "status": "completed",
+                    "year": "2025",
+                    "summary": "A neighbourhood library with sound-softening timber ceilings and reading rooms that face a small garden.",
+                    "image": "meridian/project-map/campus.jpg",
+                    "image_alt": "Illustrated low campus buildings",
+                    "url": "",
+                    "link_label": ""
+                  },
+                  {
+                    "title": "Sydney Harbour Steps",
+                    "category": "Mixed-use",
+                    "location": "Sydney, Australia",
+                    "lat": "-33.87",
+                    "lon": "151.21",
+                    "status": "completed",
+                    "year": "2022",
+                    "summary": "A public stair that links the ferry quay with the hill above, lined with cafes and a small gallery.",
+                    "image": "meridian/project-map/bridge.jpg",
+                    "image_alt": "Illustrated footbridge over a river",
+                    "url": "",
+                    "link_label": ""
+                  },
+                  {
+                    "title": "Reykjavik Bath House",
+                    "category": "Public",
+                    "location": "Reykjavik, Iceland",
+                    "lat": "64.15",
+                    "lon": "-21.94",
+                    "status": "completed",
+                    "year": "2024",
+                    "summary": "A geothermal bath house with low, turf-covered volumes that disappear into the shoreline.",
+                    "image": "meridian/project-map/courtyard.jpg",
+                    "image_alt": "Illustrated courtyard houses",
+                    "url": "",
+                    "link_label": ""
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_501_en07",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_501_en06",
+              "type": "portfolio-grid",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "eyebrow": "Portfolio",
+                "title": "Selected work",
+                "intro": "Nine finished projects. The filter reorders the grid without a reload.",
+                "columns": "3",
+                "items": [
+                  {
+                    "title": "Lisbon Harbor Redevelopment",
+                    "category": "Public",
+                    "year": "2025",
+                    "summary": "A former cargo quay became a car-free promenade with shaded seating, a fish market hall and a ferry stop.",
+                    "image": "meridian/project-map/harbor.jpg",
+                    "image_alt": "Illustrated waterfront skyline at sunset",
+                    "url": ""
+                  },
+                  {
+                    "title": "Vancouver Timber Court",
+                    "category": "Residential",
+                    "year": "2023",
+                    "summary": "Forty-two homes in cross-laminated timber around a shared courtyard with a community kitchen.",
+                    "image": "meridian/project-map/courtyard.jpg",
+                    "image_alt": "Illustrated courtyard houses",
+                    "url": ""
+                  },
+                  {
+                    "title": "Mexico City Garden Block",
+                    "category": "Residential",
+                    "year": "2022",
+                    "summary": "Stepped terraces with planted balconies keep every apartment cool without air conditioning.",
+                    "image": "meridian/project-map/terraces.jpg",
+                    "image_alt": "Illustrated stepped terraces",
+                    "url": ""
+                  },
+                  {
+                    "title": "Berlin Courtyard Houses",
+                    "category": "Residential",
+                    "year": "2024",
+                    "summary": "A quiet infill project that reopened a closed block to the street and added twenty-eight rental homes.",
+                    "image": "meridian/project-map/courtyard.jpg",
+                    "image_alt": "Illustrated courtyard houses",
+                    "url": ""
+                  },
+                  {
+                    "title": "Nairobi Learning Commons",
+                    "category": "Public",
+                    "year": "2024",
+                    "summary": "A library, classrooms and an open-air reading garden, built from locally fired brick.",
+                    "image": "meridian/project-map/campus.jpg",
+                    "image_alt": "Illustrated low campus buildings",
+                    "url": ""
+                  },
+                  {
+                    "title": "Singapore Canopy Tower",
+                    "category": "Mixed-use",
+                    "year": "2023",
+                    "summary": "A slim tower with sky gardens every five floors and a public ground level that stays open at night.",
+                    "image": "meridian/project-map/tower.jpg",
+                    "image_alt": "Illustrated slim tower at dusk",
+                    "url": ""
+                  },
+                  {
+                    "title": "Tokyo Quiet Library",
+                    "category": "Public",
+                    "year": "2025",
+                    "summary": "A neighbourhood library with sound-softening timber ceilings and reading rooms that face a small garden.",
+                    "image": "meridian/project-map/campus.jpg",
+                    "image_alt": "Illustrated low campus buildings",
+                    "url": ""
+                  },
+                  {
+                    "title": "Sydney Harbour Steps",
+                    "category": "Mixed-use",
+                    "year": "2022",
+                    "summary": "A public stair that links the ferry quay with the hill above, lined with cafes and a small gallery.",
+                    "image": "meridian/project-map/bridge.jpg",
+                    "image_alt": "Illustrated footbridge over a river",
+                    "url": ""
+                  },
+                  {
+                    "title": "Reykjavik Bath House",
+                    "category": "Public",
+                    "year": "2024",
+                    "summary": "A geothermal bath house with low, turf-covered volumes that disappear into the shoreline.",
+                    "image": "meridian/project-map/courtyard.jpg",
+                    "image_alt": "Illustrated courtyard houses",
+                    "url": ""
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_501_en09",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_501_en08",
+              "type": "product-hotspots",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "eyebrow": "Product tour",
+                "title": "Four details worth a look",
+                "intro": "Select a numbered point to see what it does. Everything works with the keyboard, too.",
+                "image": "meridian/landing/saas-tour.jpg",
+                "image_dark": "meridian/landing/saas-tour-dark.jpg",
+                "image_alt": "The Tidepool dashboard with a trend chart, a page list, a date filter and a share button",
+                "caption": "Tidepool dashboard, weekly view.",
+                "hotspots": [
+                  {
+                    "title": "Weekly trend",
+                    "text": "The chart compares this week with last week and flags the days that moved most.",
+                    "x": "62.29",
+                    "y": "57.9"
+                  },
+                  {
+                    "title": "Top pages",
+                    "text": "Pages are ranked by visitors, with a short note when a page gained or lost a lot of readers.",
+                    "x": "19.62",
+                    "y": "21.76"
+                  },
+                  {
+                    "title": "Date range",
+                    "text": "Pick a day, a week or a custom range. The whole dashboard follows your choice.",
+                    "x": "69.59",
+                    "y": "15.74"
+                  },
+                  {
+                    "title": "Share view",
+                    "text": "Send a read-only link to a colleague. No account needed to open it.",
+                    "x": "52.67",
+                    "y": "88.77",
+                    "url": "october://cms-page@link/page?path=docs/getting-started",
+                    "link_label": "Read the guide"
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 502,
+    "title": "Pricing, comparisons and answers",
+    "slug": "compare",
+    "is_enabled": 1,
+    "hide_from_nav": 1,
+    "show_in_footer": 0,
+    "nav_icon": "docs",
+    "meta_title": null,
+    "meta_description": "A live pricing calculator, a before and after slider, feature tabs and a searchable FAQ.",
+    "schema_type": "WebPage",
+    "parent_id": 500,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrsc_502_en03",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "lg",
+            "spacing_bottom": "sm"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_502_en01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Pricing, comparisons and answers",
+                "level": "h1"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrsc_502_en02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">Four blocks that help visitors decide: a live price, a visual comparison, feature tabs and an FAQ.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_502_en05",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "sm",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_502_en04",
+              "type": "pricing-calculator",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "title": "Estimate your price",
+                "intro": "Move the sliders to match your team and contract length. The price per seat drops as the team grows.",
+                "product_name": "Tidepool Analytics",
+                "currency": "EUR",
+                "yearly_discount": 20,
+                "seats_min": 1,
+                "seats_max": 100,
+                "seats_default": 12,
+                "term_max": 36,
+                "term_default": 12,
+                "tiers": [
+                  {
+                    "name": "Starter",
+                    "seats_up_to": 5,
+                    "unit_price": "9",
+                    "features": "1 site\n10,000 pageviews a month\n30 days of history\nCommunity support",
+                    "cta_label": "Start free",
+                    "cta_url": "october://cms-page@link/page?path=contact"
+                  },
+                  {
+                    "name": "Team",
+                    "seats_up_to": 25,
+                    "unit_price": "7",
+                    "features": "Unlimited sites\n1 million pageviews a month\n24 months of history\nShared dashboards and alerts",
+                    "cta_label": "Start 14-day trial",
+                    "cta_url": "october://cms-page@link/page?path=contact"
+                  },
+                  {
+                    "name": "Scale",
+                    "seats_up_to": 0,
+                    "unit_price": "5",
+                    "features": "Everything in Team\nSingle sign-on and audit log\nData residency of your choice\nDedicated success manager",
+                    "cta_label": "Talk to sales",
+                    "cta_url": "october://cms-page@link/page?path=contact"
+                  }
+                ],
+                "eyebrow": "Estimate"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_502_en07",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_502_en20",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "md"
+              },
+              "data": {
+                "html": "<p class=\"mr-eyebrow\">Compare</p><h2>See the redesign</h2>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrsc_502_en06",
+              "type": "before-after",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "tint": true,
+                "before_image": "meridian/showcase/redesign-before.jpg",
+                "before_image_dark": "meridian/showcase/redesign-before-dark.jpg",
+                "before_alt": "A crowded web page in clashing colours, with seven menu items, banners and a pop-up badge",
+                "before_label": "Before",
+                "after_image": "meridian/showcase/redesign-after.jpg",
+                "after_image_dark": "meridian/showcase/redesign-after-dark.jpg",
+                "after_alt": "The same page after the redesign: one headline, one button and three calm cards",
+                "after_label": "After",
+                "start": "50",
+                "caption": "Harbor Line homepage before and after the redesign, simplified."
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_502_en09",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_502_en08",
+              "type": "feature-tabs",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "eyebrow": "Features",
+                "title": "One workspace, four jobs",
+                "lead": "Switch between the tabs, or link straight to one with a hash such as #seo.",
+                "layout": "image_end",
+                "tint": true,
+                "items": [
+                  {
+                    "label": "Editor",
+                    "key": "editor",
+                    "icon": "pencil",
+                    "text": "Write in blocks, see the page as visitors will, and publish when you are ready. Drafts autosave every few seconds.",
+                    "image": "meridian/showcase/tab-editor.jpg",
+                    "image_alt": "A page editor with a block list on the left and a preview on the right",
+                    "link_label": "Read the editor guide",
+                    "link_url": "october://cms-page@link/page?path=docs/getting-started"
+                  },
+                  {
+                    "label": "SEO",
+                    "key": "seo",
+                    "icon": "search",
+                    "text": "Titles, descriptions, canonical links and structured data are generated from the fields you already fill in.",
+                    "image": "meridian/showcase/tab-seo.jpg",
+                    "image_alt": "A search result preview next to a checklist and a JSON-LD snippet"
+                  },
+                  {
+                    "label": "Speed",
+                    "key": "speed",
+                    "icon": "zap",
+                    "text": "Critical styles are inlined, images ship in modern formats and scripts load only where a page needs them.",
+                    "image": "meridian/showcase/tab-speed.jpg",
+                    "image_alt": "A speed gauge showing 1.2 seconds next to three small metrics"
+                  },
+                  {
+                    "label": "Access",
+                    "key": "access",
+                    "icon": "shield-check",
+                    "text": "Every component is keyboard operable and checked for contrast, so more people can read and use what you publish.",
+                    "image": "meridian/showcase/tab-access.jpg",
+                    "image_alt": "A page with a focused button, a checklist and a large AA badge"
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_502_en11",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_502_en10",
+              "type": "faq-accordion",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "eyebrow": "FAQ",
+                "title": "Questions we hear a lot",
+                "lead": "Short answers, with the full details in the documentation.",
+                "behavior": "multiple",
+                "first_open": "yes",
+                "search": "yes",
+                "markup": "yes",
+                "items": [
+                  {
+                    "question": "Can I change plans later?",
+                    "answer": "Yes. Upgrades apply immediately and are prorated; downgrades take effect at the end of the billing period."
+                  },
+                  {
+                    "question": "What counts as a pageview?",
+                    "answer": "Every page load that reaches your site, including each page change in a single-page app. Bots and your own visits are filtered out."
+                  },
+                  {
+                    "question": "Do I need a cookie banner?",
+                    "answer": "No. Tidepool sets no cookies and stores no personal data, so there is nothing visitors need to consent to."
+                  },
+                  {
+                    "question": "Where is my data stored?",
+                    "answer": "In data centres in Frankfurt and Amsterdam. Enterprise customers can choose a single region."
+                  },
+                  {
+                    "question": "Can I export my data?",
+                    "answer": "Yes. Every report downloads as CSV, and the full raw data is available as a daily export."
+                  },
+                  {
+                    "question": "Is there a discount for non-profits?",
+                    "answer": "Registered non-profits and open-source projects get the Team plan at half price. Write to us with a link to your organisation."
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 503,
+    "title": "Stories, numbers and plans",
+    "slug": "story",
+    "is_enabled": 1,
+    "hide_from_nav": 1,
+    "show_in_footer": 0,
+    "nav_icon": "docs",
+    "meta_title": null,
+    "meta_description": "A scroll timeline with six milestones, animated stat counters and a roadmap board.",
+    "schema_type": "WebPage",
+    "parent_id": 500,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrsc_503_en03",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "lg",
+            "spacing_bottom": "sm"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_503_en01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Stories, numbers and plans",
+                "level": "h1"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrsc_503_en02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">A timeline, animated figures and a roadmap board: three ways to show progress.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_503_en05",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "sm",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_503_en04",
+              "type": "scroll-timeline",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "title": "How Tidepool grew",
+                "intro": "Seven years, six steps. Scroll to follow the line.",
+                "items": [
+                  {
+                    "meta": "2019",
+                    "title": "A weekend prototype",
+                    "text": "Two founders build the first dashboard over a weekend and put it on a single customer site."
+                  },
+                  {
+                    "meta": "2020",
+                    "title": "First paying customers",
+                    "text": "Thirty publishers switch from cookie-based tools and ask for weekly digests."
+                  },
+                  {
+                    "meta": "2022",
+                    "title": "Privacy audit",
+                    "text": "An independent audit confirms that no personal data leaves the visitor's browser."
+                  },
+                  {
+                    "meta": "2023",
+                    "title": "Teams and shared dashboards",
+                    "text": "Dashboards become shareable, with roles for editors and read-only guests."
+                  },
+                  {
+                    "meta": "2025",
+                    "title": "Open data export",
+                    "text": "Every report gets a CSV download and a daily raw export, so your numbers stay yours."
+                  },
+                  {
+                    "meta": "2026",
+                    "title": "Ten thousand sites",
+                    "text": "Tidepool counts its ten-thousandth site, still with a script under one kilobyte."
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_503_en07",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_503_en06",
+              "type": "stat-counters",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "title": "Our year in figures",
+                "intro": "Rounded, and counted up as you scroll.",
+                "items": [
+                  {
+                    "value": "4800",
+                    "prefix": "",
+                    "suffix": "+",
+                    "label": "Active teams",
+                    "note": ""
+                  },
+                  {
+                    "value": "99.9",
+                    "prefix": "",
+                    "suffix": "%",
+                    "label": "Uptime",
+                    "note": ""
+                  },
+                  {
+                    "value": "0.9",
+                    "prefix": "",
+                    "suffix": " KB gzip",
+                    "label": "Script size",
+                    "note": ""
+                  },
+                  {
+                    "value": "3.4",
+                    "prefix": "€",
+                    "suffix": "M",
+                    "label": "Annual revenue",
+                    "note": ""
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_503_en09",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_503_en08",
+              "type": "roadmap-board",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "eyebrow": "Roadmap",
+                "title": "What we are building next",
+                "intro": "Where we are heading, what is underway and what has shipped. Filter by topic.",
+                "cards": [
+                  {
+                    "title": "Inline comments on drafts",
+                    "status": "planned",
+                    "topic": "Editor",
+                    "when": "Q1 2027",
+                    "text": "Reviewers leave notes on a single block without leaving the editor.",
+                    "url": ""
+                  },
+                  {
+                    "title": "Image CDN presets",
+                    "status": "planned",
+                    "topic": "Performance",
+                    "when": "Q1 2027",
+                    "text": "Named crops and formats you pick once and reuse everywhere.",
+                    "url": ""
+                  },
+                  {
+                    "title": "Accessibility checker panel",
+                    "status": "planned",
+                    "topic": "Accessibility",
+                    "when": "Q2 2027",
+                    "text": "A live list of contrast, heading and alt text problems per page.",
+                    "url": ""
+                  },
+                  {
+                    "title": "Block versions",
+                    "status": "progress",
+                    "topic": "Editor",
+                    "when": "Q4 2026",
+                    "text": "Restore any earlier state of a single block, not only the whole page.",
+                    "url": ""
+                  },
+                  {
+                    "title": "Critical CSS per page type",
+                    "status": "progress",
+                    "topic": "Performance",
+                    "when": "Q4 2026",
+                    "text": "Faster first paint through styles inlined for the page being shown.",
+                    "url": ""
+                  },
+                  {
+                    "title": "Multi-site search index",
+                    "status": "progress",
+                    "topic": "Search",
+                    "when": "Q4 2026",
+                    "text": "One command palette that finds pages across every language of a site.",
+                    "url": ""
+                  },
+                  {
+                    "title": "Keyboard-operable sliders",
+                    "status": "done",
+                    "topic": "Accessibility",
+                    "when": "Q3 2026",
+                    "text": "Every slider and tab list now works with the arrow keys.",
+                    "url": ""
+                  },
+                  {
+                    "title": "Linked translations",
+                    "status": "done",
+                    "topic": "Editor",
+                    "when": "Q3 2026",
+                    "text": "Translations stay linked across sites and offer a clean language switch.",
+                    "url": ""
+                  },
+                  {
+                    "title": "Responsive AVIF and WebP",
+                    "status": "done",
+                    "topic": "Performance",
+                    "when": "Q2 2026",
+                    "text": "Every image ships in modern formats with explicit dimensions.",
+                    "url": ""
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 504,
+    "title": "Guided steps and search",
+    "slug": "guide",
+    "is_enabled": 1,
+    "hide_from_nav": 1,
+    "show_in_footer": 0,
+    "nav_icon": "docs",
+    "meta_title": null,
+    "meta_description": "A four-question quiz with a recommendation and a command palette over every page.",
+    "schema_type": "WebPage",
+    "parent_id": 500,
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrsc_504_en03",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "lg",
+            "spacing_bottom": "sm"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_504_en01",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Guided steps and search",
+                "level": "h1"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrsc_504_en02",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">A short quiz that ends in a recommendation, and a search palette that knows every page.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_504_en05",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "sm",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_504_en04",
+              "type": "step-wizard",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "eyebrow": "Quick quiz",
+                "title": "Which plan fits your team?",
+                "intro": "Four questions, one recommendation. Your answers stay with us only if you send the form.",
+                "form_name": "Plan quiz",
+                "questions": [
+                  {
+                    "question": "How many people will use it?",
+                    "hint": "A rough number is fine.",
+                    "kind": "single",
+                    "required": true,
+                    "options": "Just me | starter\n2 to 10 people | team\nMore than 10 | scale"
+                  },
+                  {
+                    "question": "What matters most to you?",
+                    "hint": "",
+                    "kind": "single",
+                    "required": true,
+                    "options": "Getting started fast | starter\nWorking together | team\nControl and compliance | scale"
+                  },
+                  {
+                    "question": "Which extras do you want?",
+                    "hint": "Pick as many as you like.",
+                    "kind": "multiple",
+                    "required": false,
+                    "options": "Custom domain | team\nSingle sign-on | scale\nPriority support | scale\nAnalytics | team"
+                  },
+                  {
+                    "question": "Anything we should know?",
+                    "hint": "",
+                    "kind": "text",
+                    "required": false,
+                    "options": ""
+                  }
+                ],
+                "results": [
+                  {
+                    "key": "starter",
+                    "title": "Starter fits you",
+                    "text": "One workspace, all the basics, free to try. Upgrade whenever your team grows.",
+                    "cta_label": "See the plans",
+                    "cta_url": "october://cms-page@link/page?path=pricing"
+                  },
+                  {
+                    "key": "team",
+                    "title": "Team is your match",
+                    "text": "Shared projects, roles and a custom domain for groups of up to ten.",
+                    "cta_label": "See the plans",
+                    "cta_url": "october://cms-page@link/page?path=pricing"
+                  },
+                  {
+                    "key": "scale",
+                    "title": "Scale is built for you",
+                    "text": "Single sign-on, audit trail and priority support for larger organisations.",
+                    "cta_label": "See the plans",
+                    "cta_url": "october://cms-page@link/page?path=pricing"
+                  }
+                ],
+                "lead_title": "Where should we send your result?",
+                "lead_intro": "Leave your details and we will follow up with a tailored offer.",
+                "ask_message": true,
+                "privacy_label": "",
+                "submit_label": "Send my result",
+                "success_message": "Thank you. Your answers are on their way to us, and we will reply within one working day."
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrsc_504_en07",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrsc_504_en06",
+              "type": "command-palette",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "eyebrow": "Search",
+                "title": "Jump to any page or post",
+                "lead": "Type a few letters, use the arrow keys and press Enter. Ctrl+K opens the same palette anywhere on the site.",
+                "placeholder": "Search pages and posts…",
+                "scope": "all"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

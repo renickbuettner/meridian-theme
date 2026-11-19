@@ -1,0 +1,48 @@
+handle: roadmap-board
+name: meridian.block.roadmap-board.name
+icon: icon-columns
+group: Meridian
+version: 1
+settings: true
+fields:
+  eyebrow:
+    label: meridian.block.roadmap-board.eyebrow
+    type: text
+  title:
+    label: meridian.block.roadmap-board.title
+    type: text
+  intro:
+    label: meridian.block.roadmap-board.intro
+    type: textarea
+    size: small
+  cards:
+    label: meridian.block.roadmap-board.cards
+    type: repeater
+    titleFrom: title
+    fields:
+      title:
+        label: meridian.block.roadmap-board.cards_title
+        type: text
+      status:
+        label: meridian.block.roadmap-board.cards_status
+        type: dropdown
+        default: planned
+        options:
+          planned: meridian.block.roadmap-board.cards_status_planned
+          progress: meridian.block.roadmap-board.cards_status_progress
+          done: meridian.block.roadmap-board.cards_status_done
+      topic:
+        label: meridian.block.roadmap-board.cards_topic
+        type: text
+        commentAbove: meridian.block.roadmap-board.cards_topic_comment
+      when:
+        label: meridian.block.roadmap-board.cards_when
+        type: text
+        commentAbove: meridian.block.roadmap-board.cards_when_comment
+      text:
+        label: meridian.block.roadmap-board.cards_text
+        type: textarea
+        size: small
+      url:
+        label: meridian.block.roadmap-board.cards_url
+        type: text

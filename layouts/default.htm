@@ -1,0 +1,35 @@
+description = "Default: sidebar frame, SEO head, Renick.Content assets"
+
+[renickContent]
+includeAssets = 0
+==
+function onStart()
+{
+    $meridianTheme = $this->controller->getTheme();
+    while ($parentTheme = $meridianTheme->getParentTheme()) {
+        $meridianTheme = $parentTheme;
+    }
+    require_once $meridianTheme->getPath() . '/partials/site/paths.php';
+    meridian_layout_boot($this, $meridianTheme);
+}
+==
+<!DOCTYPE html>
+<html lang="{{ this.site.locale|default('en') }}" {% partial 'site/html-attrs' %}>
+<head>
+    {% partial 'site/head' %}
+    {% styles %}
+</head>
+<body>
+    <a class="mr-skip" href="#main">{{ 'meridian.front.common.skip_to_content'|_ }}</a>
+    <div class="mr-app" data-sidebar="{{ meridianLook.sidebar }}" data-sidebar-pos="{{ meridianLook.position }}">
+        {% partial 'site/sidebar' %}
+        <div class="mr-main-wrap">
+            <main id="main" tabindex="-1">
+                {% page %}
+            </main>
+            {% partial 'site/footer' %}
+        </div>
+    </div>
+    {% partial 'site/body-end' %}
+</body>
+</html>

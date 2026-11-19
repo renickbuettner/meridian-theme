@@ -1,0 +1,24 @@
+{# Plugin form on Meridian's recipes. Keep data-rc-form, .rc-form-submit, .rc-form-error/-success and [data-rc-captcha]: the plugin's forms.js binds to them. #}
+<div {{ attributes|raw }}>
+    <form class="rc-form-el mr-form" data-rc-form data-endpoint="/renick-content/form" novalidate>
+        {% if preview and rc_form_recipient_missing() %}<p class="rc-form-preview-note mr-hint" data-rc-recipient-missing>{{ rc_t('block.front.form_preview_no_recipient', {}, locale) }}</p>{% endif %}
+        <div class="rc-form-success" role="status" aria-live="polite">
+            {{ data.success_message|default(rc_t('block.front.form_success', {}, locale))|nl2br }}
+        </div>
+        <div class="rc-form-error" role="alert" hidden></div>
+        <div class="rc-form-fields">
+            <input type="hidden" name="_form" value="{{ data.form_name|default('Contact') }}">
+            <div class="rc-form-hp" aria-hidden="true">
+                <label>{{ rc_t('block.front.form_honeypot', {}, locale) }}
+                    <input type="text" name="website" tabindex="-1" autocomplete="off">
+                </label>
+            </div>
+            <p class="mr-form__hint">{{ rc_t('meridian.block.form.ui_required_hint') }}</p>
+            <div class="mr-form__fields">{{ children|default('')|raw }}</div>
+            <div class="rc-form-captcha" data-rc-captcha
+                 data-captcha-label="{{ rc_t('block.front.form_captcha_label', {}, locale) }}"
+                 data-captcha-error="{{ rc_t('block.front.form_captcha_error', {}, locale) }}"></div>
+            <button type="submit" class="mr-btn mr-btn--lg rc-form-submit">{{ data.submit_label|default(rc_t('block.front.form_submit', {}, locale)) }}</button>
+        </div>
+    </form>
+</div>

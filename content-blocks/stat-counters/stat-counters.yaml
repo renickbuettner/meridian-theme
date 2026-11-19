@@ -1,0 +1,36 @@
+handle: stat-counters
+name: meridian.block.stat-counters.name
+icon: icon-bar-chart
+group: Meridian
+version: 1
+settings: true
+fields:
+  title:
+    label: meridian.block.stat-counters.title
+    type: text
+  intro:
+    label: meridian.block.stat-counters.intro
+    type: textarea
+    size: small
+  items:
+    label: meridian.block.stat-counters.items
+    type: repeater
+    titleFrom: label
+    fields:
+      value:
+        label: meridian.block.stat-counters.item_value
+        type: text
+        commentAbove: meridian.block.stat-counters.item_value_comment
+      prefix:
+        label: meridian.block.stat-counters.item_prefix
+        type: text
+      suffix:
+        label: meridian.block.stat-counters.item_suffix
+        type: text
+        commentAbove: meridian.block.stat-counters.item_suffix_comment
+      label:
+        label: meridian.block.stat-counters.item_label
+        type: text
+      note:
+        label: meridian.block.stat-counters.item_note
+        type: text

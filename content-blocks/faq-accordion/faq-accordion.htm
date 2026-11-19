@@ -1,0 +1,41 @@
+{# Native details/summary; `name` makes the group exclusive without JS. The island only exists for the optional search filter. #}
+{% set uid = 'faq-' ~ (blockId ?: random(100000000)) %}
+{% set items = data.items|default([])|filter(i => i.question|default('') and i.answer|default('')) %}
+{% set single = data.behavior|default('multiple') == 'single' %}
+{% set firstOpen = data.first_open|default('no') == 'yes' %}
+{% set search = data.search|default('no') == 'yes' and items|length > 3 %}
+{% set hl = data.title ? 'h3' : 'h2' %}
+{% if items|length %}
+<section {{ attributes|replace({'class="': 'class="mr-faq '})|raw }}{% if search %} data-island="faq-accordion" data-island-load="visible" data-msg-results="{{ rc_t('meridian.block.faq-accordion.ui_results', {count: ':count'}) }}" data-msg-none="{{ rc_t('meridian.block.faq-accordion.ui_no_results') }}"{% endif %}>
+    {% if data.eyebrow or data.title or data.lead %}
+        <header class="mr-faq__head">
+            {% if data.eyebrow %}<p class="mr-eyebrow">{{ data.eyebrow }}</p>{% endif %}
+            {% if data.title %}<h2 class="mr-faq__title">{{ data.title }}</h2>{% endif %}
+            {% if data.lead %}<p class="mr-lead">{{ data.lead|nl2br }}</p>{% endif %}
+        </header>
+    {% endif %}
+    {% if search %}
+        <div class="mr-faq__search mr-js-only mr-field">
+            <label class="mr-label" for="{{ uid }}-q">{{ rc_t('meridian.block.faq-accordion.ui_search_label') }}</label>
+            <input class="mr-input" type="search" id="{{ uid }}-q" autocomplete="off" enterkeyhint="search" placeholder="{{ rc_t('meridian.block.faq-accordion.ui_search_placeholder') }}" aria-describedby="{{ uid }}-status">
+            <p class="mr-faq__status" id="{{ uid }}-status" role="status" aria-live="polite"></p>
+        </div>
+    {% endif %}
+    <div class="mr-faq__list">
+        {% for item in items %}
+            <details class="mr-faq__item"{% if single %} name="{{ uid }}"{% endif %}{% if firstOpen and loop.first %} open{% endif %}>
+                <summary class="mr-faq__summary"><{{ hl }} class="mr-faq__q">{{ item.question }}</{{ hl }}></summary>
+                <div class="mr-faq__a">{% for para in item.answer|split("\n\n")|filter(q => q|trim) %}<p>{{ para|nl2br }}</p>{% endfor %}</div>
+            </details>
+        {% endfor %}
+    </div>
+    {% if data.markup|default('yes') != 'no' %}
+        {% set ldFlags = constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE') b-or constant('JSON_HEX_TAG') b-or constant('JSON_HEX_AMP') %}
+        {% set entities = [] %}
+        {% for item in items %}
+            {% set entities = entities|merge([{'@type': 'Question', 'name': item.question, 'acceptedAnswer': {'@type': 'Answer', 'text': item.answer|trim}}]) %}
+        {% endfor %}
+        <script type="application/ld+json">{{ {'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': entities}|json_encode(ldFlags)|raw }}</script>
+    {% endif %}
+</section>
+{% endif %}

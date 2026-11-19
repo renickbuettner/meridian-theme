@@ -1,0 +1,107 @@
+@use "../mr";
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html:root {
+    scrollbar-gutter: auto;
+    scroll-padding-block-start: calc(var(--mr-topbar-h) + var(--mr-space-4));
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--mr-bg);
+    color: var(--mr-ink);
+    font-family: var(--mr-font-sans);
+    font-size: var(--mr-text-base);
+    line-height: var(--mr-leading-body);
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--mr-font-serif);
+    font-weight: 500;
+    line-height: var(--mr-leading-tight);
+    letter-spacing: -0.015em;
+    word-spacing: 0.06em;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    margin-block: 0 var(--mr-space-4);
+}
+
+h1 { font-size: var(--mr-text-h1); letter-spacing: -0.02em; }
+h2 { font-size: var(--mr-text-h2); }
+h3 { font-size: var(--mr-text-h3); letter-spacing: 0; }
+h4 { font-size: var(--mr-text-h4); letter-spacing: 0; }
+h5, h6 { font-size: var(--mr-text-base); font-family: var(--mr-font-sans); font-weight: 600; letter-spacing: 0; }
+
+p, li, dd, blockquote, figcaption {
+    overflow-wrap: break-word;
+}
+
+// Only long compound words (German) hyphenate, and only where the column is narrow; short words such as "Layout" never break.
+:lang(de), :lang(es) {
+    h1, h2, h3, h4, h5, h6, p, li, dd, blockquote, figcaption { hyphens: auto; hyphenate-limit-chars: 12 5 5; }
+    h1, h2, h3, h4, h5, h6 { hyphens: manual; text-wrap: balance; }
+    // A compound longer than 18 letters is the only h1 word that hyphenates: it would otherwise break mid-word without a hyphen.
+    h1 { hyphens: auto; hyphenate-limit-chars: 18 6 6; }
+    @include mr.down(md) {
+        p, li, dd, blockquote, figcaption { hyphens: auto; hyphenate-limit-chars: 10 5 4; }
+    }
+    // The italic accent phrase of a display headline wraps as a whole, never mid-word.
+    h1 em, h2 em { hyphens: manual; }
+}
+
+p { margin-block: 0 var(--mr-space-4); text-wrap: pretty; }
+
+// In a narrow column balance and pretty shorten lines early and leave width unused: fill the line, then break.
+@include mr.down(md) {
+    h1, h2, h3, h4, h5, h6, p, li, dd, blockquote { text-wrap: wrap; }
+    figcaption, cite { text-wrap: balance; }
+}
+
+a { color: var(--mr-accent); text-underline-offset: 0.2em; }
+a:hover { color: var(--mr-accent-hover); }
+
+img, svg, video, canvas { max-width: 100%; }
+img, video { height: auto; }
+
+:focus-visible {
+    outline: 3px solid var(--mr-focus);
+    outline-offset: 2px;
+    border-radius: var(--mr-radius-sm);
+}
+
+:focus:not(:focus-visible) { outline: none; }
+
+[hidden] { display: none !important; }
+
+::selection { background: var(--mr-accent); color: var(--mr-on-accent); }
+
+@include mr.reduced-motion {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.visually-hidden:not(:focus):not(:active) {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}

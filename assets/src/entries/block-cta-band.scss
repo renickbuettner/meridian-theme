@@ -1,0 +1,45 @@
+@use "../mr";
+@use "../landing/parts";
+
+@include parts.anchor-offset;
+
+// Keyed to the container (the sidebar eats 15rem of the viewport). Stacked: text, then buttons. Wide: text left, buttons right.
+.mr-cta-band .mr-container { container-type: inline-size; }
+.mr-cta-band__panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--mr-space-5);
+    align-items: center;
+    padding: var(--mr-space-6) var(--mr-gutter);
+    border-radius: var(--mr-radius-lg);
+}
+.mr-cta-band__text { min-width: 0; overflow-wrap: break-word; }
+// Equal-width buttons in one row, left-aligned; fit-content makes the grid as wide as its widest button times the count.
+.mr-cta-band__actions { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: var(--mr-space-3); inline-size: fit-content; max-inline-size: 100%; margin: 0; }
+.mr-cta-band__actions .mr-btn { padding-inline: var(--mr-space-5); justify-content: center; white-space: nowrap; overflow-wrap: normal; text-align: center; }
+@container (max-width: 36rem) {
+    .mr-cta-band__actions { grid-auto-flow: row; }
+}
+@container (max-width: 24rem) {
+    .mr-cta-band__actions .mr-btn { white-space: normal; }
+}
+.mr-cta-band__text h2 { margin: 0; }
+.mr-cta-band__lead { margin: var(--mr-space-3) 0 0; font-size: var(--mr-text-lg); max-width: var(--mr-w-prose); }
+.mr-cta-band__note { margin: var(--mr-space-3) 0 0; font-size: var(--mr-text-sm); }
+
+.mr-cta-band--soft .mr-cta-band__panel { background: var(--mr-accent-soft); border: var(--mr-border); }
+.mr-cta-band--soft .mr-cta-band__note { color: var(--mr-muted); }
+
+// Accent tone: text and buttons flip to the on-accent colour so contrast follows the scheme.
+.mr-cta-band--accent .mr-cta-band__panel { background: var(--mr-accent); color: var(--mr-on-accent); }
+.mr-cta-band--accent .mr-cta-band__text h2 { color: inherit; }
+.mr-cta-band--accent .mr-cta-band__primary { background: var(--mr-on-accent); border-color: var(--mr-on-accent); color: var(--mr-accent); }
+.mr-cta-band--accent .mr-cta-band__primary:hover { background: color-mix(in oklab, var(--mr-on-accent) 88%, var(--mr-accent)); color: var(--mr-accent); }
+.mr-cta-band--accent .mr-cta-band__secondary { border-color: var(--mr-on-accent); color: var(--mr-on-accent); }
+.mr-cta-band--accent .mr-cta-band__secondary:hover { background: color-mix(in oklab, var(--mr-on-accent) 16%, transparent); color: var(--mr-on-accent); }
+.mr-cta-band--accent .mr-btn:focus-visible { outline-color: var(--mr-on-accent); }
+
+@container (min-width: 70rem) {
+    .mr-cta-band__panel { grid-template-columns: minmax(0, 1fr) auto; gap: var(--mr-space-7); padding: var(--mr-space-7) var(--mr-space-8); }
+    .mr-cta-band__actions { grid-auto-flow: row; flex-shrink: 0; min-inline-size: max-content; }
+}

@@ -1,0 +1,43 @@
+{% set layout = data.layout|default('editorial') in ['editorial', 'split', 'centered'] ? data.layout|default('editorial') : 'editorial' %}
+{% set hasImage = data.image|default('') != '' %}
+{% set url1 = data.primary_url|rc_url %}
+{% set url2 = data.secondary_url|rc_url %}
+{% set highlights = (data.highlights|default([]))|filter(h => h.label|default('')) %}
+{% set split = layout == 'split' and hasImage %}
+<section {{ attributes|replace({'class="': 'class="mr-hero mr-hero--' ~ layout ~ (split ? ' mr-hero--media' : '') ~ ' '})|raw }}>
+    <div class="mr-container">
+        <div class="mr-hero__grid">
+            <div class="mr-hero__text">
+                {% if data.eyebrow %}<p class="mr-eyebrow">{{ data.eyebrow }}</p>{% endif %}
+                {% if data.title or data.title_accent %}
+                    <h1 class="mr-hero__title">{{ data.title }}{% if data.title_accent %} <em>{{ data.title_accent }}</em>{% endif %}</h1>
+                {% endif %}
+                {% if data.lead %}<p class="mr-lead mr-hero__lead">{{ data.lead|nl2br }}</p>{% endif %}
+                {% if (data.primary_label and url1) or (data.secondary_label and url2) %}
+                    <div class="mr-cluster mr-hero__actions">
+                        {% if data.primary_label and url1 %}<a class="mr-btn mr-btn--lg" href="{{ url1 }}">{{ data.primary_label }}{{ rc_icon('arrow-right', 18)|raw }}</a>{% endif %}
+                        {% if data.secondary_label and url2 %}<a class="mr-btn mr-btn--ghost mr-btn--lg" href="{{ url2 }}">{{ data.secondary_label }}</a>{% endif %}
+                    </div>
+                {% endif %}
+                {% if data.note %}<p class="mr-hero__note">{{ data.note }}</p>{% endif %}
+                {% if highlights|length %}
+                    <ul class="mr-hero__highlights">
+                        {% for item in highlights %}<li>{{ item.label }}</li>{% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            {% if hasImage %}
+                {% set opts = {mode: 'crop', quality: 70, ratio: 0.8} %}
+                {% set sizes = split ? '(min-width: 1280px) 34rem, (min-width: 992px) 40vw, 100vw' : '(min-width: 1280px) 72rem, 100vw' %}
+                {% set hasDark = data.image_dark|default('') != '' %}
+                <figure class="mr-hero__media{{ hasDark ? ' mr-hero__media--art' : '' }}">
+                    {% for variant in (hasDark ? ['light', 'dark'] : ['light']) %}
+                    {% set vpath = variant == 'dark' ? data.image_dark : data.image %}
+                    {{ rc_partial('_mr-picture', {path: vpath, widths: [480, 800, 1120], opts: split ? opts : opts|merge({ratio: 0.4}), src: vpath|rc_resize(1120, split ? 896 : 448, split ? opts : opts|merge({ratio: 0.4})), sizes: sizes, alt: variant == 'dark' ? '' : data.image_alt|default(''), cls: hasDark ? 'mr-hero__art mr-hero__art--' ~ variant : '',
+                        extra: (priority|default(false) and variant == 'light' ? ' fetchpriority="high" decoding="async"' : ' loading="lazy" decoding="async"') ~ ' width="1120" height="' ~ (split ? 896 : 448) ~ '"'}) }}
+                    {% endfor %}
+                </figure>
+            {% endif %}
+        </div>
+    </div>
+</section>

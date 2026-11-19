@@ -1,0 +1,85 @@
+handle: feature-grid
+name: meridian.block.feature-grid.name
+icon: icon-th-large
+group: Meridian
+version: 1
+settings: true
+fullBleed: true
+fields:
+  layout:
+    label: meridian.block.feature-grid.layout
+    type: dropdown
+    options:
+      cards: meridian.block.feature-grid.layout_cards
+      plain: meridian.block.feature-grid.layout_plain
+      numbered: meridian.block.feature-grid.layout_numbered
+      projects: meridian.block.feature-grid.layout_projects
+    default: cards
+  columns:
+    label: meridian.block.feature-grid.columns
+    type: dropdown
+    options:
+      '2': meridian.block.feature-grid.columns_2
+      '3': meridian.block.feature-grid.columns_3
+      '4': meridian.block.feature-grid.columns_4
+    default: '3'
+  eyebrow:
+    label: meridian.block.feature-grid.eyebrow
+    type: text
+  title:
+    label: meridian.block.feature-grid.title
+    type: text
+  lead:
+    label: meridian.block.feature-grid.lead
+    type: textarea
+    size: small
+
+  band:
+    label: meridian.block.feature-grid.band
+    type: dropdown
+    options:
+      none: meridian.block.feature-grid.band_none
+      band: meridian.block.feature-grid.band_band
+      accent: meridian.block.feature-grid.band_accent
+    default: none
+  items:
+    label: meridian.block.feature-grid.items
+    type: repeater
+    titleFrom: title
+    fields:
+      icon:
+        label: meridian.block.feature-grid.item_icon
+        type: iconpicker
+      image:
+        label: meridian.block.feature-grid.item_image
+        type: mediafinder
+        mode: image
+        maxItems: 1
+      image_alt:
+        label: meridian.block.feature-grid.item_image_alt
+        type: text
+        commentAbove: meridian.block.feature-grid.item_image_alt_comment
+      tag:
+        label: meridian.block.feature-grid.item_tag
+        type: text
+      title:
+        label: meridian.block.feature-grid.item_title
+        type: text
+      text:
+        label: meridian.block.feature-grid.item_text
+        type: textarea
+        size: small
+      url:
+        label: meridian.block.feature-grid.item_url
+        type: pagefinder
+        singleMode: true
+        allowCustomUrl: true
+        translatable: false
+      link_label:
+        label: meridian.block.feature-grid.item_link_label
+        type: text
+        commentAbove: meridian.block.feature-grid.item_link_label_comment
+  anchor:
+    label: meridian.block.feature-grid.anchor
+    type: text
+    commentAbove: meridian.block.feature-grid.anchor_comment

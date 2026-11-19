@@ -1,0 +1,50 @@
+// Mall and Meloncart product blocks share one partial (_shop-items) and one stylesheet.
+@use "../mr";
+@use "plugin-tokens";
+
+.mr-shop { @include plugin-tokens.bs5-tokens; --bs-link-color: var(--mr-ink); --bs-heading-color: var(--mr-ink); }
+
+.mr-shop-title,
+.rc-shop-title { margin: 0 0 var(--mr-space-5); font: 600 var(--mr-text-h3) / 1.2 var(--mr-font-serif); }
+.rc-shop-title a { color: inherit; text-decoration: none; }
+.rc-shop-title a:hover { color: var(--mr-accent); }
+
+.mr-shop-items { display: grid; gap: var(--mr-space-5); grid-template-columns: minmax(0, 1fr); }
+@include mr.up(sm) {
+    .mr-shop-items--2, .mr-shop-items--3, .mr-shop-items--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@include mr.up(lg) {
+    .mr-shop-items--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .mr-shop-items--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.mr-shop-card { position: relative; display: flex; flex-direction: column; min-width: 0; padding: 0; overflow: hidden; transition: box-shadow var(--mr-dur) var(--mr-ease); }
+.mr-shop-card:hover { box-shadow: var(--mr-shadow-2); }
+.mr-shop-media { aspect-ratio: 4 / 3; overflow: hidden; background: var(--mr-surface-2); }
+.mr-shop-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mr-shop-card .mr-shop-text { display: flex; flex: 1; flex-direction: column; gap: var(--mr-space-2); padding: var(--mr-space-4) var(--mr-space-5) var(--mr-space-5); }
+
+.mr-shop-name { margin: 0; font: 600 var(--mr-text-base) / 1.3 var(--mr-font-serif); }
+html .mr-shop-name a { color: var(--mr-ink); text-decoration: none; }
+.mr-shop-name a::after { content: ""; position: absolute; inset: 0; }
+html .mr-shop-name a:hover { color: var(--mr-accent); }
+.mr-shop-card .rc-shop-desc { margin: 0; color: var(--mr-muted); font-size: var(--mr-text-sm); }
+.mr-shop-price { margin: 0; font-weight: 600; color: var(--mr-accent); white-space: nowrap; }
+.mr-shop-card .mr-shop-price { margin-block-start: auto; padding-block-start: var(--mr-space-2); }
+.rc-shop-compare { color: var(--mr-muted); font-size: var(--mr-text-sm); font-weight: 400; }
+
+@include mr.up(md) {
+    .mr-shop--card .mr-shop-card.has-image { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+    .mr-shop--card .mr-shop-media { aspect-ratio: auto; min-height: 100%; }
+    .mr-shop--card .mr-shop-card .mr-shop-text { justify-content: center; padding: var(--mr-space-6); }
+}
+
+.mr-shop-list { margin: 0; padding: 0; list-style: none; }
+.mr-shop-row { display: flex; align-items: center; gap: var(--mr-space-4); padding-block: var(--mr-space-3); border-block-end: var(--mr-border); }
+.mr-shop-row:first-child { border-block-start: var(--mr-border); }
+.mr-shop-row .rc-shop-thumb { flex: none; width: var(--mr-space-8); height: var(--mr-space-7); border-radius: var(--mr-radius-sm); object-fit: cover; }
+.mr-shop-row .mr-shop-text { flex: 1; min-width: 0; }
+html .mr-shop-row .rc-shop-name { font-weight: 600; color: var(--mr-ink); text-decoration: none; }
+html .mr-shop-row a.rc-shop-name:hover { color: var(--mr-accent); }
+.mr-shop-row .rc-shop-desc { color: var(--mr-muted); font-size: var(--mr-text-sm); }
+.mr-shop-row .mr-shop-price { margin-inline-start: auto; }

@@ -1,0 +1,36 @@
+@use "../mr";
+@use "../blocks/tint";
+
+html .rc-image { margin: 0; }
+
+// A natural-ratio image keeps its own size (never upscaled) and follows rc-align-*; a framed one fills its aspect box.
+.rc-media {
+    display: inline-block;
+    max-width: 100%;
+    vertical-align: top;
+    overflow: hidden;
+    border-radius: var(--mr-radius-md);
+}
+.rc-media.rc-frame { display: block; }
+.rc-media > picture { display: contents; }
+html .rc-media img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0;
+}
+html .rc-media.rc-frame img { width: 100%; height: 100%; }
+
+html .rc-image figcaption {
+    padding-block-start: var(--mr-space-2);
+    font-size: var(--mr-text-xs);
+    color: var(--mr-muted);
+}
+
+// Shipped demo artwork (media under meridian/) takes the scheme's accent; framed images stay under a reading height.
+@include tint.tint(".rc-media--tint", ".rc-media--tint img");
+.rc-media--tint::after { border-radius: inherit; }
+@media (prefers-color-scheme: dark) { html:not([data-bs-theme]) .rc-media--tint img { filter: invert(0.88) brightness(0.9); } }
+html[data-bs-theme="dark"] .rc-media--tint img { filter: invert(0.88) brightness(0.9); }
+.rc-media.rc-frame { inline-size: 100%; }
+.rc-media.rc-frame.rc-aspect-21x9 { max-block-size: 28rem; }

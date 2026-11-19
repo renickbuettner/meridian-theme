@@ -1,0 +1,47 @@
+handle: cta-band
+name: meridian.block.cta-band.name
+icon: icon-bullhorn
+group: Meridian
+version: 1
+settings: true
+fullBleed: true
+fields:
+  tone:
+    label: meridian.block.cta-band.tone
+    type: dropdown
+    options:
+      accent: meridian.block.cta-band.tone_accent
+      soft: meridian.block.cta-band.tone_soft
+    default: accent
+  title:
+    label: meridian.block.cta-band.title
+    type: text
+  text:
+    label: meridian.block.cta-band.text
+    type: textarea
+    size: small
+  primary_label:
+    label: meridian.block.cta-band.primary_label
+    type: text
+  primary_url:
+    label: meridian.block.cta-band.primary_url
+    type: pagefinder
+    singleMode: true
+    allowCustomUrl: true
+    translatable: false
+  secondary_label:
+    label: meridian.block.cta-band.secondary_label
+    type: text
+  secondary_url:
+    label: meridian.block.cta-band.secondary_url
+    type: pagefinder
+    singleMode: true
+    allowCustomUrl: true
+    translatable: false
+  note:
+    label: meridian.block.cta-band.note
+    type: text
+  anchor:
+    label: meridian.block.cta-band.anchor
+    type: text
+    commentAbove: meridian.block.cta-band.anchor_comment

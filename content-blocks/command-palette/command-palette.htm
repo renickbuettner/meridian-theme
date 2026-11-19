@@ -1,0 +1,37 @@
+{# The same combobox as the global Ctrl+K palette, inline. Without JS a plain GET form posts to the search page. #}
+{% set uid = 'cpb-' ~ (blockId ?: random(100000000)) %}
+{% set scope = data.scope|default('all') in ['all', 'page', 'post'] ? data.scope|default('all') : 'all' %}
+{% set label = rc_t('meridian.block.command-palette.ui_label', {}, locale) %}
+{% set placeholder = data.placeholder|default('') != '' ? data.placeholder : rc_t('meridian.block.command-palette.ui_placeholder', {}, locale) %}
+{% set t = {
+    label: label,
+    list: rc_t('meridian.block.command-palette.ui_list', {}, locale),
+    placeholder: placeholder,
+    close: rc_t('meridian.block.command-palette.ui_close', {}, locale),
+    results: rc_t('meridian.block.command-palette.ui_results', {count: ':count'}, locale),
+    none: rc_t('meridian.block.command-palette.ui_none', {}, locale),
+    loading: rc_t('meridian.block.command-palette.ui_loading', {}, locale),
+    error: rc_t('meridian.block.command-palette.ui_error', {}, locale),
+    all: rc_t('meridian.block.command-palette.ui_all', {query: ':query'}, locale),
+    page: rc_t('meridian.block.command-palette.ui_page', {}, locale),
+    post: rc_t('meridian.block.command-palette.ui_post', {}, locale),
+    go: rc_t('meridian.block.command-palette.ui_go', {}, locale),
+    latest: rc_t('meridian.block.command-palette.ui_latest', {}, locale),
+} %}
+<section {{ attributes|replace({'class="': 'class="mr-cpb '})|raw }} data-island="command-palette" data-island-load="visible" data-index="{{ rc_page_url('search-index') }}" data-search-url="{{ rc_page_url('search') }}" data-scope="{{ scope }}" data-t="{{ t|json_encode|e('html_attr') }}">
+    {% if data.eyebrow or data.title or data.lead %}
+        <header class="mr-cpb__head">
+            {% if data.eyebrow %}<p class="mr-eyebrow">{{ data.eyebrow }}</p>{% endif %}
+            {% if data.title %}<h2 class="mr-cpb__title">{{ data.title }}</h2>{% endif %}
+            {% if data.lead %}<p class="mr-lead">{{ data.lead|nl2br }}</p>{% endif %}
+        </header>
+    {% endif %}
+    <form class="mr-cpb__form mr-nojs-only" action="{{ rc_page_url('search') }}" method="get" role="search">
+        <div class="mr-field">
+            <label class="mr-label" for="{{ uid }}-q">{{ label }}</label>
+            <input class="mr-input" type="search" id="{{ uid }}-q" name="q" minlength="2" autocomplete="off" enterkeyhint="search" placeholder="{{ placeholder }}">
+        </div>
+        <button class="mr-btn" type="submit">{{ rc_t('meridian.block.command-palette.ui_submit', {}, locale) }}</button>
+    </form>
+    <div class="mr-cpb__mount mr-js-only" data-palette-mount></div>
+</section>

@@ -1,0 +1,65 @@
+@use "../mr";
+@use "../partials-a/surface";
+
+html .rc-card { height: 100%; }
+html .rc-card-inner {
+    @include surface.surface;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    transition: box-shadow var(--mr-dur) var(--mr-ease), translate var(--mr-dur) var(--mr-ease);
+}
+.rc-card-media { border-radius: 0; flex: none; }
+html .rc-card-media { display: block; }
+html .rc-card-media:not(.rc-frame) img { width: 100%; }
+
+.rc-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mr-space-3);
+    flex: 1;
+    padding: var(--mr-space-5);
+}
+.rc-card-body > * { margin-block: 0; }
+.rc-card-title {
+    font-size: var(--mr-text-h4);
+    line-height: 1.25;
+    text-wrap: pretty;
+}
+html .rc-card-icon { margin-inline-end: var(--mr-space-2); color: var(--mr-accent); }
+html .rc-card-link { --bs-link-color: currentcolor; color: inherit; text-decoration: none; }
+html .rc-card-link:hover { --bs-link-color: var(--mr-accent); color: var(--mr-accent); text-decoration: underline; text-underline-offset: 0.2em; }
+
+@include surface.stretched(".rc-card-inner", ".rc-card-link");
+html .rc-card-inner:has(.rc-card-link):hover { box-shadow: var(--mr-shadow-2); translate: 0 calc(var(--mr-space-1) * -1); }
+@include mr.reduced-motion {
+    html .rc-card-inner:has(.rc-card-link):hover { translate: none; }
+}
+
+// Cover: picture and text share one grid cell, so the card is as tall as the taller of the two.
+html .rc-card--cover {
+    display: grid;
+    background: black;
+    color: white;
+    --mr-muted: rgb(255 255 255 / 0.85);
+}
+.rc-card--cover > * { grid-area: 1 / 1; }
+.rc-card--cover .rc-card-media { height: 100%; }
+.rc-card--cover .rc-card-body {
+    align-self: end;
+    position: relative;
+    flex: none;
+    padding-block-start: var(--mr-space-8);
+    background: linear-gradient(to bottom, transparent, color-mix(in oklab, black 78%, transparent) 55%);
+}
+.rc-card--cover a { color: inherit; }
+html .rc-card--cover .rc-card-link:hover { --bs-link-color: currentcolor; color: inherit; }
+html .rc-card--cover:has(.rc-card-link:focus-visible) { outline-color: white; }
+
+// The meta line in a card is readable running text, not a caps label: 11px caps was unreadable on phones.
+html .rc-card-body .mr-meta { font-size: var(--mr-text-sm); letter-spacing: normal; text-transform: none; color: var(--mr-ink); }
+
+// `pretty` re-wraps short card summaries early and orphans the last line; cards use the full body width.
+html .rc-card-body :is(p, li) { text-wrap: wrap; }

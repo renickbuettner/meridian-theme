@@ -1,0 +1,97 @@
+{# Pin units use the linear mapping of assets/map/world.svg (1000x394: lon -180..180, lat 84..-58); the island fits the view to the canvas and places the pins. #}
+{% set pins = [] %}
+{% set cats = [] %}
+{% for pin in data.pins|default([]) %}
+    {% if pin.title|default('') != '' %}
+        {% set cat = pin.category|default('')|trim %}
+        {% if cat != '' and cat not in cats %}{% set cats = cats|merge([cat]) %}{% endif %}
+        {% set num = '/^-?\\d+(\\.\\d+)?$/' %}
+        {% set lat = (pin.lat|default('')|trim|replace({',': '.'})) matches num ? (pin.lat|trim|replace({',': '.'})) + 0 : 0 %}
+        {% set lon = (pin.lon|default('')|trim|replace({',': '.'})) matches num ? (pin.lon|trim|replace({',': '.'})) + 0 : 0 %}
+        {% set pins = pins|merge([pin|merge({
+            _x: (((max(-180, min(180, lon)) + 180) / 360) * 100)|round(2),
+            _y: (((84 - max(-58, min(84, lat))) / 142) * 100)|round(2),
+            _cat: cat != '' ? cats|keys|filter(k => cats[k] == cat)|first : -1,
+            _ux: (((max(-180, min(180, lon)) + 180) / 360) * 1000),
+            _uy: (((84 - max(-58, min(84, lat))) / 142) * 394),
+            _status: pin.status|default('completed') in ['completed', 'building', 'planned', 'none'] ? pin.status|default('completed') : 'completed',
+        })]) %}
+    {% endif %}
+{% endfor %}
+{% set uid = 'mrmap' ~ random(100000) %}
+{% set more = data.more_url|rc_url %}
+<section {{ attributes|replace({'class="': 'class="mr-map ' ~ (pins|length < 3 ? 'mr-map--sparse ' : '')})|raw }} data-island="project-map" data-island-load="idle"
+    data-t-count="{{ rc_t('meridian.block.project-map.ui_count', {shown: ':shown', total: ':total'}, locale) }}"
+    data-t-zoom-in="{{ rc_t('meridian.block.project-map.ui_zoom_in', {}, locale) }}"
+    data-t-zoom-out="{{ rc_t('meridian.block.project-map.ui_zoom_out', {}, locale) }}"
+    data-t-zoom-reset="{{ rc_t('meridian.block.project-map.ui_zoom_reset', {}, locale) }}"
+    data-t-off="{{ rc_t('meridian.block.project-map.ui_off_hint', {count: ':count'}, locale) }}"
+    data-t-drag="{{ rc_t('meridian.block.project-map.ui_drag_hint', {}, locale) }}"
+    data-t-hint="{{ rc_t('meridian.block.project-map.ui_select_hint', {}, locale) }}">
+    <div class="mr-map__inner">
+        {% if data.eyebrow or data.title or data.intro %}
+        <header class="mr-map__head">
+            {% if data.eyebrow %}<p class="mr-eyebrow">{{ data.eyebrow }}</p>{% endif %}
+            {% if data.title %}<h2 class="mr-map__title">{{ data.title }}</h2>{% endif %}
+            {% if data.intro %}<p class="mr-lead">{{ data.intro }}</p>{% endif %}
+        </header>
+        {% endif %}
+
+        {% if cats|length > 1 %}
+        <div class="mr-map__filters mr-js-only" role="group" aria-label="{{ rc_t('meridian.block.project-map.ui_filter', {}, locale) }}">
+            <button type="button" class="mr-chip" data-cat="all" aria-pressed="true">{{ rc_t('meridian.block.project-map.ui_all', {}, locale) }}</button>
+            {% for cat in cats %}<button type="button" class="mr-chip" data-cat="{{ loop.index0 }}" aria-pressed="false">{{ cat }}</button>{% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="mr-map__body">
+            <ol class="mr-map__list mr-nojs-only" aria-label="{{ rc_t('meridian.block.project-map.ui_list', {}, locale) }}">
+                {% for pin in pins %}
+                {% set url = pin.url|default('')|rc_url %}
+                <li id="{{ uid }}-{{ loop.index }}" class="mr-map__item" data-cat="{{ pin._cat }}">
+                    <article class="mr-map__project">
+                        {% if pin.image %}
+                        {% set srcset = rc_srcset(pin.image, [400, 800], {ratio: 0.75}) %}
+                        {% set srcsetWebp = rc_srcset(pin.image, [400, 800], {ratio: 0.75, extension: 'webp'}) %}
+                        <picture>
+                            {% if srcsetWebp and srcsetWebp != srcset %}<source type="image/webp" srcset="{{ srcsetWebp }}" sizes="(min-width: 768px) 9rem, 100vw">{% endif %}
+                            <img class="mr-map__img" src="{{ pin.image|media }}"{% if srcset %} srcset="{{ srcset }}" sizes="(min-width: 768px) 9rem, 100vw"{% endif %} alt="{{ pin.image_alt|default('') }}" loading="lazy" decoding="async" width="800" height="600">
+                        </picture>
+                        {% endif %}
+                        <div class="mr-map__text">
+                            <h3 class="mr-map__name">{{ pin.title }}</h3>
+                            <p class="mr-map__meta">{% if pin._status != 'none' %}<span class="mr-map__status mr-map__status--{{ pin._status }}">{{ rc_t('meridian.block.project-map.ui_status_' ~ pin._status, {}, locale) }}</span>{% endif %}{% if pin.year %}{% if pin._status != 'none' %}<span class="mr-map__sep" aria-hidden="true"></span>{% endif %}<span>{{ pin.year }}</span>{% endif %}{% if pin.category %}{% if pin._status != 'none' or pin.year %}<span class="mr-map__sep" aria-hidden="true"></span>{% endif %}<span>{{ pin.category }}</span>{% endif %}</p>
+                            {% if pin.location %}<p class="mr-map__where"><svg class="mr-icon" aria-hidden="true" focusable="false"><use href="#mr-i-pin"/></svg><span>{{ pin.location }}</span></p>{% endif %}
+                            {% if pin.summary %}<p class="mr-map__summary">{{ pin.summary }}</p>{% endif %}
+                            {% if url %}<a class="mr-btn mr-btn--sm mr-map__go" href="{{ url }}">{{ pin.link_label|default(rc_t('meridian.block.project-map.ui_view_project', {}, locale)) }}<svg class="mr-icon" aria-hidden="true" focusable="false"><use href="#mr-i-arrow"/></svg></a>{% endif %}
+                        </div>
+                    </article>
+                </li>
+                {% endfor %}
+            </ol>
+
+            <div class="mr-map__stage mr-js-only">
+                <div class="mr-map__scroll">
+                <div class="mr-map__canvas">
+                    <svg class="mr-map__svg" viewBox="0 -53 1000 500" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><g data-world></g></svg>
+                    <div class="mr-map__pins" role="group" aria-label="{{ rc_t('meridian.block.project-map.ui_pins', {}, locale) }}">
+                        {% for pin in pins %}
+                        <button type="button" class="mr-map__pin mr-map__pin--{{ pin._status }}" data-x="{{ pin._ux|round(2) }}" data-y="{{ pin._uy|round(2) }}" data-for="{{ uid }}-{{ loop.index }}" data-cat="{{ pin._cat }}" aria-pressed="false" tabindex="{{ loop.first ? 0 : -1 }}"
+                            aria-label="{{ pin.title }}{% if pin.location %}, {{ pin.location }}{% endif %}"><span class="mr-map__dot"></span><span class="mr-map__label" aria-hidden="true">{{ pin.title }}</span></button>
+                        {% endfor %}
+                    </div>
+                </div>
+                </div>
+                <div class="mr-map__card mr-card" data-card aria-live="polite" aria-atomic="true"></div>
+                <p class="mr-map__count" data-count role="status"></p>
+            </div>
+        </div>
+
+        {% if more or data.footnote %}
+        <footer class="mr-map__foot">
+            <p>{{ data.footnote }}</p>
+            {% if more %}<a class="mr-btn mr-btn--link" href="{{ more }}">{{ data.more_label|default(rc_t('meridian.block.project-map.ui_more', {}, locale)) }}<svg class="mr-icon" aria-hidden="true" focusable="false"><use href="#mr-i-arrow"/></svg></a>{% endif %}
+        </footer>
+        {% endif %}
+    </div>
+</section>

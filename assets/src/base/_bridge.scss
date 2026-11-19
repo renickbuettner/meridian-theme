@@ -1,0 +1,58 @@
+// Maps the Meridian palette onto Bootstrap's semantic tokens so every Bootstrap component follows the active scheme and mode.
+// Bootstrap declares its tokens on an unlayered :root, so html:root is needed to win on specificity rather than source order.
+html:root {
+    --body-font-family: var(--mr-font-sans);
+    --heading-font-family: var(--mr-font-serif);
+    --body-font-size: var(--mr-text-base);
+    --body-line-height: var(--mr-leading-body);
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+    --bg-body: var(--mr-bg);
+    --bg-1: var(--mr-surface);
+    --bg-2: var(--mr-surface-2);
+    --bg-3: var(--mr-surface-2);
+    --fg-body: var(--mr-ink);
+    --fg-1: var(--mr-ink);
+    --fg-2: var(--mr-muted);
+    --fg-3: var(--mr-muted);
+    --border-color: var(--mr-line);
+    --border-color-translucent: var(--mr-line);
+
+    --primary-base: var(--mr-accent);
+    --primary-bg: var(--mr-accent);
+    --primary-fg: var(--mr-accent);
+    --primary-fg-emphasis: var(--mr-accent-hover);
+    --primary-bg-subtle: var(--mr-accent-soft);
+    --primary-bg-muted: var(--mr-accent-soft);
+    --primary-border: var(--mr-accent);
+    --primary-contrast: var(--mr-on-accent);
+    --primary-focus-ring: var(--mr-focus);
+
+    --link-color: var(--mr-accent);
+    --link-hover-color: var(--mr-accent-hover);
+    --link-decoration: underline;
+    --focus-ring-color: var(--mr-focus);
+
+    --radius-5: var(--mr-radius-sm);
+    --radius-7: var(--mr-radius-md);
+}
+
+// .drawer sets its tokens on the element itself, so the overrides live on the sidebar.
+.mr-aside .mr-sidebar {
+    --drawer-bg: var(--mr-bg);
+    --drawer-color: var(--mr-ink);
+    --drawer-border-color: var(--mr-line);
+    --drawer-width: min(20rem, calc(100vw - 3.5rem));
+    --drawer-inset: 0px;
+    --drawer-border-radius: 0px;
+    --drawer-border-width: 0px;
+    --drawer-backdrop-bg: color-mix(in oklch, var(--mr-ink) 35%, transparent);
+}
+
+html[data-bs-theme="dark"] {
+    color-scheme: dark;
+}
+
+html[data-bs-theme="light"] {
+    color-scheme: light;
+}

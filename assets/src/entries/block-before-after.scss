@@ -1,0 +1,115 @@
+@use "../mr";
+@use "../blocks/tint";
+
+// Stacked by default (no JS); html.js (set before first paint) switches to the overlay so the box never changes height.
+.mr-ba { margin: 0; }
+.mr-ba__stage { display: grid; gap: var(--mr-space-3); position: relative; }
+.mr-ba__pane { position: relative; margin: 0; overflow: hidden; border-radius: var(--mr-radius-md); border: var(--mr-border); background: var(--mr-surface-2); }
+.mr-ba__pane picture:not(.mr-ba__art--dark), .mr-ba__pane img { display: block; inline-size: 100%; block-size: auto; }
+.mr-ba__tag {
+    position: absolute;
+    inset-block-start: var(--mr-space-3);
+    inset-inline-start: var(--mr-space-3);
+    padding: var(--mr-space-1) var(--mr-space-3);
+    border-radius: var(--mr-radius-pill);
+    // Fixed dark scrim with white text: --mr-bg is near-invisible on the light half in light mode.
+    background: color-mix(in oklab, black 78%, transparent);
+    color: white;
+    font-size: var(--mr-text-xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    max-inline-size: calc(100% - 2 * var(--mr-space-3));
+    overflow-wrap: anywhere;
+}
+.mr-ba__caption { margin-block-start: var(--mr-space-3); color: var(--mr-muted); font-size: var(--mr-text-sm); }
+
+html.js .mr-ba__stage {
+    display: block;
+    aspect-ratio: var(--mr-ba-ratio);
+    border-radius: var(--mr-radius-md);
+    border: var(--mr-border);
+    overflow: hidden;
+    background: var(--mr-surface-2);
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+}
+html.js .mr-ba__pane { position: absolute; inset: 0; border: 0; border-radius: 0; }
+html.js .mr-ba__pane picture { block-size: 100%; }
+// contain: both panes share the stage ratio, so nothing is cropped (a circle at the edge stayed clipped with cover).
+html.js .mr-ba__pane img { block-size: 100%; object-fit: contain; }
+html.js .mr-ba__pane--before { z-index: 1; clip-path: inset(0 calc(100% - var(--mr-ba-pos)) 0 0); }
+html.js .mr-ba__pane--before:dir(rtl) { clip-path: inset(0 0 0 calc(100% - var(--mr-ba-pos))); }
+// The "after" tag sits at the opposite edge so both stay visible at any split.
+html.js .mr-ba__pane--after .mr-ba__tag { inset-inline-start: auto; inset-inline-end: var(--mr-space-3); }
+
+.mr-ba__handle {
+    z-index: 2;
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: var(--mr-ba-pos);
+    inline-size: var(--mr-target);
+    translate: -50% 0;
+    display: grid;
+    place-items: center;
+    cursor: ew-resize;
+    // Divider line: the first layer paints on top, so ink goes over a bg halo; keeps 3:1 on both light and dark photos.
+    background: linear-gradient(var(--mr-ink), var(--mr-ink)) center / 2px 100% no-repeat, linear-gradient(var(--mr-bg), var(--mr-bg)) center / 4px 100% no-repeat;
+}
+.mr-ba__handle:dir(rtl) { translate: 50% 0; }
+.mr-ba__handle:focus-visible { outline: 3px solid var(--mr-focus); outline-offset: -3px; }
+.mr-ba__handle:focus-visible .mr-ba__knob { outline: 3px solid var(--mr-focus); outline-offset: 2px; }
+.mr-ba__knob {
+    display: grid;
+    place-items: center;
+    inline-size: var(--mr-target);
+    block-size: var(--mr-target);
+    border-radius: var(--mr-radius-pill);
+    background: var(--mr-bg);
+    color: var(--mr-ink);
+    border: 2px solid var(--mr-ink);
+    box-shadow: var(--mr-shadow-2);
+}
+.mr-ba__knob::before, .mr-ba__knob::after { content: ""; inline-size: 0; block-size: 0; border: 0.3rem solid transparent; }
+.mr-ba__knob::before { border-inline-end-color: currentcolor; border-inline-start-width: 0; }
+.mr-ba__knob::after { border-inline-start-color: currentcolor; border-inline-end-width: 0; }
+.mr-ba__knob { grid-auto-flow: column; justify-content: center; gap: var(--mr-space-1); }
+.mr-ba__stage[data-dragging] .mr-ba__knob { box-shadow: var(--mr-shadow-1); }
+
+@include tint.tint(".mr-ba--tint .mr-ba__pane picture", ".mr-ba--tint .mr-ba__pane img");
+
+// Dark mode without dark artwork: no inversion (it turned the white cards pure black); the filter sits on the picture so the tint overlay is dimmed with the artwork.
+@media (prefers-color-scheme: dark) {
+    html:not([data-bs-theme]) .mr-ba--tint:not(.mr-ba--dual) .mr-ba__pane picture { filter: brightness(0.5) saturate(0.7); }
+    html:not([data-bs-theme]) .mr-ba--tint:not(.mr-ba--dual) .mr-ba__pane img { filter: none; }
+}
+html[data-bs-theme="dark"] .mr-ba--tint:not(.mr-ba--dual) .mr-ba__pane picture { filter: brightness(0.5) saturate(0.7); }
+html[data-bs-theme="dark"] .mr-ba--tint:not(.mr-ba--dual) .mr-ba__pane img { filter: none; }
+
+// Dark artwork has its own palette: swap the pictures with the scheme and never filter them.
+.mr-ba__art--dark { display: none; }
+@media (prefers-color-scheme: dark) {
+    html:not([data-bs-theme]) .mr-ba__art--light { display: none; }
+    html:not([data-bs-theme]) .mr-ba__art--dark { display: block; }
+    html:not([data-bs-theme]) .mr-ba--dual .mr-ba__pane img { filter: none; }
+}
+html[data-bs-theme="dark"] .mr-ba__art--light { display: none; }
+html[data-bs-theme="dark"] .mr-ba__art--dark { display: block; }
+html[data-bs-theme="dark"] .mr-ba--dual .mr-ba__pane img { filter: none; }
+
+// Phones: a taller frame cropped equally on both halves keeps the mock screens legible; smaller tags leave the art uncovered.
+@media (max-width: 575.98px) {
+    html.js .mr-ba__stage { aspect-ratio: 5 / 4; }
+    html.js .mr-ba__pane img { object-fit: cover; }
+}
+@media (max-width: 575.98px), (max-height: 500px) {
+    .mr-ba__tag {
+        inset-block-start: var(--mr-space-2);
+        inset-inline-start: var(--mr-space-2);
+        padding: var(--mr-space-1) var(--mr-space-2);
+        font-size: calc(var(--mr-text-xs) * 0.85);
+        letter-spacing: 0.03em;
+    }
+    html.js .mr-ba__pane--after .mr-ba__tag { inset-inline-start: auto; inset-inline-end: var(--mr-space-2); }
+}

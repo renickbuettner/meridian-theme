@@ -1,0 +1,9 @@
+{% set _brand = meridianLook.brand %}
+<a class="mr-brand" href="{{ 'index'|page }}">
+    {% if meridianLook.logo %}
+        <img src="{{ meridianLook.logo|media }}" alt="{{ _brand }}" height="40">
+    {% else %}
+        <span>{{ _brand }}<span class="mr-brand__dot" aria-hidden="true">.</span></span>
+        {% if meridianLook.tagline and not compact %}<span class="mr-brand__tag">{{ meridianLook.tagline }}</span>{% endif %}
+    {% endif %}
+</a>

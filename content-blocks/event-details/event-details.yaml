@@ -1,0 +1,97 @@
+handle: event-details
+name: meridian.block.event-details.name
+icon: icon-calendar
+group: Meridian
+version: 1
+settings: true
+fields:
+  name:
+    label: meridian.block.event-details.event_name
+    type: text
+    commentAbove: meridian.block.event-details.event_name_comment
+  description:
+    label: meridian.block.event-details.description
+    type: textarea
+    size: small
+    commentAbove: meridian.block.event-details.description_comment
+  status:
+    label: meridian.block.event-details.status
+    type: dropdown
+    translatable: false
+    default: scheduled
+    options:
+      scheduled: meridian.block.event-details.status_scheduled
+      cancelled: meridian.block.event-details.status_cancelled
+      postponed: meridian.block.event-details.status_postponed
+  start:
+    label: meridian.block.event-details.start
+    type: datepicker
+    mode: datetime
+    translatable: false
+    commentAbove: meridian.block.event-details.start_comment
+  end:
+    label: meridian.block.event-details.end
+    type: datepicker
+    mode: datetime
+    translatable: false
+  timezone:
+    label: meridian.block.event-details.timezone
+    type: text
+    translatable: false
+    default: Europe/Berlin
+    commentAbove: meridian.block.event-details.timezone_comment
+  mode:
+    label: meridian.block.event-details.mode
+    type: dropdown
+    translatable: false
+    default: online
+    options:
+      online: meridian.block.event-details.mode_online
+      offline: meridian.block.event-details.mode_offline
+      mixed: meridian.block.event-details.mode_mixed
+  venue:
+    label: meridian.block.event-details.venue
+    type: text
+  address:
+    label: meridian.block.event-details.address
+    type: text
+  join_url:
+    label: meridian.block.event-details.join_url
+    type: text
+    translatable: false
+    commentAbove: meridian.block.event-details.join_url_comment
+  performer:
+    label: meridian.block.event-details.performer
+    type: text
+  price:
+    label: meridian.block.event-details.price
+    type: text
+    translatable: false
+    commentAbove: meridian.block.event-details.price_comment
+  currency:
+    label: meridian.block.event-details.currency
+    type: dropdown
+    translatable: false
+    default: EUR
+    options:
+      EUR: meridian.block.event-details.currency_eur
+      USD: meridian.block.event-details.currency_usd
+      GBP: meridian.block.event-details.currency_gbp
+      CHF: meridian.block.event-details.currency_chf
+  registration_url:
+    label: meridian.block.event-details.registration_url
+    type: text
+    translatable: false
+    commentAbove: meridian.block.event-details.registration_url_comment
+  register_label:
+    label: meridian.block.event-details.register_label
+    type: text
+    commentAbove: meridian.block.event-details.register_label_comment
+  countdown:
+    label: meridian.block.event-details.countdown
+    type: dropdown
+    translatable: false
+    default: 'yes'
+    options:
+      'yes': meridian.block.event-details.countdown_yes
+      'no': meridian.block.event-details.countdown_no

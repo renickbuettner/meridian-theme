@@ -1,0 +1,18 @@
+url = "/sitemap.xml"
+layout = ""
+title = "Sitemap"
+is_hidden = 0
+==
+function onStart()
+{
+    $theme = $this->controller->getTheme();
+    while ($parent = $theme->getParentTheme()) {
+        $theme = $parent;
+    }
+    require_once $theme->getPath() . '/partials/site/paths.php';
+    meridian_dir($theme->getDirName());
+    require_once meridian_path('partials/seo/sitemap.php');
+
+    return \Response::make(meridian_sitemap_xml(meridian_sitemap_items()), 200, ['Content-Type' => 'application/xml; charset=utf-8']);
+}
+==

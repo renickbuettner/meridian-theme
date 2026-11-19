@@ -1,0 +1,36 @@
+{# Office cards: <address>, tel:/mailto: links, hours as a definition list. Deliberately no LocalBusiness markup. #}
+{% set items = (data.items|default([]))|filter(i => i.name|default('')) %}
+{% set hl = data.title ? 'h3' : 'h2' %}
+{% if items|length %}
+<section {{ attributes|replace({'class="': 'class="mr-locations '})|raw }}>
+    {% if data.title or data.lead %}
+        <header class="mr-locations__head">
+            {% if data.title %}<h2 class="mr-locations__title">{{ data.title }}</h2>{% endif %}
+            {% if data.lead %}<p class="mr-lead">{{ data.lead|nl2br }}</p>{% endif %}
+        </header>
+    {% endif %}
+    <ul class="mr-locations__grid" role="list">
+        {% for item in items %}
+            {% set map = item.map_url|rc_url %}
+            <li class="mr-location mr-card">
+                <{{ hl }} class="mr-location__name">{{ item.name }}</{{ hl }}>
+                <address class="mr-location__address">
+                    {% if item.address %}<span>{{ item.address|nl2br }}</span>{% endif %}
+                    {% if item.phone %}<a href="tel:{{ item.phone|replace({' ': '', '(': '', ')': '', '-': ''}) }}">{{ item.phone }}</a>{% endif %}
+                    {% if item.email %}<a href="mailto:{{ item.email }}">{{ item.email }}</a>{% endif %}
+                </address>
+                {% if item.hours %}
+                    <h4 class="mr-location__hours-title">{{ rc_t('meridian.block.locations.ui_hours') }}</h4>
+                    <dl class="mr-location__hours">
+                        {% for line in item.hours|split("\n")|filter(l => l|trim) %}
+                            {% set parts = line|split('|', 2) %}
+                            <div><dt>{{ parts[0]|trim }}</dt><dd>{{ (parts[1] ?? '')|trim }}</dd></div>
+                        {% endfor %}
+                    </dl>
+                {% endif %}
+                {% if map %}<a class="mr-btn mr-btn--ghost mr-btn--sm mr-location__map" href="{{ map }}" rel="noopener">{{ rc_t('meridian.block.locations.ui_directions') }}<span class="visually-hidden"> – {{ item.name }}</span></a>{% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}

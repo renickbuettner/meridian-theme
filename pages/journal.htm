@@ -1,0 +1,22 @@
+url = "/journal"
+layout = "default"
+title = "Journal"
+is_hidden = 0
+==
+function onStart()
+{
+    require_once meridian_path('partials/journal/lib.php');
+    $entry = meridian_journal_index_entry();
+    $title = $entry ? (string) $entry->title : meridian_journal_t('meridian.front.journal.eyebrow');
+    $lead = $entry ? trim((string) $entry->meta_description) : '';
+
+    return meridian_journal_listing(
+        $this,
+        meridian_journal_posts(),
+        ['eyebrow' => meridian_journal_t('meridian.front.journal.eyebrow'), 'title' => $title, 'lead' => $lead],
+        [['label' => $title, 'url' => null]],
+        ['lead' => true, 'seoTitle' => $entry && $entry->meta_title ? (string) $entry->meta_title : null]
+    );
+}
+==
+{% partial 'journal/listing' %}

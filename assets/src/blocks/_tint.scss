@@ -1,0 +1,17 @@
+// Neutral demo artwork follows the active scheme: the overlay keeps the image's lightness and takes the accent's hue; dark mode inverts first.
+@mixin tint($host, $img) {
+    #{$host} { position: relative; isolation: isolate; }
+    #{$host}::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--mr-accent);
+        mix-blend-mode: color;
+        opacity: 0.55;
+        pointer-events: none;
+    }
+    @media (prefers-color-scheme: dark) {
+        html:not([data-bs-theme]) #{$img} { filter: invert(1) brightness(0.85); }
+    }
+    html[data-bs-theme="dark"] #{$img} { filter: invert(1) brightness(0.85); }
+}

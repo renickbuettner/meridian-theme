@@ -1,0 +1,13 @@
+{# Execute mode emits data.code with |raw by design (trusted editors only); do not add sanitization #}
+{% set execute = data.mode|default('display') == 'execute' %}
+{% if execute %}
+<div {{ attributes|raw }}>{{ data.code|default('')|raw }}</div>
+{% else %}
+{% set lang = data.language|default('plain') %}
+{% set lang = lang in ['html', 'css', 'js', 'php', 'twig', 'plain'] ? lang : 'plain' %}
+<figure {{ attributes|raw }} data-island="code-cue" data-island-load="eager">
+    {# tabindex: a long line scrolls sideways, which a keyboard user can only do from a focusable element #}
+    <pre class="rc-code-pre" data-lang="{{ lang }}" tabindex="0"><code class="rc-code" data-lang="{{ lang }}">{{ data.code|default('') }}</code></pre>
+    {% if data.caption %}<figcaption class="rc-code-caption">{{ data.caption }}</figcaption>{% endif %}
+</figure>
+{% endif %}

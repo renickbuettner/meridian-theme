@@ -1,0 +1,43 @@
+url = "/:path*"
+layout = "default"
+title = "Page"
+is_hidden = 0
+
+[section]
+handle = "Meridian\Page"
+isDefault = 1
+==
+function onStart()
+{
+    // [section] only binds the page-finder target (:path <- fullslug); routing stays manual.
+    $path = trim((string) $this->param('path'), '/');
+    if ($path === '') {
+        $path = 'home';
+    }
+
+    // One canonical URL for the home page: it is served at the site root (pages/index.htm).
+    if ($path === 'home') {
+        return \Redirect::to($this->controller->pageUrl('index'), 301);
+    }
+
+    require_once meridian_path('partials/site/preview.php');
+    $entry = meridian_preview_entry('Meridian\\Page')
+        ?: \Tailor\Models\EntryRecord::inSection('Meridian\\Page')
+            ->applyPublishedStatus()
+            ->where('fullslug', $path)
+            ->first();
+
+    if (!$entry) {
+        $this->setStatusCode(404);
+        return $this->controller->run('404');
+    }
+
+    $this['entry'] = $entry;
+
+    require_once meridian_path('partials/site/page-seo.php');
+    meridian_page_seo($this, $entry, meridian_locale());
+    require_once meridian_path('partials/site/block-css.php');
+    $this['blockCss'] = meridian_block_css($entry->content);
+}
+==
+{% partial 'site/page-render' entry=entry %}

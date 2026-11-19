@@ -1,0 +1,18 @@
+uuid: meridiantag0003a1b8c2d9e3f0000003
+handle: Meridian\Tag
+type: entry
+name: Tag
+drafts: false
+multisite: all
+
+navigation:
+    parent: Meridian\Post
+    label: meridian.blog.nav.tags
+    icon: icon-tags
+    order: 300
+
+fields:
+    title:
+        label: meridian.blog.field.name
+        type: text
+        required: true

@@ -1,0 +1,25 @@
+{# Documentation page tree: a <details> on small screens, a sticky column from 1280px (see layout-docs.scss). Groups with children nest one level. #}
+{% set root = tree.root %}
+<details class="mr-docs__menu" data-docs-menu>
+    <summary>{{ 'meridian.front.docs.menu'|_ }}</summary>
+    <nav aria-label="{{ 'meridian.front.docs.nav'|_ }}">
+        <ul class="mr-docs__tree">
+            {% if root %}
+                <li><a href="{{ 'page'|page({ path: root.fullslug }) }}"{{ current == root.fullslug ? ' aria-current="page"' }}>{{ 'meridian.front.docs.overview'|_ }}</a></li>
+            {% endif %}
+            {% for item in tree.items %}
+                {% set inBranch = current == item.fullslug or current starts with (item.fullslug ~ '/') %}
+                <li>
+                    <a href="{{ 'page'|page({ path: item.fullslug }) }}"{{ current == item.fullslug ? ' aria-current="page"' }}{{ item.children|length ? ' class="mr-docs__group"' }}>{{ item.label }}</a>
+                    {% if item.children|length %}
+                        <ul class="mr-docs__tree mr-docs__tree--nested">
+                            {% for child in item.children %}
+                                <li><a href="{{ 'page'|page({ path: child.fullslug }) }}"{{ current == child.fullslug ? ' aria-current="page"' }}>{{ child.label }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+</details>

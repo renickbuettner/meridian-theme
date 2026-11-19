@@ -1,0 +1,35 @@
+url = "/404"
+layout = "default"
+title = "Page not found"
+is_hidden = 0
+==
+function onStart()
+{
+    // Error pages carry no canonical and must stay out of the index.
+    $this['seoNoindex'] = true;
+    $this['seoNoCanonical'] = true;
+    // The INI title is English; an install whose messages predate the key keeps it instead of showing the raw key.
+    $key = 'meridian.front.error.not_found_meta_title';
+    $title = class_exists(\RainLab\Translate\Models\Message::class) ? (string) \RainLab\Translate\Models\Message::trans($key) : '';
+    $this['seoTitle'] = $title !== '' && $title !== $key ? $title : $this->page->title;
+}
+==
+{# Literal /404 route: page.htm hands unresolved slugs to controller->run('404'). #}
+{% put styles %}<link rel="stylesheet" href="{{ ['assets/dist/layout-pages.css']|theme }}">{% endput %}
+<section class="mr-section mr-404">
+    <div class="mr-container mr-container--content">
+        <p class="mr-eyebrow">{{ 'meridian.front.error.not_found_eyebrow'|_ }}</p>
+        <h1>{{ 'meridian.front.error.not_found_title'|_ }}</h1>
+        <p class="mr-lead">{{ 'meridian.front.error.not_found_lead'|_ }}</p>
+        <p><a class="mr-btn" href="{{ 'index'|page }}">{{ 'meridian.front.error.back_home'|_ }}</a></p>
+        {% set links = meridianNav|default([])|filter(i => i.slug != 'home')|slice(0, 6) %}
+        {% if links|length %}
+            <h2 class="mr-404__title">{{ 'meridian.front.error.suggestions'|_ }}</h2>
+            <ul class="mr-404__links" role="list">
+                {% for item in links %}
+                    <li><a class="mr-chip" href="{{ 'page'|page({ path: item.fullslug }) }}">{{ item.label }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</section>

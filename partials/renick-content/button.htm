@@ -1,0 +1,11 @@
+{# Plugin button on Meridian's recipe: Bootstrap 5 style names map to mr-btn variants. Root is a wrapper div so the alignment classes in attributes work. #}
+{% set url = data.url|rc_url|default('#') %}
+{% set style = data.style|default('primary') %}
+{% set variant = style == 'primary' ? '' : (style == 'link' ? ' mr-btn--link' : ' mr-btn--ghost') %}
+{% set sizeCls = {'sm': ' mr-btn--sm', 'lg': ' mr-btn--lg'}[data.size|default('')]|default('') %}
+{% set target = data.target|default('_self') == '_blank' ? '_blank' : '_self' %}
+{% set btnIcon = rc_icon(data.icon|default(''), 16, 'rc-btn-icon') %}
+{% set iconBack = data.icon_position|default('front') == 'back' %}
+<div {{ attributes|raw }}>
+    <a class="mr-btn{{ variant }}{{ sizeCls }}" href="{{ url }}" target="{{ target }}"{% if target == '_blank' %} rel="noopener"{% endif %}>{% if btnIcon and not iconBack %}{{ btnIcon|raw }}{% endif %}<span>{{ data.label|default('') }}</span>{% if btnIcon and iconBack %}{{ btnIcon|raw }}{% endif %}</a>
+</div>

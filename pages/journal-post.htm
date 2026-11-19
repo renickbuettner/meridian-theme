@@ -1,0 +1,66 @@
+url = "/journal/:slug"
+layout = "default"
+title = "Journal post"
+is_hidden = 0
+==
+function onStart()
+{
+    require_once meridian_path('partials/journal/lib.php');
+    require_once meridian_path('partials/site/preview.php');
+    require_once meridian_path('partials/site/block-css.php');
+
+    $post = meridian_preview_entry('Meridian\\Post')
+        ?: meridian_journal_posts()->where('slug', $this->param('slug'))->first();
+    if (!$post) {
+        return meridian_journal_not_found($this);
+    }
+
+    [$html, $outline] = meridian_journal_outline(\Renick\Content\Classes\BlockRenderer::renderDocument($post->content, []));
+    $words = meridian_journal_words($post->content);
+    $card = meridian_journal_card($post);
+    $author = $post->author ? meridian_journal_author($post->author) : null;
+    $index = meridian_journal_index_entry();
+
+    $this['postHtml'] = $html;
+    $this['outline'] = $outline;
+    $this['blockCss'] = meridian_block_css($post->content);
+    $this['post'] = [
+        'title' => (string) $post->title,
+        'excerpt' => trim((string) $post->excerpt),
+        'date' => meridian_journal_date(meridian_journal_published($post)),
+        'iso' => meridian_journal_published($post)?->format('Y-m-d') ?? '',
+        'updatedIso' => $post->updated_at ? $post->updated_at->format('Y-m-d') : '',
+        'minutes' => meridian_journal_minutes($words),
+        'category' => $card['category'],
+        'author' => $author,
+        'alt' => $card['alt'],
+        'cover' => meridian_journal_image($post->cover, 1600, 900, [480, 768, 1024, 1440, 1600]),
+        'tags' => $post->tags->map(fn ($t) => ['title' => (string) $t->title, 'url' => meridian_journal_url('journal-tag', ['slug' => $t->slug])])->all(),
+    ];
+    $this['related'] = meridian_journal_related($post);
+    $this['journalUrl'] = meridian_journal_url('journal');
+
+    $journalLabel = $index ? (string) $index->title : meridian_journal_t('meridian.front.journal.eyebrow');
+    $trail = [['label' => $journalLabel, 'url' => $this['journalUrl']]];
+    if ($card['category']) {
+        $trail[] = ['label' => $card['category']['title'], 'url' => $card['category']['url']];
+    }
+    $trail[] = ['label' => (string) $post->title, 'url' => null];
+
+    meridian_journal_seo($this, [
+        'title' => $post->meta_title ?: (string) $post->title,
+        'description' => $post->meta_description ?: ($post->excerpt ?: null),
+        'url' => \Request::url(),
+        'type' => 'article',
+        'image' => meridian_media_url($post->cover),
+        'published' => meridian_journal_published($post)?->toIso8601String(),
+        'modified' => $post->updated_at ? $post->updated_at->toIso8601String() : null,
+        'author' => $author ? ['name' => $author['name'], 'url' => $author['url']] : null,
+        'section' => $card['category']['title'] ?? null,
+        'tags' => $post->tags->pluck('title')->all(),
+        'wordCount' => $words,
+        'breadcrumbs' => $trail,
+    ]);
+}
+==
+{% partial 'journal/post' %}

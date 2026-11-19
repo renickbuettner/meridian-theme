@@ -1,0 +1,32 @@
+[
+  {
+    "id": 101,
+    "site_root_id": 1,
+    "title": "Lena Marsh",
+    "slug": "lena-marsh",
+    "is_enabled": 1,
+    "role": "Redakteurin für Performance",
+    "bio": "Lena misst, was andere nur spüren: Layoutsprünge, lange Tasks und die halbe Sekunde, in der eine Seite zögert. Sie schreibt darüber, wie schnelle Websites im besten Sinn langweilig werden.",
+    "website": "https://example.com/lena"
+  },
+  {
+    "id": 102,
+    "site_root_id": 2,
+    "title": "Tomás Ibarra",
+    "slug": "tomas-ibarra",
+    "is_enabled": 1,
+    "role": "Leitung Publishing",
+    "bio": "Tomás leitet seit zwölf Jahren kleine unabhängige Publikationen und zieht eine schlichte Textdatei jedem Dashboard vor. Er schreibt über Rhythmus, Publikum und nachhaltige Redaktionsarbeit.",
+    "website": "https://example.com/tomas"
+  },
+  {
+    "id": 103,
+    "site_root_id": 3,
+    "title": "Noor Haddad",
+    "slug": "noor-haddad",
+    "is_enabled": 1,
+    "role": "Design und Barrierefreiheit",
+    "bio": "Noor gestaltet Leseerlebnisse und testet sie mit Tastatur, Screenreader und einem sehr hellen Fenster. Sie schreibt über Schrift, Kontrast und die Details, die eine Seite rücksichtsvoll wirken lassen.",
+    "website": "https://example.com/noor"
+  }
+]

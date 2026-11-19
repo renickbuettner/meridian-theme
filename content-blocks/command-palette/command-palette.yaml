@@ -1,0 +1,31 @@
+handle: command-palette
+name: meridian.block.command-palette.name
+icon: icon-search
+group: Meridian
+version: 1
+settings: true
+fields:
+  eyebrow:
+    label: meridian.block.command-palette.eyebrow
+    type: text
+  title:
+    label: meridian.block.command-palette.title
+    type: text
+    commentAbove: meridian.block.command-palette.title_comment
+  lead:
+    label: meridian.block.command-palette.lead
+    type: textarea
+    size: small
+  placeholder:
+    label: meridian.block.command-palette.placeholder
+    type: text
+    commentAbove: meridian.block.command-palette.placeholder_comment
+  scope:
+    label: meridian.block.command-palette.scope
+    type: dropdown
+    options:
+      all: meridian.block.command-palette.scope_all
+      page: meridian.block.command-palette.scope_page
+      post: meridian.block.command-palette.scope_post
+    default: all
+    commentAbove: meridian.block.command-palette.scope_comment

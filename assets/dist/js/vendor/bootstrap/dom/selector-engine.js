@@ -1,0 +1,6 @@
+/*!
+* Bootstrap selector-engine.js v6.0.0-alpha.1 (https://getbootstrap.com/)
+* Copyright 2011-2026 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+* Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+*/
+import{parseSelector as e}from"../util/index.js";const t=t=>{let n=t.getAttribute("data-bs-target");if(!n||"#"===n){let e=t.getAttribute("href");if(!e||!e.includes("#")&&!e.startsWith("."))return null;e.includes("#")&&!e.startsWith("#")&&(e=`#${e.split("#")[1]}`),n=e&&"#"!==e?e.trim():null}return n?n.split(",").map(t=>e(t)).join(","):null},n={find:(e,t=document.documentElement)=>[...Element.prototype.querySelectorAll.call(t,e)],findOne:(e,t=document.documentElement)=>Element.prototype.querySelector.call(t,e),parents(e,t){const n=[];let l=e.parentNode.closest(t);for(;l;)n.push(l),l=l.parentNode.closest(t);return n},closest:(e,t)=>Element.prototype.closest.call(e,t),prev(e,t){let n=e.previousElementSibling;for(;n;){if(n.matches(t))return[n];n=n.previousElementSibling}return[]},next(e,t){let n=e.nextElementSibling;for(;n;){if(n.matches(t))return[n];n=n.nextElementSibling}return[]},getSelectorFromElement(e){const l=t(e);return l&&n.findOne(l)?l:null},getElementFromSelector(e){const l=t(e);return l?n.findOne(l):null},getMultipleElementsFromSelector(e){const l=t(e);return l?n.find(l):[]}};export{n as default};

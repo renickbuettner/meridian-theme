@@ -1,0 +1,38 @@
+// Plugin timeline markup, re-skinned: vertical hairline, accent markers, calm meta line.
+@use "../mr";
+@use "../blocks/plugin-tokens";
+
+.rc-timeline-inner {
+    --_marker: var(--mr-space-6);
+    @include plugin-tokens.bs5-tokens;
+    --bs-body-bg: var(--mr-bg);
+    --bs-border-color: var(--mr-line-strong);
+}
+
+html .rc-tl-row {
+    gap: var(--mr-space-4);
+    padding-block-end: var(--mr-space-6);
+}
+html .rc-tl-row::before {
+    left: auto;
+    inset-inline-start: calc(var(--_marker) / 2 - 1px);
+    top: calc(var(--_marker) + var(--mr-space-1));
+}
+html .rc-tl-marker { width: var(--_marker); height: var(--_marker); }
+html .rc-tl-content { min-width: 0; padding-top: 0; }
+html .rc-tl-meta {
+    font-size: var(--mr-text-xs);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--mr-muted);
+}
+html .rc-tl-title {
+    margin: var(--mr-space-1) 0 var(--mr-space-2);
+    font: 600 var(--mr-text-h4) / 1.25 var(--mr-font-serif);
+    text-wrap: balance;
+}
+.rc-tl-content > :last-child { margin-bottom: 0; }
+
+@include mr.up(md) {
+    html .rc-timeline--alternate .rc-timeline-inner::before { background: var(--mr-line-strong); }
+}

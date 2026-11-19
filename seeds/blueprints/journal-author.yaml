@@ -1,0 +1,51 @@
+uuid: meridianauthor0004a1b8c2d9e3f0000004
+handle: Meridian\Author
+type: entry
+name: Author
+drafts: false
+multisite: all
+
+# Pagefinder: resolves against pages/journal-author.htm, :slug from the record.
+pagefinder:
+    replacements:
+        slug: slug
+
+navigation:
+    parent: Meridian\Post
+    label: meridian.blog.nav.authors
+    icon: icon-user
+    order: 400
+
+fields:
+    title:
+        label: meridian.blog.field.name
+        type: text
+        required: true
+        span: left
+
+    role:
+        label: meridian.blog.field.role
+        type: text
+        span: right
+        column: false
+
+    bio:
+        label: meridian.blog.field.bio
+        type: textarea
+        size: small
+        span: full
+        column: false
+
+    avatar:
+        label: meridian.blog.field.avatar
+        type: mediafinder
+        mode: image
+        maxItems: 1
+        span: left
+        column: false
+
+    website:
+        label: meridian.blog.field.website
+        type: text
+        span: right
+        column: false

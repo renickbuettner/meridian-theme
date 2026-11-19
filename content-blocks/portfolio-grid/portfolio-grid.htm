@@ -1,0 +1,52 @@
+{% set items = [] %}
+{% set cats = [] %}
+{% for item in data.items|default([]) %}
+    {% if item.title|default('') != '' %}
+        {% set cat = item.category|default('')|trim %}
+        {% if cat != '' and cat not in cats %}{% set cats = cats|merge([cat]) %}{% endif %}
+        {% set items = items|merge([item|merge({_cat: cat != '' ? cats|keys|filter(k => cats[k] == cat)|first : -1})]) %}
+    {% endif %}
+{% endfor %}
+{% set cols = data.columns|default('3') == '2' ? '2' : '3' %}
+{% set sizes = cols == '2' ? '(min-width: 1280px) 30rem, (min-width: 560px) 45vw, 100vw' : '(min-width: 1280px) 22rem, (min-width: 992px) 30vw, (min-width: 560px) 45vw, 100vw' %}
+<section {{ attributes|replace({'class="': 'class="mr-pg '})|raw }} data-island="portfolio-grid" data-island-load="idle"
+    data-t-count="{{ rc_t('meridian.block.portfolio-grid.ui_count', {shown: ':shown', total: ':total'}, locale) }}">
+    {% if data.eyebrow or data.title or data.intro %}
+    <header class="mr-pg__head">
+        {% if data.eyebrow %}<p class="mr-eyebrow">{{ data.eyebrow }}</p>{% endif %}
+        {% if data.title %}<h2 class="mr-pg__title">{{ data.title }}</h2>{% endif %}
+        {% if data.intro %}<p class="mr-lead">{{ data.intro }}</p>{% endif %}
+    </header>
+    {% endif %}
+
+    {% if cats|length > 1 %}
+    <div class="mr-pg__filters mr-js-only" role="group" aria-label="{{ rc_t('meridian.block.portfolio-grid.ui_filter', {}, locale) }}">
+        <button type="button" class="mr-chip" data-cat="all" aria-pressed="true">{{ rc_t('meridian.block.portfolio-grid.ui_all', {}, locale) }}</button>
+        {% for cat in cats %}<button type="button" class="mr-chip" data-cat="{{ loop.index0 }}" aria-pressed="false">{{ cat }}</button>{% endfor %}
+    </div>
+    {% endif %}
+
+    <ul class="mr-pg__grid mr-pg__grid--{{ cols }}" role="list">
+        {% for item in items %}
+        {% set url = item.url|default('')|rc_url %}
+        <li class="mr-pg__item" data-cat="{{ item._cat }}">
+            <article class="mr-pg__card mr-card">
+                {% if item.image %}
+                {% set srcset = rc_srcset(item.image, [400, 800, 1200], {ratio: 0.75}) %}
+                {% set srcsetWebp = rc_srcset(item.image, [400, 800, 1200], {ratio: 0.75, extension: 'webp'}) %}
+                <picture>
+                    {% if srcsetWebp and srcsetWebp != srcset %}<source type="image/webp" srcset="{{ srcsetWebp }}" sizes="{{ sizes }}">{% endif %}
+                    <img class="mr-pg__img" src="{{ item.image|media }}"{% if srcset %} srcset="{{ srcset }}" sizes="{{ sizes }}"{% endif %} alt="{{ item.image_alt|default('') }}" loading="{{ loop.index > 3 ? 'lazy' : 'eager' }}" decoding="async" width="800" height="600">
+                </picture>
+                {% endif %}
+                <div class="mr-pg__text">
+                    <p class="mr-pg__meta">{% if item.category %}<span>{{ item.category }}</span>{% endif %}{% if item.category and item.year %}<span class="mr-pg__sep" aria-hidden="true"></span>{% endif %}{% if item.year %}<span>{{ item.year }}</span>{% endif %}</p>
+                    <h3 class="mr-pg__name">{% set name %}{% for w in item.title|split(' ') %}{% if '-' in w %}<span class="mr-pg__nb">{{ w }}</span>{% else %}{{ w }}{% endif %}{% if not loop.last %} {% endif %}{% endfor %}{% endset %}{% if url %}<a class="mr-pg__link" href="{{ url }}">{{ name }}</a>{% else %}{{ name }}{% endif %}</h3>
+                    {% if item.summary %}<p class="mr-pg__summary">{{ item.summary }}</p>{% endif %}
+                </div>
+            </article>
+        </li>
+        {% endfor %}
+    </ul>
+    <p class="mr-pg__count mr-js-only" data-count role="status"></p>
+</section>

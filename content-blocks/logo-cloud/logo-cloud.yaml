@@ -1,0 +1,40 @@
+handle: logo-cloud
+name: meridian.block.logo-cloud.name
+icon: icon-star-o
+group: Meridian
+version: 1
+settings: true
+fullBleed: true
+fields:
+  title:
+    label: meridian.block.logo-cloud.title
+    type: text
+
+  band:
+    label: meridian.block.logo-cloud.band
+    type: dropdown
+    options:
+      none: meridian.block.logo-cloud.band_none
+      band: meridian.block.logo-cloud.band_band
+      accent: meridian.block.logo-cloud.band_accent
+    default: none
+  logos:
+    label: meridian.block.logo-cloud.logos
+    type: repeater
+    titleFrom: name
+    fields:
+      image:
+        label: meridian.block.logo-cloud.logo_image
+        type: mediafinder
+        mode: image
+        maxItems: 1
+      name:
+        label: meridian.block.logo-cloud.logo_name
+        type: text
+        commentAbove: meridian.block.logo-cloud.logo_name_comment
+      url:
+        label: meridian.block.logo-cloud.logo_url
+        type: pagefinder
+        singleMode: true
+        allowCustomUrl: true
+        translatable: false

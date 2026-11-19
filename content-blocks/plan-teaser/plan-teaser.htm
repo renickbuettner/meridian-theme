@@ -1,0 +1,30 @@
+{% set band = data.band|default('none') in ['band', 'accent'] ? data.band : 'none' %}
+{% set plans = (data.plans|default([]))|filter(p => p.name|default('')) %}
+{% set linkUrl = data.link_url|default('')|rc_url %}
+{# "bootstrap" would pose as window.bootstrap (ReservedIds in the plugin) #}
+{% set anchor = data.anchor|default('') matches '/^(?!bootstrap$)[a-z][a-z0-9-]*$/' ? data.anchor : '' %}
+<section{% if anchor %} id="{{ anchor }}"{% endif %} {{ attributes|replace({'class="': 'class="mr-section mr-plans' ~ (band != 'none' ? ' mr-section--' ~ band : '') ~ ' '})|raw }}>
+    <div class="mr-container">
+        {{ rc_partial('_mr-section-head', {eyebrow: data.eyebrow, title: data.title, lead: data.lead}) }}
+        {% if plans|length %}
+        <ul class="mr-plans__grid" style="--mr-cols: {{ plans|length }}" role="list">
+            {% for plan in plans %}
+                {% set url = plan.cta_url|default('')|rc_url %}
+                <li class="mr-plans__item mr-card{% if plan.featured %} mr-plans__item--featured{% endif %}">
+                    <h3 class="mr-plans__name">{{ plan.name }}{% if plan.featured %} <span class="mr-plans__badge">{{ rc_t('meridian.block.plan-teaser.ui_popular', {}, locale) }}</span>{% endif %}</h3>
+                    {% if plan.price %}<p class="mr-plans__price"><span class="mr-plans__amount">{{ plan.price }}</span>{% if plan.period %} <span class="mr-plans__period">{{ plan.period }}</span>{% endif %}</p>{% endif %}
+                    {% if plan.text %}<p class="mr-plans__text">{{ plan.text }}</p>{% endif %}
+                    {% set feats = (plan.features|default(''))|split("\n")|map(f => f|trim)|filter(f => f) %}
+                    {% if feats|length %}
+                        <ul class="mr-plans__features" role="list">{% for f in feats %}<li>{{ f }}</li>{% endfor %}</ul>
+                    {% endif %}
+                    {% if plan.cta_label and url %}<a class="mr-btn{% if not plan.featured %} mr-btn--ghost{% endif %} mr-plans__cta" href="{{ url }}">{{ plan.cta_label }}<span class="visually-hidden"> {{ plan.name }}</span></a>{% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        {% if data.link_label and linkUrl %}<p class="mr-plans__all"><a href="{{ linkUrl }}">{{ data.link_label }}<span aria-hidden="true">&rarr;</span></a></p>{% endif %}
+        {% elseif preview %}
+        <div class="rc-pv-placeholder">{{ rc_t('meridian.block.plan-teaser.ui_empty', {}, locale) }}</div>
+        {% endif %}
+    </div>
+</section>

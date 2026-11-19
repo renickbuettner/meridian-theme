@@ -1,0 +1,609 @@
+[
+  {
+    "id": 110,
+    "title": "Produkt",
+    "slug": "saas",
+    "is_enabled": 1,
+    "hide_from_nav": 1,
+    "show_in_footer": 1,
+    "nav_label": "Produkt",
+    "meta_description": "Tidepool ist cookiefreie Web-Analyse: schnell, privat und leicht zu erklären. Starten Sie eine 14-tägige Testphase.",
+    "schema_type": "WebPage",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrlde_s01",
+          "type": "hero",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "layout": "split",
+            "eyebrow": "Datenschutzfreundliche Web-Analyse",
+            "title": "Wissen, was wirkt,",
+            "title_accent": "ohne alle zu überwachen.",
+            "lead": "Tidepool zeigt, woher Besucher kommen und was sie lesen. Ohne Cookies, ohne Einwilligungsbanner und mit einem Skript, das kleiner ist als ein Favicon.",
+            "primary_label": "Kostenlos testen",
+            "primary_url": "october://cms-page@link/page?path=pricing",
+            "secondary_label": "So funktioniert es",
+            "secondary_url": "#features",
+            "note": "14 Tage kostenlos. Keine Kreditkarte nötig.",
+            "highlights": [
+              {
+                "label": "Ohne Cookies"
+              },
+              {
+                "label": "Gehostet in der EU"
+              },
+              {
+                "label": "Skript unter 1 KB"
+              }
+            ],
+            "image": "meridian/landing/saas-hero.jpg",
+            "image_dark": "meridian/landing/saas-hero-dark.jpg",
+            "image_alt": "Tidepool-Dashboard mit Besuchern, Top-Seiten und einem Wochenverlauf"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrlde_s02",
+          "type": "logo-cloud",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "title": "Vertrauen von unabhängigen Teams",
+            "logos": [
+              {
+                "image": "meridian/landing/logos/northwind.svg",
+                "name": "Northwind"
+              },
+              {
+                "image": "meridian/landing/logos/fieldnotes.svg",
+                "name": "Fieldnotes"
+              },
+              {
+                "image": "meridian/landing/logos/lumenworks.svg",
+                "name": "Lumenworks"
+              },
+              {
+                "image": "meridian/landing/logos/harborline.svg",
+                "name": "Harborline"
+              },
+              {
+                "image": "meridian/landing/logos/tidewater.svg",
+                "name": "Tidewater"
+              },
+              {
+                "image": "meridian/landing/logos/quillhouse.svg",
+                "name": "Quillhouse"
+              }
+            ]
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrlde_s03",
+          "type": "feature-grid",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "anchor": "features",
+            "layout": "cards",
+            "columns": "3",
+            "eyebrow": "Warum Tidepool",
+            "title": "Alles, was Sie brauchen, nichts, was Sie erklären müssen",
+            "lead": "Ein ruhiges Dashboard ersetzt den Wust aus Tags, Bannern und Exporten.",
+            "items": [
+              {
+                "icon": "zap",
+                "title": "Lädt im Nu",
+                "text": "Das Tracking-Skript ist kleiner als 1 KB, Ihre Seiten bleiben so schnell, wie Sie sie gebaut haben."
+              },
+              {
+                "icon": "shield-check",
+                "title": "Datenschutz von Grund auf",
+                "text": "Keine Cookies und keine personenbezogenen Daten: nichts, wozu man zustimmen müsste, und nichts, das abfließen kann."
+              },
+              {
+                "icon": "gauge",
+                "title": "Antworten in Echtzeit",
+                "text": "Sehen Sie den Verkehr, während er passiert, und vergleichen Sie zwei beliebige Zeiträume mit einem Klick."
+              },
+              {
+                "icon": "route",
+                "title": "Dem Weg folgen",
+                "text": "Verstehen Sie, welche Seiten zu einer Anmeldung führen, ohne Personen zusammenzuführen."
+              },
+              {
+                "icon": "layers",
+                "title": "Ziele und Ereignisse",
+                "text": "Erfassen Sie Downloads, Anmeldungen und ausgehende Links mit einer Zeile Markup."
+              },
+              {
+                "icon": "users",
+                "title": "Gemacht für Teams",
+                "text": "Teilen Sie ein öffentliches Dashboard oder senden Sie eine Wochenübersicht an alle, die sie brauchen."
+              }
+            ]
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrlde_s04",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "xl",
+            "spacing_bottom": "xl"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrlde_s05",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Das sagen Teams",
+                "level": "h2"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrlde_s06",
+              "type": "testimonials",
+              "enabled": true,
+              "settings": {
+                "spacing_top": "md"
+              },
+              "data": {
+                "columns": "3",
+                "variant": "cards",
+                "items": [
+                  {
+                    "quote": "Wir haben drei Tools abgeschafft, und unsere Seiten wurden eine ganze Sekunde schneller.",
+                    "author": "Mara Lindqvist",
+                    "role": "Leiterin Wachstum, Northwind"
+                  },
+                  {
+                    "quote": "Endlich ein Dashboard, das ich meinem Team in fünf Minuten erklären kann.",
+                    "author": "Jonas Weber",
+                    "role": "Gründer, Fieldnotes"
+                  },
+                  {
+                    "quote": "Kein Banner, keine Rechtsprüfung, kein Einbruch bei den Zahlen. Es funktioniert einfach.",
+                    "author": "Amira Haddad",
+                    "role": "Chefredakteurin, Harborline"
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrlde_s07",
+          "type": "plan-teaser",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "band": "band",
+            "eyebrow": "Preise",
+            "title": "Einfache Tarife, die mit Ihnen wachsen",
+            "lead": "Sie zahlen für Seitenaufrufe, nicht für Plätze. Jeder Tarif enthält alle Funktionen.",
+            "link_label": "Alle Tarife vergleichen",
+            "link_url": "october://cms-page@link/page?path=pricing",
+            "plans": [
+              {
+                "name": "Starter",
+                "price": "9 €",
+                "period": "pro Monat",
+                "text": "Für persönliche Seiten und Nebenprojekte.",
+                "features": "10.000 Seitenaufrufe\n1 Website\n6 Monate Verlauf",
+                "cta_label": "Kostenlos testen",
+                "cta_url": "october://cms-page@link/page?path=pricing"
+              },
+              {
+                "name": "Team",
+                "price": "29 €",
+                "period": "pro Monat",
+                "text": "Für Teams, die jede Woche veröffentlichen.",
+                "features": "100.000 Seitenaufrufe\n10 Websites\nUnbegrenzter Verlauf\nWöchentliche E-Mail-Übersicht",
+                "featured": true,
+                "cta_label": "Kostenlos testen",
+                "cta_url": "october://cms-page@link/page?path=pricing"
+              },
+              {
+                "name": "Scale",
+                "price": "79 €",
+                "period": "pro Monat",
+                "text": "Für Verlage und Agenturen mit viel Verkehr.",
+                "features": "1 Million Seitenaufrufe\nUnbegrenzte Websites\nBevorzugter Support",
+                "cta_label": "Sprechen Sie mit uns",
+                "cta_url": "october://cms-page@link/page?path=contact"
+              }
+            ]
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrlde_s08",
+          "type": "cta-band",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "tone": "accent",
+            "title": "Bereit für Analysen, die Sie erklären können?",
+            "text": "Starten Sie heute eine kostenlose Testphase und sehen Sie Ihre ersten Zahlen in unter zwei Minuten.",
+            "primary_label": "Kostenlos testen",
+            "primary_url": "october://cms-page@link/page?path=pricing",
+            "secondary_label": "Sprechen Sie mit uns",
+            "secondary_url": "october://cms-page@link/page?path=contact",
+            "note": "14 Tage kostenlos. Keine Kreditkarte nötig."
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    },
+    "site_root_id": 10
+  },
+  {
+    "id": 120,
+    "title": "Studio",
+    "slug": "studio",
+    "is_enabled": 1,
+    "hide_from_nav": 1,
+    "show_in_footer": 1,
+    "nav_label": "Studio",
+    "meta_description": "Fieldwork ist ein unabhängiges Design- und Webstudio für Marken, denen Klarheit wichtig ist. Sehen Sie sich ausgewählte Projekte an und starten Sie Ihr eigenes.",
+    "schema_type": "WebPage",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrlde_a01",
+          "type": "hero",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "layout": "editorial",
+            "eyebrow": "Unabhängiges Design- und Webstudio",
+            "title": "Wir gestalten ruhige Websites",
+            "title_accent": "die schnell laden.",
+            "lead": "Fieldwork ist ein kleines Studio für Marken, denen Klarheit wichtig ist. Wir formen die Geschichte, gestalten die Oberfläche und liefern den Code.",
+            "primary_label": "Unsere Arbeiten",
+            "primary_url": "#work",
+            "secondary_label": "Projekt starten",
+            "secondary_url": "october://cms-page@link/page?path=contact",
+            "image": "meridian/landing/agency-hero.jpg",
+            "image_alt": ""
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrlde_a02",
+          "type": "logo-cloud",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "title": "Ausgewählte Kunden",
+            "logos": [
+              {
+                "image": "meridian/landing/logos/northwind.svg",
+                "name": "Northwind"
+              },
+              {
+                "image": "meridian/landing/logos/fieldnotes.svg",
+                "name": "Fieldnotes"
+              },
+              {
+                "image": "meridian/landing/logos/lumenworks.svg",
+                "name": "Lumenworks"
+              },
+              {
+                "image": "meridian/landing/logos/harborline.svg",
+                "name": "Harborline"
+              },
+              {
+                "image": "meridian/landing/logos/tidewater.svg",
+                "name": "Tidewater"
+              },
+              {
+                "image": "meridian/landing/logos/quillhouse.svg",
+                "name": "Quillhouse"
+              }
+            ]
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrlde_a03",
+          "type": "feature-grid",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "anchor": "work",
+            "layout": "projects",
+            "columns": "3",
+            "eyebrow": "Ausgewählte Arbeiten",
+            "title": "Projekte, auf die wir stolz sind",
+            "lead": "Einige aktuelle Zusammenarbeiten, von der ersten Skizze bis zum Launch.",
+            "items": [
+              {
+                "image": "meridian/landing/atlas-mobile.jpg",
+                "image_alt": "",
+                "tag": "Produkt · 2026",
+                "title": "Atlas Mobile",
+                "text": "Eine Reise-App, die komplett offline funktioniert.",
+                "url": "october://cms-page@link/page?path=case-study"
+              },
+              {
+                "image": "meridian/landing/harbor-studio.jpg",
+                "image_alt": "",
+                "tag": "Marke · 2025",
+                "title": "Harbor Studio",
+                "text": "Eine neue Identität für ein unabhängiges Designhaus."
+              },
+              {
+                "image": "meridian/landing/north-field.jpg",
+                "image_alt": "",
+                "tag": "Web · 2026",
+                "title": "North Field",
+                "text": "Ein ruhiges Journal für eine nordische Agrargenossenschaft."
+              },
+              {
+                "image": "meridian/landing/lumen-health.jpg",
+                "image_alt": "",
+                "tag": "Produkt · 2025",
+                "title": "Lumen Health",
+                "text": "Ein Patientenportal, das Menschen gern nutzen."
+              },
+              {
+                "image": "meridian/landing/terra-kitchen.jpg",
+                "image_alt": "",
+                "tag": "Marke · 2024",
+                "title": "Terra Kitchen",
+                "text": "Verpackung und Web für eine saisonale Küche."
+              },
+              {
+                "image": "meridian/landing/tidewater-bank.jpg",
+                "image_alt": "",
+                "tag": "Web · 2026",
+                "title": "Tidewater Bank",
+                "text": "Eine barrierefreie Bank-Website, getestet mit echten Kundinnen und Kunden."
+              }
+            ]
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrlde_a04",
+          "type": "feature-grid",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "anchor": "process",
+            "layout": "numbered",
+            "columns": "4",
+            "band": "band",
+            "eyebrow": "So arbeiten wir",
+            "title": "Ein Ablauf, der die Dinge einfach hält",
+            "items": [
+              {
+                "title": "Zuhören",
+                "text": "Wir beginnen bei Ihrem Publikum und Ihren Zielen, nicht bei einem Moodboard."
+              },
+              {
+                "title": "Skizzieren",
+                "text": "Schnelle, grobe Ideen auf Papier, bis sich eine davon offensichtlich richtig anfühlt."
+              },
+              {
+                "title": "Bauen",
+                "text": "Barrierefrei, schnell und vom ersten Tag an von Ihrem Team bearbeitbar."
+              },
+              {
+                "title": "Starten",
+                "text": "Wir bleiben nach dem Start nah dran und verfeinern, was die ersten Besucher uns zeigen."
+              }
+            ]
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrlde_a07",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "xl",
+            "spacing_bottom": "xl"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrlde_a05",
+              "type": "project-map",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "eyebrow": "Rund um die Welt",
+                "title": "Wo unsere Projekte leben",
+                "intro": "Filtern Sie nach Kategorie und wählen Sie eine Markierung, um das Projekt dahinter zu sehen.",
+                "pins": [
+                  {
+                    "title": "Atlas Mobile",
+                    "category": "Produkt",
+                    "location": "Lissabon, Portugal",
+                    "lat": "38.72",
+                    "lon": "-9.14",
+                    "status": "completed",
+                    "year": "2026",
+                    "summary": "Eine Reise-App, die komplett offline funktioniert.",
+                    "image": "meridian/landing/atlas-mobile.jpg",
+                    "image_alt": ""
+                  },
+                  {
+                    "title": "Harbor Studio",
+                    "category": "Marke",
+                    "location": "Hamburg, Deutschland",
+                    "lat": "53.55",
+                    "lon": "9.99",
+                    "status": "completed",
+                    "year": "2025",
+                    "summary": "Eine neue Identität für ein unabhängiges Designhaus.",
+                    "image": "meridian/landing/harbor-studio.jpg",
+                    "image_alt": ""
+                  },
+                  {
+                    "title": "North Field",
+                    "category": "Web",
+                    "location": "Oslo, Norwegen",
+                    "lat": "59.91",
+                    "lon": "10.75",
+                    "status": "completed",
+                    "year": "2026",
+                    "summary": "Ein ruhiges Journal für eine nordische Agrargenossenschaft.",
+                    "image": "meridian/landing/north-field.jpg",
+                    "image_alt": ""
+                  },
+                  {
+                    "title": "Lumen Health",
+                    "category": "Produkt",
+                    "location": "Toronto, Kanada",
+                    "lat": "43.65",
+                    "lon": "-79.38",
+                    "status": "completed",
+                    "year": "2025",
+                    "summary": "Ein Patientenportal, das Menschen gern nutzen.",
+                    "image": "meridian/landing/lumen-health.jpg",
+                    "image_alt": ""
+                  },
+                  {
+                    "title": "Terra Kitchen",
+                    "category": "Marke",
+                    "location": "Melbourne, Australien",
+                    "lat": "-37.81",
+                    "lon": "144.96",
+                    "status": "completed",
+                    "year": "2024",
+                    "summary": "Verpackung und Web für eine saisonale Küche.",
+                    "image": "meridian/landing/terra-kitchen.jpg",
+                    "image_alt": ""
+                  },
+                  {
+                    "title": "Tidewater Bank",
+                    "category": "Web",
+                    "location": "Kapstadt, Südafrika",
+                    "lat": "-33.92",
+                    "lon": "18.42",
+                    "status": "completed",
+                    "year": "2026",
+                    "summary": "Eine barrierefreie Bank-Website, getestet mit echten Kundinnen und Kunden.",
+                    "image": "meridian/landing/tidewater-bank.jpg",
+                    "image_alt": ""
+                  }
+                ]
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrlde_a06",
+          "type": "cta-band",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "tone": "soft",
+            "title": "Sie haben ein Projekt im Kopf?",
+            "text": "Erzählen Sie uns kurz davon. Wir antworten innerhalb von zwei Werktagen.",
+            "primary_label": "Projekt starten",
+            "primary_url": "october://cms-page@link/page?path=contact",
+            "secondary_label": "Zum Journal",
+            "secondary_url": "october://cms-page@link/page?path=journal"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    },
+    "site_root_id": 20
+  }
+]

@@ -1,0 +1,16 @@
+{# One definition list, three looks: strip (case study facts), figures (big result numbers), list (stacked, e.g. opening hours). #}
+{% set variant = data.variant|default('strip') in ['strip', 'figures', 'list'] ? data.variant|default('strip') : 'strip' %}
+{% set items = (data.items|default([]))|filter(i => i.label|default('') and i.value|default('') != '') %}
+{% if items|length %}
+<section {{ attributes|replace({'class="': 'class="mr-facts mr-facts--' ~ variant ~ ' '})|raw }}>
+    {% if data.title %}<h2 class="mr-facts__title">{{ data.title }}</h2>{% endif %}
+    <dl class="mr-facts__list">
+        {% for item in items %}
+            <div class="mr-facts__item">
+                <dt>{{ item.label }}</dt>
+                <dd><span class="mr-facts__value">{{ item.value }}</span>{% if item.note %}<small>{{ item.note }}</small>{% endif %}</dd>
+            </div>
+        {% endfor %}
+    </dl>
+</section>
+{% endif %}

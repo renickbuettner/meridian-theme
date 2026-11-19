@@ -1,0 +1,57 @@
+{# Field names are the contract with partials/seo/blocks/event-details.php (Event markup). Dates render server-side from rc_t month/weekday lists; the island only adds the live countdown. #}
+{% set tz = data.timezone|default('Europe/Berlin')|trim ?: 'Europe/Berlin' %}
+{% set mode = data.mode|default('online') in ['online', 'offline', 'mixed'] ? data.mode|default('online') : 'online' %}
+{% set status = data.status|default('scheduled') %}
+{% set hasStart = data.start|default('') != '' %}
+{% set months = rc_t('meridian.block.event-details.ui_months')|split('|') %}
+{% set weekdays = rc_t('meridian.block.event-details.ui_weekdays')|split('|') %}
+{% set symbol = {'EUR': '€', 'USD': '$', 'GBP': '£', 'CHF': 'CHF'}[data.currency|default('EUR')]|default('€') %}
+{% set price = data.price|default('')|trim %}
+{% set reg = data.registration_url|rc_url ?: '#signup' %}
+{% set showCountdown = hasStart and data.countdown|default('yes') != 'no' and status == 'scheduled' %}
+<section {{ attributes|replace({'class="': 'class="mr-event '})|raw }}{% if showCountdown %} data-island="event-details" data-island-load="idle" data-start="{{ data.start|date('c', tz) }}"{% if data.end %} data-end="{{ data.end|date('c', tz) }}"{% endif %} data-msg-live="{{ rc_t('meridian.block.event-details.ui_live') }}" data-msg-ended="{{ rc_t('meridian.block.event-details.ui_ended') }}"{% endif %}>
+    {% if status != 'scheduled' %}
+        <p class="mr-event__status" role="status">{{ rc_t('meridian.block.event-details.ui_status_' ~ (status == 'cancelled' ? 'cancelled' : 'postponed')) }}</p>
+    {% endif %}
+    <div class="mr-event__card mr-card">
+        <dl class="mr-event__facts">
+            {% if hasStart %}
+                {% set day = data.start|date('j', tz) %}
+                <div>
+                    <dt>{{ rc_t('meridian.block.event-details.ui_when') }}</dt>
+                    <dd>
+                        <time datetime="{{ data.start|date('c', tz) }}">{{ rc_t('meridian.block.event-details.ui_date_format', {weekday: weekdays[(data.start|date('N', tz)) - 1]|default(''), day: day, month: months[(data.start|date('n', tz)) - 1]|default(''), year: data.start|date('Y', tz)}) }}</time>
+                        <span class="mr-event__time">{{ data.start|date(rc_t('meridian.block.event-details.ui_time_format'), tz) }}{% if data.end %} – <time datetime="{{ data.end|date('c', tz) }}">{{ data.end|date(rc_t('meridian.block.event-details.ui_time_format'), tz) }}</time>{% endif %} {{ data.start|date('T', tz) }}</span>
+                    </dd>
+                </div>
+            {% endif %}
+            <div>
+                <dt>{{ rc_t('meridian.block.event-details.ui_where') }}</dt>
+                <dd>
+                    {{ rc_t('meridian.block.event-details.ui_mode_' ~ mode) }}
+                    {% if mode != 'online' and (data.venue or data.address) %}<span class="mr-event__sub">{{ data.venue }}{{ data.venue and data.address ? ', ' : '' }}{{ data.address }}</span>{% endif %}
+                </dd>
+            </div>
+            {% if data.performer %}<div><dt>{{ rc_t('meridian.block.event-details.ui_host') }}</dt><dd>{{ data.performer }}</dd></div>{% endif %}
+            <div>
+                <dt>{{ rc_t('meridian.block.event-details.ui_price') }}</dt>
+                <dd>{% if price == '' or price == '0' %}{{ rc_t('meridian.block.event-details.ui_free') }}{% else %}{{ rc_t('meridian.block.event-details.ui_price_format', {symbol: symbol, price: price}) }}{% endif %}</dd>
+            </div>
+        </dl>
+        <div class="mr-event__cta">
+            {% if showCountdown %}
+                <div class="mr-event__count">
+                    <p class="mr-nojs-only mr-event__count-fallback">{{ rc_t('meridian.block.event-details.ui_starts_on', {date: rc_t('meridian.block.event-details.ui_date_format', {weekday: weekdays[(data.start|date('N', tz)) - 1]|default(''), day: data.start|date('j', tz), month: months[(data.start|date('n', tz)) - 1]|default(''), year: data.start|date('Y', tz)})}) }}</p>
+                    <div class="mr-js-only mr-event__count-live" role="timer" aria-label="{{ rc_t('meridian.block.event-details.ui_countdown') }}">
+                        <span class="mr-event__unit"><b data-unit="d">0</b><span>{{ rc_t('meridian.block.event-details.ui_days') }}</span></span>
+                        <span class="mr-event__unit"><b data-unit="h">0</b><span>{{ rc_t('meridian.block.event-details.ui_hours') }}</span></span>
+                        <span class="mr-event__unit"><b data-unit="m">0</b><span>{{ rc_t('meridian.block.event-details.ui_minutes') }}</span></span>
+                        <span class="mr-event__unit"><b data-unit="s">0</b><span>{{ rc_t('meridian.block.event-details.ui_seconds') }}</span></span>
+                    </div>
+                    <p class="mr-event__state" hidden></p>
+                </div>
+            {% endif %}
+            {% if status == 'scheduled' %}<a class="mr-btn mr-btn--lg" href="{{ reg }}">{{ data.register_label|default(rc_t('meridian.block.event-details.ui_register')) }}</a>{% endif %}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,37 @@
+{# Index, category, tag and author pages: head, category chips, cards, pagination. Variables: see partials/journal/lib.php (meridian_journal_listing). #}
+{% put styles %}<link rel="stylesheet" href="{{ ['assets/dist/layout-blog.css']|theme }}">{% endput %}
+{% partial 'site/breadcrumbs' trail=seoBreadcrumbs %}
+<section class="mr-section mr-section--tight">
+    <div class="mr-container">
+        <header class="mr-jhead">
+            <div class="mr-jhead__text">
+                {% if jAuthor %}
+                    <div class="mr-jhead__author">{% partial 'journal/author-chip' author=jAuthor size='lg' %}</div>
+                {% endif %}
+                <p class="mr-eyebrow">{{ jHead.eyebrow }}</p>
+                <h1 class="mr-jhead__title">{{ jHead.title }}</h1>
+                {% if jAuthor %}
+                    {% if jAuthor.role %}<p class="mr-meta">{{ jAuthor.role }}</p>{% endif %}
+                    {% if jAuthor.bio %}<p class="mr-lead">{{ jAuthor.bio }}</p>{% endif %}
+                    {% if jAuthor.website %}<p><a class="mr-jhead__site" href="{{ jAuthor.website }}" rel="noopener me">{{ 'meridian.front.journal.author_site'|_ }}</a></p>{% endif %}
+                {% elseif jHead.lead %}
+                    <p class="mr-lead">{{ jHead.lead }}</p>
+                {% endif %}
+            </div>
+            {% partial 'journal/search-form' value='' %}
+        </header>
+
+        {% if not jAuthor %}{% partial 'journal/filters' active=jActiveCategory %}{% endif %}
+
+        {% if jCards|length %}
+            <div class="mr-jgrid">
+                {% for card in jCards %}
+                    {% partial 'journal/card' card=card lead=(jLead and loop.first) %}
+                {% endfor %}
+            </div>
+            {% partial 'site/pagination' current=jPager.current last=jPager.last url=jPager.url %}
+        {% else %}
+            <p class="mr-card mr-jempty">{{ 'meridian.front.journal.empty'|_ }}</p>
+        {% endif %}
+    </div>
+</section>

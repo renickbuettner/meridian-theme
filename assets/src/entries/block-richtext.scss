@@ -1,0 +1,91 @@
+@use "../mr";
+
+// Editor HTML: one vertical rhythm, a readable measure, and the same recipes as .mr-prose.
+html :is(.rc-richtext, .rc-richtext-box) > * { margin-block: 0; }
+html :is(.rc-richtext, .rc-richtext-box) > * + * { margin-block-start: var(--mr-space-4); }
+html :is(.rc-richtext, .rc-richtext-box) > * + :is(h2, h3, h4, h5, h6) { margin-block-start: var(--mr-space-6); }
+html :is(.rc-richtext, .rc-richtext-box) > :is(h2, h3, h4, h5, h6) + * { margin-block-start: var(--mr-space-3); }
+
+// The measure applies to running text; tables, images, code and headings may be wider.
+html :is(.rc-richtext, .rc-richtext-box) > :is(p, ul, ol, dl, blockquote, h2, h3, h4, h5, h6) { max-width: var(--mr-w-prose); }
+html :is(.rc-richtext.rc-align-center, .rc-richtext.rc-align-center .rc-richtext-box) > :is(p, ul, ol, dl, blockquote, h2, h3, h4, h5, h6) { margin-inline: auto; }
+html :is(.rc-richtext.rc-align-right, .rc-richtext.rc-align-right .rc-richtext-box) > :is(p, ul, ol, dl, blockquote, h2, h3, h4, h5, h6) { margin-inline-start: auto; }
+html .rc-richtext.rc-align-center ul,
+html .rc-richtext.rc-align-center ol { list-style-position: inside; padding-inline: 0; }
+
+.rc-richtext :is(ul, ol) { padding-inline-start: var(--mr-space-5); }
+.rc-richtext li + li { margin-block-start: var(--mr-space-1); }
+.rc-richtext :is(ul, ol) :is(ul, ol) { margin-block-start: var(--mr-space-1); }
+
+.rc-richtext blockquote {
+    margin-inline: 0;
+    padding-inline-start: var(--mr-space-5);
+    border-inline-start: 3px solid var(--mr-accent);
+    font-family: var(--mr-font-serif);
+    font-size: var(--mr-text-lg);
+    line-height: 1.5;
+}
+.rc-richtext img { max-width: 100%; height: auto; border-radius: var(--mr-radius-md); }
+.rc-richtext hr { border: 0; border-block-start: var(--mr-border); margin-block: var(--mr-space-6); }
+.rc-richtext code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    color: var(--mr-ink);
+    background: var(--mr-surface-2);
+    padding: 0.1em 0.35em;
+    border-radius: var(--mr-radius-sm);
+}
+.rc-richtext pre {
+    overflow-x: auto;
+    padding: var(--mr-space-4);
+    border-radius: var(--mr-radius-md);
+    background: var(--mr-surface-2);
+}
+.rc-richtext pre code { background: none; padding: 0; }
+.rc-richtext table { width: 100%; border-collapse: collapse; font-size: var(--mr-text-sm); }
+.rc-richtext :is(th, td) { padding: var(--mr-space-2) var(--mr-space-3); border-block-end: var(--mr-border); text-align: start; vertical-align: top; }
+.rc-richtext th { font-weight: 600; border-block-end-color: var(--mr-line-strong); }
+
+html .rc-richtext-box {
+    padding: var(--mr-space-5);
+    background: var(--mr-surface);
+    border: var(--mr-border);
+    border-radius: var(--mr-radius-md);
+    color: var(--mr-ink);
+    --mr-muted: color-mix(in oklab, var(--mr-ink) 74%, var(--mr-surface));
+}
+
+// A lead is a few short lines: hyphenating a short word in it ("ge-tan") reads worse than a slightly ragged edge.
+html .rc-richtext .mr-lead { hyphens: manual; text-wrap: balance; }
+
+// Eyebrow plus heading written in one richtext block: no extra heading gap under the eyebrow.
+html :is(.rc-richtext, .rc-richtext-box) > .mr-eyebrow + :is(h2, h3) { margin-block-start: 0; }
+
+// Link list rendered as cards (mockup 01 journal card recipe).
+html .rc-richtext ul.mr-link-cards {
+    display: grid;
+    gap: var(--mr-space-4);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+html .rc-richtext ul.mr-link-cards > li { margin: 0; }
+html .rc-richtext ul.mr-link-cards a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mr-space-2);
+    block-size: 100%;
+    padding: var(--mr-space-5);
+    background: var(--mr-surface);
+    border: var(--mr-border);
+    border-radius: var(--mr-radius-md);
+    box-shadow: var(--mr-shadow-1);
+    color: var(--mr-ink);
+    text-decoration: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+html .rc-richtext ul.mr-link-cards a:hover { border-color: var(--mr-accent); box-shadow: var(--mr-shadow-2); }
+html .rc-richtext ul.mr-link-cards strong { font-family: var(--mr-font-serif); font-size: var(--mr-text-h4); font-weight: 600; line-height: var(--mr-leading-tight); color: var(--mr-accent); }
+html .rc-richtext ul.mr-link-cards span { font-size: var(--mr-text-sm); color: var(--mr-muted); }

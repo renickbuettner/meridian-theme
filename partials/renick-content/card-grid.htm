@@ -1,0 +1,6 @@
+{% set rowClasses = 'rc-grid-inner rc-row' %}
+{% if data.equal_height|default('') == 'yes' %}{% set rowClasses = rowClasses ~ ' rc-grid--equal' %}{% endif %}
+{% if data.centering|default('') == 'yes' %}{% set rowClasses = rowClasses ~ ' rc-grid--center' %}{% endif %}
+<div {{ attributes|raw }}>
+    <div class="{{ rowClasses }}">{{ children|default('')|raw }}</div>
+</div>

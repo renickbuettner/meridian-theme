@@ -1,0 +1,300 @@
+[
+  {
+    "id": 1,
+    "title": "Home",
+    "slug": "home",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "home",
+    "meta_title": null,
+    "meta_description": "Thoughtful essays on web performance, independent publishing and the small details that make digital experiences feel effortless.",
+    "schema_type": "WebPage",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrhomeen10",
+          "type": "hero",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "layout": "editorial",
+            "eyebrow": "The Meridian journal",
+            "title": "Notes on building",
+            "title_accent": "a faster web.",
+            "lead": "Thoughtful essays on web performance, independent publishing and the small details that make digital experiences feel effortless.",
+            "primary_label": "Read the journal",
+            "primary_url": "october://cms-page@link/page?path=journal",
+            "secondary_label": "About the journal",
+            "secondary_url": "october://cms-page@link/page?path=about",
+            "highlights": [
+              {
+                "label": "Performance"
+              },
+              {
+                "label": "Accessibility"
+              },
+              {
+                "label": "Independent publishing"
+              }
+            ]
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrhomeen11",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "md",
+            "spacing_bottom": "md"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrhomeen12",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_top": "lg",
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "Latest from the journal",
+                "level": "h2"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrhomeen13",
+              "type": "tailor-list",
+              "enabled": true,
+              "settings": {
+                "spacing_top": "md"
+              },
+              "data": {
+                "blueprint": "Meridian\\Post",
+                "view": "cards",
+                "columns_mobile": "12",
+                "columns_tablet": "6",
+                "columns_desktop": "4",
+                "columns_wide": "4",
+                "mode": "limit",
+                "per_page": 3,
+                "sort_column": "published_at",
+                "sort_direction": "desc",
+                "thumbnail_column": "cover",
+                "description_column": "excerpt",
+                "button_label": "Read the article"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrhomeen14",
+              "type": "button",
+              "enabled": true,
+              "settings": {
+                "spacing_top": "md"
+              },
+              "data": {
+                "label": "All articles",
+                "url": "october://cms-page@link/page?path=journal",
+                "style": "secondary",
+                "target": "_self"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "b_mrhomeen15",
+          "type": "feature-grid",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "layout": "cards",
+            "columns": "3",
+            "eyebrow": "What you will find",
+            "title": "A calm theme with room to think",
+            "lead": "Meridian pairs a quiet sidebar with generous whitespace, a serif voice and interactive blocks that load only when you scroll to them.",
+            "items": [
+              {
+                "icon": "gauge",
+                "title": "Fast by default",
+                "text": "Critical CSS inline, images sized in advance and scripts that wait until you need them."
+              },
+              {
+                "icon": "shield-check",
+                "title": "Accessible to everyone",
+                "text": "Keyboard first, visible focus, honest contrast in every colour scheme and a drawer that behaves."
+              },
+              {
+                "icon": "layers",
+                "title": "Built to be extended",
+                "text": "Three colour schemes, a child theme guide and blocks you can drop into any page."
+              }
+            ]
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        },
+        {
+          "id": "b_mrhomeen16",
+          "type": "cta-band",
+          "enabled": true,
+          "settings": {},
+          "data": {
+            "tone": "soft",
+            "title": "Read along, at your own pace",
+            "text": "New essays arrive when they are ready, never on a schedule that rewards haste.",
+            "primary_label": "Browse the journal",
+            "primary_url": "october://cms-page@link/page?path=journal",
+            "secondary_label": "About this project",
+            "secondary_url": "october://cms-page@link/page?path=about"
+          },
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": []
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "title": "About",
+    "slug": "about",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "about",
+    "meta_title": null,
+    "meta_description": "A small studio theme for people who publish carefully.",
+    "schema_type": "AboutPage",
+    "content": {
+      "meta": [],
+      "blocks": [
+        {
+          "id": "b_mrabouten01",
+          "type": "section",
+          "enabled": true,
+          "settings": {
+            "width": "container",
+            "spacing_top": "lg",
+            "spacing_bottom": "lg"
+          },
+          "data": {},
+          "visibility": {
+            "from": null,
+            "until": null,
+            "sites": null
+          },
+          "children": [
+            {
+              "id": "b_mrabouten02",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "About Meridian",
+                "level": "h1"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrabouten03",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p class=\"mr-lead\">A small studio theme for people who publish carefully.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrabouten04",
+              "type": "heading",
+              "enabled": true,
+              "settings": {
+                "spacing_top": "lg",
+                "spacing_bottom": "xs"
+              },
+              "data": {
+                "text": "What we care about",
+                "level": "h2"
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            },
+            {
+              "id": "b_mrabouten05",
+              "type": "richtext",
+              "enabled": true,
+              "settings": {},
+              "data": {
+                "html": "<p>Readable type, honest performance, and pages that work with a keyboard, a screen reader and a slow connection.</p>",
+                "variant": ""
+              },
+              "visibility": {
+                "from": null,
+                "until": null,
+                "sites": null
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

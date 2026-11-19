@@ -1,0 +1,22 @@
+@use "../mr";
+@use "../partials-a/surface";
+
+// Each column becomes a card; a column that holds a card block brings no frame of its own.
+html .rc-card-grid .rc-column-inner {
+    @include surface.surface;
+    height: 100%;
+    padding: var(--mr-space-5);
+}
+html .rc-card-grid .rc-column-inner:has(> .rc-card) {
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+}
+html .rc-card-grid .rc-grid-inner { row-gap: var(--mr-space-5); }
+
+// Cards go two-up from a narrower row than text columns do: one full-width 16:9 card per row is two screens tall at tablet width.
+@container mr-row (min-width: 36rem) {
+    html .rc-card-grid .rc-row > :is(.rc-col-3, .rc-col-4, .rc-col-5, .rc-col-6) { flex: 0 0 calc((100% - var(--mr-col-gap)) / 2); }
+}

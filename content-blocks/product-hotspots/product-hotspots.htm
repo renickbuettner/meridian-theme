@@ -1,0 +1,63 @@
+{# Markers are numbered spans until the island is ready (then buttons at the same spot), so nothing shifts; the list is the no-JS and error fallback. #}
+{% set spots = [] %}
+{% for spot in data.hotspots|default([]) %}
+    {% if spot.title|default('')|trim != '' %}
+        {% set spots = spots|merge([spot|merge({
+            _x: max(0, min(100, (spot.x|default('')|trim|replace({',': '.'})) matches '/^\\d+(\\.\\d+)?$/' ? (spot.x|trim|replace({',': '.'})) + 0 : 50))|round(2),
+            _y: max(0, min(100, (spot.y|default('')|trim|replace({',': '.'})) matches '/^\\d+(\\.\\d+)?$/' ? (spot.y|trim|replace({',': '.'})) + 0 : 50))|round(2),
+        })]) %}
+    {% endif %}
+{% endfor %}
+{% set image = data.image|default('') %}
+{% set dims = image ? rc_image_size(image) : null %}
+{% set sizes = '(min-width: 1280px) 60rem, (min-width: 992px) calc(100vw - 19rem), 100vw' %}
+{% set uid = 'mrhs' ~ random(100000) %}
+{% if image and spots|length %}
+<section {{ attributes|replace({'class="': 'class="mr-hs '})|raw }} data-island="product-hotspots"
+    data-t-close="{{ rc_t('meridian.block.product-hotspots.ui_close', {}, locale) }}">
+    {% if data.eyebrow or data.title or data.intro %}
+    <header class="mr-hs__head">
+        {% if data.eyebrow %}<p class="mr-eyebrow">{{ data.eyebrow }}</p>{% endif %}
+        {% if data.title %}<h2 class="mr-hs__title">{{ data.title }}</h2>{% endif %}
+        {% if data.intro %}<p class="mr-lead">{{ data.intro }}</p>{% endif %}
+    </header>
+    {% endif %}
+    <figure class="mr-hs__figure">
+        <div class="mr-hs__stage">
+            <div class="mr-hs__frame" style="--mr-hs-ratio: {{ dims ? dims[0] ~ ' / ' ~ dims[1] : '4 / 3' }}">
+                {% set darkImage = data.image_dark|default('') %}
+                {% for variant in (darkImage ? ['light', 'dark'] : ['light']) %}
+                {% set vimage = variant == 'dark' ? darkImage : image %}
+                {% set srcset = rc_srcset(vimage) %}
+                {% set srcsetWebp = rc_srcset(vimage, null, {extension: 'webp'}) %}
+                {% set srcsetAvif = rc_srcset(vimage, null, {extension: 'avif'}) %}
+                <picture{% if darkImage %} class="mr-hs__art mr-hs__art--{{ variant }}"{% endif %}>
+                    {% if srcsetAvif and srcsetAvif != srcset %}<source srcset="{{ srcsetAvif }}" sizes="{{ sizes }}" type="image/avif">{% endif %}
+                    {% if srcsetWebp and srcsetWebp != srcset %}<source srcset="{{ srcsetWebp }}" sizes="{{ sizes }}" type="image/webp">{% endif %}
+                    <img class="mr-hs__img" src="{{ vimage|media }}"{% if srcset %} srcset="{{ srcset }}" sizes="{{ sizes }}"{% endif %} alt="{{ variant == 'dark' ? '' : data.image_alt|default('') }}"{% if dims %} width="{{ dims[0] }}" height="{{ dims[1] }}"{% endif %}{% if not priority|default(false) %} loading="lazy"{% endif %} decoding="async">
+                </picture>
+                {% endfor %}
+                <div class="mr-hs__pins" role="group" aria-label="{{ rc_t('meridian.block.product-hotspots.ui_pins', {}, locale) }}">
+                    {% for spot in spots %}
+                    <span class="mr-hs__pin mr-hs__pin--static mr-nojs-only" style="left: {{ spot._x }}%; top: {{ spot._y }}%" aria-hidden="true"><span class="mr-hs__dot">{{ loop.index }}</span></span>
+                    <button type="button" class="mr-hs__pin mr-js-only" style="left: {{ spot._x }}%; top: {{ spot._y }}%" data-for="{{ uid }}-{{ loop.index }}" aria-expanded="false" aria-controls="{{ uid }}-card" tabindex="{{ loop.first ? 0 : -1 }}"
+                        aria-label="{{ spot.title }}"><span class="mr-hs__dot" data-n="{{ loop.index }}" aria-hidden="true"></span></button>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="mr-hs__card mr-js-only" id="{{ uid }}-card" aria-live="polite" aria-atomic="true" hidden></div>
+        </div>
+        {% if data.caption %}<figcaption class="mr-hs__caption">{{ data.caption }}</figcaption>{% endif %}
+    </figure>
+    <ol class="mr-hs__list mr-nojs-only" aria-label="{{ rc_t('meridian.block.product-hotspots.ui_list', {}, locale) }}">
+        {% for spot in spots %}
+        {% set url = spot.url|default('')|rc_url %}
+        <li id="{{ uid }}-{{ loop.index }}" class="mr-hs__item">
+            <h3 class="mr-hs__name">{{ spot.title }}</h3>
+            {% if spot.text %}<p class="mr-hs__text">{{ spot.text }}</p>{% endif %}
+            {% if url %}<p class="mr-hs__more"><a class="mr-btn mr-btn--sm" href="{{ url }}">{{ spot.link_label|default(rc_t('meridian.block.product-hotspots.ui_more', {}, locale)) }}</a></p>{% endif %}
+        </li>
+        {% endfor %}
+    </ol>
+</section>
+{% endif %}

@@ -1,0 +1,167 @@
+// Sidebar chrome: brand, nav, language dropdown, mode toggle. Critical: inlined in <head> next to the shell.
+@use "../mr";
+
+.mr-brand {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--mr-space-1);
+    color: var(--mr-ink);
+    text-decoration: none;
+    font-family: var(--mr-font-serif);
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    min-height: var(--mr-target);
+    justify-content: center;
+}
+.mr-brand:hover { color: var(--mr-ink); }
+.mr-brand:focus-visible { outline-width: 2px; outline-offset: 2px; border-radius: var(--mr-radius-sm); }
+.mr-brand__dot { color: var(--mr-accent); }
+.mr-brand__tag { font: 400 var(--mr-text-xs) / 1.3 var(--mr-font-sans); letter-spacing: 0; color: var(--mr-muted); }
+.mr-brand img { display: block; max-height: 2.5rem; width: auto; }
+
+.mr-sidebar__head {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--mr-space-2) var(--mr-space-3);
+}
+
+// Burger and drawer close: icon buttons, 44px.
+.mr-icon-btn {
+    display: inline-grid;
+    place-items: center;
+    inline-size: var(--mr-target);
+    block-size: var(--mr-target);
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: var(--mr-radius-pill);
+    background: transparent;
+    color: var(--mr-ink);
+    cursor: pointer;
+}
+.mr-icon-btn:hover { background: var(--mr-accent-soft); }
+.mr-icon-btn:focus-visible { border-radius: var(--mr-radius-pill); }
+.mr-icon { inline-size: 1.25rem; block-size: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+.mr-topbar .mr-brand { font-size: 1.5rem; }
+// Optical alignment: the burger icon, not its 44px hit area, lines up with the content edge.
+.mr-topbar .mr-icon-btn { margin-inline-start: calc(var(--mr-space-3) * -1); }
+// Sidebar on the end side: the trigger mirrors to that side, search moves to the start.
+.mr-app[data-sidebar-pos="end"] .mr-topbar .mr-icon-btn[data-mr-drawer-toggle] { order: 3; margin-inline: 0 calc(var(--mr-space-3) * -1); }
+.mr-app[data-sidebar-pos="end"] .mr-topbar .mr-topbar__search { order: 2; margin-inline: auto 0; }
+
+// The close button sits in the brand row instead of adding a strip above it.
+.mr-sidebar .drawer-header { position: relative; block-size: 0; padding: 0; z-index: 1; }
+.mr-sidebar .drawer-header .mr-icon-btn { position: absolute; inset-block-start: var(--mr-space-5); inset-inline-end: var(--mr-space-4); }
+.mr-sidebar:focus { outline: 0; }
+// A reduced-motion duration of 0.01ms still starts the visibility transition hidden, so showModal() could not focus anything inside.
+@include mr.reduced-motion { .mr-sidebar { transition: none !important; } }
+// Visible from the first frame: showModal() moves focus at once, and Bootstrap's visibility transition would still hold the drawer hidden.
+// Visibility flips instantly on open and after the slide on close.
+.mr-sidebar:not(.drawer-instant) { transition: transform var(--drawer-transition-duration) var(--drawer-transition-timing), visibility 0s linear var(--drawer-transition-duration); }
+.mr-sidebar[open] { visibility: visible; transition-delay: 0s; }
+// Room for the absolutely placed close button (44px at the body padding), as margin to stay on the padding scale: brand left, language and close share the row at one gap.
+.mr-sidebar .mr-sidebar__head { align-items: center; margin-inline-end: calc(var(--mr-target) + var(--mr-space-3)); }
+.mr-sidebar :focus-visible { outline-width: 2px; }
+
+// Nav
+.mr-nav { flex: 1; }
+.mr-nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--mr-space-1); }
+.mr-nav ul ul { margin-block-start: var(--mr-space-1); padding-inline-start: var(--mr-space-5); }
+.mr-nav a {
+    display: flex;
+    align-items: center;
+    gap: var(--mr-space-3);
+    min-height: var(--mr-target);
+    padding: var(--mr-space-2) var(--mr-space-3);
+    border-radius: var(--mr-radius-sm);
+    color: var(--mr-ink);
+    font-size: var(--mr-text-base);
+    text-decoration: none;
+    transition: background-color var(--mr-dur) var(--mr-ease);
+}
+.mr-nav a:hover { background: var(--mr-surface-2); color: var(--mr-ink); }
+.mr-nav a[aria-current="page"] { background: var(--mr-accent-soft); font-weight: 600; }
+.mr-nav a[aria-current="true"] { font-weight: 600; }
+
+.mr-sidebar__foot { display: grid; gap: var(--mr-space-3); padding-block-start: var(--mr-space-4); border-block-start: var(--mr-border); }
+
+// Language dropdown: native <details>. The sidebar scrolls (overflow clips popovers), so the list spans the head instead of hanging off the button.
+.mr-lang > summary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--mr-space-1);
+    min-height: var(--mr-target);
+    padding: 0 var(--mr-space-3) 0 var(--mr-space-2);
+    border: 1px solid var(--mr-line-strong);
+    border-radius: var(--mr-radius-pill);
+    font-size: var(--mr-text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+.mr-lang > summary::-webkit-details-marker { display: none; }
+.mr-lang > summary:hover { background: var(--mr-accent-soft); }
+.mr-lang[open] > summary { background: var(--mr-accent-soft); }
+.mr-lang__list {
+    position: absolute;
+    inset-block-start: calc(100% + var(--mr-space-1));
+    inset-inline: 0;
+    z-index: 5;
+    margin: 0;
+    padding: var(--mr-space-1);
+    list-style: none;
+    background: var(--mr-surface);
+    border: var(--mr-border);
+    border-radius: var(--mr-radius-md);
+    box-shadow: var(--mr-shadow-2);
+}
+.mr-lang__list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--mr-space-3);
+    min-height: var(--mr-target);
+    padding: var(--mr-space-2) var(--mr-space-3);
+    border-radius: var(--mr-radius-sm);
+    color: var(--mr-ink);
+    text-decoration: none;
+}
+.mr-lang__list a:hover { background: var(--mr-surface-2); }
+.mr-lang__list a[aria-current="true"] { font-weight: 600; }
+.mr-lang__code { font-size: var(--mr-text-xs); color: var(--mr-muted); letter-spacing: 0.08em; }
+
+// Dark mode toggle
+.mr-mode {
+    display: flex;
+    align-items: center;
+    gap: var(--mr-space-3);
+    inline-size: 100%;
+    min-height: var(--mr-target);
+    padding: var(--mr-space-2) var(--mr-space-3);
+    border: 0;
+    border-radius: var(--mr-radius-sm);
+    background: transparent;
+    color: var(--mr-ink);
+    font: inherit;
+    font-size: var(--mr-text-sm);
+    line-height: 1.3;
+    text-align: start;
+    cursor: pointer;
+}
+.mr-mode:hover { background: var(--mr-surface-2); }
+// The icon shows the mode the button switches to, like its label.
+.mr-mode .mr-icon--sun, .mr-mode .mr-mode__to-light { display: none; }
+html[data-bs-theme="dark"] .mr-mode .mr-icon--moon, html[data-bs-theme="dark"] .mr-mode .mr-mode__to-dark { display: none; }
+html[data-bs-theme="dark"] .mr-mode .mr-icon--sun { display: block; }
+html[data-bs-theme="dark"] .mr-mode .mr-mode__to-light { display: inline; }
+@media (prefers-color-scheme: dark) {
+    html:not([data-bs-theme]) .mr-mode .mr-icon--moon, html:not([data-bs-theme]) .mr-mode .mr-mode__to-dark { display: none; }
+    html:not([data-bs-theme]) .mr-mode .mr-icon--sun { display: block; }
+    html:not([data-bs-theme]) .mr-mode .mr-mode__to-light { display: inline; }
+}

@@ -1,0 +1,19 @@
+{% set items = (data.items|default([]))|filter(i => i.title|default('')) %}
+{% set hl = data.title ? 'h3' : 'h2' %}
+{% if items|length %}
+<section {{ attributes|replace({'class="': 'class="mr-agenda '})|raw }}>
+    {% if data.title %}<h2 class="mr-agenda__title">{{ data.title }}</h2>{% endif %}
+    <ol class="mr-agenda__list">
+        {% for item in items %}
+            <li class="mr-agenda__item">
+                <p class="mr-agenda__time">{{ item.time }}</p>
+                <div class="mr-agenda__body">
+                    <{{ hl }} class="mr-agenda__name">{{ item.title }}</{{ hl }}>
+                    {% if item.speaker %}<p class="mr-agenda__speaker">{{ item.speaker }}</p>{% endif %}
+                    {% if item.text %}<p class="mr-agenda__text">{{ item.text|nl2br }}</p>{% endif %}
+                </div>
+            </li>
+        {% endfor %}
+    </ol>
+</section>
+{% endif %}

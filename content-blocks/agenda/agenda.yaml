@@ -1,0 +1,30 @@
+handle: agenda
+name: meridian.block.agenda.name
+icon: icon-clock-o
+group: Meridian
+version: 1
+settings: true
+fields:
+  title:
+    label: meridian.block.agenda.title
+    type: text
+    commentAbove: meridian.block.agenda.title_comment
+  items:
+    label: meridian.block.agenda.items
+    type: repeater
+    titleFrom: title
+    fields:
+      time:
+        label: meridian.block.agenda.item_time
+        type: text
+        commentAbove: meridian.block.agenda.item_time_comment
+      title:
+        label: meridian.block.agenda.item_title
+        type: text
+      speaker:
+        label: meridian.block.agenda.item_speaker
+        type: text
+      text:
+        label: meridian.block.agenda.item_text
+        type: textarea
+        size: small

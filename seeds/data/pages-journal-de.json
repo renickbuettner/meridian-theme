@@ -1,0 +1,19 @@
+[
+  {
+    "id": 300,
+    "site_root_id": 200,
+    "title": "Journal",
+    "slug": "journal",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "journal",
+    "meta_title": null,
+    "schema_type": "CollectionPage",
+    "meta_description": "Essays über Web-Performance, unabhängiges Publizieren, Barrierefreiheit und Design: langsam geschrieben, schnell geladen.",
+    "content": {
+      "meta": [],
+      "blocks": []
+    }
+  }
+]

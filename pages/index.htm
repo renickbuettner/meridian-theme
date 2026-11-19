@@ -1,0 +1,26 @@
+url = "/"
+layout = "default"
+title = "Home"
+is_hidden = 0
+==
+function onStart()
+{
+    require_once meridian_path('partials/site/preview.php');
+    $entry = meridian_preview_entry('Meridian\\Page')
+        ?: \Tailor\Models\EntryRecord::inSection('Meridian\\Page')
+            ->applyPublishedStatus()
+            ->whereNull('parent_id')
+            ->where('slug', 'home')
+            ->first();
+
+    if ($entry) {
+        $this['entry'] = $entry;
+
+        require_once meridian_path('partials/site/page-seo.php');
+        meridian_page_seo($this, $entry, meridian_locale());
+        require_once meridian_path('partials/site/block-css.php');
+        $this['blockCss'] = meridian_block_css($entry->content);
+    }
+}
+==
+{% partial 'site/page-render' entry=entry %}

@@ -1,0 +1,144 @@
+uuid: meridianpage0001a1b8c2d9e3f0000001
+handle: Meridian\Page
+type: structure
+name: Page
+drafts: true
+multisite: all
+
+# `slug`/`fullslug` come from StructureRecord; the theme routes on `fullslug` (pages/page.htm) so nested pages get path-style URLs.
+structure:
+    maxDepth: 3
+
+# Pagefinder: resolves against pages/page.htm ([section]); the wildcard :path param is filled from the record's fullslug.
+pagefinder:
+    replacements:
+        path: fullslug
+
+# Font icon only, no `iconSvg`: blueprints are copied verbatim into app/blueprints/, so an SVG path would have to hardcode the theme folder.
+primaryNavigation:
+    label: meridian.page.nav.pages
+    icon: icon-copy
+    order: 500
+
+navigation:
+    label: meridian.page.nav.pages
+    icon: icon-file-o
+    order: 100
+
+# Add fields in your own "# --- <area> ---" block at the end; never reorder or rename existing handles.
+fields:
+    content:
+        label: meridian.page.field.content
+        type: contenteditor
+        tab: meridian.page.tab.content
+        span: adaptive
+        column: false
+
+    title:
+        label: meridian.page.field.title
+        type: text
+        tab: meridian.page.tab.details
+        required: true
+        span: left
+
+    nav_label:
+        label: meridian.page.field.nav_label
+        type: text
+        tab: meridian.page.tab.details
+        span: right
+        comment: meridian.page.field.nav_label_comment
+        column: false
+
+    hide_from_nav:
+        label: meridian.page.field.hide_from_nav
+        type: switch
+        tab: meridian.page.tab.details
+        span: left
+        comment: meridian.page.field.hide_from_nav_comment
+        column: false
+
+    nav_icon:
+        label: meridian.page.field.nav_icon
+        type: dropdown
+        tab: meridian.page.tab.details
+        span: right
+        emptyOption: meridian.page.field.nav_icon_empty
+        comment: meridian.page.field.nav_icon_comment
+        column: false
+        options:
+            home: meridian.page.icon.home
+            journal: meridian.page.icon.journal
+            projects: meridian.page.icon.projects
+            pricing: meridian.page.icon.pricing
+            about: meridian.page.icon.about
+            contact: meridian.page.icon.contact
+            docs: meridian.page.icon.docs
+            events: meridian.page.icon.events
+            map: meridian.page.icon.map
+            search: meridian.page.icon.search
+
+    show_in_footer:
+        label: meridian.page.field.show_in_footer
+        type: switch
+        tab: meridian.page.tab.details
+        span: left
+        comment: meridian.page.field.show_in_footer_comment
+        column: false
+
+    meta_title:
+        label: meridian.page.field.meta_title
+        type: text
+        tab: meridian.page.tab.seo
+        span: left
+        column: false
+
+    meta_description:
+        label: meridian.page.field.meta_description
+        type: textarea
+        size: small
+        tab: meridian.page.tab.seo
+        span: full
+        column: false
+
+    og_image:
+        label: meridian.page.field.og_image
+        type: mediafinder
+        mode: image
+        maxItems: 1
+        tab: meridian.page.tab.seo
+        span: left
+        comment: meridian.page.field.og_image_comment
+        column: false
+
+    canonical_url:
+        label: meridian.page.field.canonical_url
+        type: text
+        tab: meridian.page.tab.seo
+        span: right
+        comment: meridian.page.field.canonical_url_comment
+        column: false
+
+    seo_noindex:
+        label: meridian.page.field.seo_noindex
+        type: switch
+        tab: meridian.page.tab.seo
+        span: full
+        comment: meridian.page.field.seo_noindex_comment
+        column: false
+
+    schema_type:
+        label: meridian.page.field.schema_type
+        type: dropdown
+        tab: meridian.page.tab.seo
+        span: left
+        default: WebPage
+        comment: meridian.page.field.schema_type_comment
+        column: false
+        options:
+            WebPage: meridian.page.field.schema_type_webpage
+            AboutPage: meridian.page.field.schema_type_aboutpage
+            ContactPage: meridian.page.field.schema_type_contactpage
+            CollectionPage: meridian.page.field.schema_type_collectionpage
+            Event: meridian.page.field.schema_type_event
+
+    # --- extensions: append below, one block per area ---

@@ -1,0 +1,4 @@
+// Bootstrap 6 subset + trimmed utilities. PurgeCSS trims this file against the templates; see scripts/build.mjs.
+@use "../base/fonts";
+@use "../bootstrap/subset";
+@use "../bootstrap/utilities";

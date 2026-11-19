@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "Lena Marsh",
+    "slug": "lena-marsh",
+    "is_enabled": 1,
+    "role": "Performance editor",
+    "bio": "Lena measures what other people only feel: layout shifts, long tasks and the half-second a page hesitates. She writes about making fast sites boring in the best way.",
+    "website": "https://example.com/lena"
+  },
+  {
+    "id": 2,
+    "title": "Tomás Ibarra",
+    "slug": "tomas-ibarra",
+    "is_enabled": 1,
+    "role": "Publishing lead",
+    "bio": "Tomás has run small independent publications for twelve years and still prefers a plain text file to a dashboard. He writes about rhythm, audiences and sustainable editorial work.",
+    "website": "https://example.com/tomas"
+  },
+  {
+    "id": 3,
+    "title": "Noor Haddad",
+    "slug": "noor-haddad",
+    "is_enabled": 1,
+    "role": "Design and accessibility",
+    "bio": "Noor designs reading experiences and tests them with a keyboard, a screen reader and a very bright window. She writes about type, contrast and the details that make a page feel considerate.",
+    "website": "https://example.com/noor"
+  }
+]

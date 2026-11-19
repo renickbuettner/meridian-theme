@@ -1,0 +1,22 @@
+{% set aspect = data.aspect|default('') in ['1x1', '4x3', '16x9', '21x9'] ? data.aspect : '' %}
+{% set fit = data.fit|default('cover') in ['cover', 'contain'] ? data.fit|default('cover') : 'cover' %}
+{% set focus = data.focus|default('') in ['top', 'bottom', 'left', 'right', 'top-left', 'top-right', 'bottom-left', 'bottom-right'] ? data.focus : '' %}
+{% set frameCls = aspect ? ' rc-frame rc-aspect-' ~ aspect ~ ' rc-fit-' ~ fit ~ (focus ? ' rc-focus-' ~ focus : '') : '' %}
+<figure {{ attributes|raw }}>
+    {% if data.image %}
+        {# AI-generated images arrive as absolute or /storage URLs and are used verbatim #}
+        {% set is_absolute = data.image starts with 'http://' or data.image starts with 'https://' or data.image starts with '/storage/' %}
+        {# Capped at 1600px wide; the resizer scales up, so smaller originals keep their own size #}
+        {% set dims = is_absolute ? null : rc_image_size(data.image) %}
+        {% set width = dims and dims[0] > 1600 ? 1600 : null %}
+        {% set src = is_absolute ? data.image : (width ? data.image|rc_resize(width, null, {mode: 'auto'}) : data.image|media) %}
+        {% set attrW = dims ? (width ?: dims[0]) : null %}
+        {# The content column is at most 76rem and sits beside the 15rem sidebar from 992px #}
+        {% set sizes = (priority|default(false) ? '' : 'auto, ') ~ '(min-width: 992px) min(76rem, calc(100vw - 19rem)), 100vw' %}
+        {% set extra = (priority|default(false) ? ' fetchpriority="high"' : ' loading="lazy" fetchpriority="low"') ~ (attrW ? ' width="' ~ attrW ~ '" height="' ~ (dims[1] * attrW / dims[0])|round ~ '"' : '') %}
+        <div class="rc-media{{ frameCls }}{{ data.image starts with 'meridian/' ? ' rc-media--tint' }}">
+            {{ rc_partial('_mr-picture', {path: is_absolute ? '' : data.image, src: src, sizes: sizes, alt: data.alt|default(''), cls: 'rc-image-img', extra: extra}) }}
+        </div>
+    {% endif %}
+    {% if data.caption %}<figcaption>{{ data.caption }}</figcaption>{% endif %}
+</figure>

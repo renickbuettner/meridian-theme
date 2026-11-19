@@ -1,0 +1,4 @@
+[
+    {"type": "folder", "path": "meridian/landing", "source": "seeds/media/meridian/landing"},
+    {"type": "folder", "path": "illustrations", "source": "seeds/media/illustrations"}
+]

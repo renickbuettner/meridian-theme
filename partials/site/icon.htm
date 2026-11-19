@@ -1,0 +1,2 @@
+{# {% partial 'site/icon' name='arrow' class='mr-icon' %}: decorative by default; pass label for a standalone icon. #}
+<svg class="{{ class|default('mr-icon') }}"{% if label %} role="img" aria-label="{{ label }}"{% else %} aria-hidden="true" focusable="false"{% endif %}><use href="#mr-i-{{ name }}"/></svg>

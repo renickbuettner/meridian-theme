@@ -1,0 +1,33 @@
+// Trimmed utilities map: only the families Meridian and the block partials use. Add a family name to $keep to get it back.
+@use "sass:map";
+@use "config";
+@use "bootstrap/scss/config" as bs;
+@use "bootstrap/scss/mixins/utilities" as util;
+@use "bootstrap/scss/utilities";
+
+$keep: (
+    "aspect-ratio-attr", "aspect-ratio", "float", "object-fit", "overflow", "overflow-x", "overflow-y",
+    "display", "shadow", "position", "top", "bottom", "start", "end", "translate-middle",
+    "border", "border-top", "border-end", "border-bottom", "border-start", "border-y", "border-x", "border-color", "border-width",
+    "width", "max-width", "min-width", "height", "min-height", "max-height",
+    "flex", "flex-direction", "flex-grow", "flex-shrink", "flex-wrap", "justify-content", "align-items", "align-content", "align-self", "order",
+    "margin", "margin-x", "margin-y", "margin-top", "margin-end", "margin-bottom", "margin-start",
+    "padding", "padding-x", "padding-y", "padding-top", "padding-end", "padding-bottom", "padding-start",
+    "gap", "row-gap", "column-gap", "grid-column-counts", "grid-columns",
+    "font-family", "font-size", "font-style", "font-weight", "line-height", "text-align", "text-decoration", "text-transform", "text-wrap",
+    "fg", "bg-color", "bg-color-subtle", "border-radius", "rounded-size", "rounded-top", "rounded-end", "rounded-bottom", "rounded-start",
+    "opacity", "user-select", "pointer-events"
+);
+
+$trimmed: ();
+@each $key in $keep {
+    @if map.has-key(bs.$utilities, $key) {
+        $trimmed: map.set($trimmed, $key, map.get(bs.$utilities, $key));
+    }
+}
+
+@include util.generate-utility-at-properties($trimmed);
+
+@layer utilities {
+    @include util.generate-utilities-loop($trimmed, bs.$breakpoints);
+}

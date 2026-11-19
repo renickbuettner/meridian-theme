@@ -1,0 +1,43 @@
+{# Real table: caption names it, scope attributes tie cells to headers; yes/no become icons with a text alternative. #}
+{% set columns = (data.columns|default(''))|split("\n")|map(c => c|trim)|filter(c => c != '') %}
+{% set rows = (data.rows|default([]))|filter(r => r.label|default('')) %}
+{% set featured = data.featured_column|default(0)|round %}
+{% set uid = 'cmp-' ~ (blockId ?: random(100000000)) %}
+{% if columns|length and rows|length %}
+<section {{ attributes|replace({'class="': 'class="mr-compare '})|raw }}>
+    {% if data.title %}<h2 id="{{ uid }}-cap" class="mr-compare__caption">{{ data.title }}</h2>{% endif %}
+    <div class="mr-compare__scroll" role="region" aria-labelledby="{{ uid }}-cap" tabindex="0">
+        <table class="mr-compare__table">
+            <caption{% if not data.title %} id="{{ uid }}-cap"{% endif %} class="visually-hidden">{{ data.title|default(rc_t('meridian.block.compare-table.ui_caption')) }}</caption>
+            <thead>
+                <tr>
+                    <th scope="col"><span class="visually-hidden">{{ rc_t('meridian.block.compare-table.ui_feature') }}</span></th>
+                    {% for col in columns %}<th scope="col"{{ loop.index == featured ? ' class="is-featured"' : '' }}>{{ col }}</th>{% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                    {% if row.group|default(false) in [true, 1, '1', 'true', 'yes'] %}
+                        <tr class="mr-compare__group"><th scope="colgroup" colspan="{{ columns|length + 1 }}">{{ row.label }}</th></tr>
+                    {% else %}
+                        {% set values = (row.values|default(''))|split('|') %}
+                        <tr>
+                            <th scope="row">{{ row.label }}</th>
+                            {% for col in columns %}
+                                {% set v = (values[loop.index0] ?? '')|trim %}
+                                <td data-label="{{ col }}"{{ loop.index == featured ? ' class="is-featured"' : '' }}>
+                                    {% if v|lower in ['yes', 'y', '✓', '+'] %}
+                                        {{ rc_icon('check', 18, 'mr-compare__yes') }}<span class="visually-hidden">{{ rc_t('meridian.block.compare-table.ui_yes') }}</span>
+                                    {% elseif v|lower in ['no', 'n', '-', '–', ''] %}
+                                        <span aria-hidden="true" class="mr-compare__no">–</span><span class="visually-hidden">{{ rc_t('meridian.block.compare-table.ui_no') }}</span>
+                                    {% else %}{{ v }}{% endif %}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endif %}

@@ -1,0 +1,24 @@
+@use "../mr";
+
+html .rc-video iframe,
+html .rc-video video,
+html .rc-video-facade {
+    border-radius: var(--mr-radius-md);
+}
+
+// The facade is a poster with one play button; hover and focus switch it to the accent.
+html .rc-video-play {
+    width: 4.5rem;
+    height: var(--mr-space-7);
+    border-radius: var(--mr-radius-md);
+    background: color-mix(in oklab, black 72%, transparent);
+    transition: background-color var(--mr-dur) var(--mr-ease);
+}
+html .rc-video-facade:hover .rc-video-play { background: var(--mr-accent); }
+html .rc-video-play:focus-visible {
+    background: var(--mr-accent);
+    outline: 3px solid white;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 6px color-mix(in oklab, black 70%, transparent);
+}
+html .rc-video-consent-note { font-size: var(--mr-text-xs); }

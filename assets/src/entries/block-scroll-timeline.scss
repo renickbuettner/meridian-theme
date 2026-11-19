@@ -1,0 +1,89 @@
+@use "../mr";
+
+.mr-tl {
+    --mr-tl-dot: var(--mr-space-4);
+    --mr-tl-line: calc(var(--mr-space-1) / 2);
+    --mr-tl-indent: calc(var(--mr-tl-dot) + var(--mr-space-4));
+    --mr-tl-gutter: 0rem;
+}
+
+.mr-tl__head { margin-block-end: var(--mr-space-6); max-width: var(--mr-w-prose); }
+.mr-tl__title { margin: 0 0 var(--mr-space-3); font-size: var(--mr-text-h2); }
+
+.mr-tl__list { margin: 0; padding: 0; padding-inline-start: var(--mr-tl-gutter); list-style: none; }
+
+// Each item draws the segment from its own dot down to the next one, so the line never overshoots the last item.
+.mr-tl__item {
+    position: relative;
+    padding-block-end: var(--mr-space-6);
+    padding-inline-start: var(--mr-tl-indent);
+    max-width: calc(var(--mr-w-prose) + var(--mr-tl-indent));
+    overflow-wrap: anywhere;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        inset-block: calc(var(--mr-tl-dot) / 2) 0;
+        inset-inline-start: calc((var(--mr-tl-dot) - var(--mr-tl-line)) / 2);
+        inline-size: var(--mr-tl-line);
+        border-radius: var(--mr-radius-pill);
+    }
+    &::before { background: var(--mr-line-strong); }
+    &::after {
+        background: var(--mr-accent);
+        transform: scaleY(var(--mr-tl-fill, 1));
+        transform-origin: top;
+    }
+    &:last-child { padding-block-end: 0; }
+    &:last-child::before,
+    &:last-child::after { display: none; }
+}
+
+.mr-tl__dot {
+    position: absolute;
+    inset-block-start: calc(var(--mr-space-1) / 2);
+    inset-inline-start: 0;
+    box-sizing: border-box;
+    inline-size: var(--mr-tl-dot);
+    block-size: var(--mr-tl-dot);
+    border: var(--mr-tl-line) solid var(--mr-accent);
+    border-radius: 50%;
+    background: var(--mr-accent);
+    transition: background-color var(--mr-dur) var(--mr-ease), border-color var(--mr-dur) var(--mr-ease);
+}
+
+// Item text sits on the dot's line: the meta line is first, so its top matches the dot.
+.mr-tl__meta { margin: 0 0 var(--mr-space-1); }
+
+// From md the dates move to a column left of the rail and the cards fill the width.
+@include mr.up(md) {
+    .mr-tl { --mr-tl-gutter: var(--mr-space-10); }
+    .mr-tl__item { max-width: none; }
+    .mr-tl__meta {
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline-start: calc(-1 * var(--mr-tl-gutter));
+        inline-size: calc(var(--mr-tl-gutter) - var(--mr-space-3));
+        text-align: end;
+    }
+    .mr-tl__body {
+        padding: var(--mr-space-4) var(--mr-space-5, var(--mr-space-4));
+        background: var(--mr-surface);
+        border: var(--mr-border);
+        border-radius: var(--mr-radius-md);
+        max-inline-size: var(--mr-w-prose);
+    }
+}
+.mr-tl__name { margin: 0 0 var(--mr-space-2); font-size: var(--mr-text-h4); }
+.mr-tl__text { margin: 0; color: var(--mr-muted); }
+
+// Only once the island runs do unreached items fall back to the outline state.
+.mr-tl[data-island-ready] .mr-tl__item:not(.is-reached) .mr-tl__dot {
+    background: var(--mr-bg);
+    border-color: var(--mr-line-strong);
+}
+
+@include mr.reduced-motion {
+    .mr-tl__dot { transition: none; }
+}

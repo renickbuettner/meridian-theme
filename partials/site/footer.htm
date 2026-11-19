@@ -1,0 +1,14 @@
+<footer class="mr-footer" aria-label="{{ 'meridian.front.footer.label'|_ }}">
+    <div class="mr-container">
+        <div class="mr-footer__inner">
+            <span>&copy; {{ 'now'|date('Y') }} {{ meridianLook.brand }}. {{ 'meridian.front.footer.rights'|_ }}{% if meridianLook.footerNote %} {{ meridianLook.footerNote }}{% endif %}</span>
+            {% if meridianFooterPages|default([])|length %}
+                <ul>
+                    {% for page in meridianFooterPages %}
+                        <li><a href="{{ 'page'|page({ path: page.fullslug }) }}">{{ page.label }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,61 @@
+{# Complete without JS (three lists); the island only filters by topic. Block title h2, column titles h3, card titles h4. #}
+{% set topics = [] %}
+{% set cards = [] %}
+{% for card in data.cards|default([]) %}
+    {% if card.title|default('') != '' %}
+        {% set topic = card.topic|default('')|trim %}
+        {% if topic != '' and topic not in topics %}{% set topics = topics|merge([topic]) %}{% endif %}
+        {% set cards = cards|merge([card|merge({
+            _topic: topic != '' ? topics|keys|filter(k => topics[k] == topic)|first : -1,
+            _status: card.status|default('planned') in ['planned', 'progress', 'done'] ? card.status|default('planned') : 'planned',
+        })]) %}
+    {% endif %}
+{% endfor %}
+{% set uid = 'mrrb' ~ random(100000) %}
+<section {{ attributes|replace({'class="': 'class="mr-rb '})|raw }} data-island="roadmap-board" data-island-load="idle"
+    data-t-count="{{ rc_t('meridian.block.roadmap-board.ui_count', {shown: ':shown', total: ':total'}, locale) }}">
+    {% if data.eyebrow or data.title or data.intro %}
+    <header class="mr-rb__head">
+        {% if data.eyebrow %}<p class="mr-eyebrow">{{ data.eyebrow }}</p>{% endif %}
+        {% if data.title %}<h2 class="mr-rb__title">{{ data.title }}</h2>{% endif %}
+        {% if data.intro %}<p class="mr-lead">{{ data.intro|nl2br }}</p>{% endif %}
+    </header>
+    {% endif %}
+
+    {% if topics|length > 1 %}
+    <div class="mr-rb__filters mr-js-only" role="group" aria-label="{{ rc_t('meridian.block.roadmap-board.ui_filter', {}, locale) }}">
+        <button type="button" class="mr-chip" data-topic="all" aria-pressed="true">{{ rc_t('meridian.block.roadmap-board.ui_all', {}, locale) }}</button>
+        {% for topic in topics %}<button type="button" class="mr-chip" data-topic="{{ loop.index0 }}" aria-pressed="false">{{ topic }}</button>{% endfor %}
+        <span class="mr-rb__count" role="status" data-count></span>
+    </div>
+    {% endif %}
+
+    <p class="mr-rb__hint" aria-hidden="true">{{ rc_t('meridian.block.roadmap-board.ui_hint', {}, locale) }}</p>
+    <div class="mr-rb__scroller" role="region" tabindex="0" aria-label="{{ rc_t('meridian.block.roadmap-board.ui_region', {}, locale) }}">
+        <div class="mr-rb__cols">
+            {% for status in ['planned', 'progress', 'done'] %}
+            {% set inCol = cards|filter(c => c._status == status) %}
+            <section class="mr-rb__col mr-rb__col--{{ status }}" aria-labelledby="{{ uid }}-{{ status }}">
+                <header class="mr-rb__colhead">
+                    <span class="mr-rb__dot" aria-hidden="true"></span>
+                    <h3 class="mr-rb__colname" id="{{ uid }}-{{ status }}">{{ rc_t('meridian.block.roadmap-board.ui_status_' ~ status, {}, locale) }}</h3>
+                    <span class="mr-rb__n" data-n aria-hidden="true">{{ inCol|length }}</span>
+                </header>
+                <ul class="mr-rb__list" role="list">
+                    {% for card in inCol %}
+                    {% set url = card.url|default('')|rc_url %}
+                    <li class="mr-rb__card" data-topic="{{ card._topic }}">
+                        {% if card.topic or card.when %}
+                        <p class="mr-rb__meta mr-meta">{% if card.topic %}<span>{{ card.topic }}</span>{% endif %}{% if card.when %}<span>{{ card.when }}</span>{% endif %}</p>
+                        {% endif %}
+                        <h4 class="mr-rb__name">{% if url %}<a href="{{ url }}">{{ card.title }}</a>{% else %}{{ card.title }}{% endif %}</h4>
+                        {% if card.text %}<p class="mr-rb__text">{{ card.text|nl2br }}</p>{% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+                <p class="mr-rb__empty"{% if inCol|length %} hidden{% endif %}>{{ rc_t('meridian.block.roadmap-board.ui_empty', {}, locale) }}</p>
+            </section>
+            {% endfor %}
+        </div>
+    </div>
+</section>

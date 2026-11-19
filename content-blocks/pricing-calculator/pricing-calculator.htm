@@ -1,0 +1,174 @@
+{# Pricing calculator. Static: comparison table (no JS). Island: seat and term sliders, billing switch, live price. Seat price of the matching tier applies to all seats. #}
+{% set symbols = {'EUR': '€', 'USD': '$', 'GBP': '£', 'CHF': 'CHF'} %}
+{% set currency = data.currency|default('EUR') in symbols|keys ? data.currency|default('EUR') : 'EUR' %}
+{% set symbol = symbols[currency] %}
+{% set decimal = rc_t('meridian.block.pricing-calculator.ui_decimal') %}
+{% set thousands = rc_t('meridian.block.pricing-calculator.ui_thousands') %}
+{% set moneyPattern = rc_t('meridian.block.pricing-calculator.ui_money') %}
+{% set discount = max(0, min(90, (data.yearly_discount|default(20)) + 0)) %}
+{% set seatsMin = max(1, (data.seats_min|default(1)) + 0) %}
+{% set seatsMax = max(seatsMin + 1, (data.seats_max|default(100)) + 0) %}
+{% set seatsDefault = max(seatsMin, min(seatsMax, (data.seats_default|default(10)) + 0)) %}
+{% set termMax = max(2, (data.term_max|default(36)) + 0) %}
+{% set termDefault = max(1, min(termMax, (data.term_default|default(12)) + 0)) %}
+{% set productName = data.product_name|default(data.title|default('')) %}
+
+{% set tiers = [] %}
+{% for tier in data.tiers|default([]) %}
+    {% set raw = tier.unit_price|default('')|trim|replace({',': '.'}) %}
+    {% set price = raw matches '/^\\d+(\\.\\d+)?$/' ? raw + 0 : null %}
+    {% set lines = [] %}
+    {% for line in tier.features|default('')|split("\n") %}{% if line|trim %}{% set lines = lines|merge([line|trim]) %}{% endif %}{% endfor %}
+    {% set tiers = tiers|merge([{
+        name: tier.name|default(''),
+        up_to: max(0, (tier.seats_up_to|default(0)) + 0),
+        unit: price,
+        features: lines,
+        label: tier.cta_label|default(''),
+        url: tier.cta_url|default('')|rc_url
+    }]) %}
+{% endfor %}
+
+{% macro money(amount, symbol, pattern, decimal, thousands) %}
+    {%- set text = amount|round(2) == amount|round ? amount|round|number_format(0, decimal, thousands) : amount|number_format(2, decimal, thousands) -%}
+    {{- pattern|replace({':symbol': symbol, ':amount': text}) -}}
+{% endmacro %}
+
+{% set config = {
+    currency: currency,
+    discount: discount,
+    seatsMin: seatsMin,
+    seatsMax: seatsMax,
+    termMax: termMax,
+    tiers: tiers|map(t => {name: t.name, upTo: t.up_to, unit: t.unit, features: t.features, label: t.label, url: t.url}),
+    i18n: {
+        seats_one: rc_t('meridian.block.pricing-calculator.ui_seats_one', {count: ':count'}),
+        seats_other: rc_t('meridian.block.pricing-calculator.ui_seats_other', {count: ':count'}),
+        term_one: rc_t('meridian.block.pricing-calculator.ui_term_one', {count: ':count'}),
+        term_other: rc_t('meridian.block.pricing-calculator.ui_term_other', {count: ':count'}),
+        per_month: rc_t('meridian.block.pricing-calculator.ui_per_month'),
+        custom: rc_t('meridian.block.pricing-calculator.ui_custom'),
+        custom_hint: rc_t('meridian.block.pricing-calculator.ui_custom_hint'),
+        billed_monthly: rc_t('meridian.block.pricing-calculator.ui_billed_monthly'),
+        billed_yearly: rc_t('meridian.block.pricing-calculator.ui_billed_yearly', {amount: ':amount'}),
+        total: rc_t('meridian.block.pricing-calculator.ui_total', {term: ':term'}),
+        saving: rc_t('meridian.block.pricing-calculator.ui_saving', {amount: ':amount'}),
+        summary: rc_t('meridian.block.pricing-calculator.ui_summary', {plan: ':plan', seats: ':seats', price: ':price', total: ':total', term: ':term'}),
+        summary_custom: rc_t('meridian.block.pricing-calculator.ui_summary_custom', {plan: ':plan', seats: ':seats'})
+    }
+} %}
+
+<section {{ attributes|replace({'class="': 'class="mr-calc '})|raw }} data-island="pricing-calculator" data-config="{{ config|json_encode|e('html_attr') }}">
+    {% if data.title|default('') or data.intro|default('') or data.eyebrow|default('') %}
+    <header class="mr-calc__head">
+        {% if data.eyebrow|default('') %}<p class="mr-eyebrow">{{ data.eyebrow }}</p>{% endif %}
+        {% if data.title|default('') %}<h2 class="mr-calc__title">{{ data.title }}</h2>{% endif %}
+        {% if data.intro|default('') %}<p class="mr-lead">{{ data.intro }}</p>{% endif %}
+    </header>
+    {% endif %}
+
+    <div class="mr-calc__body">
+        <div class="mr-nojs-only">
+            <div class="mr-calc__table-wrap" tabindex="0" role="region" aria-label="{{ rc_t('meridian.block.pricing-calculator.ui_table_label') }}">
+                <table class="mr-calc__table">
+                    <caption class="visually-hidden">{{ rc_t('meridian.block.pricing-calculator.ui_table_caption', {discount: discount}) }}</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">{{ rc_t('meridian.block.pricing-calculator.ui_col_plan') }}</th>
+                            <th scope="col">{{ rc_t('meridian.block.pricing-calculator.ui_col_seats') }}</th>
+                            <th scope="col">{{ rc_t('meridian.block.pricing-calculator.ui_col_monthly') }}</th>
+                            <th scope="col">{{ rc_t('meridian.block.pricing-calculator.ui_col_yearly') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for t in tiers %}
+                        {% set from = loop.first ? 1 : (tiers[loop.index0 - 1].up_to + 1) %}
+                        <tr>
+                            <th scope="row">
+                                {{ t.name }}
+                                {% if t.features %}<ul class="mr-calc__features">{% for f in t.features %}<li>{{ f }}</li>{% endfor %}</ul>{% endif %}
+                                {% if t.label and t.url %}<a class="mr-btn mr-btn--ghost mr-btn--sm" href="{{ t.url }}">{{ t.label }}</a>{% endif %}
+                            </th>
+                            <td data-label="{{ rc_t('meridian.block.pricing-calculator.ui_col_seats') }}">{% if t.up_to > 0 %}{{ from }}–{{ t.up_to }}{% else %}{{ from }}+{% endif %}</td>
+                            {% if t.unit is not null %}
+                            <td data-label="{{ rc_t('meridian.block.pricing-calculator.ui_col_monthly') }}">{{ _self.money(t.unit, symbol, moneyPattern, decimal, thousands) }}</td>
+                            <td data-label="{{ rc_t('meridian.block.pricing-calculator.ui_col_yearly') }}">{{ _self.money(t.unit * (100 - discount) / 100, symbol, moneyPattern, decimal, thousands) }}</td>
+                            {% else %}
+                            <td colspan="2" data-label="">{{ rc_t('meridian.block.pricing-calculator.ui_custom') }}</td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <p class="mr-calc__note">{{ rc_t('meridian.block.pricing-calculator.ui_table_note') }}</p>
+        </div>
+
+        <div class="mr-js-only mr-calc__app">
+            <div class="mr-calc__controls mr-card">
+                <div class="mr-calc__field">
+                    <div class="mr-calc__row">
+                        <label class="mr-label" data-for="seats">{{ rc_t('meridian.block.pricing-calculator.ui_seats') }}</label>
+                        <output class="mr-calc__value" data-out="seats"></output>
+                    </div>
+                    <input class="mr-calc__range" type="range" data-input="seats" min="{{ seatsMin }}" max="{{ seatsMax }}" step="1" value="{{ seatsDefault }}">
+                </div>
+                <div class="mr-calc__field">
+                    <div class="mr-calc__row">
+                        <label class="mr-label" data-for="term">{{ rc_t('meridian.block.pricing-calculator.ui_term') }}</label>
+                        <output class="mr-calc__value" data-out="term"></output>
+                    </div>
+                    <input class="mr-calc__range" type="range" data-input="term" min="1" max="{{ termMax }}" step="1" value="{{ termDefault }}">
+                </div>
+                <div class="mr-calc__field">
+                    <button type="button" class="mr-calc__switch" role="switch" aria-checked="true" data-input="yearly">
+                        <span class="mr-calc__track" aria-hidden="true"><span class="mr-calc__thumb"></span></span>
+                        <span class="mr-calc__switch-text">
+                            <span>{{ rc_t('meridian.block.pricing-calculator.ui_yearly') }}</span>
+                            {% if discount > 0 %}<span class="mr-calc__badge">{{ rc_t('meridian.block.pricing-calculator.ui_save', {percent: discount}) }}</span>{% endif %}
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mr-calc__result mr-card">
+                <p class="mr-eyebrow" data-out="plan"></p>
+                <p class="mr-calc__price" aria-hidden="true"><span class="mr-calc__amount" data-out="price"></span> <span class="mr-calc__unit" data-out="unit"></span></p>
+                <p class="mr-calc__billed" data-out="billed" aria-hidden="true"></p>
+                <dl class="mr-calc__facts" aria-hidden="true">
+                    <div data-row="total"><dt data-out="total-label"></dt><dd data-out="total"></dd></div>
+                    <div data-row="saving"><dt>{{ rc_t('meridian.block.pricing-calculator.ui_saving_label') }}</dt><dd data-out="saving"></dd></div>
+                </dl>
+                <ul class="mr-calc__features" data-out="features"></ul>
+                <a class="mr-btn" data-out="cta" href="#" hidden></a>
+                <div class="visually-hidden" role="status" aria-live="polite" aria-atomic="true" data-out="live"></div>
+            </div>
+        </div>
+    </div>
+
+    {% set offers = [] %}
+    {% for t in tiers %}
+        {% if t.unit is not null and t.unit > 0 %}
+            {% set from = loop.first ? 1 : (tiers[loop.index0 - 1].up_to + 1) %}
+            {% set qty = t.up_to > 0 ? {'@type': 'QuantitativeValue', minValue: from, maxValue: t.up_to, unitText: 'seats'} : {'@type': 'QuantitativeValue', minValue: from, unitText: 'seats'} %}
+            {% set spec = {'@type': 'UnitPriceSpecification', priceCurrency: currency, referenceQuantity: {'@type': 'QuantitativeValue', value: 1, unitCode: 'MON'}, eligibleQuantity: qty} %}
+            {% set offer = {
+                '@type': 'Offer',
+                name: t.name,
+                price: t.unit|round(2),
+                priceCurrency: currency,
+                availability: 'https://schema.org/InStock',
+                priceSpecification: [
+                    spec|merge({price: t.unit|round(2), billingDuration: 1, name: 'monthly'}),
+                    spec|merge({price: (t.unit * (100 - discount) / 100)|round(2), billingDuration: 12, name: 'yearly'})
+                ]
+            } %}
+            {% if t.url %}{% set offer = offer|merge({url: t.url}) %}{% endif %}
+            {% set offers = offers|merge([offer]) %}
+        {% endif %}
+    {% endfor %}
+    {% if offers and productName %}
+    {# json_encode flags 3 = JSON_HEX_TAG|JSON_HEX_AMP: safe inside <script>. The seo builder skips this block type, so this is the page's only markup for it. #}
+    <script type="application/ld+json">{{ {'@context': 'https://schema.org', '@type': 'Product', name: productName, description: data.intro|default(''), offers: offers}|json_encode(3)|raw }}</script>
+    {% endif %}
+</section>

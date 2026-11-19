@@ -1,0 +1,46 @@
+handle: locations
+name: meridian.block.locations.name
+icon: icon-map-marker
+group: Meridian
+version: 1
+settings: true
+fields:
+  title:
+    label: meridian.block.locations.title
+    type: text
+    commentAbove: meridian.block.locations.title_comment
+  lead:
+    label: meridian.block.locations.lead
+    type: textarea
+    size: small
+  items:
+    label: meridian.block.locations.items
+    type: repeater
+    titleFrom: name
+    fields:
+      name:
+        label: meridian.block.locations.item_name
+        type: text
+      address:
+        label: meridian.block.locations.item_address
+        type: textarea
+        size: small
+        commentAbove: meridian.block.locations.item_address_comment
+      phone:
+        label: meridian.block.locations.item_phone
+        type: text
+        translatable: false
+      email:
+        label: meridian.block.locations.item_email
+        type: text
+        translatable: false
+      hours:
+        label: meridian.block.locations.item_hours
+        type: textarea
+        size: small
+        commentAbove: meridian.block.locations.item_hours_comment
+      map_url:
+        label: meridian.block.locations.item_map_url
+        type: text
+        translatable: false
+        commentAbove: meridian.block.locations.item_map_url_comment

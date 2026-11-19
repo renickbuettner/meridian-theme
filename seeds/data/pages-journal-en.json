@@ -1,0 +1,18 @@
+[
+  {
+    "id": 200,
+    "title": "Journal",
+    "slug": "journal",
+    "is_enabled": 1,
+    "hide_from_nav": 0,
+    "show_in_footer": 0,
+    "nav_icon": "journal",
+    "meta_title": null,
+    "schema_type": "CollectionPage",
+    "meta_description": "Essays on web performance, independent publishing, accessibility and design: written slowly, loaded quickly.",
+    "content": {
+      "meta": [],
+      "blocks": []
+    }
+  }
+]

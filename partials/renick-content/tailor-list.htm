@@ -1,0 +1,86 @@
+{% set view = data.view in ['list', 'cards', 'grid'] ? data.view : 'cards' %}
+{% set mode = data.mode in ['limit', 'pagination', 'infinite'] ? data.mode : 'limit' %}
+{% set items = data.items is iterable ? data.items : [] %}
+{% set pager = data.pager is iterable ? data.pager : {page: 1, last_page: 1, total: 0, prev_url: '', next_url: '', pages: []} %}
+{% set gridView = view != 'list' %}
+{% set fragment = data.fragment|default('') == 'items' %}
+{% set label = (data.button_label|default(''))|trim %}
+{% if label == '' %}{% set label = rc_t('block.front.tailor_list_more', {}, locale) %}{% endif %}
+{# `is defined` on purpose: an absent key takes the default, an explicitly cleared picker stays iconless #}
+{% set icon = data.button_icon is defined ? (data.button_icon ~ '')|trim : 'chevron-right' %}
+{% set btnIcon = rc_icon(icon, 16, 'rc-entries-btn-icon') %}
+{% set thumbSize = data.thumb_size is iterable ? data.thumb_size : [640, 360] %}
+{# data.columns holds Bootstrap spans per breakpoint (12 = one per row); the grid wants items per row #}
+{% set spans = data.columns is iterable ? data.columns : {} %}
+{% set perRow = {
+    mobile: (12 / max(1, spans.mobile|default(12)))|round,
+    tablet: (12 / max(1, spans.tablet|default(6)))|round,
+    desktop: (12 / max(1, spans.desktop|default(4)))|round,
+    wide: (12 / max(1, spans.wide|default(4)))|round
+} %}
+
+{% set itemsHtml %}
+    {% for item in items %}
+        <li class="rc-entries-item">
+            <article class="rc-entries-inner{{ view == 'cards' ? ' mr-card' }}">
+            {% if item.thumb %}
+                {% if item.url %}<a class="rc-entries-media" href="{{ item.url|rc_url }}" tabindex="-1" aria-hidden="true">{% else %}<span class="rc-entries-media">{% endif %}
+                    <img src="{{ item.thumb }}" alt="" width="{{ thumbSize[0] }}" height="{{ thumbSize[1] }}" loading="lazy" decoding="async">
+                {% if item.url %}</a>{% else %}</span>{% endif %}
+            {% endif %}
+            <div class="rc-entries-body">
+                <h3 class="rc-entries-title">{% if item.url %}<a href="{{ item.url|rc_url }}">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h3>
+                {% if item.excerpt %}<p class="rc-entries-excerpt">{{ item.excerpt }}</p>{% endif %}
+                {% if item.url %}
+                    <a class="rc-entries-btn" href="{{ item.url|rc_url }}">{{ label }}{% if btnIcon %} {{ btnIcon|raw }}{% endif %}</a>
+                {% endif %}
+            </div>
+            </article>
+        </li>
+    {% endfor %}
+{% endset %}
+
+{% if fragment %}
+    {{ itemsHtml|raw }}
+{% else %}
+<div {{ attributes|raw }}>
+    {% if data.error|default('') %}
+        {% if preview %}<div class="rc-pv-placeholder">{{ rc_t('block.front.tailor_list_' ~ data.error, {}, locale) }}</div>{% else %}<!-- tailor-list: {{ data.error }} -->{% endif %}
+    {% elseif items is empty %}
+        {% if preview %}<div class="rc-pv-placeholder">{{ rc_t('block.front.tailor_list_empty', {}, locale) }}</div>{% endif %}
+    {% else %}
+        <div class="rc-entries mr-entries rc-entries--{{ view }}"
+             {% if mode == 'infinite' and not preview and data.payload|default('') %}
+             data-rc-tailor-list
+             data-rc-handler="tailorList::onLoadMore"
+             data-rc-payload="{{ data.payload }}"
+             data-rc-page="{{ pager.page }}"
+             data-rc-last="{{ pager.last_page }}"
+             data-rc-loading="{{ rc_t('block.front.tailor_list_loading', {}, locale) }}"
+             data-rc-error="{{ rc_t('block.front.tailor_list_load_failed', {}, locale) }}"
+             {% endif %}>
+            <ul class="rc-entries-items" role="list"{% if gridView %} style="--per-row-mobile: {{ perRow.mobile }}; --per-row-tablet: {{ perRow.tablet }}; --per-row-desktop: {{ perRow.desktop }}; --per-row-wide: {{ perRow.wide }};"{% endif %}>{{ itemsHtml|raw }}</ul>
+            {% if mode == 'pagination' and pager.last_page > 1 %}
+                <nav class="rc-entries-pager" aria-label="{{ rc_t('block.front.tailor_list_pager', {}, locale) }}">
+                    {% if pager.prev_url %}<a class="rc-entries-pager-link rc-entries-pager-prev" href="{{ pager.prev_url }}" rel="prev">{{ rc_icon('chevron-left', 16) }}<span>{{ rc_t('block.front.tailor_list_prev', {}, locale) }}</span></a>{% endif %}
+                    {% for entry in pager.pages %}
+                        {% if entry.n is null %}
+                            <span class="rc-entries-pager-gap" aria-hidden="true">…</span>
+                        {% elseif entry.current %}
+                            <span class="rc-entries-pager-link is-current" aria-current="page">{{ entry.n }}</span>
+                        {% else %}
+                            <a class="rc-entries-pager-link" href="{{ entry.url }}" aria-label="{{ rc_t('block.front.tailor_list_page', {n: entry.n}, locale) }}">{{ entry.n }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    {% if pager.next_url %}<a class="rc-entries-pager-link rc-entries-pager-next" href="{{ pager.next_url }}" rel="next"><span>{{ rc_t('block.front.tailor_list_next', {}, locale) }}</span>{{ rc_icon('chevron-right', 16) }}</a>{% endif %}
+                </nav>
+            {% elseif mode == 'infinite' and pager.next_url %}
+                <div class="rc-entries-more">
+                    <a class="mr-btn mr-btn--ghost rc-entries-more-btn" href="{{ pager.next_url }}" data-rc-more rel="next">{{ rc_t('block.front.tailor_list_load_more', {}, locale) }}</a>
+                    <p class="rc-entries-status" role="status" aria-live="polite"></p>
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endif %}

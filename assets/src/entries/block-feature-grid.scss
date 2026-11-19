@@ -1,0 +1,55 @@
+@use "../mr";
+@use "../landing/parts";
+
+@include parts.section-head;
+@include parts.anchor-offset;
+
+.mr-features__grid { @include parts.item-grid; }
+// Four steps read as 2x2 until the container fits four across; keyed to the container, not the viewport, because the sidebar eats 15rem.
+.mr-features .mr-container { container-type: inline-size; }
+@container (min-width: 34.5rem) and (max-width: 65.99rem) {
+    .mr-features__grid--cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+// Below the width where three columns breathe (52.5rem), three items stack and other counts go two-up: no ragged titles, no lone card in a second row.
+@container (min-width: 34.5rem) and (max-width: 52.49rem) {
+    .mr-features__grid--cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mr-features__grid--cols-3:has(> :nth-child(3):last-child) { grid-template-columns: minmax(0, 1fr); }
+}
+@container (min-width: 66rem) {
+    .mr-features__grid--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@container (max-width: 40rem) {
+    .mr-features--cards .mr-features__body,
+    .mr-features--projects .mr-features__body { padding: var(--mr-space-4); }
+}
+.mr-features__item { display: flex; flex-direction: column; padding: 0; background: none; border: 0; box-shadow: none; }
+.mr-features--cards .mr-features__item { background: var(--mr-surface); border: var(--mr-border); box-shadow: var(--mr-shadow-1); }
+.mr-features__body { display: flex; flex-direction: column; gap: var(--mr-space-2); flex: 1; }
+.mr-features--cards .mr-features__body,
+.mr-features--projects .mr-features__body { padding: var(--mr-space-5); }
+.mr-features--projects .mr-features__item { overflow: hidden; padding: 0; position: relative; }
+.mr-features--projects .mr-features__item:hover { box-shadow: var(--mr-shadow-2); }
+.mr-features--numbered .mr-features__item { padding-block-start: var(--mr-space-4); border-block-start: 1px solid var(--mr-line-strong); }
+
+.mr-features__icon {
+    inline-size: var(--mr-space-6);
+    block-size: var(--mr-space-6);
+    margin-block-end: var(--mr-space-2);
+    color: var(--mr-accent);
+}
+.mr-features__num { font: 400 var(--mr-text-h3) / 1 var(--mr-font-serif); color: var(--mr-accent); }
+.mr-features__tag { margin: 0; }
+.mr-features__title { margin: 0; font-size: var(--mr-text-h4); }
+.mr-features__text { margin: 0; color: var(--mr-muted); }
+.mr-features__more { margin: auto 0 0; padding-block-start: var(--mr-space-3); font-weight: 600; font-size: var(--mr-text-sm); }
+.mr-features__more a { display: inline-flex; align-items: center; gap: var(--mr-space-1); min-height: var(--mr-target); }
+
+// Whole card is the link; the pseudo-element stretches the one real anchor over it.
+.mr-features__link { color: inherit; text-decoration: none; }
+.mr-features__link::after { content: ""; position: absolute; inset: 0; }
+.mr-features__link:focus-visible { outline: 2px solid var(--mr-focus); outline-offset: 2px; border-radius: var(--mr-radius-sm); }
+
+.mr-features__media picture,
+.mr-features__media img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+
+@include parts.dim-art(".mr-features--projects picture");

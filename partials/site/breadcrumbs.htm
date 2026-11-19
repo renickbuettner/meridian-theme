@@ -1,0 +1,13 @@
+{# {% partial 'site/breadcrumbs' trail=[{label: 'Journal', url: 'blog'|page}, {label: post.title}] %} The last item is the current page; the home crumb is added here. The BreadcrumbList JSON-LD is built from the same trail by the SEO partial (seoBreadcrumbs). #}
+{% if trail|length %}
+    <nav class="mr-breadcrumbs" aria-label="{{ 'meridian.front.breadcrumb.label'|_ }}">
+        <div class="mr-container">
+            <ol>
+                <li><a href="{{ 'index'|page }}">{{ 'meridian.front.breadcrumb.home'|_ }}</a></li>
+                {% for crumb in trail %}
+                    <li>{% if loop.last or not crumb.url %}<span aria-current="page">{{ crumb.label }}</span>{% else %}<a href="{{ crumb.url }}">{{ crumb.label }}</a>{% endif %}</li>
+                {% endfor %}
+            </ol>
+        </div>
+    </nav>
+{% endif %}

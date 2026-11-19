@@ -1,0 +1,41 @@
+@use "../mr";
+
+.mr-compare { container-type: inline-size; }
+.mr-compare__caption { margin: 0 0 var(--mr-space-4); color: var(--mr-ink); font: 500 var(--mr-text-h2) / var(--mr-leading-tight) var(--mr-font-serif); letter-spacing: -0.015em; text-wrap: balance; }
+
+// Scrolls inside its own region so the page never gets a horizontal scrollbar.
+.mr-compare__scroll { position: relative; overflow-x: auto; border: var(--mr-border); border-radius: var(--mr-radius-md); background: var(--mr-surface); }
+.mr-compare__table { inline-size: 100%; min-inline-size: 36rem; border-collapse: collapse; font-size: var(--mr-text-sm); }
+.mr-compare__table th,
+.mr-compare__table td { padding: var(--mr-space-3) var(--mr-space-4); border-block-end: var(--mr-border); text-align: center; vertical-align: middle; }
+.mr-compare__table td,
+.mr-compare__table thead th { white-space: nowrap; }
+.mr-compare__table thead th { font-weight: 600; }
+.mr-compare__table tbody th[scope="row"] { text-align: start; font-weight: 500; }
+.mr-compare__table tbody tr:last-child > * { border-block-end: 0; }
+.mr-compare__table .is-featured { background: var(--mr-accent-soft); }
+.mr-compare__group th { padding-block-start: var(--mr-space-5); text-align: start; font-size: var(--mr-text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--mr-accent); background: transparent; }
+.mr-compare__yes { color: var(--mr-accent); vertical-align: middle; }
+.mr-compare__no { color: var(--mr-muted); }
+
+// Narrow blocks: each feature becomes a small card with one labelled line per plan instead of a sideways scroll.
+@container (max-width: 40rem) {
+    .mr-compare__scroll { overflow: visible; border: 0; background: none; }
+    .mr-compare__table,
+    .mr-compare__table tbody,
+    .mr-compare__table tr,
+    .mr-compare__table th,
+    .mr-compare__table td { display: block; }
+    .mr-compare__table { min-inline-size: 0; }
+    .mr-compare__table thead { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
+    .mr-compare__table tbody tr:not(.mr-compare__group) { margin-block-end: var(--mr-space-4); border: var(--mr-border); border-radius: var(--mr-radius-md); background: var(--mr-surface); overflow: hidden; }
+    .mr-compare__table tbody tr:last-child > * { border-block-end: var(--mr-border); }
+    .mr-compare__table tbody tr:last-child > td:last-child { border-block-end: 0; }
+    .mr-compare__table tbody th[scope="row"] { font-weight: 600; background: var(--mr-surface-2); }
+    .mr-compare__table th,
+    .mr-compare__table td { overflow-wrap: anywhere; }
+    .mr-compare__table td { display: flex; align-items: center; justify-content: space-between; gap: var(--mr-space-4); text-align: end; }
+    .mr-compare__table td:last-child { border-block-end: 0; }
+    .mr-compare__table td::before { content: attr(data-label); flex: none; font-weight: 500; color: var(--mr-muted); text-align: start; }
+    .mr-compare__group th { padding-inline: 0; border-block-end: 0; }
+}

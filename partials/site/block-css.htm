@@ -1,0 +1,2 @@
+{# Puts the block stylesheet of a document into <head> ({% styles %} in the layout). css comes from meridian_block_css(); pages that render documents themselves (posts, docs) pass it the same way. #}
+{% if css %}{% put styles %}<link rel="stylesheet" href="{{ css }}">{% endput %}{% endif %}

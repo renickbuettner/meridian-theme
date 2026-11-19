@@ -1,0 +1,59 @@
+handle: before-after
+name: meridian.block.before-after.name
+icon: icon-arrows-h
+group: Meridian
+version: 1
+settings: true
+fields:
+  before_image:
+    label: meridian.block.before-after.before_image
+    type: mediafinder
+    mode: image
+    maxItems: 1
+  before_image_dark:
+    label: meridian.block.before-after.before_image_dark
+    type: mediafinder
+    mode: image
+    maxItems: 1
+    commentAbove: meridian.block.before-after.dark_comment
+  before_alt:
+    label: meridian.block.before-after.before_alt
+    type: text
+    commentAbove: meridian.block.before-after.alt_comment
+  before_label:
+    label: meridian.block.before-after.before_label
+    type: text
+    commentAbove: meridian.block.before-after.label_comment
+  after_image:
+    label: meridian.block.before-after.after_image
+    type: mediafinder
+    mode: image
+    maxItems: 1
+    commentAbove: meridian.block.before-after.after_image_comment
+  after_image_dark:
+    label: meridian.block.before-after.after_image_dark
+    type: mediafinder
+    mode: image
+    maxItems: 1
+  after_alt:
+    label: meridian.block.before-after.after_alt
+    type: text
+  after_label:
+    label: meridian.block.before-after.after_label
+    type: text
+  start:
+    label: meridian.block.before-after.start
+    type: dropdown
+    options:
+      25: meridian.block.before-after.start_25
+      50: meridian.block.before-after.start_50
+      75: meridian.block.before-after.start_75
+    default: 50
+  caption:
+    label: meridian.block.before-after.caption
+    type: text
+  tint:
+    label: meridian.block.before-after.tint
+    type: switch
+    default: false
+    commentAbove: meridian.block.before-after.tint_comment

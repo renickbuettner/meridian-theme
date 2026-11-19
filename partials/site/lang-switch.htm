@@ -1,0 +1,19 @@
+{# Native <details> dropdown; shell.js adds Esc and outside-click closing and refreshes the hrefs after Turbo visits from <link rel="alternate" hreflang>. Cross-language links bypass Turbo (data-turbo="false") because the sidebar differs per language. #}
+{% set _alts = meridianAlternates|default([]) %}
+{% if _alts|length > 1 %}
+    {% set _current = _alts|filter(a => a.active)|first %}
+    <details class="mr-lang" data-mr-lang>
+        <summary>
+            {% partial 'site/icon' name='globe' %}
+            <span>{{ _current.label|default('') }}</span><span class="visually-hidden">: {{ 'meridian.front.lang.change'|_ }} ({{ _current.name|default('') }})</span>
+            {% partial 'site/icon' name='chevron' %}
+        </summary>
+        <ul class="mr-lang__list">
+            {% for alt in _alts %}
+                <li><a href="{{ alt.url }}" hreflang="{{ alt.hreflang }}" lang="{{ alt.locale }}" data-turbo="false" data-mr-lang-link="{{ alt.locale }}" data-mr-home="{{ alt.home }}"{{ alt.active ? ' aria-current="true"' }}>
+                    <span>{{ alt.name }}</span><span class="mr-lang__code" aria-hidden="true">{{ alt.label }}</span>
+                </a></li>
+            {% endfor %}
+        </ul>
+    </details>
+{% endif %}

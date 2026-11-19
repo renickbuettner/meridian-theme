@@ -1,0 +1,53 @@
+{# Without JS every panel is a stacked section with its own heading; the island turns the tab buttons on and hides the inactive panels. #}
+{% set uid = 'ft-' ~ (blockId ?: random(100000000)) %}
+{% set items = data.items|default([])|filter(i => i.label|default('') or i.text|default('')) %}
+{% set layout = data.layout|default('image_end') == 'image_start' ? 'image_start' : 'image_end' %}
+{% set widths = [480, 720, 960] %}
+{% set sizes = '(min-width: 62rem) 30rem, (min-width: 48rem) 45vw, 100vw' %}
+{% macro srcset(path, widths, ext) %}{% for w in widths %}{{ path|rc_resize(w, (w * 3 / 4)|round, { mode: 'crop', quality: 80, extension: ext }) }} {{ w }}w{{ loop.last ? '' : ', ' }}{% endfor %}{% endmacro %}
+{% import _self as ft %}
+{% if items|length %}
+<section {{ attributes|replace({'class="': 'class="mr-tabs' ~ (data.tint ? ' mr-tabs--tint' : '') ~ ' '})|raw }} data-island="feature-tabs" data-island-load="eager">
+    {% if data.eyebrow or data.title or data.lead %}
+        <header class="mr-tabs__head">
+            {% if data.eyebrow %}<p class="mr-eyebrow">{{ data.eyebrow }}</p>{% endif %}
+            {% if data.title %}<h2 class="mr-tabs__title" id="{{ uid }}-title">{{ data.title }}</h2>{% endif %}
+            {% if data.lead %}<p class="mr-lead">{{ data.lead|nl2br }}</p>{% endif %}
+        </header>
+    {% endif %}
+    <div class="mr-tabs__list mr-js-only" role="tablist"{% if data.title %} aria-labelledby="{{ uid }}-title"{% else %} aria-label="{{ rc_t('meridian.block.feature-tabs.ui_tablist') }}"{% endif %}>
+        {% for item in items %}
+            {% set icon = rc_icon(item.icon|default(''), 18, 'mr-tabs__icon') %}
+            <button type="button" class="mr-chip mr-tabs__tab" role="tab" id="{{ uid }}-t{{ loop.index }}" aria-controls="{{ item.key|default('') matches '/^(?!bootstrap$)[a-z][a-z0-9-]*$/' ? item.key : uid ~ '-p' ~ loop.index }}" aria-selected="{{ loop.first ? 'true' : 'false' }}"{% if not loop.first %} tabindex="-1"{% endif %}>{% if icon %}{{ icon|raw }}{% endif %}<span>{{ item.label|default('') }}</span></button>
+        {% endfor %}
+    </div>
+    <div class="mr-tabs__panels">
+        {% for item in items %}
+            {# "bootstrap" would pose as window.bootstrap (ReservedIds in the plugin) #}
+            {% set pid = item.key|default('') matches '/^(?!bootstrap$)[a-z][a-z0-9-]*$/' ? item.key : uid ~ '-p' ~ loop.index %}
+            {% set url = item.link_url|default('')|rc_url %}
+            <article class="mr-tabs__panel{{ layout == 'image_start' ? ' mr-tabs__panel--flip' : '' }}" id="{{ pid }}">
+                <div class="mr-tabs__body">
+                    {% if item.label %}<h3 class="mr-tabs__heading">{{ item.label }}</h3>{% endif %}
+                    {% for para in item.text|default('')|split("\n\n")|filter(q => q|trim) %}<p>{{ para|nl2br }}</p>{% endfor %}
+                    {% if url and item.link_label %}<p><a class="mr-btn mr-btn--ghost" href="{{ url }}">{{ item.link_label }}</a></p>{% endif %}
+                </div>
+                {% if item.image %}
+                    {% set abs = item.image starts with 'http://' or item.image starts with 'https://' or item.image starts with '/storage/' %}
+                    <figure class="mr-tabs__media">
+                        {% if abs %}
+                            <img src="{{ item.image }}" alt="{{ item.image_alt|default('') }}" loading="lazy" width="960" height="720">
+                        {% else %}
+                            <picture>
+                                <source type="image/avif" srcset="{{ ft.srcset(item.image, widths, 'avif') }}" sizes="{{ sizes }}">
+                                <source type="image/webp" srcset="{{ ft.srcset(item.image, widths, 'webp') }}" sizes="{{ sizes }}">
+                                <img src="{{ item.image|rc_resize(960, 720, { mode: 'crop', quality: 80 }) }}" srcset="{{ ft.srcset(item.image, widths, 'auto') }}" sizes="{{ sizes }}" alt="{{ item.image_alt|default('') }}" loading="lazy" decoding="async" width="960" height="720">
+                            </picture>
+                        {% endif %}
+                    </figure>
+                {% endif %}
+            </article>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}

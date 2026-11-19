@@ -1,0 +1,14 @@
+// Must be the first module that loads Bootstrap's config: Sass applies `with()` only on first load.
+@forward "bootstrap/scss/config" with (
+    $breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1280px,
+        2xl: 1536px,
+    ),
+    $enable-gradients: false,
+    $enable-smooth-scroll: false,
+    $enable-deprecation-messages: false
+);

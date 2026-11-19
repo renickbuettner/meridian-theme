@@ -1,0 +1,12 @@
+{# {% partial 'site/pagination' current=2 last=5 url=pageUrlTemplate %} where url contains {page}, e.g. '/en/journal?page={page}'. #}
+{% if last > 1 %}
+    <nav aria-label="{{ 'meridian.front.pagination.label'|_ }}">
+        <ul class="mr-pagination">
+            {% if current > 1 %}<li><a href="{{ url|replace({'{page}': current - 1}) }}" rel="prev">{{ 'meridian.front.pagination.previous'|_ }}</a></li>{% endif %}
+            {% for n in 1..last %}
+                <li>{% if n == current %}<span aria-current="page"><span class="visually-hidden">{{ 'meridian.front.pagination.page'|_ }} </span>{{ n }}</span>{% else %}<a href="{{ url|replace({'{page}': n}) }}"><span class="visually-hidden">{{ 'meridian.front.pagination.page'|_ }} </span>{{ n }}</a>{% endif %}</li>
+            {% endfor %}
+            {% if current < last %}<li><a href="{{ url|replace({'{page}': current + 1}) }}" rel="next">{{ 'meridian.front.pagination.next'|_ }}</a></li>{% endif %}
+        </ul>
+    </nav>
+{% endif %}

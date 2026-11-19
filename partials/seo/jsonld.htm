@@ -1,0 +1,53 @@
+description = "Schema.org JSON-LD graph of the page"
+==
+function onStart()
+{
+    require_once meridian_path('partials/site/page-seo.php');
+    require_once meridian_path('partials/seo/seo.php');
+    $vars = $this->controller->vars;
+    $site = \Site::getActiveSite();
+    $prefix = ($site && $site->is_prefixed && $site->route_prefix) ? '/' . trim($site->route_prefix, '/') : '';
+    $siteUrl = url($prefix . '/');
+    $url = (string) $this['url'];
+    $brand = (string) $this['brand'];
+    $logo = trim((string) ($vars['meridianLook']['logo'] ?? ''));
+
+    $trail = [];
+    foreach ((array) ($vars['seoBreadcrumbs'] ?? []) as $crumb) {
+        $trail[] = ['label' => (string) ($crumb['label'] ?? ''), 'url' => $crumb['url'] ?? null];
+    }
+
+    $graph = meridian_seo_graph([
+        'url' => $url,
+        'siteUrl' => $siteUrl,
+        'isHome' => rtrim($url, '/') === rtrim($siteUrl, '/'),
+        'locale' => meridian_locale(),
+        'brand' => $brand,
+        'homeLabel' => (string) $this['homeLabel'],
+        'title' => $this['title'],
+        'description' => $this['description'],
+        'image' => $this['image'],
+        'logo' => $logo !== '' ? meridian_media_url($logo) : null,
+        'type' => $vars['seoType'] ?? 'website',
+        'schemaType' => $vars['seoSchemaType'] ?? 'WebPage',
+        'published' => $vars['seoPublished'] ?? null,
+        'modified' => $vars['seoModified'] ?? null,
+        'author' => $vars['seoAuthor'] ?? null,
+        'section' => $vars['seoSection'] ?? null,
+        'tags' => $vars['seoTags'] ?? [],
+        'wordCount' => $vars['seoWordCount'] ?? null,
+        'trail' => $trail,
+        'searchUrl' => meridian_seo_search_url(),
+        'nodes' => $vars['seoNodes'] ?? [],
+        'content' => $vars['seoContent'] ?? null,
+    ]);
+
+    $scripts = [meridian_seo_encode($graph)];
+    foreach ((array) ($vars['seoJsonLd'] ?? []) as $extra) {
+        $scripts[] = (string) $extra;
+    }
+    $this['scripts'] = $scripts;
+}
+==
+{% for ld in scripts %}<script type="application/ld+json">{{ ld|raw }}</script>
+{% endfor %}

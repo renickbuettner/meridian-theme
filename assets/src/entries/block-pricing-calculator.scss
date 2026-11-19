@@ -1,0 +1,195 @@
+@use "../mr";
+
+.mr-calc {
+    --mr-calc-thumb: var(--mr-space-6);
+    --mr-calc-track: var(--mr-space-2);
+    --mr-calc-switch-w: calc(var(--mr-space-8) * 0.875);
+    --mr-calc-switch-h: var(--mr-space-6);
+}
+
+.mr-calc__head { margin-block-end: var(--mr-space-6); max-inline-size: var(--mr-w-prose); }
+.mr-calc__title { margin: 0 0 var(--mr-space-3); font-size: var(--mr-text-h2); }
+
+// Reserves the app's height so the island swap does not shift the page.
+.mr-calc__body { min-block-size: calc(var(--mr-space-10) * 3); }
+
+.mr-calc__app {
+    display: grid;
+    gap: var(--mr-space-5);
+    align-items: stretch;
+
+    @include mr.up(lg) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+
+.mr-calc__controls,
+.mr-calc__result { display: grid; gap: var(--mr-space-5); padding: var(--mr-space-5); }
+.mr-calc__result { align-content: start; }
+.mr-calc__controls { align-content: space-between; }
+.mr-calc__result { gap: var(--mr-space-3); }
+
+.mr-calc__field { display: grid; gap: var(--mr-space-2); }
+.mr-calc__row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--mr-space-2); }
+.mr-calc__value { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--mr-accent); }
+
+// Range: the input is the full target height, the visual track and thumb are drawn inside it.
+.mr-calc__range {
+    --mr-calc-fill: 50%;
+    appearance: none;
+    inline-size: 100%;
+    block-size: var(--mr-target);
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    touch-action: pan-y;
+
+    &::-webkit-slider-runnable-track {
+        block-size: var(--mr-calc-track);
+        border-radius: var(--mr-radius-pill);
+        background: linear-gradient(to right, var(--mr-accent) var(--mr-calc-fill), var(--mr-line-strong) var(--mr-calc-fill));
+    }
+    &::-moz-range-track {
+        block-size: var(--mr-calc-track);
+        border-radius: var(--mr-radius-pill);
+        background: linear-gradient(to right, var(--mr-accent) var(--mr-calc-fill), var(--mr-line-strong) var(--mr-calc-fill));
+    }
+    &::-webkit-slider-thumb {
+        appearance: none;
+        inline-size: var(--mr-calc-thumb);
+        block-size: var(--mr-calc-thumb);
+        margin-block-start: calc((var(--mr-calc-track) - var(--mr-calc-thumb)) / 2);
+        border: calc(var(--mr-space-1) / 2 + 1px) solid var(--mr-surface);
+        border-radius: 50%;
+        background: var(--mr-accent);
+        box-shadow: var(--mr-shadow-1), 0 0 0 1px var(--mr-accent);
+        box-sizing: border-box;
+    }
+    &::-moz-range-thumb {
+        inline-size: var(--mr-calc-thumb);
+        block-size: var(--mr-calc-thumb);
+        border: calc(var(--mr-space-1) / 2 + 1px) solid var(--mr-surface);
+        border-radius: 50%;
+        background: var(--mr-accent);
+        box-shadow: var(--mr-shadow-1), 0 0 0 1px var(--mr-accent);
+        box-sizing: border-box;
+    }
+}
+
+.mr-calc__range:focus-visible { outline-offset: calc(var(--mr-space-1) * -1); border-radius: var(--mr-radius-sm); }
+
+.mr-calc__switch {
+    display: flex;
+    align-items: center;
+    gap: var(--mr-space-3);
+    min-block-size: var(--mr-target);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--mr-ink);
+    font: inherit;
+    font-weight: 600;
+    text-align: start;
+    cursor: pointer;
+}
+
+.mr-calc__track {
+    flex: none;
+    box-sizing: border-box;
+    inline-size: var(--mr-calc-switch-w);
+    block-size: var(--mr-calc-switch-h);
+    padding: var(--mr-space-1);
+    border: 1px solid var(--mr-line-strong);
+    border-radius: var(--mr-radius-pill);
+    background: var(--mr-surface-2);
+    transition: background-color var(--mr-dur) var(--mr-ease), border-color var(--mr-dur) var(--mr-ease);
+}
+
+.mr-calc__thumb {
+    display: block;
+    inline-size: calc(var(--mr-calc-switch-h) - var(--mr-space-2) - 2px);
+    block-size: 100%;
+    border-radius: 50%;
+    background: var(--mr-ink);
+    transition: transform var(--mr-dur) var(--mr-ease), background-color var(--mr-dur) var(--mr-ease);
+}
+
+.mr-calc__switch[aria-checked="true"] .mr-calc__track { background: var(--mr-accent); border-color: var(--mr-accent); }
+.mr-calc__switch[aria-checked="true"] .mr-calc__thumb {
+    background: var(--mr-on-accent);
+    transform: translateX(calc(var(--mr-calc-switch-w) - var(--mr-calc-switch-h)));
+}
+.mr-calc__switch[aria-checked="true"] .mr-calc__thumb:dir(rtl),
+:dir(rtl) .mr-calc__switch[aria-checked="true"] .mr-calc__thumb {
+    transform: translateX(calc((var(--mr-calc-switch-w) - var(--mr-calc-switch-h)) * -1));
+}
+
+.mr-calc__switch-text { display: flex; flex-wrap: wrap; align-items: center; gap: var(--mr-space-1) var(--mr-space-2); min-inline-size: 0; }
+.mr-calc__badge {
+    padding: var(--mr-space-1) var(--mr-space-2);
+    border-radius: var(--mr-radius-pill);
+    background: var(--mr-accent-soft);
+    color: var(--mr-accent);
+    font-size: var(--mr-text-xs);
+    font-weight: 600;
+}
+
+.mr-calc__price { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--mr-space-2); }
+.mr-calc__amount {
+    font-family: var(--mr-font-serif);
+    font-size: var(--mr-text-h2);
+    line-height: var(--mr-leading-tight);
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+}
+.mr-calc__unit { color: var(--mr-muted); }
+.mr-calc__billed { margin: 0; color: var(--mr-muted); font-size: var(--mr-text-sm); }
+
+.mr-calc__facts { display: grid; gap: var(--mr-space-2); margin: 0; padding-block-start: var(--mr-space-3); border-block-start: var(--mr-border); }
+.mr-calc__facts > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--mr-space-2); }
+.mr-calc__facts > div[hidden] { display: none; }
+.mr-calc__facts dt { color: var(--mr-muted); }
+.mr-calc__facts dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.mr-calc__features { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--mr-space-2); font-size: var(--mr-text-base); }
+.mr-calc__features[hidden] { display: none; }
+.mr-calc__features li { padding-inline-start: var(--mr-space-5); position: relative; }
+.mr-calc__features li::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0.55em;
+    inline-size: var(--mr-space-3);
+    block-size: calc(var(--mr-space-1) / 2);
+    border-radius: var(--mr-radius-pill);
+    background: var(--mr-accent);
+}
+.mr-calc__result .mr-btn { justify-self: start; min-block-size: var(--mr-target); }
+.mr-calc__result .mr-btn[hidden] { display: none; }
+
+// No-JS table
+.mr-calc__table-wrap { overflow-x: auto; border: var(--mr-border); border-radius: var(--mr-radius-md); background: var(--mr-surface); }
+.mr-calc__table { inline-size: 100%; border-collapse: collapse; font-size: var(--mr-text-sm); }
+.mr-calc__table th,
+.mr-calc__table td { padding: var(--mr-space-3) var(--mr-space-4); text-align: start; vertical-align: top; border-block-end: var(--mr-border); }
+.mr-calc__table thead th { color: var(--mr-muted); font-weight: 600; }
+.mr-calc__table tbody tr:last-child > * { border-block-end: 0; }
+.mr-calc__table tbody th { font-weight: 600; }
+.mr-calc__table tbody th > * { display: block; margin-block-start: var(--mr-space-2); font-weight: 400; }
+.mr-calc__table .mr-btn { display: inline-flex; }
+.mr-calc__note { margin: var(--mr-space-3) 0 0; color: var(--mr-muted); font-size: var(--mr-text-sm); }
+
+// Below md the rows stack as labelled cards instead of scrolling sideways.
+@include mr.down(md) {
+    .mr-calc__table thead { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
+    .mr-calc__table,
+    .mr-calc__table tbody,
+    .mr-calc__table tr,
+    .mr-calc__table th,
+    .mr-calc__table td { display: block; }
+    .mr-calc__table tbody tr { padding-block: var(--mr-space-3); border-block-end: var(--mr-border); }
+    .mr-calc__table tbody tr:last-child { border-block-end: 0; }
+    .mr-calc__table th,
+    .mr-calc__table td { border: 0; padding-block: var(--mr-space-1); }
+    .mr-calc__table td { display: flex; justify-content: space-between; gap: var(--mr-space-4); }
+    .mr-calc__table td::before { content: attr(data-label); color: var(--mr-muted); }
+}

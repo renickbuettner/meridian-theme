@@ -1,0 +1,31 @@
+url = "/journal/author/:slug"
+layout = "default"
+title = "Journal author"
+is_hidden = 0
+==
+function onStart()
+{
+    require_once meridian_path('partials/journal/lib.php');
+    $author = \Tailor\Models\EntryRecord::inSection('Meridian\\Author')->where('slug', $this->param('slug'))->first();
+    if (!$author) {
+        return meridian_journal_not_found($this);
+    }
+
+    $index = meridian_journal_index_entry();
+    $authorId = $author->id;
+    $bio = trim((string) $author->bio);
+
+    $response = meridian_journal_listing(
+        $this,
+        meridian_journal_posts()->whereHas('author', fn ($q) => $q->where('id', $authorId)),
+        ['eyebrow' => meridian_journal_t('meridian.front.journal.author_eyebrow'), 'title' => (string) $author->title, 'lead' => $bio],
+        [['label' => $index ? (string) $index->title : meridian_journal_t('meridian.front.journal.eyebrow'), 'url' => meridian_journal_url('journal')], ['label' => (string) $author->title, 'url' => null]],
+        ['seoDescription' => $bio ?: null]
+    );
+    if ($response) {
+        return $response;
+    }
+    $this['jAuthor'] = meridian_journal_author($author);
+}
+==
+{% partial 'journal/listing' %}

@@ -1,0 +1,30 @@
+handle: scroll-timeline
+name: meridian.block.scroll-timeline.name
+icon: icon-history
+group: Meridian
+version: 1
+settings: true
+fields:
+  title:
+    label: meridian.block.scroll-timeline.title
+    type: text
+  intro:
+    label: meridian.block.scroll-timeline.intro
+    type: textarea
+    size: small
+  items:
+    label: meridian.block.scroll-timeline.items
+    type: repeater
+    titleFrom: title
+    fields:
+      meta:
+        label: meridian.block.scroll-timeline.items_meta
+        type: text
+        commentAbove: meridian.block.scroll-timeline.items_meta_comment
+      title:
+        label: meridian.block.scroll-timeline.items_title
+        type: text
+      text:
+        label: meridian.block.scroll-timeline.items_text
+        type: textarea
+        size: small

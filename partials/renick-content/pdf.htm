@@ -1,0 +1,36 @@
+{% set path = (data.file|default(''))|trim %}
+{% if path %}
+    {% set url = path|media %}
+    {% set filename = path|split('/')|last %}
+    {% set ext = filename|split('.')|last|lower %}
+    {% set isPdf = ext == 'pdf' %}
+    {% set title = data.title|default(filename) %}
+    <div {{ attributes|raw }}>
+        <div class="rc-pdf-viewer"{% if isPdf and not preview %} data-rc-pdf="{{ url }}" data-rc-pdf-title="{{ title }}"
+            data-rc-pdf-prev="{{ rc_t('block.front.pdf_prev', {}, locale) }}"
+            data-rc-pdf-next="{{ rc_t('block.front.pdf_next', {}, locale) }}"
+            data-rc-pdf-zoom-out="{{ rc_t('block.front.pdf_zoom_out', {}, locale) }}"
+            data-rc-pdf-zoom-in="{{ rc_t('block.front.pdf_zoom_in', {}, locale) }}"
+            data-rc-pdf-fullscreen="{{ rc_t('block.front.pdf_fullscreen', {}, locale) }}"
+            data-rc-pdf-download="{{ rc_t('block.front.pdf_download_pdf', {}, locale) }}"{% endif %}>
+            <div class="rc-pdf-fallback mr-card{% if not isPdf %} rc-pdf-fallback--unsupported{% endif %}">
+                <span class="rc-pdf-icon" aria-hidden="true">{{ rc_icon('file-text', 32) }}</span>
+                <div class="rc-pdf-info">
+                    <strong class="rc-pdf-title">{{ title }}</strong>
+                    <span class="rc-pdf-sub">
+                        {%- if isPdf -%}
+                            {{ rc_t('block.front.pdf_document', {}, locale) }}
+                        {%- else -%}
+                            {{ rc_t('block.front.pdf_unsupported', {'ext': ext|upper}, locale) }}
+                        {%- endif -%}
+                    </span>
+                </div>
+                {% if isPdf %}
+                    <a class="mr-btn" href="{{ url }}" target="_blank" rel="noopener">{{ rc_t('block.front.pdf_open', {}, locale) }}</a>
+                {% else %}
+                    <a class="mr-btn" href="{{ url }}" download>{{ rc_t('block.front.pdf_download', {}, locale) }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endif %}

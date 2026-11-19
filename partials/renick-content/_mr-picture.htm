@@ -1,0 +1,9 @@
+{# path, widths, opts build the srcsets; src, sizes, alt, cls and raw extra attributes shape the markup. Formats: AVIF, WebP, original. #}
+{%- set plain = rc_srcset(path, widths|default(null), opts|default({})) -%}
+{%- set webp = rc_srcset(path, widths|default(null), opts|default({})|merge({extension: 'webp'})) -%}
+{%- set avif = rc_srcset(path, widths|default(null), opts|default({})|merge({extension: 'avif'})) -%}
+<picture>
+{%- if avif and avif != plain %}<source srcset="{{ avif }}" sizes="{{ sizes }}" type="image/avif">{% endif -%}
+{%- if webp and webp != plain %}<source srcset="{{ webp }}" sizes="{{ sizes }}" type="image/webp">{% endif -%}
+<img src="{{ src }}"{% if plain %} srcset="{{ plain }}" sizes="{{ sizes }}"{% endif %} alt="{{ alt|default('') }}"{% if cls|default('') %} class="{{ cls }}"{% endif %}{{ extra|default('')|raw }}>
+</picture>

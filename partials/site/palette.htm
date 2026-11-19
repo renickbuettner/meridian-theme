@@ -1,0 +1,20 @@
+{# Global command palette host (inside the permanent frame). Its JS builds the <dialog>; without JS the triggers are plain links to /search. #}
+{% set _t = {
+    label: 'meridian.front.search.label'|_,
+    list: 'meridian.front.search.list'|_,
+    placeholder: 'meridian.front.search.placeholder'|_,
+    close: 'meridian.front.search.close'|_,
+    results: 'meridian.front.search.results'|_({ count: ':count' }),
+    none: 'meridian.front.search.none'|_,
+    loading: 'meridian.front.search.loading'|_,
+    error: 'meridian.front.search.error'|_,
+    all: 'meridian.front.search.all'|_({ query: ':query' }),
+    page: 'meridian.front.search.kind_page'|_,
+    post: 'meridian.front.search.kind_post'|_,
+    go: 'meridian.front.search.go'|_,
+    latest: 'meridian.front.search.latest'|_,
+    hint_move: 'meridian.front.search.hint_move'|_,
+    hint_open: 'meridian.front.search.hint_open'|_,
+    hint_close: 'meridian.front.search.hint_close'|_,
+} %}
+<div data-mr-palette-host data-island="command-palette" data-island-load="eager" data-index="{{ 'search-index'|page }}" data-search-url="{{ 'search'|page }}" data-t="{{ _t|json_encode|e('html_attr') }}"></div>

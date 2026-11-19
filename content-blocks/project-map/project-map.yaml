@@ -1,0 +1,91 @@
+handle: project-map
+name: meridian.block.project-map.name
+icon: icon-map-marker
+group: Meridian
+version: 1
+settings: true
+fields:
+  eyebrow:
+    label: meridian.block.project-map.eyebrow
+    type: text
+  title:
+    label: meridian.block.project-map.title
+    type: text
+  intro:
+    label: meridian.block.project-map.intro
+    type: textarea
+    size: small
+  pins:
+    label: meridian.block.project-map.pins
+    type: repeater
+    titleFrom: title
+    fields:
+      title:
+        label: meridian.block.project-map.pins_title
+        type: text
+      category:
+        label: meridian.block.project-map.pins_category
+        type: text
+        commentAbove: meridian.block.project-map.pins_category_comment
+      location:
+        label: meridian.block.project-map.pins_location
+        type: text
+      lat:
+        label: meridian.block.project-map.pins_lat
+        type: text
+        span: left
+        commentAbove: meridian.block.project-map.pins_lat_comment
+        translatable: false
+      lon:
+        label: meridian.block.project-map.pins_lon
+        type: text
+        span: right
+        commentAbove: meridian.block.project-map.pins_lon_comment
+        translatable: false
+      status:
+        label: meridian.block.project-map.pins_status
+        type: dropdown
+        options:
+          completed: meridian.block.project-map.pins_status_completed
+          building: meridian.block.project-map.pins_status_building
+          planned: meridian.block.project-map.pins_status_planned
+          none: meridian.block.project-map.pins_status_none
+        default: completed
+      year:
+        label: meridian.block.project-map.pins_year
+        type: text
+      summary:
+        label: meridian.block.project-map.pins_summary
+        type: textarea
+        size: small
+      image:
+        label: meridian.block.project-map.pins_image
+        type: mediafinder
+        mode: image
+        maxItems: 1
+      image_alt:
+        label: meridian.block.project-map.pins_image_alt
+        type: text
+        commentAbove: meridian.block.project-map.pins_image_alt_comment
+      url:
+        label: meridian.block.project-map.pins_url
+        type: pagefinder
+        singleMode: true
+        allowCustomUrl: true
+        translatable: false
+      link_label:
+        label: meridian.block.project-map.pins_link_label
+        type: text
+        commentAbove: meridian.block.project-map.pins_link_label_comment
+  more_url:
+    label: meridian.block.project-map.more_url
+    type: pagefinder
+    singleMode: true
+    allowCustomUrl: true
+    translatable: false
+  more_label:
+    label: meridian.block.project-map.more_label
+    type: text
+  footnote:
+    label: meridian.block.project-map.footnote
+    type: text

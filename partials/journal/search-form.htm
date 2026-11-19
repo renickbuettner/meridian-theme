@@ -1,0 +1,6 @@
+{# {% partial 'journal/search-form' value=jTerm %}: a plain GET form, works without JavaScript. #}
+<form class="mr-jsearch" role="search" action="{{ 'search'|page }}" method="get">
+    <label class="visually-hidden" for="mr-jsearch-q">{{ 'meridian.front.journal.search_label'|_ }}</label>
+    <input class="mr-input" id="mr-jsearch-q" type="search" name="q" value="{{ value }}" placeholder="{{ 'meridian.front.journal.search_placeholder'|_ }}" autocomplete="off" enterkeyhint="search" maxlength="80">
+    <button class="mr-btn" type="submit">{% partial 'site/icon' name='search' %}<span>{{ 'meridian.front.journal.search_submit'|_ }}</span></button>
+</form>

@@ -1,0 +1,25 @@
+{
+    "name": "renick/meridian-theme",
+    "type": "october-theme",
+    "description": "Renick Meridian — an editorial sidebar theme with Bootstrap 6, fast Turbo navigation and interactive island blocks for the Renick.Content block editor for October CMS",
+    "keywords": ["octobercms", "october-cms", "theme", "meridian", "bootstrap", "sidebar", "content", "blocks"],
+    "homepage": "https://www.renick.io/en/content-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Renick",
+            "homepage": "https://www.renick.io"
+        }
+    ],
+    "support": {
+        "docs": "https://www.renick.io/en/content-plugin",
+        "issues": "https://www.renick.io/en/kontakt"
+    },
+    "require": {
+        "composer/installers": "^1.0 || ^2.0",
+        "renick/content-plugin": "^1.1.2"
+    },
+    "extra": {
+        "installer-name": "meridian"
+    }
+}

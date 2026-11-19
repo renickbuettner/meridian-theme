@@ -1,0 +1,12 @@
+url = "/robots.txt"
+layout = ""
+title = "Robots"
+is_hidden = 0
+==
+function onStart()
+{
+    $lines = ['User-agent: *', 'Disallow: ' . rtrim((string) parse_url(\Backend::url(''), PHP_URL_PATH), '/') . '/', 'Disallow: /search', 'Disallow: /*?*q=', '', 'Sitemap: ' . url('/sitemap.xml')];
+
+    return \Response::make(implode("\n", $lines) . "\n", 200, ['Content-Type' => 'text/plain; charset=utf-8']);
+}
+==

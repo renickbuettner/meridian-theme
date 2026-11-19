@@ -1,0 +1,4 @@
+{# The plugin emits Bootstrap 5 col-* names. Meridian sizes columns from rc-col-N (block-column.scss), so the dead names are dropped. #}
+{% set strip = {'"col-12 ': '"', ' col-md ': ' '} %}
+{% for n in 1..12 %}{% set strip = strip|merge({(' col-md-' ~ n ~ ' '): ' '}) %}{% endfor %}
+<div {{ attributes|replace(strip)|raw }}><div class="rc-column-inner">{{ children|default('')|raw }}</div></div>

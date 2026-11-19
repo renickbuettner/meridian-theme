@@ -1,0 +1,128 @@
+// Splide's theme CSS is inserted unlayered at runtime and loads after this file, so every rule here carries a .rc-slider prefix to outrank it.
+@use "../mr";
+@use "../blocks/plugin-tokens";
+
+.rc-slider {
+    --_arrow: var(--mr-target);
+    @include plugin-tokens.bs5-tokens;
+}
+
+.rc-slider .splide__slide { border-radius: var(--mr-radius-md); }
+.rc-slider .rc-slide-img { aspect-ratio: 4 / 3; }
+@include mr.up(md) {
+    .rc-slider .rc-slide-img { aspect-ratio: 16 / 7; }
+}
+
+html .rc-slider .rc-slide-caption {
+    padding: var(--mr-space-6) var(--mr-space-5) var(--mr-space-5);
+    background: linear-gradient(180deg, transparent, color-mix(in oklab, black 72%, transparent));
+    color: white;
+}
+
+html .rc-slider.rc-slider--cards .rc-slide-content {
+    height: 100%;
+    padding: var(--mr-space-5);
+    border: var(--mr-border);
+    border-radius: var(--mr-radius-md);
+    background: var(--mr-surface);
+    box-shadow: none;
+    color: var(--mr-ink);
+}
+.rc-slider--cards .rc-slide-content > :last-child { margin-bottom: 0; }
+
+.rc-slider .splide__arrow {
+    width: var(--_arrow);
+    height: var(--_arrow);
+    background: var(--mr-surface);
+    color: var(--mr-ink);
+    opacity: 1;
+    box-shadow: var(--mr-shadow-1);
+    transition: background-color var(--mr-dur) var(--mr-ease), color var(--mr-dur) var(--mr-ease);
+}
+.rc-slider .splide__arrow svg { width: var(--mr-space-4); height: var(--mr-space-4); fill: currentColor; }
+.rc-slider .splide__arrow:hover:not(:disabled) { background: var(--mr-accent); color: var(--mr-on-accent); opacity: 1; }
+.rc-slider .splide__arrow:disabled { opacity: 0.4; }
+.rc-slider .splide__arrow--prev { left: auto; inset-inline-start: var(--mr-space-3); }
+.rc-slider .splide__arrow--next { right: auto; inset-inline-end: var(--mr-space-3); }
+.rc-slider .splide__arrow--prev:dir(rtl) svg,
+.rc-slider .splide__arrow--next:dir(rtl) svg { scale: -1 1; }
+
+// Splide's own focus rules (is-focus-in) would otherwise draw a different ring than the rest of the theme.
+.rc-slider .splide__arrow:focus-visible,
+.rc-slider .splide__pagination__page:focus-visible,
+.rc-slider .splide__toggle:focus-visible,
+.rc-slider .splide.is-focus-in :is(.splide__arrow, .splide__pagination__page, .splide__toggle):focus {
+    outline: 2px solid var(--mr-focus);
+    outline-offset: 3px;
+}
+
+// Pagination keeps its own row so the dots never sit on the photo. Dots stay 24px targets around a small mark.
+.rc-slider .splide__pagination {
+    position: static;
+    gap: 0;
+    padding: var(--mr-space-3) var(--mr-target) 0;
+}
+.rc-slider .splide__pagination .splide__pagination__page {
+    position: relative;
+    width: var(--mr-space-6);
+    height: var(--mr-space-6);
+    margin: 0;
+    border-radius: var(--mr-radius-pill);
+    background: transparent;
+    opacity: 1;
+    transform: none;
+}
+.rc-slider .splide__pagination .splide__pagination__page.is-active { background: transparent; transform: none; }
+.rc-slider .splide__pagination__page::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: var(--mr-space-2);
+    height: var(--mr-space-2);
+    translate: -50% -50%;
+    border-radius: var(--mr-radius-pill);
+    background: var(--mr-line-strong);
+    transition: width var(--mr-dur) var(--mr-ease), background-color var(--mr-dur) var(--mr-ease);
+}
+.rc-slider .splide__pagination__page:hover::after { background: var(--mr-ink); }
+.rc-slider .splide__pagination__page.is-active::after { width: var(--mr-space-5); background: var(--mr-accent); }
+
+.rc-slider .splide__toggle {
+    right: 0;
+    bottom: 0;
+    width: var(--mr-space-6);
+    height: var(--mr-space-6);
+    border: 1px solid var(--mr-line-strong);
+    background: var(--mr-surface);
+    color: var(--mr-ink);
+    opacity: 1;
+}
+.rc-slider .splide__toggle svg { width: var(--mr-space-3); height: var(--mr-space-3); }
+
+// Card slides carry text: arrows move into a control row under the cards.
+.rc-slider--cards .splide:has(.splide__arrows) { padding-block-end: calc(var(--_arrow) + var(--mr-space-3)); }
+.rc-slider--cards .splide__arrow {
+    top: auto;
+    bottom: 0;
+    transform: none;
+    border: 1px solid var(--mr-line-strong);
+    box-shadow: none;
+}
+.rc-slider--cards .splide__arrow--prev { inset-inline-start: 0; }
+.rc-slider--cards .splide__arrow--next { inset-inline-start: calc(var(--_arrow) + var(--mr-space-2)); inset-inline-end: auto; }
+.rc-slider--cards .splide:has(.splide__arrows) .splide__pagination {
+    position: absolute;
+    inset-inline: calc(var(--_arrow) * 2 + var(--mr-space-4)) var(--_arrow);
+    bottom: 0;
+    min-height: var(--_arrow);
+    padding: 0;
+    align-items: center;
+}
+.rc-slider .splide:not(:has(.splide__pagination)) .splide__toggle { right: var(--mr-space-3); bottom: var(--mr-space-3); }
+
+// Lightbox (GLightbox): the same ring and a calm dark overlay.
+.goverlay { background: color-mix(in oklab, black 92%, transparent); }
+.glightbox-clean .gclose:focus-visible,
+.glightbox-clean .gnext:focus-visible,
+.glightbox-clean .gprev:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+.glightbox-container .gslide-image img { border-radius: var(--mr-radius-md); }

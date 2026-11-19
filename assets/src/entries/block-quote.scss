@@ -1,0 +1,44 @@
+@use "../mr";
+
+html .rc-quote { margin: 0; }
+html .rc-quote blockquote {
+    margin: 0 0 var(--mr-space-3);
+    padding: 0;
+    padding-inline-start: var(--mr-space-5);
+    border-inline: 0;
+    border-inline-start: var(--mr-rule-w) solid var(--mr-accent);
+    font-family: var(--mr-font-serif);
+    font-size: var(--mr-text-lg);
+    line-height: 1.45;
+    max-width: var(--mr-w-prose);
+}
+html .rc-quote figcaption { font-size: var(--mr-text-sm); color: var(--mr-muted); }
+html .rc-quote:not(.rc-quote--centered) figcaption { margin-inline-start: calc(var(--mr-space-5) + var(--mr-rule-w)); }
+html .rc-quote .rc-quote-role::before { content: "\2014\00a0"; }
+html .rc-quote-role { font-style: normal; }
+
+// Centred variant: a large accent mark above the text instead of a side bar.
+html .rc-quote--centered {
+    max-width: var(--mr-w-prose);
+    margin-inline: auto;
+    padding: 0;
+    text-align: center;
+}
+html .rc-quote--centered blockquote {
+    margin-inline: auto;
+    padding: 0;
+    border: 0;
+    font-size: var(--mr-text-h3);
+    line-height: 1.35;
+}
+html .rc-quote--centered .rc-quote-mark {
+    position: static;
+    display: block;
+    height: var(--mr-space-6);
+    margin-block-end: var(--mr-space-2);
+    font-family: var(--mr-font-serif);
+    font-size: var(--mr-space-8);
+    line-height: 1;
+    color: var(--mr-accent);
+    opacity: 1;
+}

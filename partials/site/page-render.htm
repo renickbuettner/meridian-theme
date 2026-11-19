@@ -1,0 +1,8 @@
+{# Shared body for Meridian\Page entries; the caller resolves the entry and sets the SEO vars. Width and banding are decided per block (rc-w-*); rootWidth gives root blocks without a stored width the container. #}
+{% if entry %}
+    {% if seoBreadcrumbs|length %}{% partial 'site/breadcrumbs' trail=seoBreadcrumbs %}{% endif %}
+    {% partial 'site/block-css' css=blockCss %}
+    <article class="rc-document">
+        {% component 'renickContent' document=entry.content rootWidth='container' %}
+    </article>
+{% endif %}

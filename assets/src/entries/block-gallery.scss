@@ -1,0 +1,86 @@
+@use "../mr";
+@use "../partials-a/surface";
+
+// Tracks follow the gallery's own width, like column rows: cols_mobile, cols_tablet and cols_desktop are spans of 12.
+.rc-gallery { container: mr-gallery / inline-size; }
+
+// Flex rows with computed widths instead of 12 grid tracks: 11 gaps never exceed a very narrow container.
+.rc-gallery-grid {
+    --g-cols: var(--g-m);
+    --g-gap: var(--mr-space-4);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--g-gap);
+}
+@container mr-gallery (min-width: 40rem) {
+    .rc-gallery-grid { --g-cols: var(--g-t); --g-gap: var(--mr-space-5); }
+}
+@container mr-gallery (min-width: 56rem) {
+    .rc-gallery-grid { --g-cols: var(--g-d); }
+}
+
+html .rc-gallery-item {
+    flex: 0 0 calc((100% - 11 * var(--g-gap)) / 12 * var(--g-cols) + (var(--g-cols) - 1) * var(--g-gap));
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    margin: 0;
+}
+
+.rc-gallery-lightbox {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: var(--mr-radius-md);
+    color: inherit;
+    text-decoration: none;
+}
+html .rc-gallery-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    transition: transform 0.4s var(--mr-ease);
+}
+html .rc-gallery-lightbox:hover img { transform: scale(1.03); }
+@include mr.reduced-motion {
+    html .rc-gallery-lightbox:hover img { transform: none; }
+}
+
+html .rc-gallery-item figcaption {
+    padding-block-start: var(--mr-space-2);
+    font-size: var(--mr-text-xs);
+    color: var(--mr-muted);
+}
+
+// Labels: a surface chip over the picture, not a full-width dark bar, so contrast comes from the palette.
+html .rc-gallery-label {
+    inset-inline: var(--mr-space-3) auto;
+    bottom: var(--mr-space-3);
+    max-width: calc(100% - var(--mr-space-5));
+    padding: var(--mr-space-1) var(--mr-space-3);
+    border-radius: var(--mr-radius-pill);
+    background: var(--mr-surface);
+    color: var(--mr-ink);
+    font-size: var(--mr-text-xs);
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-shadow: var(--mr-shadow-1);
+}
+
+// Cards: the lightbox link is the card, so the whole tile is one target.
+html .rc-gallery--cards .rc-gallery-item { display: flex; }
+html .rc-gallery--cards .rc-gallery-lightbox { display: flex; width: 100%; background: none; border-radius: var(--mr-radius-md); }
+html .rc-gallery-card {
+    @include surface.surface;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+}
+.rc-gallery-card-body { padding: var(--mr-space-4) var(--mr-space-5) var(--mr-space-5); }
+.rc-gallery-card-title { font-family: var(--mr-font-serif); font-size: var(--mr-text-lg); line-height: 1.25; }
+.rc-gallery-card-text { margin-block-start: var(--mr-space-1); font-size: var(--mr-text-sm); color: var(--mr-muted); }
